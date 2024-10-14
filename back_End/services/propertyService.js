@@ -82,8 +82,11 @@ const getRecentProperties = async () => {
 const uploadPropertyImage = async (files, id ) => {
     const propertyId = new mongoose.Types.ObjectId(id);
 
-    Object.keys(files).forEach(async (key) => {
+  const uploadPromises =  Object.keys(files).forEach(async (key) => {
         const file = files[key];
+        
+        return new Promise((resolve, reject) => {
+
         const uploadStream = cloudinary.uploader.upload_stream(
             {
                 folder: "RealEstate"
@@ -91,9 +94,11 @@ const uploadPropertyImage = async (files, id ) => {
             ,
             async(error, result) => {
                 if (error) {
-                    return {error: "Error uploading files to cloudinary"}
-                } else {
-                    
+                   return reject(error);
+                } 
+
+                try{
+
                     const property = await Property.findById({_id: propertyId}).exec();
                     
                     if (property == null) {
@@ -101,12 +106,24 @@ const uploadPropertyImage = async (files, id ) => {
                     };
                     property.imageUrls.push(result.url);
                     await property.save()
-                    return  "Files uploaded succesfully to cloudinary"
+                    resolve('File Uploaded Successfully to DB')
+
+                }catch(err){
+                    console.log(err)
+                    reject(err)
                 }
+                    
+                   
+                
             }
         );
      uploadStream.end(file.data);
+
     })
+
+    })
+
+    return Promise.all(uploadPromises);
     
 };
 
