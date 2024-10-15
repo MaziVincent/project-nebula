@@ -20,9 +20,9 @@ const SignIn = ({open, handleCloseLogin}) => {
   const from = location.state?.from?.pathname || '/'
   const [isLoading, setIsLoading] = useState(false)
 
-  const [openModal, setOpenModal] = useState(false)
-  const handleOpen = () => setOpenModal(true)
-  const handleClose = () => setOpenModal(false)
+  // const [openModal, setOpenModal] = useState(false)
+  // const handleOpen = () => setOpenModal(true)
+  // const handleClose = () => setOpenModal(false)
 
   const {
     register,
@@ -79,7 +79,7 @@ const SignIn = ({open, handleCloseLogin}) => {
   return (
     <Modal
       open={open}
-      onClose={handleCloseLogin}
+      onClose={() => handleCloseLogin({type:"openLogin"}) }
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -93,7 +93,7 @@ const SignIn = ({open, handleCloseLogin}) => {
               </h3>
               <button
                 type="button"
-                onClick={() => {handleCloseLogin()}}
+                onClick={() => handleCloseLogin({type:"openLogin"})}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
               >
@@ -117,8 +117,8 @@ const SignIn = ({open, handleCloseLogin}) => {
             <span>Or </span>
             <button
               onClick={() => {
-                handleCloseLogin();
-                handleOpen()
+                handleCloseLogin({type:"openLogin"});
+                handleCloseLogin({type:"register"});
               }}
               className=" font-medium underline hover:no-underline text-gray-700 hover:text-gray-800 dark:text-gray-300"
             >
@@ -265,7 +265,6 @@ const SignIn = ({open, handleCloseLogin}) => {
         </div>
         </div>
       </div>
-      <SignUp open={openModal} handleClose={handleClose} />
     </div>
     </Modal>
   )

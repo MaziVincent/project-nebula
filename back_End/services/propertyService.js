@@ -83,7 +83,7 @@ const uploadPropertyImage = async (files, id ) => {
     console.log(files)
     const propertyId = new mongoose.Types.ObjectId(id);
 
-  const uploadPromises =  Object.keys(files).forEach(async (key) => {
+  const uploadPromises =  Object.keys(files).map(async (key) => {
         const file = files[key];
         
         return new Promise((resolve, reject) => {
@@ -95,6 +95,7 @@ const uploadPropertyImage = async (files, id ) => {
             ,
             async(error, result) => {
                 if (error) {
+                   
                    return reject(error);
                 } 
 
@@ -111,6 +112,7 @@ const uploadPropertyImage = async (files, id ) => {
 
                 }catch(err){
                     console.log(err)
+                    
                     reject(err)
                 }
                     

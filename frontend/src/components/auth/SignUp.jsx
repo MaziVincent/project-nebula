@@ -18,9 +18,9 @@ const SignUp = ({open, handleClose}) => {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
 
-  const [openLogin, setOpenLogin] = useState(false)
-  const handleOpenLogin = () => setOpenLogin(true)
-  const handleCloseLogin = () => setOpenLogin(false)
+  // const [openLogin, setOpenLogin] = useState(false)
+  // const handleOpenLogin = () => setOpenLogin(true)
+  // const handleCloseLogin = () => setOpenLogin(false)
 
   const { 
     register, 
@@ -53,7 +53,8 @@ const SignUp = ({open, handleClose}) => {
       toast.success("Account created successfully");
       setTimeout(() => {
         navigate('/login');
-        handleClose();
+        handleClose({type:"register"});
+        handleClose({type:"openLogin"});
       }, 5000);
     },
     onError: (error) => {
@@ -67,7 +68,7 @@ const SignUp = ({open, handleClose}) => {
   return (
     <Modal
       open={open}
-      onClose={() => {handleClose()}}
+      onClose={() => {handleClose({type:"register"})}}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -87,7 +88,7 @@ const SignUp = ({open, handleClose}) => {
               </h3>
               <button
                 type="button"
-                onClick={() => {handleClose()}}
+                onClick={() => {handleClose({type:"register"})}}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
               >
@@ -233,15 +234,15 @@ const SignUp = ({open, handleClose}) => {
               <p className='text-center mt-4 mb-2'>Already have an account? 
                 <button 
                   onClick={() => {
-                    handleClose();
-                    handleOpenLogin();
+                    handleClose({type:"register"});
+                    handleClose({type:"openLogin"});
+                    
                   }}
                   className='text-blue-600 underline hover:text-blue-700'> login</button>
               </p>
             </div>
           </div>
         </div>
-        <SignIn open={openLogin} handleCloseLogin={handleCloseLogin} />
       </div>
     </Modal>
   )
