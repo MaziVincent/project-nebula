@@ -179,26 +179,66 @@ const HouseDetails = () => {
                 handleUpdateOpen();
                 setHouse(house);
               }}
-              className=' bg-gray-300 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 rounded-lg px-2'
+              className=' bg-gray-300 max-sm:bg-blue-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-blue-100 rounded-lg px-2'
               >
-              <span>Edit House</span>
+              <span className='md:block max-sm:hidden'>Edit House</span>
+              <span className=' md:hidden max-sm:block'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="48px" 
+                  viewBox="0 -960 960 960" 
+                  width="48px" 
+                  fill="currentColor"
+                  className=' text-blue-600'
+                  >
+                  <path d="M180-180h44l472-471-44-44-472 471v44Zm-60 60v-128l575-574q8-8 19-12.5t23-4.5q11 0 22 4.5t20 12.5l44 44q9 9 13 20t4 22q0 11-4.5 22.5T823-694L248-120H120Zm659-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z"
+                  />
+                </svg>
+              </span>
             </button>
             <button
               onClick={() => {handleOpenDelete() 
                 setPropertyId(house._id)
               }} 
-              className=' bg-red-600 bg-opacity-70 text-white px-2 rounded-lg shadow-md shadow-red-300'
+              className=' bg-red-600 max-sm:bg-red-100 bg-opacity-70 text-white px-2 rounded-lg shadow-md shadow-red-300 max-sm:shadow-red-100'
               >
-              <span>Delete House</span>
+              <span className=' max-sm:hidden md:block'>Delete House 
+              </span>
+              <span className=' md:hidden max-sm:block'>
+              <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              height="48px" 
+              viewBox="0 -960 960 960" 
+              width="48px" 
+              fill="currentcolor"
+              className=' text-red-600'
+              >
+              <path d="M261-120q-24.75 0-42.37-17.63Q201-155.25 201-180v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438v-570ZM367-266h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z"
+              />
+              </svg>
+              </span>
             </button>
             <button
               onClick={() => {
                 handleOpenUpload();
                 setPropertyId(house._id);
               }}
-              className=' bg-gray-300 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 rounded-lg px-2'
+              className=' bg-gray-300 max-sm:bg-sky-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-sky-100 rounded-lg px-2'
               >
-              <span>Upload Image</span>
+              <span className=' md:block max-sm:hidden'>Upload House Image</span>
+              <span className=' md:hidden max-sm:block'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="48px" 
+                  viewBox="0 -960 960 960" 
+                  width="48px" 
+                  fill="currentColor"
+                  className='text-sky-600'
+                  >
+                  <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                  />
+                </svg>
+              </span>
             </button>
           </div>
         </div>

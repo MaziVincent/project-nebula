@@ -18,7 +18,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     const url = `${baseURL}properties/upload`
     const {id} = useParams()
 
-    console.log(propertyId)
+    // console.log(propertyId)
     // const propertyId = id
     const { 
       register, 

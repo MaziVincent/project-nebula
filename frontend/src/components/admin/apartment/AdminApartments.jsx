@@ -108,12 +108,6 @@ const AdminApartments = () => {
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
-                  ID
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-4 font-medium text-gray-900"
-                >
                   Title
                 </th>
                 <th
@@ -146,14 +140,6 @@ const AdminApartments = () => {
                  data.apartments.map((apartment) => (
                   <tr key={apartment._id} className="hover:bg-gray-50">
                 
-                <th className=" flex items-center gap-2 px-4 py-6">
-                  <div className="relative">
-                    <input type="checkbox" />
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-medium text-gray-700">{apartment._id}</div>
-                  </div>
-                </th>
                 <th className=" gap-3 items-center px-6 py-4 font-normal text-gray-900">
                   <div className="relative max-h-10 max-w-10">
                     
@@ -163,8 +149,8 @@ const AdminApartments = () => {
                   </div>
                 </th>
                 <td className="px-6 py-4">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${apartment.status === "Available" ? 'text-green-600 bg-green-50' : apartment.status === "Pending" ? 'text-yellow-600 bg-yellow-50' : 'text-red-600 bg-red-50'}`}>
+                    <span className={`h-1.5 w-1.5 rounded-full ${apartment.status === "Available" ? 'bg-green-600' : apartment.status === "Pending" ? 'bg-yellow-600' : 'bg-red-600'}`}></span>
                     {apartment.status}
                   </span>
                 </td>
@@ -174,12 +160,6 @@ const AdminApartments = () => {
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
                       {apartment.owner.firstname}
                     </span>
-                    {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                      Product
-                    </span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                      Develop
-                    </span> */}
                   </div>
                 </td>
                 <td className="px-6 py-4">
@@ -199,7 +179,7 @@ const AdminApartments = () => {
                     </button>
                     {
                       tools === apartment._id && (
-                        <div className=' flex justify-end gap-4 absolute right-16 bg-gray-0 p-1'>
+                        <div className=' flex justify-end items-center gap-4 absolute right-20 bg-gray-0 px-2 py-2 bg-sky-100 rounded-lg'>
                     <button
                       onClick={() => {handleOpenDelete() 
                         setPropertyId(apartment._id)

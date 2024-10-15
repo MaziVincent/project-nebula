@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router-dom';
 import baseURL from '../../../shared/baseURL';
 import DeletePropertyModal from '../property/DeletepropertyModal';
 import UpdateLandModal from './UpdateLandModal';
+import UploadPropertyImage from '../property/UploadPropertyImage';
 
 const LandDetails = () => {
   const { auth } = useAuth();
@@ -27,9 +28,13 @@ const LandDetails = () => {
   const handleDeleteClose = () => setOpenDelete(false);
   const [propertyId, setPropertyId] = useState("")
 
+
+  //upload image
+  const [openUpload, setOpenUpload] = useState(false)
+  const handleOpenUpload = () => setOpenUpload(true)
+  const handleUploadClose = () => setOpenUpload(false)
   // State for apartment details and other shops
   const [land, setLand] = useState(null);
-  const [otherLands, setOtherLands] = useState([]);
   
   const handleLandDetails = async () => {
     try {
@@ -37,34 +42,10 @@ const LandDetails = () => {
       const result = await fetch(`${url}/${id}`, auth.accessToken);
       if (result.data) {
         setLand(result.data); 
-        console.log("Land details:", result.data);
+        // console.log("Land details:", result.data);
   
-        // Fetch other lands
-        const otherLandsResult = await fetch(`${url}`, auth.accessToken);
-        console.log("Other Lands result:", otherLandsResult.data);
-  
-        let landsArray = [];
-  
-        // Determine the correct format of the data
-        if (Array.isArray(otherLandsResult.data)) {
-          landsArray = otherLandsResult.data;
-        } else if (otherLandsResult.data && otherLandsResult.data.lands) {
-          landsArray = otherLandsResult.data.lands;
-        } else {
-          toast.error("No other land found or data format is incorrect.");
-          return;
-        }
-  
-        // Filter out the current land
-        const filteredLands = landsArray.filter(land => land._id !== id);
-  
-        if (filteredLands.length > 0) {
-          setOtherLands(filteredLands);
-          toast.success("Land details fetched successfully");
-        } else {
-          toast.warn("No other land available.");
-        }
-        
+      } else {
+        toast.warn("No other land available.");
       }
     } catch (error) {
       toast.error("Error fetching other details");
@@ -79,29 +60,42 @@ const LandDetails = () => {
   useEffect(() => {
     handleLandDetails();
   }, [id]);
-  console.log(otherLands);
-  console.log(land);
+  // console.log(land);
   return (
     <div className='mt-4'>
         <ToastContainer />
+        <div className=' max-md:pt-10 mt-0 mb-2'>
+        <Link to='/admin/lands'>
+          <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 28 28"
+          className=' h-7 w-7 text-gray-400 hover:text-green-600'
+          fill="currentColor">
+          <path d="M0 0h24v24H0V0z" 
+          fill="none"/>
+          <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21v-2z"/></svg>
+        </Link>
+      </div>
       {/* Render shop details */}
       {land ? (
         <div>
-          <div className=' grid grid-cols-2 gap-4'>
-            <div className=' h-auto'>
-              <img className=' h-full' src={`${imageUrl}${land.image[0]}`} />
+          <div className=''>
+          <div className=' leading-3 mb-4'>
+              <h1 className='text-xl inline-flex gap-2 items-center mb-0 leading-none'>Title: <span className='text-lg font-semi-bold text-gray-800 uppercase'>{land.title}</span></h1>
+              <p className='m-0'>Owner: <span className=' text-gray-700 text-sm tracking-wider underline'>{land?.owner?.firstname} {land?.owner?.lastname}</span></p>
+             </div>
+            <div className=' grid grid-cols-3 gap-2 shadow-md duration-200 delay-100 ease-in-out overflow-hidden'>
+              {
+                land.imageUrls.map((imageUrl, index) => (
+                  <img key={index} src={imageUrl} alt={land.title} className=' w-full h-full duration-300 delay-300 ease-in-out  hover:scale-105' />
+                ))
+              }
             </div>
+            <p>Status: <span>{land.status}</span></p>
+            <p className=' mb-1'>Price: <span>{land.price}</span></p>
+            <p className=' mb-1'>Location: <span>{land.location}</span></p>
             <div>
-              <h1 className='text-xl inline-flex gap-2 items-center'>Title: <span className='text-lg font-semi-bold text-gray-800 uppercase'>{land.title}</span></h1>
-              <p className=' flex flex-col justify-start gap-2'>
-                <span>Description:</span>
-                <span>{land.description}</span>
-              </p>
-              <p>Owner: {land.owner.firstname}</p>
-              <p>Price: <span>{land.price}</span></p>
-              <p>Location: <span>{land.location}</span></p>
               <p>plots: <span>{land.plots}</span></p>
-              <p>Status: <span>{land.status}</span></p>
               <p>docType: <span>{land.docType}</span></p>
               <p>ownershipType: <span>{land.ownershipType}</span></p>
               <div>
@@ -109,53 +103,86 @@ const LandDetails = () => {
               </div>
             </div>
           </div>
+          <p className=' flex flex-col justify-start gap-2'>
+            <span>Description:</span>
+            <span>{land.description}</span>
+          </p>
           {/* Add more shop details as needed */}
-          <div className="mt-4">
-                    <button
-                    onClick={() => {
-                      handleUpdateOpen();
-                      setLand(land);
-                    }}
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                      Update
-                    </button>
-                    <button onClick={() => {handleOpenDelete() 
-                        setPropertyId(land._id)
-                      }}
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                      Delete
-                    </button>
-                  </div>
+          <div className="mt-4 flex gap-2">
+            <button
+            onClick={() => {
+              handleUpdateOpen();
+              setLand(land);
+            }}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded max-sm:bg-blue-100 max-sm:hover:bg-blue-300">
+              <span className='md:block max-sm:hidden'>Update Land</span>
+              <span className=' md:hidden max-sm:block'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="48px" 
+                  viewBox="0 -960 960 960" 
+                  width="48px" 
+                  fill="currentColor"
+                  className=' text-blue-600'
+                  >
+                  <path d="M180-180h44l472-471-44-44-472 471v44Zm-60 60v-128l575-574q8-8 19-12.5t23-4.5q11 0 22 4.5t20 12.5l44 44q9 9 13 20t4 22q0 11-4.5 22.5T823-694L248-120H120Zm659-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button onClick={() => {handleOpenDelete() 
+                setPropertyId(land._id)
+              }}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded max-sm:bg-red-100 max-sm:hover:bg-red-300">
+              <span className=' max-sm:hidden md:block'>Delete Land 
+              </span>
+              <span className=' md:hidden max-sm:block'>
+              <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              height="48px" 
+              viewBox="0 -960 960 960" 
+              width="48px" 
+              fill="currentcolor"
+              className=' text-red-600'
+              >
+              <path d="M261-120q-24.75 0-42.37-17.63Q201-155.25 201-180v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438v-570ZM367-266h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z"
+              />
+              </svg>
+              </span>
+            </button>
+            <button
+            onClick={() => {
+              handleOpenUpload();
+              setPropertyId(land._id);
+            }}
+              className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-2 rounded max-sm:bg-sky-100 max-sm:hover:bg-sky-300">
+               <span className=' md:block max-sm:hidden'>Upload Land Image</span>
+              <span className=' md:hidden max-sm:block'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="48px" 
+                  viewBox="0 -960 960 960" 
+                  width="48px" 
+                  fill="currentColor"
+                  className='text-sky-600'
+                  >
+                  <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
       ) : (
         <p>Loading...</p>
       )}
       
-      {/* Render other shops */}
-      <div>
-        <h2>Other Lands</h2>
-        {
-          otherLands.length > 0 ? (
-            <div className=' grid grid-cols-3 gap-4'>
-              {otherLands.map((land) => (
-                <div key={land._id} className=' border rounded-lg p-2'>
-                  <Link to={`/admin/land_details/${land._id}`}>
-                    <img className=' h-40 w-full' src={`${imageUrl}${land.images[0]}`} />
-                    <p>{land.title}</p>
-                    <p>{land.price}</p>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>No other land available</p>
-          )
-        }
-      </div>
-      <UpdateLandModal open={openUpdate} handleClose={handleUpdateClose} land={land} />
-      <DeletePropertyModal open={openDelete} handleClose={handleDeleteClose} propertyId={propertyId} 
+
+      <UpdateLandModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} land={land} />
+      <DeletePropertyModal openDelete={openDelete} handleDeleteClose={handleDeleteClose} propertyId={propertyId} 
       url={`${url}`}
       />
+      <UploadPropertyImage openUpload={openUpload} handleUploadClose={handleUploadClose} propertyId={propertyId} />
     </div>
   )
 }

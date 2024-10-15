@@ -89,7 +89,7 @@ const ApartmentStatusModal = ({openStatus, handleCloseStatus, apartment}) => {
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           >
             <option value="Available">Available</option>
-            <option value="Sold">Sold</option>
+            <option value="Pending">Pending</option>
             <option value="Rented">Rented</option>
           </select>
         </div>

@@ -68,7 +68,7 @@ const Shops = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  console.log(data);
+  // console.log(data);
 
   // const handleDelete = async(_id) => {
   //   try {
@@ -105,12 +105,6 @@ const Shops = () => {
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
-                  ID
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-4 font-medium text-gray-900"
-                >
                   Title
                 </th>
                 <th
@@ -143,14 +137,6 @@ const Shops = () => {
                  data.shops.map((shop) => (
                   <tr key={shop._id} className="hover:bg-gray-50">
                 
-                <th className=" flex items-center gap-2 px-4 py-6">
-                  <div className="relative">
-                    <input type="checkbox" />
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-medium text-gray-700">{shop._id}</div>
-                  </div>
-                </th>
                 <th className=" gap-3 items-center px-6 py-4 font-normal text-gray-900">
                   <div className="relative max-h-10 max-w-10">
                     
@@ -171,12 +157,6 @@ const Shops = () => {
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
                       {shop.owner.firstname}
                     </span>
-                    {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                      Product
-                    </span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                      Develop
-                    </span> */}
                   </div>
                 </td>
                 <td className="px-6 py-4">
@@ -196,7 +176,7 @@ const Shops = () => {
                     </button>
                     {
                       tools === shop._id && (
-                        <div className=' flex justify-end gap-4 absolute right-16 bg-gray-0 p-1'>
+                        <div className=' flex justify-end items-center gap-4 absolute right-20 bg-gray-0 px-2 py-2 bg-sky-100 rounded-lg'>
                     <button
                       onClick={() => {handleOpenDelete() 
                         setPropertyId(shop._id)
@@ -210,7 +190,7 @@ const Shops = () => {
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="h-6 w-6"
+                        className="h-6 w-6 text-red-600"
                         x-tooltip="tooltip"
                       >
                         <path
@@ -227,9 +207,10 @@ const Shops = () => {
                     >
                     <svg 
                       xmlns="http://www.w3.org/2000/svg"
-                      className=' w-6 h-6 text-gray-500'
+                      className=' w-6 h-6 text-cyan-600'
                       viewBox="0 0 24 24"
-                      fill='#6b7280'
+                      fill='currentColor'
+                      
                       >
                         <path d="M0 0h24v24H0V0z" 
                         fill="none"
@@ -250,7 +231,7 @@ const Shops = () => {
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="h-6 w-6"
+                        className="h-6 w-6 text-blue-600"
                         x-tooltip="tooltip"
                       >
                         <path
@@ -271,7 +252,9 @@ const Shops = () => {
                         height="24px" 
                         viewBox="0 0 24 24" 
                         width="24px" 
-                        fill="#6b7280">
+                        fill="currentColor"
+                        className=' text-green-600'
+                        >
                         <rect fill="none" 
                         height="24" 
                         width="24"/>

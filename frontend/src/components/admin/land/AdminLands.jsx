@@ -96,12 +96,6 @@ const AdminLands = () => {
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
-                  ID
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-4 font-medium text-gray-900"
-                >
                   Title
                 </th>
                 <th
@@ -134,14 +128,6 @@ const AdminLands = () => {
                  data.lands.map((land) => (
                   <tr key={land._id} className="hover:bg-gray-50">
                 
-                <th className=" flex items-center gap-2 px-4 py-6">
-                  <div className="relative">
-                    <input type="checkbox" />
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-medium text-gray-700">{land._id}</div>
-                  </div>
-                </th>
                 <th className=" gap-3 items-center px-6 py-4 font-normal text-gray-900">
                   <div className="relative max-h-10 max-w-10">
                     
@@ -181,7 +167,7 @@ const AdminLands = () => {
                     </button>
                     {
                       tools === land._id && (
-                        <div className=' flex justify-end gap-4 absolute right-16 bg-gray-0 p-1'>
+                        <div className=' flex justify-end gap-4 absolute right-20 bg-gray-0 py-2 px-2 bg-sky-100 rounded-lg'>
                     <button
                       onClick={() => {handleOpenDelete() 
                         setPropertyId(land._id)

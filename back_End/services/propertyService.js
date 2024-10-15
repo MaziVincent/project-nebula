@@ -80,6 +80,7 @@ const getRecentProperties = async () => {
 };
 
 const uploadPropertyImage = async (files, id ) => {
+    console.log(files)
     const propertyId = new mongoose.Types.ObjectId(id);
 
   const uploadPromises =  Object.keys(files).forEach(async (key) => {

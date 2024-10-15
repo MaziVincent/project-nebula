@@ -34,7 +34,7 @@ const DeletePropertyModal = ({ openDelete, handleDeleteClose, propertyId, url}) 
       toast.error("Failed to delete property");
     }
   };
-  console.log(propertyId);
+  // console.log(propertyId);
 return (
   <Modal 
     open={openDelete}
