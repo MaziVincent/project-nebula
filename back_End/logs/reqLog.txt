@@ -27998,6 +27998,7 @@
 2024-10-15	10:46:04	565b1d00-7c8d-42d8-a263-5f6927809120	GET	/refresh	http://localhost:5173
 2024-10-15	10:46:04	ccbff6c6-0e16-4b5e-8cce-055b483d2cfb	OPTIONS	/refresh	http://localhost:5173
 2024-10-15	10:46:04	21d1df3a-73b4-4fd5-8385-dca77a2104f6	GET	/refresh	http://localhost:5173
+<<<<<<< HEAD
 2024-10-15	10:47:00	fea0e2cf-91c0-4355-9af9-57a035ee77af	OPTIONS	/login	http://localhost:5173
 2024-10-15	10:47:00	2587e784-5037-48e8-b280-094c47806f96	POST	/login	http://localhost:5173
 2024-10-15	10:47:07	58513236-a1ea-4577-8a1b-0f86a711663f	OPTIONS	/recentProps	http://localhost:5173
@@ -28316,3 +28317,32 @@
 2024-10-15	13:56:14	b3f47d08-392c-430c-b43a-d49104e91399	GET	/refresh	http://localhost:5173
 2024-10-15	13:56:15	5b0a353e-ed79-4bda-bb39-5513bb2a3d7f	GET	/refresh	http://localhost:5173
 2024-10-15	13:56:15	f35f569d-3db8-4b94-9430-e127965e1e73	GET	/properties/owner/66d1b843db9b213d97e485ab	http://localhost:5173
+=======
+2024-10-15	13:23:24	a87fd918-f1df-49bc-bfd5-23b98dd25712	OPTIONS	/login	http://localhost:5173
+2024-10-15	13:23:24	051e0ae6-37c8-4e86-a543-48d273afe409	POST	/login	http://localhost:5173
+2024-10-15	13:23:30	2a0159a8-78bb-491f-9b67-0ee0ea02f7ca	OPTIONS	/recentProps	http://localhost:5173
+2024-10-15	13:23:30	814130be-cb22-418b-bd82-5f022bccc7fc	GET	/recentProps	http://localhost:5173
+2024-10-15	13:23:51	0cb7e3ee-8b3c-4311-bf59-f78fb6c40702	OPTIONS	/apartment	http://localhost:5173
+2024-10-15	13:23:51	eabc5d05-196f-4b9e-bd3b-774db3afa9a8	GET	/apartment	http://localhost:5173
+2024-10-15	13:23:56	ba48004c-3b15-4857-b756-e7a36ae598fd	OPTIONS	/house	http://localhost:5173
+2024-10-15	13:23:56	ec7f8795-7b61-4fb4-883b-4d024e237e48	GET	/house	http://localhost:5173
+2024-10-15	13:24:02	2804a859-0e39-4a96-9d10-fa46ee1575eb	OPTIONS	/apartment	http://localhost:5173
+2024-10-15	13:24:02	6048cfa4-943a-41ab-a7f9-4bafce98b562	GET	/apartment	http://localhost:5173
+2024-10-15	13:24:14	682b9211-9ac0-45ab-8e2e-cbb8cd1d99ae	OPTIONS	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:24:14	c7b0b9ed-cb91-4bc4-a128-7b67ce24372c	OPTIONS	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:24:14	ba984286-c939-432a-acff-603cef7be8de	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:24:15	aecd7c2d-0ce5-4834-8a00-a25fbfaf9a71	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:27:01	f81348cd-ec9d-4e0c-9a48-ea3e9b68ce58	OPTIONS	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:27:01	ea086f50-b2a1-40c5-8f7a-23053eac49f6	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:31:28	1894a89d-901c-4ee7-84fb-68e3cab0437a	OPTIONS	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:31:28	7bc839a0-412a-4da1-9c08-41953ff243ca	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:32:23	47d7264c-4eb2-4093-a34a-a2d8ee60ac67	OPTIONS	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:32:23	93c27634-cfbd-4e1e-a771-7b329bb3835e	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:33:03	bf314bbf-9e65-4792-9277-19ed2f6ef170	OPTIONS	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:33:03	590c4900-bfbc-4f4f-b4f9-8513d76e1b23	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:40:16	f20cf5d8-4f31-4754-90fc-5454174fbb91	OPTIONS	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:40:16	673d72ab-4f99-4938-8805-5ff398acfdaa	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:40:20	42d5bea6-32d3-449f-a09e-9a286e7fb15b	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:46:41	21f4ed5f-ccd0-4bc9-852e-6a2a940e1bfb	OPTIONS	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:46:41	c853459d-d444-4f5f-833e-48c29cf9c43e	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+>>>>>>> e0de70492d693f1f528e1624725ba8fce67eb556
