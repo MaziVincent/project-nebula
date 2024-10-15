@@ -18,8 +18,7 @@ const Header = () => {
 
   const [openModal, setOpenModal] = useState(false)
   const [openLogin, setOpenLogin] = useState(false)
-  const handleOpen = () =>{
-     setOpenModal(true)}
+  
   const handleClose = () => {
     setOpenModal(false)
     setOpenLogin(true)
@@ -46,6 +45,12 @@ const Header = () => {
   // handle show nav
   const handleShowNav = () => {
     setShowNav(!showNav)
+  }
+
+  const [isModal, setIsModal] = useState(false)
+  const toggleModal = () => {
+    setIsModal(!isModal)
+    setOpenLogin(false)
   }
 
   return (
@@ -120,13 +125,19 @@ const Header = () => {
                   </div>
                   <div className="header-icon">
                       <div className="header-button">
-                          <button onClick={() => {handleOpen()}} className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch">
+                          <button onClick={() => {toggleModal()
+                            setOpenModal(true)
+                          }} className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch">
                               <span> 
                                   <span className="btn-text">Buy property</span> 
                                   <span className="btn-icon"><i className="feather icon-feather-arrow-right icon-very-small"></i></span>
                                   <span className="btn-icon"><i className="feather icon-feather-arrow-right icon-very-small"></i></span>
                               </span>
                           </button>
+                          {
+                            isModal ? <SignUp open={openModal} handleClose={handleClose} /> :
+                            <SignIn open={openLogin} handleCloseLogin={handleCloseLogin} />
+                          }
                       </div>
                   </div>
               </div>
@@ -135,8 +146,8 @@ const Header = () => {
             {/* end navigation  */}
           
         </header>
-        <SignUp open={openModal} handleClose={handleClose} />
-        <SignIn open={openLogin} handleCloseLogin={handleCloseLogin} />
+        {/* <SignUp open={openModal} handleClose={handleClose} /> */}
+        
     </div>
     
   )

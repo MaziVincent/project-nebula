@@ -89,15 +89,15 @@ function AgentDetails() {
         agent ? (
           <div className="container mx-auto p-2">
             <div className="bg-white rounded-lg shadow-md p-2">
-              <div className="flex flex-col md:flex-row items-center">
-                <div className=' flex flex-col gap-4 w-1/4'>
-                <div className="md:w-full">
-                <h4 className=' text-xl mb-0 pb-2'>Profile Image:</h4>
-                <div className=' border'>
-                  <img src={`${imageUrl}${agent.profile}`} alt={agent.firstname} className="w-full h-auto" />
+              <div className="">
+                <div className=' flex justify-center items-center gap-3 max-sm:flex-col'>
+                <div className="w-1/3 max-sm:w-4/5">
+                  <h4 className=' text-xl mb-0 pb-2'>Profile Image:</h4>
+                  <div className=' border'>
+                    <img src={`${imageUrl}${agent.profile}`} alt={agent.firstname} className="w-full h-auto" />
+                  </div>
                 </div>
-                </div>
-                <div className="md:w-full">
+                <div className="w-1/3 max-sm:w-4/5">
                   <h4 className=' text-xl mb-0 pb-2'>Identity Image:</h4>
                   <div className=' border'>
                     <img src={`${imageUrl}${agent.identityImage}`} alt={agent.identityType} className="w-full h-auto" />
@@ -106,10 +106,10 @@ function AgentDetails() {
                 </div>
                 </div>
                 <div className="md:w-2/3 md:pl-8 mt-4 md:mt-0">
-                  <h2 className=" text-xl font-light">Name: <span className=' text-2xl font-semibold'>{`${agent.firstname} ${agent.lastname}`}</span></h2>
+                  <h2 className=" text-xl font-light">Name: <span className=' text-2xl font-semibold text-gray-600'>{`${agent.firstname} ${agent.lastname}`}</span></h2>
                   <p className="mb-4 text-gray-600">Email: <span>{agent.email}</span></p>
                   <p className="mb-4 text-gray-600">Phone: <span>{agent.phone}</span></p>
-                  <p className='mb-4 text-gray-600'>Status: <span className={`${agent.status? 'text-green-600' : ' text-red-600'}`}>{agent.status}</span></p>
+                  <p className='mb-4 text-gray-600'>Status: <span className={`${agent.status === "Active" ? 'text-green-600' : ' text-red-600'}`}>{agent.status}</span></p>
                   <p className='mb-4 font-medium text-lg text-gray-600'>Verification Status: <span className={`${agent.verified? 'text-blue-600' : ' text-red-600'}`}>{agent.verified ? 'Verified' : 'Not Verified'}</span></p>
                   <p className='mb-4 text-gray-600'>Identity Type: <span>{agent.identityType}</span></p>
                   <p className='mb-4 text-gray-600'>Identity Number: <span>{agent.identityNumber}</span></p>

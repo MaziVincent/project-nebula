@@ -79,10 +79,10 @@ const CustomerDetails = () => {
       </div>
       {
         customer ? (
-          <div className="container mx-auto p-2">
+          <div className="container mx-auto p-2 max-sm:h-screen">
             <div className="bg-white rounded-lg shadow-md p-2">
               <div className="flex flex-col md:flex-row items-center">
-                <div className=' flex flex-col gap-4 w-1/4'>
+                <div className=' w-1/4'>
                 <div className="md:w-full">
                   <h4 className=' text-xl mb-0 pb-2'>Profile Image:</h4>
                   <div className=' border'>
@@ -91,7 +91,7 @@ const CustomerDetails = () => {
                 </div>
                 </div>
                 <div className="md:w-2/3 md:pl-8 mt-4 md:mt-0">
-                  <h2 className=" text-xl font-light">Name: <span className=' text-2xl font-semibold'>{`${customer.firstname} ${customer.lastname}`}</span></h2>
+                  <h2 className=" text-xl font-light inline-flex gap-2 mb-2">Name: <span className=' text-2xl font-semibold'> {`${customer.firstname} ${customer.lastname}`}</span></h2>
                   <p className="mb-4 text-gray-600">Email: <span>{customer.email}</span></p>
                   <p className="mb-4 text-gray-600">Phone: <span>{customer.phone}</span></p>
                   <p className='mb-4 text-gray-600'>Status: <span className={`${customer.status? 'text-green-600' : ' text-red-600'}`}>{customer.status}</span></p>

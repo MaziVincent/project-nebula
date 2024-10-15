@@ -65,7 +65,7 @@ const AdminOwnerDetails = () => {
     handleOwnerDetails();
   }, [id]);
   return (
-    <div className=' max-md:pt-24'>
+    <div className=' max-md:pt-24 max-sm:h-screen'>
       <ToastContainer />
       <div className=' max-md:pt-10 pl-4'>
         <Link to='/admin/owners' >
@@ -84,7 +84,7 @@ const AdminOwnerDetails = () => {
           <div className="container mx-auto p-2">
             <div className="bg-white rounded-lg shadow-md p-2">
               <div className="flex flex-col md:flex-row items-center">
-                <div className=' flex flex-col gap-4 w-1/4'>
+                <div className=' flex flex-col max-sm:flex-row max-sm:w-full max-sm:justify-center items-center gap-4 w-1/4'>
                 <div className="md:w-full">
                 <h4 className=' text-xl mb-0 pb-2'>Profile Image:</h4>
                 <div className=' border'>
