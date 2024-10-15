@@ -28345,4 +28345,14 @@
 2024-10-15	13:40:20	42d5bea6-32d3-449f-a09e-9a286e7fb15b	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
 2024-10-15	13:46:41	21f4ed5f-ccd0-4bc9-852e-6a2a940e1bfb	OPTIONS	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
 2024-10-15	13:46:41	c853459d-d444-4f5f-833e-48c29cf9c43e	PUT	/properties/upload/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+<<<<<<< HEAD
 >>>>>>> e0de70492d693f1f528e1624725ba8fce67eb556
+=======
+2024-10-15	13:58:18	54e06ff3-78e1-4bf8-870f-ceb3e93cb0c7	OPTIONS	/refresh	http://localhost:5173
+2024-10-15	13:58:18	2790ee99-a7a1-49ee-a643-8fc754178011	GET	/refresh	http://localhost:5173
+2024-10-15	13:58:18	0109f41f-6616-4d0e-93cc-761ca5615a1a	GET	/refresh	http://localhost:5173
+2024-10-15	13:58:19	4fb9e6f1-346c-47d5-9e06-83fe936e6f3b	OPTIONS	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:58:19	670f2c0b-f276-42ad-99f9-de8d6f1aafb8	OPTIONS	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:58:19	4a7c8247-dbdf-4f99-bfc6-e8b4acc6df07	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	13:58:20	6510f028-70f2-4c28-923e-fd16953e6d83	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+>>>>>>> 0ded52a918865588f347b4463e531ca892d2610d
