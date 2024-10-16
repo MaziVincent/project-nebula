@@ -32,7 +32,7 @@ const createHouse = async (data) => {
             lotSize: data.lotSize,
             stories: data.stories,
             docType: data.docType,
-            // docImages: docImages,
+            propertyType: data.propertyType,
             livingRoomFeatures: livingRoomFeaturesArray,
             exteriorFeatures: exteriorFeaturesArray,
             interiorFeatures: interiorFeaturesArray,
@@ -88,6 +88,7 @@ const updateHouse = async (id, data) => {
         if(data.lotSize) house.lotSize = data.lotSize
         if(data.stories) house.stories = data.stories
         if(data.amenities) house.amenities = data.amenities
+        if(data.propertyType) house.propertyType = data.propertyType
         if(data.exteriorFeatures) house.exteriorFeatures = data.exteriorFeatures
         if(data.interiorFeatures) house.interiorFeatures = data.interiorFeatures
         if(data.livingRoomFeatures) house.livingRoomFeatures = data.livingRoomFeatures

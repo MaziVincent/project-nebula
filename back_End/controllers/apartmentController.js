@@ -9,8 +9,8 @@ const {
 } = require('../services/apartmentService')
 
 const createApartmentHandler = async (req, res) => {
-    const { title, description, price, location, owner, bedrooms, bathrooms, floorArea } = req.body;
-    if(!title, !description, !price, !location, !owner, !bedrooms, !bathrooms, !floorArea) {
+    const { title, description, price, location, owner, bedrooms, bathrooms, floorArea, propertyType } = req.body;
+    if(!title, !description, !price, !location, !owner, !bedrooms, !bathrooms, !floorArea, !propertyType) {
         return res.status(400).json({message: "All fields are required"})
     }
     console.log(req.body)
@@ -27,6 +27,7 @@ const createApartmentHandler = async (req, res) => {
         bedrooms,
         bathrooms,
         floorArea,
+        propertyType,
         file: req.file
     }
     // const data = req.body;

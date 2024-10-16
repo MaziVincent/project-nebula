@@ -52,7 +52,7 @@ const SignIn = ({open, handleCloseLogin}) => {
       setTimeout(() => {
        navigate('/dashboard')
         setIsLoading(false)
-      }, 5000);
+      }, 3000);
     } catch (error) {
       setIsLoading(false)
       switch (error.response.status) {
@@ -79,22 +79,24 @@ const SignIn = ({open, handleCloseLogin}) => {
   return (
     <Modal
       open={open}
-      onClose={() => handleCloseLogin({type:"openLogin"}) }
+      onClose={() => {handleCloseLogin({type:"openLogin"})}}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <div className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full">
+      {/* <!-- Main modal --> */}
+      <div
+        id="defaultModal"
+        className=" overflow-y-auto overflow-x-hidden absolute top-8  z-50 justify-center items-center w-full outline-none "
+      >
       <ToastContainer />
-      <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
-        <div className=" relative p-4 bg-white rounded-lg shadow sm:p-5">
-        <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
-              <h3 className="text-lg font-semibold text-gray-900 ">
-                Sign In
-              </h3>
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 ">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-5">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8 overflow-y-scr">
+              <h1 className=' text-xl font-bold leading-tight tracking-tight text-gray-800 md:text-2xl'>Sign Up</h1>
               <button
                 type="button"
-                onClick={() => handleCloseLogin({type:"openLogin"})}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                onClick={() => {handleCloseLogin({type:"openLogin"})}}
+                className="absolute -top-2 right-1 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -112,84 +114,45 @@ const SignIn = ({open, handleCloseLogin}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
-          <p className=" mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
-            <span>Or </span>
-            <button
-              onClick={() => {
-                handleCloseLogin({type:"openLogin"});
-                handleCloseLogin({type:"register"});
-              }}
-              className=" font-medium underline hover:no-underline text-gray-700 hover:text-gray-800 dark:text-gray-300"
+              <p>Sign in to continue</p>
+            <form
+              onSubmit={handleSubmit(login)}
             >
-              sign up for a new account
-            </button>
-          </p>
-        <div className=" mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className=" bg-white dark:bg-gray-800 dark:border dark:border-gray-700 shadow rounded-lg">
-            <div className=" p-8">
-              <form
-                onSubmit={handleSubmit(login)}
-                className=""
-              >
-                <div className=" space-y-6">
-                  <div>
-                    <label
-                      className=" block text-sm font-medium text-gray-700 dark:text-gray-300"
-                      htmlFor="user_email"
-                    >
-                      Email address
-                    </label>
-                    <div className="input mt-2 relative rounded-md shadow-sm">
-                      <input
-                        placeholder="Email Address"
-                        className=" dark:bg-gray-700 block w-full rounded-md border py-3 px-3 focus:outline-none border-gray-300 focus:ring-blue-600 focus:border-blue-600"
-                        required="required"
-                        type="email"
-                        {...register("email", 
-                          {required : true},
-                          {pattern: /^\S+@\S+$/i} // Regular expression for email validation
-                        )}
-                      />
-                    </div>
-                    {errors.email && (
-                      <p className="text-sm text-red-500">
-                        {" "}
-                        email is required{" "}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="">
-                    <label
-                      className=" block text-sm font-medium text-gray-700 dark:text-gray-300"
-                      htmlFor="password"
-                    >
-                      Password
-                    </label>
-                    <div className="input mt-2 relative rounded-md shadow-sm">
-                      <input
-                        placeholder="*********"
-                        className=" dark:bg-gray-700 block w-full rounded-md border py-3 px-3 focus:outline-none border-gray-300 focus:ring-blue-600 focus:border-blue-600"
-                        required="required"
-                        type="password"
-                        {...register("password",{required : true },
-                          {minLength: 8}, // Minimum length of 8 characters
-                          {maxLength: 32}, // Maximum length of 32 characters
-                          //{pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/} // Regular expression for password validation
-                        )}
-                      />
-                    </div>
-
-                    {errors.password && (
-                      <p className="text-sm text-red-500">
-                        {" "}
-                        password is required{" "}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className=" flex items-center justify-between">
+              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Email:
+                  </label>
+                  <input
+                    id="email"
+                    name='email'
+                    type='email'
+                    {...register("email", { required: true })}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    placeholder="Enter Email here"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Password:
+                  </label>
+                  <input
+                    id="password"
+                    name='password'
+                    type='password'
+                    {...register("password", { required: true })}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    placeholder="********"
+                  />
+                </div>
+              </div>
+              <div className=" flex items-center justify-between py-2">
                     <div className=" flex items-center">
                       
                       <input
@@ -201,7 +164,7 @@ const SignIn = ({open, handleCloseLogin}) => {
                         checked={persist}
                       />
                       <label
-                        className=" ml-2 text-sm block text-gray-900 dark:text-gray-300 mb-0"
+                        className=" ml-2 text-sm block text-gray-900 mb-0"
                         htmlFor="remember-me"
                       >
                         Remember me
@@ -209,63 +172,41 @@ const SignIn = ({open, handleCloseLogin}) => {
                     </div>
 
                     <div className=" text-sm">
-                      <Link className=" font-medium text-gray-600 dark:text-gray-300 underline">
+                      <Link className=" font-medium text-gray-600 underline hover:text-blue-600">
                         Forgot your password{" "}
                       </Link>
                     </div>
                   </div>
-
-                  <div className="">
-                    <button
-                      type='submit'
-                      className={`cursor-pointer border rounded-md border-gray-300 bg-teal-800 text-white w-full py-2 px-2 text-sm`}
-                    >
-                      {isLoading ? <CircularProgress size={20} /> : 'Sign in'}
-                    </button>
-                  </div>
-                </div>
-              </form>
-
-              <div className=" mt-6">
-                <div className=" relative">
-                  <div className=" absolute inset-0 flex items-center">
-                    <div className=" w-full border-t border-gray-300"></div>
-                  </div>
-                  <div className=" relative flex justify-center text-sm">
-                    <p className=" bg-white dark:bg-gray-800 px-2 text-gray-500 dark:text-gray-300">
-                      {" "}
-                      Or continue with
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className=" mt-6 grid grid-cols-2 gap-3">
-                <div className="">
-                  <form action="">
-                    <button className=" border rounded-md border-gray-300 w-full py-2 px-4 text-sm font-medium text-gray-500 dark:text-gray-300 focus:ring-0">
-                      <span className=" sr-only">Sign in with Facebook</span>
-                      <FacebookOutlined />
-                    </button>
-                   
-                  </form>
-                </div>
-
-                <div className="">
-                  <form action="">
-                    <button className=" border rounded-md border-gray-300 w-full py-2 px-4 text-sm font-medium text-gray-500 dark:text-gray-300 focus:ring-0">
-                      <span className=" sr-only">SIgn in with Google</span>
-                      <Google />
-                    </button>
-                  </form>
-                </div>
-              </div>
+              <button
+                type="submit"
+                className="w-full text-green-50 inline-flex items-center justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+              >
+                {
+                  isLoading ? (
+                    <CircularProgress size={20} color="white" /> 
+                  ) : (
+                    " Log In"
+                  )
+                }
+              </button>
+            </form>
+            <div>
+              <p className='text-center mt-4 mb-2'>Don't have na account yet? 
+                <button 
+                  onClick={() => {
+                    handleCloseLogin({type:"openLogin"});
+                    handleCloseLogin({type:"register"});
+                    
+                  }}
+                  className='text-blue-600 underline hover:text-blue-700'> Sign Up</button>
+              </p>
             </div>
+            </div>
+            {/* <!-- Modal body --> */}
+            
           </div>
         </div>
-        </div>
       </div>
-    </div>
     </Modal>
   )
 }

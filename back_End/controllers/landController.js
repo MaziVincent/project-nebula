@@ -10,8 +10,8 @@ const {
 } = require('../services/landService')
 
 const createLandHandler = async (req, res) => {
-    const { title, description, price, location, owner, plots, docType, ownershipType} = req.body;
-    if (!title, !description, !price, !location, !owner, !docType, !ownershipType ) {
+    const { title, description, price, location, owner, plots, docType, ownershipType, propertyType} = req.body;
+    if (!title, !description, !price, !location, !owner, !docType, !ownershipType, !propertyType) {
         return res.status(400).json({ message: 'All fields are required' });
     }
     const duplicate = await landExists(title);
@@ -27,6 +27,7 @@ const createLandHandler = async (req, res) => {
         plots,
         docType,
         ownershipType,
+        propertyType,       
         files: req.files
     };
     const result = await createLand(data);

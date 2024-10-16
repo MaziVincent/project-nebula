@@ -34,6 +34,10 @@ const PropertySchema = new Schema({
     enum: ['Pending', 'Available', 'Sold', 'Rented', 'Leased'],
     default: 'Pending'
   },
+  propertyType: {
+    type: String,
+    required: true
+  }
 
 },{timestamps: true, ...options});
 

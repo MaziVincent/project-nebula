@@ -8,7 +8,6 @@ const createCustomer = async (data) => {
         const newCustomer = await Customer.create({
             "firstname": data.firstname,
             "lastname": data.lastname,
-            "wishlist": data.wishlist,
             "email": data.email,
             "phone": data.phone,
             "password": hashedPassword,
@@ -56,7 +55,6 @@ const updateCustomer = async (id, data) => {
             const hashedPassword = await bcrypt.hash(data.password, 10);
                 customer.password = hashedPassword;
         }
-        if(data.wishlist) customer.wishlist = data.wishlist
 
         const result = await customer.save();
         return result;

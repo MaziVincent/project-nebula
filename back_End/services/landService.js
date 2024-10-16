@@ -22,7 +22,8 @@ const createLand = async (data) => {
             "plots": data.plots,
             "docType": data.docType,
             "docImages": docImageNames,
-            "ownershipType": data.ownershipType
+            "ownershipType": data.ownershipType,
+            "propertyType": data.propertyType
         })
         const user = await User.findOne({_id : ownerId }).exec();
         user.properties.push(newLand._id);
@@ -69,6 +70,7 @@ const updateLand = async (id, data) => {
         if(data.docType) land.docType = data.docType
         if(data.docImage) land.docImage = data.docImage
         if(data.ownershipType) land.ownershipType = data.ownershipType
+        if(data.propertyType) land.propertyType = data.propertyType
         const result = await land.save();
         return result;
     } catch (e) {

@@ -277,15 +277,21 @@ const CreateShop = ({open, handleClose}) => {
                     placeholder="Enter Shop security Deposit here"
                   />
                 </div>
-                <div className='sm:col-span-2'>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="image"
-                    id="image"
-                    title='image'
-                    onChange={handleFileUpload} 
-                  />
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="type"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Type
+                  </label>
+                    <select name="propertyType" id="propertyType"
+                      {...register("propertyType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select shop type" disabled selected>Select Shop Type</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Sale">Sale</option>
+                    </select>
                 </div>
               </div>
               <button

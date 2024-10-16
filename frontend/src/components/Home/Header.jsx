@@ -9,6 +9,7 @@ import Shop from "../../assets/images/demo-real-estate-icon-shop.svg";
 import { Link } from "react-router-dom";
 import SignUp from "../auth/SignUp";
 import SignIn from "../auth/SignIn";
+import { useLocation } from "react-router-dom";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -22,40 +23,13 @@ const reducer = (state, action) => {
 };
 
 const Header = () => {
+  const location = useLocation()
   const [state, dispatch] = useReducer(reducer, {
     login: false,
     register: false,
   });
 
   const [showNav, setShowNav] = useState(false);
-  const [arrowEast, setArrowEast] = useState(true);
-  const [arrowWest, setArrowWest] = useState(false);
-  const [showRent, setShowRent] = useState(false);
-
-  const [openModal, setOpenModal] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
-
-  const handleClose = () => {
-    setOpenModal(false);
-    setOpenLogin(true);
-  };
-  const handleCloseLogin = () => {
-    setOpenLogin(false);
-  };
-
-  const handleRent = () => {
-    setShowRent(!rent);
-  };
-
-  // handle arrow
-  const onHover = () => {
-    setArrowEast(false);
-    setArrowWest(true);
-  };
-  onmouseleave = () => {
-    setArrowEast(true);
-    setArrowWest(false);
-  };
 
   // handle show nav
   const handleShowNav = () => {
@@ -67,138 +41,49 @@ const Header = () => {
     setIsModal(!isModal);
     setOpenLogin(false);
   };
-
+  
+  const isSmallScreen = window.innerWidth <= 1024;
   return (
-    <div>
-      <header>
-        {/* start navigation */}
-        <nav
-          className="navbar navbar-expand-lg header-light bg-white border-bottom border-color-extra-medium-gray header-reverse"
-          data-header-hover="light"
-        >
-          <div className="container-fluid">
-            <div className="col-auto">
-              <a
-                className="navbar-brand"
-                href="/"
-              >
-                <img
-                  src={DRELB}
-                  data-at2x={DRELBX2}
-                  alt=""
-                  className="default-logo"
-                />
-                <img
-                  src={DRELB}
-                  data-at2x={DRELBX2}
-                  alt=""
-                  className="alt-logo"
-                />
-                <img
-                  src={DRELB}
-                  data-at2x={DRELBX2}
-                  alt=""
-                  className="mobile-logo"
-                />
-              </a>
+    <div className="fixed z-50 w-full bg-white top-0">
+      <header className=" px-14 max-lg:px-10">
+        <nav className=" py-3">
+          <div className="flex items-center justify-between">
+            <div className=" max-sm:w-52">
+              <Link className="">
+                <img src={DRELB} alt="" />
+              </Link>
             </div>
-            <div className="col-auto menu-order left-nav ps-60px lg-ps-20px">
-              <button
-                className="navbar-toggler float-start"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-line"></span>
-                <span className="navbar-toggler-line"></span>
-                <span className="navbar-toggler-line"></span>
-                <span className="navbar-toggler-line"></span>
-              </button>
-              {/* <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-                Hello
-              </div> */}
-              <div
-                className="navbar-collapse justify-content-center max-md:collapse"
-                id="navbarNav"
-              >
-                <ul className="navbar-nav alt-font">
-                  <li className="nav-item">
-                    <a
-                      href="/"
-                      className="nav-link"
-                    >
-                      Home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="/about"
-                      className="nav-link"
-                    >
-                      About
-                    </a>
-                  </li>
-                  <li className="nav-item dropdown submenu">
-                    <a
-                      href="/rent"
-                      className="nav-link"
-                    >
-                      Rent
-                    </a>
-                    {/* <div className=' flex justify-between items-center bg-white absolute top-32 w-full px-4'>
-                      <div>
-                        <Link>
-                          <img src="" alt="" />
-                          <span>Condominium</span>
-                        </Link>
-                      </div>
-                      <div>
-                        <Link>
-                          <img src="" alt="" />
-                          <span>Apartment</span>
-                        </Link>
-                      </div>
-                      <div>
-                        <Link>
-                          <img src="" alt="" />
-                          <span>Estate</span>
-                        </Link>
-                      </div>
-                      <div>
-                        <Link>
-                          <img src="" alt="" />
-                          <span>Office</span>
-                        </Link>
-                      </div>
-                    </div> */}
-                  </li>
-                  <li className="nav-item dropdown submenu">
-                    <a
-                      href="/sell"
-                      className="nav-link"
-                    >
-                      Sell
-                      <span className="label bg-light-red text-red border-radius-26px">
-                        Hot
-                      </span>
-                    </a>
-                  </li>
+            <div className=" h-5 border-r border-gray-400 max-lg:hidden">
 
-                  {/* <li className="nav-item"><a href="/blog" className="nav-link">Blog</a></li> */}
-                  <li className="nav-item">
-                    <a
-                      href="/contact"
-                      className="nav-link"
-                    >
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
-            <div className="col-auto ms-auto ps-lg-0 d-none d-sm-flex">
+            <div 
+              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden transition-all duration-500 ease-in-out transform -translate-y-10 opacity-0 lg:opacity-100'} gap-10 lg:gap-5`}>
+              <Link
+                to='/'
+                onClick={handleShowNav}
+                className={location.pathname === '/' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}
+              >
+                Home
+              </Link>
+              <Link to='/about' onClick={handleShowNav} className={location.pathname === '/about' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>About</Link>
+              <Link to='/rent' onClick={handleShowNav} className={location.pathname === '/rent' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>Rent</Link>
+              <Link to='/sell' onClick={handleShowNav} className={` ${location.pathname === '/sell' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'} inline-flex items-center gap-1 group`}>
+                Sell
+                <span className=" block rounded-full bg-red-200 px-2 text-sm text-red-600 group-hover:bg-red-100 group-hover:text-red-400">Hot</span>
+              </Link>
+              <Link to='/contact' onClick={handleShowNav} className={location.pathname === '/contact' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>
+                Contact
+              </Link>
+              <button 
+                onClick={() => {
+                  dispatch({ type: "openLogin" });
+                  handleShowNav()
+                }}
+                className="lg:hidden text-start">
+                <span className=" font-medium text-gray-800 hover:text-gray-500">Get Started</span>
+              </button>
+            </div>
+            <div className=" flex justify-between items-center gap-8">
               <div className="d-none d-xl-flex me-25px">
                 <div className="d-flex align-items-center widget-text fw-600 alt-font">
                   <a
@@ -214,35 +99,71 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-              <div className="header-icon">
-                <div className="header-button">
-                  <button
-                    onClick={() => {
-                      dispatch({ type: "openLogin" });
-                    }}
-                    className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch"
-                  >
-                    <span>
-                      <span className="btn-text">Buy property</span>
-                      <span className="btn-icon">
-                        <i className="feather icon-feather-arrow-right icon-very-small"></i>
-                      </span>
-                      <span className="btn-icon">
-                        <i className="feather icon-feather-arrow-right icon-very-small"></i>
-                      </span>
+              <div className="header-button max-md:hidden">
+                <button
+                  onClick={() => {
+                    dispatch({ type: "openLogin" });
+                  }}
+                  className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch"
+                >
+                  <span>
+                    <span className="btn-text">Get Started</span>
+                    <span className="btn-icon">
+                      <i className="feather icon-feather-arrow-right icon-very-small"></i>
                     </span>
-                  </button>
-                </div>
+                    <span className="btn-icon">
+                      <i className="feather icon-feather-arrow-right icon-very-small"></i>
+                    </span>
+                  </span>
+                </button>
               </div>
+              { !showNav ?
+              <button
+                onClick={handleShowNav} 
+                className="lg:hidden transition-transform duration-300 ease-in-out transform hover:scale-110"
+               >
+                <span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    height="34px" 
+                    viewBox="0 -960 960 960" 
+                    width="34px"
+                    className=" text-gray-800"
+                    fill="currentColor"
+                    >
+                    <path d="M360-240v-60h480v60H360Zm0-210v-60h480v60H360ZM120-660v-60h720v60H120Z" 
+                    />
+                  </svg>
+                </span>
+              </button> : 
+              <button
+                onClick={handleShowNav} 
+                className="lg:hidden transition-transform duration-300 ease-in-out transform hover:scale-110"
+               >
+                <span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    height="34px" 
+                    viewBox="0 -960 960 960" 
+                    width="34px"
+                    className=" text-gray-800"
+                    fill="currentColor"
+                    >
+                    <path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                    />
+                  </svg>
+                </span>
+                {showNav}
+              </button>
+            }
             </div>
           </div>
         </nav>
-        {/* end navigation  */}
         <SignUp
           open={state.register}
           handleClose={dispatch}
         />{" "}
-        :
+        
         <SignIn
           open={state.login}
           handleCloseLogin={dispatch}
