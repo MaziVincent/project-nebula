@@ -28032,3 +28032,13 @@
 2024-10-15	13:58:19	670f2c0b-f276-42ad-99f9-de8d6f1aafb8	OPTIONS	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
 2024-10-15	13:58:19	4a7c8247-dbdf-4f99-bfc6-e8b4acc6df07	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
 2024-10-15	13:58:20	6510f028-70f2-4c28-923e-fd16953e6d83	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	14:01:50	d1ffc225-f68e-4088-9b00-1faeaec2ded8	OPTIONS	/refresh	http://localhost:5173
+2024-10-15	14:01:50	b873e3e0-4f6e-478f-af34-b4694d900169	GET	/refresh	http://localhost:5173
+2024-10-15	14:01:51	4079daa0-4387-4127-a0bf-3931c78f35bb	GET	/refresh	http://localhost:5173
+2024-10-15	14:01:51	87b27f73-3f5c-40a7-a907-2d8c943484c6	OPTIONS	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	14:01:51	ed974166-81cd-46ab-96c3-590e36794b29	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	14:01:51	ff79d55a-4003-48ec-a37d-012a674e47f2	GET	/apartment/66e9b59e2f0e2239cab8c32a	http://localhost:5173
+2024-10-15	19:08:32	cae89f10-f6ee-4038-8d50-d22b886b822f	OPTIONS	/refresh	http://localhost:5173
+2024-10-15	19:08:32	2254550e-a548-4f9e-a974-93d1a515c63b	OPTIONS	/refresh	http://localhost:5173
+2024-10-15	19:08:32	3e7d8d44-02a9-447b-ab5e-3d1e8e50d157	GET	/refresh	http://localhost:5173
+2024-10-15	19:08:33	0ed1d915-4eab-4811-b70f-597d4f3aef52	GET	/refresh	http://localhost:5173
