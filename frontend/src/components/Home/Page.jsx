@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import Condomium from '../../assets/images/demo-real-estate-icon-condominium.svg'
 import Apartment from '../../assets/images/demo-real-estate-icon-apartment.svg'
 import Estate from '../../assets/images/demo-real-estate-icon-home.svg'
@@ -15,11 +15,18 @@ import Home from '../../assets/images/photos/home-in-vancouver.jpeg'
 import Rev1 from '../../assets/images/photos/download.jpeg'
 import baseURL from '../../shared/baseURL'
 import { useQuery } from "react-query";
-const Page = () => {
-    const url = `${baseURL}recentProps`;
+import { Pagination } from '@mui/material'
+import { Link } from 'react-router-dom'
 
+const Page = () => {
+    const url = `${baseURL}properties`;
+
+    const [page, setPage] = useState(1)
+    const handleChange = (event, value) =>{
+        setPage(value)
+    }
     const getProperties = async () => {
-      const response = await fetch(url);
+      const response = await fetch(`${url}?page=${page}&limit=6`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -28,7 +35,7 @@ const Page = () => {
     };
     
     const { data, isError, isLoading, isSuccess } = useQuery(
-      ["recentProps"],
+      ["recentProps", page],
       getProperties,
       {
         keepPreviousData: true,
@@ -346,15 +353,15 @@ const Page = () => {
                 <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
                     {/* < start box item */}
                     {
-                        Array.isArray(data) && data?.length > 0 ? (
-                            data.map((prop) => (
+                        Array.isArray(data?.properties) && data?.properties?.length > 0 ? (
+                            data?.properties.map((prop) => (
                         <div key={prop._id} className="col mb-30px">
                         <div className="border-radius-6px overflow-hidden box-shadow-large">
                             <div className="image position-relative">
                                 <a href="demo-real-estate-property-details.html">
                                     <img src={prop.imageUrls[0]} alt="" class="w-[600px] h-[415px]"  />
                                 </a>
-                                <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">{prop.propertyType}</div>
+                                <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-yellow-400"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
                             </div> 
                             <div className="bg-white">
                                 <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
@@ -363,20 +370,26 @@ const Page = () => {
                                     </div>
                                     <p className="mb-20px">{prop.location}</p>
                                     <div className="row g-0">
-                                        <div className="col">
+                                        {
+                                            prop?.bedrooms && (
+                                                <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                                <span className="fw-600 alt-font text-dark-gray">0{prop.bedrooms}</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">05</span>
+                                            )
+                                        }
+                                        {prop?.bathrooms && (
+                                            <div className="col">
+                                                <div className="d-flex align-items-center">
+                                                    <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                    <span className="fw-600 alt-font text-dark-gray">0{prop.bathrooms}</span>
+                                                </div>
+                                                <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                             </div>
-                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                        </div>
+                                        )}
                                         <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
@@ -388,14 +401,15 @@ const Page = () => {
                                 </div> 
                                 <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
                                     <div className="col">
-                                        <a href="/property_details" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                        <Link to={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
                                     </div>
                                     <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,89,000</span>
+                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
                                     </div> 
                                 </div> 
                             </div>
                         </div>
+
                     </div>
                             ))
                         ) : (
@@ -403,6 +417,9 @@ const Page = () => {
                         )
                     }
                 </div> 
+                    <div className=" flex justify-center mt-4 mb-">
+                        <Pagination variant="outlined" size="large" count={data?.totalPage} page={page} onChange={handleChange} />
+                    </div>
             </div>
         </section>
         {/* end section */}

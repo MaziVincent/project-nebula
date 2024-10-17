@@ -1,19 +1,56 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
+import React from 'react';
+import useFetch from '../../hooks/useFetch';
+import useAuth from '../../hooks/useAuth';
+import {ToastContainer, toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
+import baseURL from '../../shared/baseURL';
+import { CircularProgress, Modal } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const PropertyDtls = () => {
+    const { auth } = useAuth();
+  const fetch = useFetch();
+  const url = `${baseURL}properties`;
+  const { id } = useParams();
+  const imageUrl = `${baseURL}`;
+
+  const [property, setProperty] = useState(null);
+  const getProperty = async () => {
+    try {
+      const result = await fetch(`${url}/${id}`);
+      if (result.data) {
+        setProperty(result.data); 
+      }
+    } catch (error) {
+      toast.error("Error fetching Agent's details");
+      console.log("Fetch error:", error);
+    }
+  };
+  
+  
+
+  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
+  useEffect(() => {
+    getProperty();
+  }, [id]);
+  console.log(property);
   return (
     <div>
       {/*  start page title  */}
-        <section className="cover-background page-title-big-typography ipad-top-space-margin">
+        {
+            property ? (
+                <div>
+                    <section className="cover-background page-title-big-typography ipad-top-space-margin">
             <div className="container">
                 <div className="row align-items-center align-items-lg-end justify-content-center extra-very-small-screen g-0">
                     <div className="col-xl-7 col-lg-8 position-relative page-title-extra-small md-mb-30px md-mt-auto" >
-                        <h3 className="alt-font fw-600 text-dark-gray mb-15px ls-minus-1px">Vacation cottage in brownsville</h3>
-                        <h1 className="mb-0 d-flex"><i className="feather icon-feather-map-pin icon-extra-medium text-base-color me-5px"></i>4403 Pick street plensant view, New york</h1>
+                        <h3 className="alt-font fw-600 text-dark-gray mb-15px ls-minus-1px">{property.title}</h3>
+                        <h1 className="mb-0 d-flex"><i className="feather icon-feather-map-pin icon-extra-medium text-base-color me-5px"></i>{property.location}</h1>
                     </div>
                     <div className="col-lg-3 offset-xl-2 offset-lg-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-                        <h4 className="text-dark-gray fw-700 alt-font mb-5px">$5,40,000</h4>
-                        <span className="fw-500 fs-18">$3,700 - Per sq. ft.</span>
+                        <h4 className="text-dark-gray fw-700 alt-font mb-5px">&#8358;{property.price}</h4>
+                        {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft.{property.price / 12}</span> */}
                     </div>
                 </div>
             </div>
@@ -25,41 +62,43 @@ const PropertyDtls = () => {
                 <div className="row row-cols-1 justify-content-center">
                     {/*  start content carousal item  */}
                     <div className="col">
-                        <div className="swiper magic-cursor slider-four-slide swiper-dark-pagination swiper-pagination-style-3" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 20, "loop": true, "pagination": { "el": ".slider-four-slide-pagination", "clickable": true }, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 3 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
+                        <div className="swiper slider-four-slide swiper-dark-pagination swiper-pagination-style-3" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 20, "loop": true, "pagination": { "el": ".slider-four-slide-pagination", "clickable": true }, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 3 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
                             <div className="swiper-wrapper">
                                 {/*  start content carousal item  */}
                                 <div className="swiper-slide">
-                                    <img src="https://via.placeholder.com/626x600" alt="" className="w-100" />
+                                    <img src={property.imageUrls[4]} alt="" className="w-100" />
                                 </div>
                                 {/*  end content carousal item  */}
                                 {/*  start content carousal item  */}
-                                <div className="swiper-slide">
+                                {/* <div className="swiper-slide">
                                     <img src="https://via.placeholder.com/626x600" alt="" className="w-100" /> 
-                                </div>
+                                </div> */}
                                 {/*  end content carousal item  */}
                                 {/*  start content carousal item  */}
-                                <div className="swiper-slide">
+                                {/* <div className="swiper-slide">
                                     <img src="https://via.placeholder.com/626x600" alt="" className="w-100" />
-                                </div>
+                                </div> */}
                                 {/*  end content carousal item  */}
                                 {/*  start content carousal item  */}
-                                <div className="swiper-slide">
+                                {/* <div className="swiper-slide">
                                     <img src="https://via.placeholder.com/626x600" alt="" className="w-100" />
-                                </div>
+                                </div> */}
                                 {/*  end content carousal item   */}
                                 {/*  start content carousal item  */}
-                                <div className="swiper-slide">
+                                {/* <div className="swiper-slide">
                                     <img src="https://via.placeholder.com/626x600" alt="" className="w-100" />
-                                </div>
+                                </div> */}
                                 {/*  end content carousal item  */}
                                 {/*  start content carousal item  */}
-                                <div className="swiper-slide">
+                                {/* <div className="swiper-slide">
                                     <img src="https://via.placeholder.com/626x600" alt="" className="w-100" /> 
-                                </div>
+                                </div> */}
                                 {/*  end content carousal item  */}
                             </div>
                             {/*  start slider navigation  */}
-                             <div className="slider-one-slide-prev-1 icon-very-small bg-white h-40px w-40px swiper-button-prev slider-navigation-style-01"><i className="feather icon-feather-arrow-left fs-20 text-light-gray"></i></div>
+                             <div className="slider-one-slide-prev-1 icon-very-small bg-white h-40px w-40px swiper-button-prev slider-navigation-style-01"><i className="feather icon-feather-arrow-left fs-20 text-light-gray"></i>
+                                    
+                             </div>
                             {/* <div className="slider-one-slide-next-1 icon-very-small bg-white h-40px w-40px swiper-button-next slider-navigation-style-01"><i className="feather icon-feather-arrow-right fs-20 text-light-gray"></i></div>  */}
                             {/*  end slider navigation  */}
                         </div>
@@ -73,11 +112,15 @@ const PropertyDtls = () => {
             <div className="container"> 
                 <div className="row row-cols-1 row-cols-lg-4 row-cols-sm-2">
                     <div className="col text-center border-end xs-border-end-0 border-color-extra-medium-gray alt-font md-mb-15px">
-                        <span className="fs-19 text-dark-gray fw-600">Property size:</span> 700sq ft
+                        <span className="fs-19 text-dark-gray fw-600">Property Owner:</span> {property.owner.firstname} {property.owner.lastname}
                     </div>
-                    <div className="col text-center border-end md-border-end-0 border-color-extra-medium-gray alt-font md-mb-15px">
-                        <span className="fs-19 text-dark-gray fw-600">Year built:</span> 2016
-                    </div>
+                    {
+                        property?.yearBuilt && (
+                            <div className="col text-center border-end md-border-end-0 border-color-extra-medium-gray alt-font md-mb-15px">
+                                <span className="fs-19 text-dark-gray fw-600">Year built:</span> {property.yearBuilt}
+                            </div>
+                        )
+                    }
                     <div className="col text-center border-end xs-border-end-0 border-color-extra-medium-gray alt-font sm-mb-15px">
                         <span className="fs-19 text-dark-gray fw-600">Accommodation:</span> Furnished
                     </div>
@@ -96,7 +139,7 @@ const PropertyDtls = () => {
                         <div className="row mb-15px">
                             <div className="col-12">
                                 <span className="text-dark-gray fs-24 fw-600 alt-font mb-15px d-block">Property description</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit sed eiusmod.</p>
+                                <p>{property.description}</p>
                             </div>
                         </div>
                         <div className="row g-0">
@@ -764,6 +807,12 @@ const PropertyDtls = () => {
             </div>
         </section>
         {/*  end section  */}
+        </div>
+            ): (
+                <p>
+                    No data available
+                </p>
+            )}
     </div>
   )
 }

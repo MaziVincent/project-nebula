@@ -19,7 +19,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
-  const url = `${baseURL}property`; 
+  const url = `${baseURL}house`; 
 
   const {
     register,
@@ -36,12 +36,6 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
       });
     }
   }, [house, setValue]);
-
-  const handleFileUpload = (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]);
-    }
-  };
 
   const updateHouse = async (data) => {
     if (!auth || !auth?.accessToken) {
@@ -77,8 +71,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
   });
 
   const handleHouseUpdate = (data) => {
-    const updatedData = { ...data };
-    mutate(updatedData);
+    mutate(data)
     setTimeout(() => {
       handleUpdateClose();
     }, 3000);
@@ -107,7 +100,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
             {/* <!-- Modal header --> */}
             <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
               <h3 className="text-lg font-semibold text-gray-900 ">
-                Create House
+                Update House
               </h3>
               <button
                 type="button"
@@ -437,7 +430,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     >
                       <option value="select house type" disabled selected>Select House Type</option>
                         <option value="Rent">Rent</option>
-                        <option value="Sale">Sale</option>
+                        <option value="Sell">Sell</option>
                     </select>
                 </div>
               </div>

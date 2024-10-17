@@ -96,7 +96,7 @@ const SignIn = ({open, handleCloseLogin}) => {
               <button
                 type="button"
                 onClick={() => {handleCloseLogin({type:"openLogin"})}}
-                className="absolute -top-2 right-1 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center"
+                className="absolute -top-2 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
               >
                 <svg

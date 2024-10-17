@@ -9,7 +9,7 @@ const filesSizeLimiter = require('../middleware/filiesSizeLimiter');
 
 router.route('/')
     .get(propertyController.getPropertiesHandler)
-    router.route('/:id')
+router.route('/:id')
     .get(propertyController.getPropertyHandler)
     .delete(verifyRoles('Admin', 'Agent', 'Owner'), propertyController.deletePropertyHandler)
 router.route('/owner/:id')
@@ -19,7 +19,7 @@ router.route('/status/:id')
     .put(verifyRoles('Admin', 'Agent', 'Owner'), propertyController.propertyStatusHandler)
 
 router.route('/upload/:id')
-    .put(verifyRoles('Admin', 'Agent', 'Owner'),
+    .put(
         fileUpload({ createParentPath: true }),
         filesPayloadExists,
         fileExtLimiter(['.png', '.jpg', '.jpeg']),

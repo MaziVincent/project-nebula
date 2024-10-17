@@ -64,7 +64,7 @@ function App() {
               <Route path='/rent' element={<Rent />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/sell' element={<Sell />} />
-              <Route path='/property_details' element={<PropertyDtls />} />
+              <Route path='/property_details/:id' element={<PropertyDtls />} />
             </Route>
 
             //login route

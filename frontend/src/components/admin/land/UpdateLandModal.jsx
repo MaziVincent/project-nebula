@@ -280,7 +280,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     >
                       <option value="select land type" disabled selected>Selected Land Type</option>
                         <option value="Lease">Lease</option>
-                        <option value="Sale">Sale</option>
+                        <option value="Sell">Sell</option>
                     </select>
                 </div>
               </div>

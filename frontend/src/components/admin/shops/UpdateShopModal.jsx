@@ -272,7 +272,7 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
                     >
                       <option value="select shop type" disabled selected>Select Shop Type</option>
                         <option value="Rent">Rent</option>
-                        <option value="Sale">Sale</option>
+                        <option value="Sell">Sell</option>
                     </select>
                 </div>
               {/* Submit Button */}

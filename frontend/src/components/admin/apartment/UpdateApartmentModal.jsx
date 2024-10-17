@@ -269,7 +269,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     >
                       <option value="select apartment type" disabled selected>Select Apartment Type</option>
                         <option value="Rent">Rent</option>
-                        <option value="Sale">Sale</option>
+                        <option value="Sell">Sell</option>
                     </select>
                 </div>
 

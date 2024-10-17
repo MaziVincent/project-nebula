@@ -52,7 +52,6 @@ const SignUp = ({open, handleClose}) => {
       queryClient.invalidateQueries("customer");
       toast.success("Account created successfully");
       setTimeout(() => {
-        navigate('/login');
         handleClose({type:"register"});
         handleClose({type:"openLogin"});
       }, 5000);
@@ -189,22 +188,6 @@ const SignUp = ({open, handleClose}) => {
                     {...register("password", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="********"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="wishlist"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Wishlist:
-                  </label>
-                  <input
-                    id="wishlist"
-                    name='wishlist'
-                    type='text'
-                    {...register("wishlist", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter wishlist here"
                   />
                 </div>
               </div>

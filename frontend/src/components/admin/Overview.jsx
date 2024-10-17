@@ -29,11 +29,10 @@ const Overview = () => {
 
     return result.data;
   };
-  
 
   const { data, isError, isLoading, isSuccess } = useQuery(
     ["recentProps"],
-    getProperties,
+     getProperties,
     { keepPreviousData: true,
         staleTime: 10000,
         refetchOnMount:"always",
@@ -71,7 +70,8 @@ const Overview = () => {
       { apartments: 0, shops: 0, houses: 0, lands: 0 } // Initial counts
     )
   : { apartments: 0, shops: 0, houses: 0, lands: 0 };
-  // console.log(data)
+
+  //console.log(userCount)
       if (isLoading) {
         return (
           <div className="flex justify-center items-center h-full mt-40">
@@ -87,49 +87,10 @@ const Overview = () => {
           <span className=" text-xl"><sub>Control panel</sub></span>
         </h1>
        </div>
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-4">
-        <div className="shadow-lg rounded-lg bg-green-500 text-gray-100">
-          <div className=" flex justify-between items-center p-2">
-            <span>
-              {" "}
-              <PeopleAltOutlinedIcon
-                sx={{ color: grey[100] }}
-                fontSize="large"
-              />{" "}
-            </span>
-            <span className=" text-2xl font-bold flex flex-col items-center"> 0
-              <span className="text-xs font-normal">Agencies</span>
-            </span>
-          </div>
-          {/* <hr className=" border-2 border-gray-900" /> */}
-          <Link to='/admin/agents' className="text-sm text-center font-lifght bg-gray-100 block rounded-b-lg"> View Details 
-            <span>
-              <ArrowRightAlt fontSize=""/>
-            </span>
-          </Link>
-        </div>
-        <div className="shadow-lg rounded-lg bg-teal-500 text-gray-100">
-          <div className=" flex justify-between items-center p-2">
-            <span>
-              {" "}
-              <Groups
-                sx={{ color: grey[100] }}
-                fontSize="large"
-              />{" "}
-            </span>
-            <span className=" text-2xl font-bold flex flex-col items-center"> 0 
-              <span className="text-xs font-normal">Customers</span>
-            </span>
-          </div>
-          {/* <hr className=" border-2 border-gray-900" /> */}
-          <Link className="text-sm text-center font-lifght bg-gray-100 block rounded-b-lg hover:text-teal-500"> View Details 
-            <span>
-              <ArrowRightAlt fontSize=""/>
-            </span>
-          </Link>
-        </div>
-        <div className="shadow-lg rounded-lg bg-cyan-500 text-gray-100">
-          <div className=" flex justify-between items-center p-2">
+      <div className="flex justify-center gap-4 items-center flex-wrap">
+        
+        <div className="shadow-lg rounded-lg bg-emerald-500 text-gray-100 w-28 max-sm:w-56">
+          <div className=" flex justify-between flex-col items-center p-2">
             <span>
               {" "}
               <Apartment
@@ -137,19 +98,19 @@ const Overview = () => {
                 fontSize="large"
               />{" "}
             </span>
-            <span className=" text-2xl font-bold flex flex-col items-center"> {propertyCounts.apartments} 
+            <span className=" text-2xl font-bold flex flex-col-reverse items-center"> {propertyCounts.apartments} 
               <span className="text-xs font-normal">Apartments</span>
             </span>
           </div>
           {/* <hr className=" border-2 border-gray-900" /> */}
-          <Link to='/admin/apartments' className="text-sm text-center font-lifght bg-gray-100 block rounded-b-lg hover:text-cyan-500"> View Details 
+          <Link to='/admin/apartments' className="text-sm text-center font-lifght bg-gray-100 block rounded-b-lg hover:text-emerald-500"> View Details 
             <span>
               <ArrowRightAlt fontSize=""/>
             </span>
           </Link>
         </div>
-        <div className="shadow-lg rounded-lg bg-cyan-500 text-gray-100">
-          <div className=" flex justify-between items-center p-2">
+        <div className="shadow-lg rounded-lg bg-sky-500 text-gray-100 w-28 max-sm:w-56">
+          <div className=" flex justify-between flex-col items-center p-2">
             <span>
               {" "}
               <Store
@@ -157,19 +118,19 @@ const Overview = () => {
                 fontSize="large"
               />{" "}
             </span>
-            <span className=" text-2xl font-bold flex flex-col items-center"> {propertyCounts.shops} 
+            <span className=" text-2xl font-bold flex flex-col-reverse items-center"> {propertyCounts.shops} 
               <span className="text-xs font-normal">Shops</span>
             </span>
           </div>
           {/* <hr className=" border-2 border-gray-900" /> */}
-          <Link to='/admin/shops' className="text-sm text-center font-lifght bg-gray-100 block rounded-b-lg hover:text-cyan-500"> View Details 
+          <Link to='/admin/shops' className="text-sm text-center font-lifght bg-gray-100 block rounded-b-lg hover:text-sky-500"> View Details 
             <span>
               <ArrowRightAlt fontSize=""/>
             </span>
           </Link>
         </div>
-        <div className="shadow-lg rounded-lg bg-orange-500 text-gray-100">
-          <div className=" flex justify-between items-center p-2">
+        <div className="shadow-lg rounded-lg bg-orange-500 text-gray-100 w-28 max-sm:w-56">
+          <div className=" flex justify-between flex-col items-center p-2">
             <span>
               {" "}
               <House
@@ -177,7 +138,7 @@ const Overview = () => {
                 fontSize="large"
               />{" "}
             </span>
-            <span className=" text-2xl font-bold flex flex-col items-center"> {propertyCounts.houses} 
+            <span className="text-2xl font-bold flex flex-col-reverse items-center"> {propertyCounts.houses} 
               <span className="text-xs font-normal">Houses</span>
             </span>
           </div>
@@ -188,8 +149,8 @@ const Overview = () => {
             </span>
           </Link>
         </div>
-        <div className="shadow-lg rounded-lg bg-yellow-500 text-gray-100">
-          <div className=" flex justify-between items-center p-2">
+        <div className="shadow-lg rounded-lg bg-yellow-500 text-gray-100 w-28 max-sm:w-56">
+          <div className=" flex justify-between flex-col items-center p-2">
             <span>
               {" "}
               <Landscape
@@ -197,7 +158,7 @@ const Overview = () => {
                 fontSize="large"
               />{" "}
             </span>
-            <span className=" text-2xl font-bold flex flex-col items-center"> {propertyCounts.lands}
+            <span className=" text-2xl font-bold flex flex-col-reverse items-center"> {propertyCounts.lands}
               <span className="text-xs font-normal">Lands</span>
             </span>
           </div>

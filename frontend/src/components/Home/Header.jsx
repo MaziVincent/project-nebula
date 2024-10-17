@@ -49,7 +49,7 @@ const Header = () => {
         <nav className=" py-3">
           <div className="flex items-center justify-between">
             <div className=" max-sm:w-52">
-              <Link className="">
+              <Link to='/' className="">
                 <img src={DRELB} alt="" />
               </Link>
             </div>
@@ -57,7 +57,7 @@ const Header = () => {
 
             </div>
             <div 
-              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden transition-all duration-500 ease-in-out transform -translate-y-10 opacity-0 lg:opacity-100'} gap-10 lg:gap-5`}>
+              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden'} gap-10 lg:gap-5 transition-all duration-500 ease-in-out transform opacity-100`}>
               <Link
                 to='/'
                 onClick={handleShowNav}
@@ -77,9 +77,9 @@ const Header = () => {
               <button 
                 onClick={() => {
                   dispatch({ type: "openLogin" });
-                  handleShowNav()
+                  handleShowNav();
                 }}
-                className="lg:hidden text-start">
+                className="md:hidden text-start">
                 <span className=" font-medium text-gray-800 hover:text-gray-500">Get Started</span>
               </button>
             </div>
@@ -117,7 +117,7 @@ const Header = () => {
                   </span>
                 </button>
               </div>
-              { !showNav ?
+              { !showNav ? 
               <button
                 onClick={handleShowNav} 
                 className="lg:hidden transition-transform duration-300 ease-in-out transform hover:scale-110"
