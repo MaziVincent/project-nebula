@@ -2,18 +2,14 @@ import React from 'react'
 import useAuth from "../../../hooks/useAuth";
 import { QueryClient, useQuery } from "react-query";
 import { useState } from 'react';
-import { blue, brown, green, grey, purple, yellow } from "@mui/material/colors";
 import baseUrl from "../../../shared/baseURL";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
-import { Add, Shop } from '@mui/icons-material';
+// import { Add, Shop } from '@mui/icons-material';
 import CreateShop from './CreateShop';
 import { ToastContainer, toast } from 'react-toastify';
 import UpdateShopModal from './UpdateShopModal';
 import { CircularProgress } from '@mui/material';
-import axios from 'axios';
 import ShopStatusUpdateModal from './ShopStatusUpdateModal';
 import DeletePropertyModal from '../property/DeletepropertyModal';
 import baseURL from '../../../shared/baseURL';
@@ -24,11 +20,11 @@ const Shops = () => {
   const {auth} = useAuth();
   const fetch = useFetch();
   const url = `${baseUrl}shop`
-  const [openModal, setOpenModal] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  const handleOpen = () => setOpenModal(true)
-  const handleClose = () => setOpenModal(false)
+  
+  // const [openModal, setOpenModal] = useState(false)
+  // const handleOpen = () => setOpenModal(true)
+  // const handleClose = () => setOpenModal(false)
 
   const [openUpdate, setOpenUpdate] = useState(false);
   const handleUpdateOpen = () => setOpenUpdate(true);
@@ -88,13 +84,18 @@ const Shops = () => {
   return (
     <div className=' pt-10 max-sm:mt-10 h-screen'>
       <ToastContainer />
+      <h3 className=' text-gray-700 font-semibold text-2xl text-center'>Shops</h3>
       <div className=' mb-4 max-md:w-full'>
-        <button onClick={handleOpen} className=' block bg-cyan-500 w-20 min-w-max p-1 rounded-xl'>
+        {/* <button onClick={handleOpen} className=' block bg-cyan-500 w-20 min-w-max p-1 rounded-xl'>
           <span className=' text-cyan-50'>
             <Add />
             Add Shop  
           </span>
-        </button>
+        </button> */}
+        <span className=' text-lg text-gray-500'>Total Shops</span>
+        <span className='block w-[100px] bg-cyan-500 min-w-max py-1 px-2 rounded-xl text-cyan-50 text-center'>
+        {data?.shops.length ? data.shops.length.toString().padStart(2, '0') : '00'}
+        </span>
       </div>
       <div className=" border-dashed border rounded-md border-red-900 h-auto">
         <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
@@ -278,7 +279,7 @@ const Shops = () => {
           </table>
         </div>
       </div>
-      <CreateShop open={openModal} handleClose={handleClose} />
+      {/* <CreateShop open={openModal} handleClose={handleClose} /> */}
       <UpdateShopModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} shop={shop} />
       <ShopStatusUpdateModal openStatus={openStatus} handleCloseStatus={handleCloseStatus} shop={shop} />
       <DeletePropertyModal 

@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import useAuth from '../../../hooks/useAuth'
-import {useForm} from 'react-hook-form'
+import {set, useForm} from 'react-hook-form'
 import axios from 'axios'
-import { Modal } from '@mui/material'
+import { CircularProgress, Modal } from '@mui/material'
 import { useParams } from 'react-router-dom'
+
 
 const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     const [error, setError] = useState('')
@@ -17,6 +18,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     const { auth } = useAuth()
     const url = `${baseURL}properties/upload`
     const {id} = useParams()
+    const [isLoading, setIsLoading] =useState(false)
 
     // console.log(propertyId)
     // const propertyId = id
@@ -28,7 +30,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     } = useForm()
 
     const uploadImage = async (data) => {
-      
+    setIsLoading(true)
     const files = data.files
     const formData = new FormData()
     for (const key of files) {
@@ -55,8 +57,12 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     const {mutate} = useMutation(uploadImage, {
       onSuccess: () => {
         queryClient.invalidateQueries('property')
-        toast.success('Property Image Uploaded Successfully')
-       // handleUploadClose()
+        setTimeout(() => {
+          toast.success('Image uploaded successfully')
+          handleUploadClose()
+          setIsLoading(false)
+        }, 1000)
+        
       },
       onError: (error) => {
         setError(error.response?.data?.error || error.message)
@@ -125,7 +131,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
                       Close
                   </button>
                   <button type="submit" className="bg-blue-600 px-6 py-1 rounded-lg text-white">
-                      Upload
+                      {isLoading ? <CircularProgress color='white' /> : 'Upload'}
                   </button>
               </div>
             </form>

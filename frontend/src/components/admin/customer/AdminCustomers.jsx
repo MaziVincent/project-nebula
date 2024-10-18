@@ -17,9 +17,9 @@ const AdminCustomers = () => {
   const {auth} = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}customer`
-  const [openModal, setOpenModal] = useState(false)
   const [loading, setLoading] = useState(false)
-
+  
+  const [openModal, setOpenModal] = useState(false)
   const handleOpen = () => setOpenModal(true)
   const handleClose = () => setOpenModal(false)
 

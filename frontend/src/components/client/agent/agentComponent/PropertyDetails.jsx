@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import baseURL from '../../../../shared/baseURL';
 import { CircularProgress, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
+import UploadPropertyImage from '../../../admin/property/UploadPropertyImage';
 
 const PropertyDetails = () => {
   const { auth } = useAuth();
@@ -15,7 +16,12 @@ const PropertyDetails = () => {
   const { id } = useParams();
   const imageUrl = `${baseURL}`;
 
+  //upload image
+  const [openUpload, setOpenUpload] = useState(false)
+  const handleOpenUpload = () => setOpenUpload(true)
+  const handleUploadClose = () => setOpenUpload(false)
   const [property, setProperty] = useState(null);
+  const [propertyId, setPropertyId] = useState("");
 
   const getProperty = async () => {
     try {
@@ -133,13 +139,24 @@ const PropertyDetails = () => {
               </div>
             )
           }
-        </div>
+          </div>
          <p className="text-gray-600 mt-4">
-        {property.description}
-      </p>
+           {property.description}
+          </p>
         </div>
+        <button
+          onClick={() => {
+            handleOpenUpload();
+            setPropertyId(property._id)
+          }}
+        >
+          <span>
+          Upload {property.type} Image
+          </span>
+        </button>
     </div>
     )}
+    <UploadPropertyImage openUpload={openUpload} handleUploadClose={handleUploadClose} propertyId={propertyId} />
     </div>
   )
 }

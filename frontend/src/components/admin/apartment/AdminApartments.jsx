@@ -28,8 +28,8 @@ const AdminApartments = () => {
   const [loading, setLoading] = useState(false)
 
   //modal handler
-  const handleOpen = () => setOpenModal(true)
-  const handleClose = () => setOpenModal(false)
+  // const handleOpen = () => setOpenModal(true)
+  // const handleClose = () => setOpenModal(false)
 
   //update apartment details
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -91,13 +91,18 @@ const AdminApartments = () => {
   return (
     <div className=' pt-10 max-sm:mt-10 h-screen'>
       <ToastContainer />
+      <h3 className=' text-gray-700 font-semibold text-2xl text-center'>Apartments</h3>
       <div className=' mb-4 max-md:w-full'>
-        <button onClick={handleOpen} className=' block bg-cyan-500 w-20 min-w-max p-1 rounded-xl'>
-          <span className=' text-cyan-50'>
+        {/* <button onClick={handleOpen} className=''>
+          <span className=' '>
             <Add />
             Add Apartment  
           </span>
-        </button>
+        </button> */}
+        <span className=' text-lg text-gray-500'>Total Apartment</span>
+        <span className='block w-[100px] bg-cyan-500 min-w-max py-1 px-2 rounded-xl text-cyan-50 text-center'>
+        {data?.apartments.length ? data.apartments.length.toString().padStart(2, '0') : '00'}
+        </span>
       </div>
       <div className=" border-dashed border rounded-md border-red-900 h-auto">
         <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
@@ -280,7 +285,7 @@ const AdminApartments = () => {
           </table>
         </div>
       </div>
-      <CreateApartmentModal open={openModal} handleClose={handleClose} />
+      {/* <CreateApartmentModal open={openModal} handleClose={handleClose} /> */}
       <UpdateApartmentModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} apartment={apartment} />
       <ApartmentStatusModal openStatus={openStatus} handleCloseStatus={handleCloseStatus} apartment={apartment} />
       <DeletePropertyModal 
