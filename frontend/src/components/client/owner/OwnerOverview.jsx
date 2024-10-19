@@ -14,6 +14,7 @@ import CreateNewLandModal from "./ownerComponent/CreateNewLandModal";
 import CreateNewShopModal from "./ownerComponent/CreateNewShopModal";
 import UpdatePropertiesModal from "./ownerComponent/UpdatePropertiesModal";
 import PropertiesStatusModal from "./ownerComponent/PropertiesStatusModal";
+import CreateNewApartmentModal from "./ownerComponent/CreateNewApartmentModal";
 
 const OwnerOverview = () => {
   const { auth } = useAuth();
@@ -165,12 +166,6 @@ const OwnerOverview = () => {
                           scope="col"
                           className="px-6 py-4 font-medium text-green-900"
                         >
-                          ID
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-4 font-medium text-green-900"
-                        >
                           Title
                         </th>
                         <th
@@ -202,15 +197,6 @@ const OwnerOverview = () => {
                       { data?.properties.length  > 0 ?(
                         data?.properties.map((property) => (
                           <tr key={property._id} className="hover:bg-green-50">
-                        
-                        <th className=" flex items-center gap-2 px-4 py-6">
-                          <div className="relative">
-                            <input type="checkbox" />
-                          </div>
-                          <div className="text-sm">
-                            <div className="font-medium text-green-900">{property._id}</div>
-                          </div>
-                        </th>
                         <th className=" gap-3 items-center px-6 py-4 font-normal text-green-900">
                           <div className="relative max-h-10 max-w-10">
                             {/* <input type="checkbox" /> */}
@@ -227,8 +213,8 @@ const OwnerOverview = () => {
                           </div>
                         </th>
                         <td className="px-6 py-4">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                            <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                          <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${property.status === "Available" ? 'text-green-600 bg-green-50' : property.status === "Pending" ? 'text-yellow-600 bg-yellow-50' : 'text-red-600 bg-red-50'}`}>
+                            <span className={`h-1.5 w-1.5 rounded-full ${property.status === "Available" ? 'bg-green-600' : property.status === "Pending" ? 'bg-yellow-600' : 'bg-red-600'}`}></span>
                             {property.status}
                           </span>
                         </td>
@@ -238,12 +224,6 @@ const OwnerOverview = () => {
                             <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
                               {property.type}
                             </span>
-                            {/* <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                              Product
-                            </span>
-                            <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                              Develop
-                            </span> */}
                           </div>
                         </td>
                         <td className="px-6 py-4">
@@ -367,7 +347,7 @@ const OwnerOverview = () => {
       }
       <div>
       <UpdatePropertiesModal openUpdate={openUpdate} handleCloseUpdate={handleCloseUpdate} property={selectedProperty} />
-      <CreateApartmentModal open={openModal} handleClose={handleClose} />
+      <CreateNewApartmentModal open={openModal} handleClose={handleClose} />
       <CreateNewHouseModal open={openHouseModal} handleCloseHouseModal={handleCloseHouseModal} />
       <CreateNewLandModal open={openLandModal} handleCloseLandModal={handleCloseLandModal} />
       <CreateNewShopModal open={openShopModal} handleCloseShopModal={handleCloseShopModal} />

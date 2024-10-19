@@ -27,8 +27,7 @@ const createLandHandler = async (req, res) => {
         plots,
         docType,
         ownershipType,
-        propertyType,       
-        files: req.files
+        propertyType,      
     };
     const result = await createLand(data);
     if (result.error) {

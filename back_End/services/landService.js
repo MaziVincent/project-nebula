@@ -4,24 +4,16 @@ const User = require('../model/User')
 
 const createLand = async (data) => {
     const ownerId = new mongoose.Types.ObjectId(data.owner);
-    const files1 = data.files['images'] || [];
-    const files2 = data.files['docImages'] || [];
-
-    const imageNames = files1.map(file => file.path);
-    const docImageNames = files2.map(file => file.path);
-    // const imageName = JSON.stringify(imageNames);
-    // const docImageName = JSON.stringify(docImageNames);
+    
     try{
         const newLand = await Land.create({
             "title": data.title,
             "description": data.description,
             "price": data.price,
             "location": data.location,
-            "images": imageNames,
             "owner": ownerId,
             "plots": data.plots,
             "docType": data.docType,
-            "docImages": docImageNames,
             "ownershipType": data.ownershipType,
             "propertyType": data.propertyType
         })

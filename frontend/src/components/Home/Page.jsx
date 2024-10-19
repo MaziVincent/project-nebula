@@ -396,9 +396,9 @@ const Page = () => {
                                         <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">360m<sup>2</sup></span>
+                                                <span className="fw-600 alt-font text-dark-gray">{prop.plots}</span>
                                             </div>
-                                            <span className="d-block lh-18 fs-15">Living area</span> 
+                                            <span className="d-block lh-18 fs-15">{prop?.plots ? 'Plots' : ''}</span> 
                                         </div>
                                     </div>
                                 </div> 
@@ -407,7 +407,7 @@ const Page = () => {
                                         <Link to={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
                                     </div>
                                     <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
+                                        <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
                                     </div> 
                                 </div> 
                             </div>

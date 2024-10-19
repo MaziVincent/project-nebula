@@ -9,6 +9,7 @@ const {
 } = require('../services/apartmentService')
 
 const createApartmentHandler = async (req, res) => {
+    console.log(req.body)
     const { title, description, price, location, owner, bedrooms, bathrooms, floorArea, propertyType } = req.body;
     if(!title, !description, !price, !location, !owner, !bedrooms, !bathrooms, !floorArea, !propertyType) {
         return res.status(400).json({message: "All fields are required"})

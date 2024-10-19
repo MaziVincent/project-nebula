@@ -275,7 +275,7 @@ const CreateLandModal = ({open, handleClose}) => {
                     >
                       <option value="select land type" disabled selected>Select Land Type</option>
                         <option value="Lease">Lease</option>
-                        <option value="Sale">Sale</option>
+                        <option value="Sell">Sell</option>
                     </select>
                 </div>
               </div>

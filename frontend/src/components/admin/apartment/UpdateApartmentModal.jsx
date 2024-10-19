@@ -59,6 +59,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
     formData.append('bedrooms', data.bedrooms);
     formData.append('bathrooms', data.bathrooms);
     formData.append('floorArea', data.floorArea);
+    formData.append('propertyType', data.propertyType);
     //console.log(data)
 
     try {
@@ -133,7 +134,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
             <form 
               onSubmit={handleSubmit(handleApartmentUpdate)} 
               method="post"
-              encType="multipart/form-data"
+              // encType="multipart/form-data"
             >
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -180,7 +181,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                   </label>
                   <input
                     id="price"
-                    type="number"
+                    type="text"
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Apartment Price here"

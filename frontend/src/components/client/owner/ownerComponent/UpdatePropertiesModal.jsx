@@ -329,38 +329,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                           placeholder="Enter docType here"
                         />
                       </div>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="basement"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Basement:
-                        </label>
-                        <input
-                          id="basement"
-                          name='basement'
-                          type='text'
-                          {...register("basement", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter basement here"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="amenities"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Amenities:
-                        </label>
-                        <input
-                          id="amenities"
-                          name='amenities'
-                          type='text'
-                          {...register("amenities", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter amenities here"
-                        />
-                      </div>
+                      
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="exteriorFeatures"
@@ -578,7 +547,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                         </label>
                         <input
                           id="leaseDuration"
-                          type="number"
+                          type="text"
                           {...register("leaseDuration", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Lease Duration here"
@@ -587,6 +556,23 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                     </div>
                   )
                 }
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="type"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Type
+                  </label>
+                    <select name="propertyType" id="propertyType"
+                      {...register("propertyType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select house type" disabled selected>Select House Type</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Sell">Sell</option>
+                        <option value="Lease">Lease</option>
+                    </select>
+                </div>
               </div>
               <button
                 type="submit"

@@ -44,18 +44,11 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
     
     // Append form fields
     for (const key in data) {
-      if (data[key] && key !== 'image' && key !== 'docImage') {
+      if (data[key] ) {
         formData.append(key, data[key]);
       }
     }
-    // Append the image file if it exists
-    if (image) {
-      formData.append('image', image);
-    }
-    if (docImage) {
-      formData.append('docImage', docImage);
-    }
-    // Log the FormData contents
+   
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
@@ -82,9 +75,8 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
     })
 
     const handleCreateHouse = (data) => {
-    // Pass the image and form data to mutate
-    const houseData = { ...data, image, docImage }; 
-    mutate(houseData);  // Pass both form data and image
+    
+    mutate(data);  
     setTimeout(() => {
       handleCloseHouseModal();
     }, 3000);
