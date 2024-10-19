@@ -75,7 +75,7 @@ const PropertyDtls = () => {
                                 </div>
                                 <div className="col-lg-3 offset-xl-2 offset-lg-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
                                     <h4 className="text-dark-gray fw-700 alt-font mb-5px">&#8358;{property.price}</h4>
-                                    {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft.{property.price / 12}</span> */}
+                                    {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft. &#8358;{!isNaN(parseFloat(property.price.replace(/,/g, ""))) ? (parseFloat(property.price.replace(/,/g, "")) / 12).toFixed(2) : 'N/A'}</span> */}
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@ const PropertyDtls = () => {
                                             <div className=" grid grid-cols-3 gap-4">
                                             {
                                                 property.imageUrls.map((imageUrl, index) => (
-                                                <img key={index} src={imageUrl} alt={property.title} className=' w-full h-[400px] max-md:h-[200px] duration-300 delay-300 ease-in-out  hover:scale-105' />
+                                                <img key={index} src={imageUrl} alt={property.title} className=' w-[626px] h-[313px] max-md:h-[200px] duration-300 delay-300 ease-in-out  hover:scale-105' />
                                                 ))
                                             }
                                             </div>

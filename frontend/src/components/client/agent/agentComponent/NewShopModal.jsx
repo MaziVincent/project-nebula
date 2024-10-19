@@ -174,7 +174,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
 
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="description"
+                    htmlFor="price"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Price
@@ -182,7 +182,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="price"
                     rows="4"
-                    type='number'
+                    type='text'
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop Price here"
@@ -255,7 +255,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="leaseDuration"
                     name='leaseDuration'
-                    type='number'
+                    type='text'
                     {...register("leaseDuration", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop leaseDuration here"
@@ -271,22 +271,13 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="securityDeposit"
                     name='securityDeposit'
-                    type='number'
+                    type='text'
                     {...register("securityDeposit", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop security Deposit here"
                   />
                 </div>
-                <div className='sm:col-span-2'>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="image"
-                    id="image"
-                    title='image'
-                    onChange={handleFileUpload} 
-                  />
-                </div>
+                
               </div>
               <button
                 type="submit"

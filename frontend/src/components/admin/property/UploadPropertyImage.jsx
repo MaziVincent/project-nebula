@@ -81,9 +81,9 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     >
       <div 
        id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6 right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute z-50 justify-center items-center md:h-dvh px-5"
       >
-        <div className=" bg-gray-100 mt-24 p-10 rounded">
+        <div className=" bg-gray-100 mt-24 p-10 rounded mx-auto">
           <div className=" flex justify-between items-start">
             <h5 className="pb-2" id="">
                 Upload Property Image
@@ -101,6 +101,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
               onSubmit={handleSubmit(onSubmit)}
               encType="multipart/form-data"
               method="post"
+              className=' mx-auto'
           >
               <div className="mb-3">
                   <label htmlFor="image" className="">
@@ -131,7 +132,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
                       Close
                   </button>
                   <button type="submit" className="bg-blue-600 px-6 py-1 rounded-lg text-white">
-                      {isLoading ? <CircularProgress color='white' /> : 'Upload'}
+                      {isLoading ? <CircularProgress color='white' size={24} /> : 'Upload'}
                   </button>
               </div>
             </form>

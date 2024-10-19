@@ -11,12 +11,12 @@ router.route('/')
     .get(propertyController.getPropertiesHandler)
 router.route('/:id')
     .get(propertyController.getPropertyHandler)
-    .delete(verifyRoles('Admin', 'Agent', 'Owner'), propertyController.deletePropertyHandler)
+    .delete(propertyController.deletePropertyHandler)
 router.route('/owner/:id')
     .get(propertyController.getPropertiesByOwnerHandler); 
 
 router.route('/status/:id')
-    .put(verifyRoles('Admin', 'Agent', 'Owner'), propertyController.propertyStatusHandler)
+    .put( propertyController.propertyStatusHandler)
 
 router.route('/upload/:id')
     .put(

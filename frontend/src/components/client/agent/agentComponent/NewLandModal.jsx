@@ -264,40 +264,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
                 </div>
 
                 {/* Image upload section */}
-                <div className='sm:col-span-2'>
-                  <label
-                    htmlFor="image"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Upload Land Image:
-                  </label>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="images"
-                    id="images"
-                    title='images'
-                    onChange={handleFileUpload}
-                    multiple
-                  />
-                </div>
-                <div className='sm:col-span-2'>
-                  <label
-                    htmlFor="docImage"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Upload Document:
-                  </label>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="docImages"
-                    id="docImages"
-                    title='docImages'
-                    onChange={handleFileUpload}
-                    multiple 
-                  />
-                </div>
+                
               </div>
               <button
                 type="submit"

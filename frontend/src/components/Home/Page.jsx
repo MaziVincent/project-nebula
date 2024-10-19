@@ -354,12 +354,15 @@ const Page = () => {
                     {/* < start box item */}
                     {
                         Array.isArray(data?.properties) && data?.properties?.length > 0 ? (
-                            data?.properties.map((prop) => (
+                            data?.properties.filter((prop) => prop.status === 'Available').length > 0 ? (
+                            data?.properties
+                                .filter((prop) => prop.status === 'Available')
+                                .map((prop) => (
                         <div key={prop._id} className="col mb-30px">
                         <div className="border-radius-6px overflow-hidden box-shadow-large">
                             <div className="image position-relative">
                                 <a href="demo-real-estate-property-details.html">
-                                    <img src={prop.imageUrls[0]} alt="" class="w-[600px] h-[415px]"  />
+                                    <img src={prop.imageUrls[1]} alt="" class="w-[600px] h-[300px]"  />
                                 </a>
                                 <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-yellow-400"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
                             </div> 
@@ -411,11 +414,14 @@ const Page = () => {
                         </div>
 
                     </div>
-                            ))
-                        ) : (
-                            <div>No properties found</div>
-                        )
-                    }
+                        ))
+                    ) : (
+                        <div>No Available Properties</div> // Show this if no property is "Available"
+                    )
+                    ) : (
+                    <div>No Properties Found</div> // Show this if the properties array is empty
+                    )
+                }
                 </div> 
                     <div className=" flex justify-center mt-4 mb-">
                         <Pagination variant="outlined" size="large" count={data?.totalPage} page={page} onChange={handleChange} />

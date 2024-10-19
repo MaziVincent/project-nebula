@@ -70,6 +70,7 @@ const getHouseHandler = async (req, res) => {
 };
 
 const updateHouseHandler = async (req, res) => {
+    console.log(req.body)
     if(!req.body) {
         return res.status(400).json({message: 'Data to update required'})
     }

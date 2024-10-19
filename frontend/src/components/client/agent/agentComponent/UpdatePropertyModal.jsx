@@ -18,9 +18,8 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
-  const url = `${baseURL}property`;
 
-  const [selectedProperty, setSelectedProperty] = useState(null)
+  const [propertyType, setPropertyType] = useState(null)
   const {
     register,
     handleSubmit,
@@ -34,16 +33,9 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
       Object.entries(property).forEach(([key, value]) => {
         setValue(key, value);
       });
-      setSelectedProperty(property.type);
+      setPropertyType(property.type);
     }
   }, [property, setValue]);
-
-  const handleFileUpload = (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]);
-    }
-  };
-
   const updateProperty = async (data) => {
     if (!auth || !auth?.accessToken) {
       navigate('/login');
@@ -58,9 +50,23 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
     }
   }
     //console.log(data)
-
+    let url;
+    switch (propertyType) {
+      case "house":
+        url = `${baseURL}houses`;
+        break;
+      case "apartment":
+        url = `${baseURL}apartments`;
+        break;
+      case "land":
+        url = `${baseURL}lands`;
+        break;
+      default:
+        setError("Unsupported property type");
+        return;
+    }
     try {
-      const response = await update(url, data, auth?.accessToken);
+      const response = await update(`${url}`, data, auth?.accessToken);
       console.log(response);
       setTimeout(() => {
         handleCloseUpdate();
@@ -85,10 +91,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
   if (isLoading) {
     return <p>{CircularProgress}</p>;
   }
+  console.log(propertyType)
   return (
     <Modal
       open={openUpdate}
-      onClose={() => {handleUpdateClose()}}
+      onClose={() => {handleCloseUpdate()}}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -133,7 +140,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
             <form 
               onSubmit={handleSubmit(handlePropertyUpdate)} 
               method='post'
-              encType='multipart/form-data'
+              // encType='multipart/form-data'
             >
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -215,7 +222,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                 </div>
 
                 {
-                  selectedProperty === 'House' && (
+                  propertyType === 'House' && (
                     <div className='gap-4 mb-4'>
                       <div className="sm:col-span-2">
                         <label
@@ -331,38 +338,6 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                       </div>
                       <div className="sm:col-span-2">
                         <label
-                          htmlFor="basement"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Basement:
-                        </label>
-                        <input
-                          id="basement"
-                          name='basement'
-                          type='text'
-                          {...register("basement", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter basement here"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="amenities"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Amenities:
-                        </label>
-                        <input
-                          id="amenities"
-                          name='amenities'
-                          type='text'
-                          {...register("amenities", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter amenities here"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label
                           htmlFor="exteriorFeatures"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
@@ -429,7 +404,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                   )
                 }
                 {
-                  selectedProperty === 'Apartment' && (
+                  propertyType === 'Apartment' && (
                     <div className='gap-4 mb-4'>
                       <div className="sm:col-span-2">
                         <label
@@ -481,7 +456,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                 }
 
                 {
-                  selectedProperty === 'Land' && (
+                  propertyType === 'Land' && (
                     <div className='gap-4 mb-4'>
                       <div className="sm:col-span-2">
                         <label
@@ -537,7 +512,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                   )
                 }
                 {
-                  selectedProperty === 'Shop' && (
+                  propertyType === 'Shop' && (
                     <div className=' gap-4 mb-4'>
                       <div className="sm:col-span-2">
                         <label
