@@ -5,11 +5,7 @@ const verifyRoles = require('../middleware/verifyRoles');
 const upload = require('../middleware/upload')
 router.route('/')
     .get(landController.getLandsHandler)
-    .post(verifyRoles('Admin'),
-        upload.fields([
-            { name: 'images', maxCount: 5 }, 
-            {name: 'docImages', maxCount: 2}
-        ]),
+    .post(verifyRoles('Admin', 'Agent', 'Owner'),
         landController.createLandHandler
     )
     .put(verifyRoles('Admin'), landController.updateLandHandler)

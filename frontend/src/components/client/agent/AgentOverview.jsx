@@ -47,7 +47,7 @@ const AgentOverview = () => {
 
   //for update property modal
   const [openUpdate, setOpenUpdate] = useState(false)
-  const [selectedProperty, setSelectedProperty] = useState(null)
+  const [selectedProperty, setSelectedProperty] = useState("")
   const handleOpenUpdate = (property) => {
     setSelectedProperty(property)
     setOpenUpdate(true)
@@ -207,7 +207,7 @@ const AgentOverview = () => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-green-200 border-t border-green-100 bg-green-100">
-                      { data?.properties.length  > 0 ?(
+                      { data?.properties?.length  > 0 ?(
                         data?.properties.map((property) => (
                           <tr key={property._id} className="hover:bg-green-50">
                         
@@ -354,7 +354,8 @@ const AgentOverview = () => {
         )
       }
       <div>
-      <UpdatePropertyModal openUpdate={openUpdate} handleCloseUpdate={handleCloseUpdate} property={selectedProperty} />
+        <UpdatePropertyModal openUpdate={openUpdate} handleCloseUpdate={handleCloseUpdate} property={selectedProperty} />
+      
       <NewApartmentModal open={openModal} handleClose={handleClose} />
       <NewHouseModal open={openHouseModal} handleCloseHouseModal={handleCloseHouseModal} />
       <NewLandModal open={openLandModal} handleCloseLandModal={handleCloseLandModal} />

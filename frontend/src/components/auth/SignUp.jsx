@@ -52,7 +52,6 @@ const SignUp = ({open, handleClose}) => {
       queryClient.invalidateQueries("customer");
       toast.success("Account created successfully");
       setTimeout(() => {
-        navigate('/login');
         handleClose({type:"register"});
         handleClose({type:"openLogin"});
       }, 5000);
@@ -75,21 +74,16 @@ const SignUp = ({open, handleClose}) => {
       {/* <!-- Main modal --> */}
       <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
-        <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
-          {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
-            {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
-              <h3 className="text-lg font-semibold text-gray-900 ">
-                Sign UP
-              </h3>
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-svh ">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-10">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8 overflow-y-scr">
+              <h1 className=' text-xl font-bold leading-tight tracking-tight text-gray-800 md:text-2xl'>Sign Up</h1>
               <button
                 type="button"
                 onClick={() => {handleClose({type:"register"})}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="absolute -top-2 right-1 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -107,11 +101,7 @@ const SignUp = ({open, handleClose}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
-            <div>
               <p>Create account to continue</p>
-            </div>
-            {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handleCreateAccount)} 
               method='post'
@@ -200,22 +190,6 @@ const SignUp = ({open, handleClose}) => {
                     placeholder="********"
                   />
                 </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="wishlist"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Wishlist:
-                  </label>
-                  <input
-                    id="wishlist"
-                    name='wishlist'
-                    type='text'
-                    {...register("wishlist", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter wishlist here"
-                  />
-                </div>
               </div>
               <button
                 type="submit"
@@ -241,6 +215,9 @@ const SignUp = ({open, handleClose}) => {
                   className='text-blue-600 underline hover:text-blue-700'> login</button>
               </p>
             </div>
+            </div>
+            {/* <!-- Modal body --> */}
+            
           </div>
         </div>
       </div>

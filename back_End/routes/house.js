@@ -9,7 +9,7 @@ router.route('/')
     .post(verifyRoles('Admin', 'Agent', 'Owner'),
         houseController.createHouseHandler)
     
-    .put(verifyRoles('Admin'), houseController.updateHouseHandler)
+    .put(verifyRoles('Admin', 'Agent'), houseController.updateHouseHandler)
     router.route('/:id')
     .get(houseController.getHouseHandler)
     .delete(verifyRoles('Admin'), houseController.deleteHouseHandler)

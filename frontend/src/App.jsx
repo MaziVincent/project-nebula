@@ -48,6 +48,7 @@ import AgentProfile from './components/client/agent/agentProfile';
 import OwnerProfile from './components/client/owner/OwnerProfile';
 import SignUp from './components/auth/SignUp';
 import PropertyDtls from './components/Home/PropertyDtls';
+import RequireAuthAdmin from './components/auth/RequireAuthAdmin';
 
 function App() {
   const queryClient = new QueryClient();
@@ -63,17 +64,15 @@ function App() {
               <Route path='/rent' element={<Rent />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/sell' element={<Sell />} />
-              <Route path='/property_details' element={<PropertyDtls />} />
+              <Route path='/property_details/:id' element={<PropertyDtls />} />
             </Route>
 
             //login route
-            <Route path='/login' element={<Login />} />
-            {/* <Route path='/signup' element={<SignUp />} /> */}
-            
-
+              <Route path='/login' element={<Login />} />
+              
             {/*  admin route */}
             <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[roles.admin]} />}>
+              <Route element={<RequireAuthAdmin allowedRoles={[roles.admin]} />}>
                 <Route path='/admin' element={<Dashboard />} >
                   <Route index element={<Overview />} />
                   <Route path='/admin/properties' element={<Properties />} />
@@ -125,7 +124,7 @@ function App() {
 
             {/*  agent route */}
             <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[roles.agent]} />}>
+              <Route element={<RequireAuthAdmin allowedRoles={[roles.agent]} />}>
                 <Route path='/agent' element={<AgentDashboard />} >
                   <Route index element={<AgentOverview />} />
                   <Route path='/agent/property/:id' element={<PropertyDetails />} />
@@ -136,7 +135,7 @@ function App() {
 
             {/*  owner route */}
             <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[roles.owner]} />}>
+              <Route element={<RequireAuthAdmin allowedRoles={[roles.owner]} />}>
                 <Route path='/owner' element={<OwnerDashboard />} >
                   <Route index element={<OwnerOverview />} />
                   <Route path='/owner/property/:id' element={<Property />} />

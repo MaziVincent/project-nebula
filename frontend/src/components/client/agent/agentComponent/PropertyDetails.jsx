@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import baseURL from '../../../../shared/baseURL';
 import { CircularProgress, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
+import UploadPropertyImage from '../../../admin/property/UploadPropertyImage';
 
 const PropertyDetails = () => {
   const { auth } = useAuth();
@@ -15,7 +16,17 @@ const PropertyDetails = () => {
   const { id } = useParams();
   const imageUrl = `${baseURL}`;
 
+  //upload image
+  const [openUpload, setOpenUpload] = useState(false)
+  const handleOpenUpload = () => setOpenUpload(true)
+  const handleUploadClose = () => setOpenUpload(false)
+
   const [property, setProperty] = useState(null);
+  const [propertyId, setPropertyId] = useState("");
+
+  const [openUpdate, setOpenUpdate] = useState(false)
+  const handleOpenUpdate = () => setOpenUpdate(true)
+  const handleCloseUpdate = () => setOpenUpdate(false)
 
   const getProperty = async () => {
     try {
@@ -71,19 +82,19 @@ const PropertyDetails = () => {
       <p className=' mb-1'>Price: <span>&#8358;{property.price}</span></p>
       <p className="text-gray-600">Location: <span>{property.location}</span></p>
       <h4 className=' text-2xl text-gray-600 text-center'>Features:</h4>
-        <span className=" grid grid-cols-3 mb-3 w-1/3">
+        <span className=" grid grid-cols-3 mb-12 w-1/2 max-md:w-4/5 max-sm:w-full">
           <span className=" flex flex-col leading-5 items-center border-r-2 border-gray-600">
             <span>{property?.bedrooms ? 'Bedrooms' : '' }</span>
             {property.bedrooms}
           </span>
-          <span className=" flex flex-col leading-5 items-center">
+          <span className=" flex flex-col leading-5 items-center border-r-2 border-gray-600">
             <span>{property?.bathrooms ? 'Bathrooms' : '' }</span>
             {property.bathrooms}
           </span>
           <span className=' flex flex-col leading-5 items-center'><span>{property?.stories ? 'Stories:' : ''} </span>{property.stories}</span>
         </span>
         <p className=' text-2xl text-center text-gray-600 font-medium'>Other Features:</p>
-        <div className=' grid grid-cols-4'>
+        <div className=' grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 '>
           {
             property?.exteriorFeatures && (
               <div>
@@ -133,13 +144,60 @@ const PropertyDetails = () => {
               </div>
             )
           }
-        </div>
+          </div>
          <p className="text-gray-600 mt-4">
-        {property.description}
-      </p>
+           {property.description}
+          </p>
         </div>
+        <div className=' flex justify-start items-start gap-4 my-4 '>
+            {/* <button
+              onClick={() => {
+                handle();
+                setProperty(property);
+              }}
+              className=' bg-gray-300 max-sm:bg-blue-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-blue-100 rounded-lg px-2'
+              >
+              <span className='md:block max-sm:hidden'>Edit House</span>
+              <span className=' md:hidden max-sm:block'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="48px" 
+                  viewBox="0 -960 960 960" 
+                  width="48px" 
+                  fill="currentColor"
+                  className=' text-blue-600'
+                  >
+                  <path d="M180-180h44l472-471-44-44-472 471v44Zm-60 60v-128l575-574q8-8 19-12.5t23-4.5q11 0 22 4.5t20 12.5l44 44q9 9 13 20t4 22q0 11-4.5 22.5T823-694L248-120H120Zm659-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z"
+                  />
+                </svg>
+              </span>
+            </button> */}
+            <button
+              onClick={() => {
+                handleOpenUpload();
+                setPropertyId(property._id);
+              }}
+              className=' bg-green-600 max-sm:bg-sky-100 text-green-100 bg-opacity-70 shadow-md shadow-green-300 max-sm:shadow-green-100 rounded-lg px-2 py-2'
+              >
+              <span className=' md:block max-sm:hidden font-medium font-sans'>Upload {property.type} Image</span>
+              <span className=' md:hidden max-sm:block'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="48px" 
+                  viewBox="0 -960 960 960" 
+                  width="48px" 
+                  fill="currentColor"
+                  className='text-sky-600'
+                  >
+                  <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
     </div>
     )}
+    <UploadPropertyImage openUpload={openUpload} handleUploadClose={handleUploadClose} propertyId={propertyId} />
     </div>
   )
 }

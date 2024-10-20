@@ -4,7 +4,7 @@ const User = require('./User');
 
 const CustomerSchema = User.discriminator('Customer', new Schema({
   wishlist: [{
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'Property'
   }]
 }));

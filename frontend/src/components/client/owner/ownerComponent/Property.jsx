@@ -7,16 +7,19 @@ import { useParams } from 'react-router-dom';
 import baseURL from '../../../../shared/baseURL';
 import { CircularProgress, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
+import UploadPropertyImage from '../../../admin/property/UploadPropertyImage';
 
 const Property = () => {
   const { auth } = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}properties`;
   const { id } = useParams();
-  const imageUrl = `${baseURL}`;
 
   const [property, setProperty] = useState(null);
-
+  const [propertyId, setPropertyId] = useState("")
+  const [openUpload, setOpenUpload] = useState(false)
+  const handleOpenUpload = () => setOpenUpload(true)
+  const handleUploadClose = () => setOpenUpload(false)
   const getProperty = async () => {
     try {
       const result = await fetch(`${url}/${id}`, auth.accessToken);
@@ -39,6 +42,18 @@ const Property = () => {
 
   return (
     <div>
+      <div className=' max-md:pt-10 pl-4'>
+        <Link to='/owner' >
+          <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 28 28"
+          className=' h-7 w-7 text-gray-400 hover:text-green-600'
+          fill="currentColor">
+          <path d="M0 0h24v24H0V0z" 
+          fill="none"/>
+          <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21v-2z"/></svg>
+        </Link>
+      </div>
       {!property ? (
       <div className="flex justify-center items-center">
         <CircularProgress />
@@ -47,31 +62,39 @@ const Property = () => {
       <div className="">
       <h3 className="text-2xl font-bold">Property Details</h3>
       <div className="mt-5">
-        <img
-          src="https://via.placeholder.com/200"
-          alt="Featured Property"
-          className="w-full h-48 object-cover rounded-lg mb-5"
-        />
-        <h4 className="text-xl font-bold">{property.title}</h4>
-        <p className="text-gray-600">{property.location}</p>
-        <p className="text-gray-600 mt-4">
-          {property.description}
-        </p>
-        <span className=" flex justify-between mb-3">
-          <span className=" flex flex-col leading-5 items-center">
+      <h4 className="text-xl font-bold">{property.title}</h4>
+      <div className=' grid grid-cols-3 gap-2 shadow-md duration-200 delay-100 ease-in-out overflow-hidden'>
+        {
+          property.imageUrls.map((imageUrl, index) => (
+            <img key={index} src={imageUrl} alt={property.title} className=' w-full h-full duration-300 delay-300 ease-in-out  hover:scale-105' />
+          ))
+        }
+      </div>
+        <p className="text-gray-600 mb-2">{property.location}</p>
+        <p className=' mb-2'><span>Status: </span>{property.status}</p>
+        <p className=' mb-5'><span>Price: </span>{property.price}</p>
+        <span className=" grid grid-cols-3 gap- w-[350px]">
+          <span className=" flex flex-col leading-5 items-center border-r border-gray-600">
             {property.bedrooms}
             <span>{property?.bedrooms ? 'Bedrooms' : '' }</span>
           </span>
-          <span className=" flex flex-col leading-5 items-center">
+          <span className=" flex flex-col leading-5 items-center border-r border-gray-600">
             {property.bathrooms}
             <span>{property?.bathrooms ? 'Bathrooms' : '' }</span>
           </span>
+          <span className=' flex flex-col leading-5 items-center'>
+          {property.stories}
+            <span className=''>{property?.stories ? 'Stories:' : ''} </span>
+          </span>
         </span>
-        <p><span>Status: </span>{property.status}</p>
-        <p><span>{property?.stories ? 'Stories:' : ''} </span>{property.stories}</p>
+        <p className="text-gray-600 mt-4">
+          <span className=' block'>Description:</span>
+          {property.description}
+        </p>
+        <div className=' grid lg:grid-cols-4 mt-5 md:grid-cols-2 max-md:gap-y-4 max-sm:grid-cols-1'>
         {
           property?.exteriorFeatures && (
-            <div>
+            <div className=''>
               <h4 className="text-xl font-bold mb-2">Exterior Features</h4>
               <ul className=' pl-2 flex flex-col leading-6'>
                 {property.exteriorFeatures.map((feature, index) => (
@@ -118,8 +141,32 @@ const Property = () => {
           )
         }
         </div>
+        <button
+              onClick={() => {
+                handleOpenUpload();
+                setPropertyId(property._id);
+              }}
+              className=' bg-green-600 max-sm:bg-sky-100 text-green-100 bg-opacity-70 shadow-md shadow-green-300 max-sm:shadow-green-100 rounded-lg px-2 py-2 mt-5'
+              >
+              <span className=' md:block max-sm:hidden font-medium font-sans'>Upload {property.type} Image</span>
+              <span className=' md:hidden max-sm:block'>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="48px" 
+                  viewBox="0 -960 960 960" 
+                  width="48px" 
+                  fill="currentColor"
+                  className='text-sky-600'
+                  >
+                  <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                  />
+                </svg>
+              </span>
+            </button>
+        </div>
     </div>
     )}
+    <UploadPropertyImage openUpload={openUpload} handleUploadClose={handleUploadClose} propertyId={propertyId} />
     </div>
   )
 }

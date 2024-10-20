@@ -74,7 +74,7 @@ const ApartmentStatusModal = ({openStatus, handleCloseStatus, apartment}) => {
       aria-describedby="modal-modal-description"
       className='flex justify-center items-center'
     >
-      <div className=' w-64 py-4 px-4 bg-white relative '>
+      <div className=' py-4 px-4 bg-white relative '>
       Update Apartment Status
       <form onSubmit={handleSubmit(handleStatusUpdate)}
         className=' mx-auto'

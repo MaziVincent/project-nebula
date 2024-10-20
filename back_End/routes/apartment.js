@@ -6,9 +6,8 @@ const upload = require('../middleware/upload');
 
 router.route('/')
     .get(apartmentController.getApartmentsHandler)
-    .post(verifyRoles('Admin', 'Agent'), upload.single('image'), (req, res, next) => {
-        apartmentController.createApartmentHandler(req, res).catch(next);
-    })
+    .post(verifyRoles('Admin', 'Agent', 'Owner'),
+        apartmentController.createApartmentHandler)
     .put(verifyRoles('Admin'), apartmentController.updateApartmentHandler)
 router.route('/:id')
     .get(apartmentController.getApartmentHandler)

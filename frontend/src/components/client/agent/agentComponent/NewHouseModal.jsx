@@ -44,18 +44,11 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
     
     // Append form fields
     for (const key in data) {
-      if (data[key] && key !== 'image' && key !== 'docImage') {
+      if (data[key] ) {
         formData.append(key, data[key]);
       }
     }
-    // Append the image file if it exists
-    if (image) {
-      formData.append('image', image);
-    }
-    if (docImage) {
-      formData.append('docImage', docImage);
-    }
-    // Log the FormData contents
+   
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
@@ -63,7 +56,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
         const response = await post(url, formData, auth?.accessToken);
         console.log(response.data);
         setTimeout(() => {
-          handleClose();
+          handleCloseHouseModal();
         }, 3000);
       } catch (err) {
         setError(err.response?.data?.error || err.message)
@@ -82,9 +75,8 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
     })
 
     const handleCreateHouse = (data) => {
-    // Pass the image and form data to mutate
-    const houseData = { ...data, image, docImage }; 
-    mutate(houseData);  // Pass both form data and image
+    
+    mutate(data);  
     setTimeout(() => {
       handleCloseHouseModal();
     }, 3000);
@@ -331,38 +323,6 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                 </div>
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="basement"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Basement:
-                  </label>
-                  <input
-                    id="basement"
-                    name='basement'
-                    type='text'
-                    {...register("basement", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter basement here"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="amenities"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Amenities:
-                  </label>
-                  <input
-                    id="amenities"
-                    name='amenities'
-                    type='text'
-                    {...register("amenities", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter amenities here"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label
                     htmlFor="exteriorFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
@@ -425,39 +385,21 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     placeholder="Enter kitchenFeatures here"
                   />
                 </div>
-                <div className='sm:col-span-2'>
+                <div className="sm:col-span-2">
                   <label
-                    htmlFor="image"
+                    htmlFor="type"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Upload House Image:
+                    Type
                   </label>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="image"
-                    id="image"
-                    title='image'
-                    onChange={handleFileUpload}
-                    multiple
-                  />
-                </div>
-                <div className='sm:col-span-2'>
-                  <label
-                    htmlFor="docImage"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Upload Document:
-                  </label>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="docImage"
-                    id="docImage"
-                    title='docImage'
-                    onChange={handleFileUpload}
-                    multiple 
-                  />
+                    <select name="propertyType" id="propertyType"
+                      {...register("propertyType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select house type" disabled selected>Select House Type</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Sell">Sell</option>
+                    </select>
                 </div>
               </div>
               <button

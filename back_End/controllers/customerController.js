@@ -20,7 +20,7 @@ const handleCustomers = async (req, res) => {
 }
 
 const handleCreateCustomer = async (req, res) => {
-    const { firstname, lastname, email, phone, wishlist} = req.body;
+    const { firstname, lastname, email, phone,} = req.body;
     if(!firstname, !lastname, !email, !phone) {
         return res.status(400).json({ message: 'All fields are required' });
     }

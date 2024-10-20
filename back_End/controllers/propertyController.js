@@ -58,6 +58,7 @@ const propertyStatusHandler = async (req, res) => {
 
 
 const getRecentPropertiesHandler = async (req, res) => {
+  
   const properties = await getRecentProperties();
   if(!properties) return res.status(404).json({message: 'Properties not found'})
   return res.status(200).json(properties)

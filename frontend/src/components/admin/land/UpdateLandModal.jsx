@@ -267,7 +267,22 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     placeholder="Enter ownershipType here"
                   />
                 </div>
-
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="type"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Type
+                  </label>
+                    <select name="propertyType" id="propertyType"
+                      {...register("propertyType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select land type" disabled selected>Selected Land Type</option>
+                        <option value="Lease">Lease</option>
+                        <option value="Sell">Sell</option>
+                    </select>
+                </div>
               </div>
               <button
                 type="submit"

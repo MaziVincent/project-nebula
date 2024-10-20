@@ -2,15 +2,14 @@ import React, { useEffect } from 'react'
 import useAuth from "../../../hooks/useAuth";
 import { QueryClient, useQuery } from "react-query";
 import { useState } from 'react';
-import { blue, brown, green, grey, purple, yellow } from "@mui/material/colors";
 import baseUrl from "../../../shared/baseURL";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import DeletePropertyModal from '../property/DeletepropertyModal';
-import { Add } from '@mui/icons-material';
+// import { Add } from '@mui/icons-material';
 import { CircularProgress } from '@mui/material';
-import CreateLandModal from './CreateLandModal';
+// import CreateLandModal from './CreateLandModal';
 import UpdateLandModal from './UpdateLandModal';
 import LandStatusModal from './LandStatusModal';
 
@@ -19,12 +18,12 @@ const AdminLands = () => {
   const {auth} = useAuth();
   const fetch = useFetch();
   const url = `${baseUrl}land`
-  const [openModal, setOpenModal] = useState(false)
   const [loading, setLoading] = useState(false)
-
+  
   //modal handler
-  const handleOpen = () => setOpenModal(true)
-  const handleClose = () => setOpenModal(false)
+  // const [openModal, setOpenModal] = useState(false)
+  // const handleOpen = () => setOpenModal(true)
+  // const handleClose = () => setOpenModal(false)
 
   //update house details
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -76,16 +75,21 @@ const AdminLands = () => {
   return (
     <div className=' pt-10 max-sm:mt-10 h-screen'>
       <ToastContainer />
+      <h3 className=' text-gray-700 font-semibold text-2xl text-center'>Lands</h3>
       <div className=' mb-4 max-md:w-full'>
         {
           loading || isLoading ? <div className=' flex justify-center'><CircularProgress /></div> : null
         }
-        <button onClick={handleOpen} className=' block bg-cyan-500 w-20 min-w-max p-1 rounded-xl'>
+        {/* <button onClick={handleOpen} className=' block bg-cyan-500 w-20 min-w-max p-1 rounded-xl'>
           <span className=' text-cyan-50'>
             <Add />
             Add Land  
           </span>
-        </button>
+        </button> */}
+        <span className=' text-lg text-gray-500'>Total Lands</span>
+        <span className='block w-[100px] bg-cyan-500 min-w-max py-1 px-2 rounded-xl text-cyan-50 text-center'>
+        {data?.lands.length ? data.lands.length.toString().padStart(2, '0') : '00'}
+        </span>
       </div>
       <div className=" border-dashed border rounded-md border-red-900 h-auto">
         <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
@@ -268,7 +272,7 @@ const AdminLands = () => {
           </table>
         </div>
       </div>
-      <CreateLandModal open={openModal} handleClose={handleClose} />
+      {/* <CreateLandModal open={openModal} handleClose={handleClose} /> */}
       <UpdateLandModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} land={land} />
       <LandStatusModal openStatus={openStatus} handleCloseStatus={handleCloseStatus} land={land} />
       <DeletePropertyModal 

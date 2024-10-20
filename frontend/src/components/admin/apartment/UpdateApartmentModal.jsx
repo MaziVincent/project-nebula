@@ -59,6 +59,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
     formData.append('bedrooms', data.bedrooms);
     formData.append('bathrooms', data.bathrooms);
     formData.append('floorArea', data.floorArea);
+    formData.append('propertyType', data.propertyType);
     //console.log(data)
 
     try {
@@ -133,7 +134,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
             <form 
               onSubmit={handleSubmit(handleApartmentUpdate)} 
               method="post"
-              encType="multipart/form-data"
+              // encType="multipart/form-data"
             >
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -180,7 +181,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                   </label>
                   <input
                     id="price"
-                    type="number"
+                    type="text"
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Apartment Price here"
@@ -256,23 +257,22 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                   />
                 </div>
               </div>
-
-              {/* <div className="sm:col-span-2">
-                <label
-                  htmlFor="image"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Upload Image
-                </label>
-                <input
-                  id="image"
-                  name="image"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none"
-                />
-              </div> */}
+              <div className="sm:col-span-2">
+                  <label
+                    htmlFor="type"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Type
+                  </label>
+                    <select name="propertyType" id="propertyType"
+                      {...register("propertyType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select apartment type" disabled selected>Select Apartment Type</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Sell">Sell</option>
+                    </select>
+                </div>
 
               {/* Submit Button */}
               <button

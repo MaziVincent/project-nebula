@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 const createShop = async (data) => {
     const ownerId = new mongoose.Types.ObjectId(data.owner);
-    const imageName = data.file ? data.file.path : null;
     try{
         const newShop = await Shop.create({
             "title": data.title,
@@ -13,16 +12,11 @@ const createShop = async (data) => {
             "owner": ownerId,
             "price": data.price, // Assuming price is provided in the data
             "location": data.location,
-            "shopType": data.shopType,
+            "propertyType": data.propertyType,
             "shopCategory": data.shopCategory,
             "leaseDuration": data.leaseDuration,
-            "securityDeposit": data.securityDeposit,
-            "image": imageName
+            "securityDeposit": data.securityDeposit
         })
-        // if(data.file){
-        //     const image = data.file.path;
-        //     newShop.image = image;
-        // }
         const user = await User.findOne({_id: ownerId}).exec();
         user.properties.push(newShop._id);
         user.save();
@@ -61,9 +55,8 @@ const updateShop = async (id, data) => {
         if(!shop) return {error: "Shop not found"};
         if(data.title) shop.title = data.title;
         if(data.description) shop.description = data.description;
-        // if(data.image) shop.image = data.image;
         if(data.location) shop.location = data.location;
-        if(data.shopType) shop.shopType = data.shopType;
+        if(data.propertyType) shop.propertyType = data.propertyType;
         if(data.shopCategory) shop.shopCategory = data.shopCategory;
         if(data.rent) shop.rent = data.rent;
         if(data.leaseDuration) shop.leaseDuration = data.leaseDuration;

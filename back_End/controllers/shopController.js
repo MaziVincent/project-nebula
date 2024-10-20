@@ -9,8 +9,8 @@ const {
 } = require('../services/shopService')
 
 const createShopHandler = async (req, res) => {
-    const { title, description, price, location, owner, shopType, shopCategory, leaseDuration, securityDeposit} = req.body;
-    if (!title, !description, !price, !location, !owner, !shopType, !shopCategory, !leaseDuration, !securityDeposit ) {
+    const { title, description, price, location, owner, propertyType, shopCategory, leaseDuration, securityDeposit} = req.body;
+    if (!title, !description, !price, !location, !owner, !propertyType, !shopCategory, !leaseDuration, !securityDeposit ) {
         return res.status(400).json({ message: 'All fields are required' });
     }
     const duplicate = await shopExists(title);
@@ -24,7 +24,7 @@ const createShopHandler = async (req, res) => {
         price,
         location,
         owner,
-        shopType,
+        propertyType,
         shopCategory,
         leaseDuration,
         securityDeposit,

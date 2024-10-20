@@ -57,7 +57,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
         const response = await post(url, formData, auth?.accessToken);
         console.log(response.data);
         setTimeout(() => {
-          handleClose();
+          handleCloseLandModal();
         }, 3000);
       } catch (err) {
         setError(err.response?.data?.error || err.message)
@@ -262,41 +262,21 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
                     placeholder="Enter ownershipType here"
                   />
                 </div>
-
-                {/* Image upload section */}
-                <div className='sm:col-span-2'>
+                <div className="sm:col-span-2">
                   <label
-                    htmlFor="image"
+                    htmlFor="type"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Upload Land Image:
+                    Type
                   </label>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="images"
-                    id="images"
-                    title='images'
-                    onChange={handleFileUpload}
-                    multiple
-                  />
-                </div>
-                <div className='sm:col-span-2'>
-                  <label
-                    htmlFor="docImage"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Upload Document:
-                  </label>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="docImages"
-                    id="docImages"
-                    title='docImages'
-                    onChange={handleFileUpload}
-                    multiple 
-                  />
+                    <select name="propertyType" id="propertyType"
+                      {...register("propertyType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select land type" disabled selected>Select Land Type</option>
+                        <option value="Lease">Lease</option>
+                        <option value="Sell">Sell</option>
+                    </select>
                 </div>
               </div>
               <button

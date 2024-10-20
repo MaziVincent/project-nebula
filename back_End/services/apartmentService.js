@@ -17,7 +17,8 @@ const createApartment = async (data) => {
             "owner": ownerId,
             "bedrooms": data.bedrooms,
             "bathrooms": data.bathrooms,
-            "floorArea": data.floorArea
+            "floorArea": data.floorArea,
+            "propertyType": data.propertyType
         })
         const user = await User.findOne({_id: ownerId }).exec();
         user.properties.push(newApartment._id);
@@ -63,6 +64,7 @@ const updateApartment = async (id, data) => {
         if(data.bedrooms) apartment.bedrooms = data.bedrooms
         if(data.bathrooms) apartment.bathrooms = data.bathrooms
         if(data.floorArea) apartment.floorArea = data.floorArea
+        if(data.propertyType) apartment.propertyType = data.propertyType
         const result = await apartment.save();
         return result;
     } catch (e) {

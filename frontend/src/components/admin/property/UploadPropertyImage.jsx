@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import useAuth from '../../../hooks/useAuth'
-import {useForm} from 'react-hook-form'
+import {set, useForm} from 'react-hook-form'
 import axios from 'axios'
-import { Modal } from '@mui/material'
+import { CircularProgress, Modal } from '@mui/material'
 import { useParams } from 'react-router-dom'
+
 
 const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     const [error, setError] = useState('')
@@ -17,6 +18,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     const { auth } = useAuth()
     const url = `${baseURL}properties/upload`
     const {id} = useParams()
+    const [isLoading, setIsLoading] =useState(false)
 
     // console.log(propertyId)
     // const propertyId = id
@@ -28,7 +30,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     } = useForm()
 
     const uploadImage = async (data) => {
-      
+    setIsLoading(true)
     const files = data.files
     const formData = new FormData()
     for (const key of files) {
@@ -55,8 +57,12 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     const {mutate} = useMutation(uploadImage, {
       onSuccess: () => {
         queryClient.invalidateQueries('property')
-        toast.success('Property Image Uploaded Successfully')
-       // handleUploadClose()
+        setTimeout(() => {
+          toast.success('Image uploaded successfully')
+          handleUploadClose()
+          setIsLoading(false)
+        }, 1000)
+        
       },
       onError: (error) => {
         setError(error.response?.data?.error || error.message)
@@ -75,9 +81,9 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     >
       <div 
        id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6 right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute z-50 justify-center items-center md:h-dvh px-5"
       >
-        <div className=" bg-gray-100 mt-24 p-10 rounded">
+        <div className=" bg-gray-100 mt-24 p-10 rounded mx-auto">
           <div className=" flex justify-between items-start">
             <h5 className="pb-2" id="">
                 Upload Property Image
@@ -95,6 +101,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
               onSubmit={handleSubmit(onSubmit)}
               encType="multipart/form-data"
               method="post"
+              className=' mx-auto'
           >
               <div className="mb-3">
                   <label htmlFor="image" className="">
@@ -125,7 +132,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
                       Close
                   </button>
                   <button type="submit" className="bg-blue-600 px-6 py-1 rounded-lg text-white">
-                      Upload
+                      {isLoading ? <CircularProgress color='white' size={24} /> : 'Upload'}
                   </button>
               </div>
             </form>

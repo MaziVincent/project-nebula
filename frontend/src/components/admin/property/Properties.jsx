@@ -15,6 +15,7 @@ const Properties = () => {
   const {auth} = useAuth();
   const fetch = useFetch();
   const url = `${baseUrl}properties`
+  
 
 
   //delete modal
@@ -75,7 +76,6 @@ const Properties = () => {
       { total: 0, apartments: 0, shops: 0, houses: 0, lands: 0 } // Initial counts
     ) : { total: 0, apartments: 0, shops: 0, houses: 0, lands: 0 };
 
-    // console.log('Property Counts:', propertyCounts);
 
   return (
     <div className="w-full h-auto max-md:pt-12">
