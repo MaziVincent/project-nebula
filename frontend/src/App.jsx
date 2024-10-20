@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react'
+//import { useState, useEffect} from 'react'
 import './App.css'
 import { Link, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -7,14 +7,14 @@ import Login from './components/auth/Login'
 import Home from './components/Home/Home'
 import Page from './components/Home/Page'
 import About from './components/Home/About'
-import Blog from './components/Home/Blog'
+//import Blog from './components/Home/Blog'
 import Contact from './components/Home/Contact'
 import Sell from './components/Home/Sell'
 import Rent from './components/Home/Rent'
 import Overview from './components/admin/Overview'
 import PersistLogin from './shared/persistLogin'
 import AdminShops from './components/admin/shops/AdminShops';
-import CreateShop from './components/admin/shops/CreateShop';
+//import CreateShop from './components/admin/shops/CreateShop';
 import Properties from './components/admin/property/Properties';
 import ShopDetails from './components/admin/shops/ShopDetails';
 import AdminApartments from './components/admin/apartment/AdminApartments';
@@ -39,14 +39,14 @@ import AgentDashboard from './components/client/agent/AgentDashboard';
 import AgentOverview from './components/client/agent/AgentOverview';
 import RequireAuth from './components/auth/RequireAuth';
 import Page404 from './components/views/Page404';
-import { Unarchive } from '@mui/icons-material';
+//import { Unarchive } from '@mui/icons-material';
 import UnAuthorized from './components/views/UnAuthorized';
 import OwnerDashboard from './components/client/owner/OwnerDashboard';
 import OwnerOverview from './components/client/owner/OwnerOverview';
 import Property from './components/client/owner/ownerComponent/Property';
-import AgentProfile from './components/client/agent/agentProfile';
+import AgentProfile from './components/client/agent/AgentProfile';
 import OwnerProfile from './components/client/owner/OwnerProfile';
-import SignUp from './components/auth/SignUp';
+//import SignUp from './components/auth/SignUp';
 import PropertyDtls from './components/Home/PropertyDtls';
 import RequireAuthAdmin from './components/auth/RequireAuthAdmin';
 
