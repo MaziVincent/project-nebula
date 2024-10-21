@@ -14,7 +14,7 @@ import UpdateApartmentModal from './UpdateApartmentModal';
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 import ApartmentStatusModal from './ApartmentStatusModal';
-import DeletePropertyModal from '../property/DeletepropertyModal';
+import DeletePropertyModal from '../property/DeletePropertyModal';
 import baseURL from '../../../shared/baseURL';
 import { Add } from '@mui/icons-material';
 

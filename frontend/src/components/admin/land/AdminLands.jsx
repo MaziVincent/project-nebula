@@ -6,7 +6,7 @@ import baseUrl from "../../../shared/baseURL";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import DeletePropertyModal from '../property/DeletepropertyModal';
+import DeletePropertyModal from '../property/DeletePropertyModal';
 // import { Add } from '@mui/icons-material';
 import { CircularProgress } from '@mui/material';
 // import CreateLandModal from './CreateLandModal';
