@@ -12,7 +12,6 @@ import UpdateShopModal from './UpdateShopModal';
 import { CircularProgress } from '@mui/material';
 import ShopStatusUpdateModal from './ShopStatusUpdateModal';
 import DeletePropertyModal from '../property/DeletePropertyModal';
-import baseURL from '../../../shared/baseURL';
 
 
 const Shops = () => {
