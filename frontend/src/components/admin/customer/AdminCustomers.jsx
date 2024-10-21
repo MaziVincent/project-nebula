@@ -10,7 +10,7 @@ import baseURL from '../../../shared/baseURL';
 import UsersStatusModal from '../users/UsersStatusModal';
 import DeleteUserModal from '../users/DeleteUserModal';
 import CreateCustomerModal from "./CreateCustomerModal";
-import UpdateCustomerModal from "./UpdateCUstomerModal";
+import UpdateCustomerModal from "./UpdateCustomerModal";
 
 const AdminCustomers = () => {
   const queryClient = new QueryClient();
