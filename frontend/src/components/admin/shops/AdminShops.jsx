@@ -6,12 +6,12 @@ import baseUrl from "../../../shared/baseURL";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 // import { Add, Shop } from '@mui/icons-material';
-import CreateShop from './CreateShop';
+//import CreateShop from './CreateShop';
 import { ToastContainer, toast } from 'react-toastify';
 import UpdateShopModal from './UpdateShopModal';
 import { CircularProgress } from '@mui/material';
 import ShopStatusUpdateModal from './ShopStatusUpdateModal';
-import DeletePropertyModal from '../property/DeletepropertyModal';
+import DeletePropertyModal from '../property/DeletePropertyModal';
 import baseURL from '../../../shared/baseURL';
 
 
@@ -86,12 +86,6 @@ const Shops = () => {
       <ToastContainer />
       <h3 className=' text-gray-700 font-semibold text-2xl text-center'>Shops</h3>
       <div className=' mb-4 max-md:w-full'>
-        {/* <button onClick={handleOpen} className=' block bg-cyan-500 w-20 min-w-max p-1 rounded-xl'>
-          <span className=' text-cyan-50'>
-            <Add />
-            Add Shop  
-          </span>
-        </button> */}
         <span className=' text-lg text-gray-500'>Total Shops</span>
         <span className='block w-[100px] bg-cyan-500 min-w-max py-1 px-2 rounded-xl text-cyan-50 text-center'>
         {data?.shops.length ? data.shops.length.toString().padStart(2, '0') : '00'}
