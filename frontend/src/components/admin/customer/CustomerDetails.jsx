@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import baseURL from '../../../shared/baseURL';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
-import UpdateCustomerModal from './UpdateCUstomerModal';
+import UpdateCustomerModal from './UpdateCustomerModal';
 import DeleteUserModal from '../users/DeleteUserModal';
 
 const CustomerDetails = () => {
