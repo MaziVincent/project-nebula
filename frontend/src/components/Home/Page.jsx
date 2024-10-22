@@ -34,7 +34,7 @@ const Page = () => {
         setPage(value)
     }
     const getProperties = async () => {
-      const response = await fetch(`${url}?page=${page}&limit=6`);
+      const response = await fetch(`${url}?limit=6&status=Available`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -279,10 +279,9 @@ const Page = () => {
                 <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
                     {isLoading && <div> <img src={loader} alt='loader' /> </div>}
                     {
-                        Array.isArray(data?.properties) && data?.properties?.length > 0 ? (
+                        data?.properties?.length > 0 ? (
                             
                             data?.properties
-                                .filter((prop) => prop.status === 'Available')
                                 .map((prop) => (
                         <div key={prop._id} className="col mb-30px">
                         <div className="border-radius-6px overflow-hidden box-shadow-large">
@@ -304,7 +303,7 @@ const Page = () => {
                                                 <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src={bed} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">0{prop.bedrooms}</span>
+                                                <span className="fw-600 alt-font text-dark-gray">{prop?.bedrooms ? prop.bedrooms.toString().padStart(2, '0') : '00'}</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
@@ -314,18 +313,22 @@ const Page = () => {
                                             <div className="col">
                                                 <div className="d-flex align-items-center">
                                                     <img src={bath} className="me-5px h-20px" alt="" />
-                                                    <span className="fw-600 alt-font text-dark-gray">0{prop.bathrooms}</span>
+                                                    <span className="fw-600 alt-font text-dark-gray">{prop?.bathrooms ? prop.bathrooms.toString().padStart(2, '0') : '00'}</span>
                                                 </div>
                                                 <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                             </div>
                                         )}
-                                        <div className="col">
+                                        {
+                                            prop?.size || prop?.plots && (
+                                                <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src={size} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">{prop.plots}</span>
+                                                <span className="fw-600 alt-font text-dark-gray">{prop?.plots ? prop.plots.toString().padStart(2, '0') : '00'}</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">{prop?.plots ? 'Plots' : ''}</span> 
                                         </div>
+                                            )
+                                        }
                                     </div>
                                 </div> 
                                 <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">

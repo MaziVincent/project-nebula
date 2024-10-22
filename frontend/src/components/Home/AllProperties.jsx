@@ -200,9 +200,8 @@ const AllProperties = () => {
                     {/*  start box item  */}
                     {/*  start box item  */}
                     {
-                        Array.isArray(data?.properties) && data?.properties?.length > 0 ? (
+                        data?.properties?.length > 0 ? (
                             data?.properties
-                            .filter((prop) => prop.status === 'Available')
                             .map((prop) => (
                         <div key={prop._id} className="col mb-30px">
                         <div className="border-radius-6px overflow-hidden box-shadow-large">
@@ -210,7 +209,7 @@ const AllProperties = () => {
                                 <a href="demo-real-estate-property-details.html">
                                     <img src={prop.imageUrls[1]} alt="" className="w-[600px] h-[300px]"  />
                                 </a>
-                                <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-yellow-400"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
+                                <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-orange"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
                             </div> 
                             <div className="bg-white">
                                 <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
@@ -224,7 +223,7 @@ const AllProperties = () => {
                                                 <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src={bed} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">0{prop.bedrooms}</span>
+                                                <span className="fw-600 alt-font text-dark-gray">{prop?.bedrooms ? prop.bedrooms.toString().padStart(2, '0') : '00'}</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
@@ -234,7 +233,7 @@ const AllProperties = () => {
                                             <div className="col">
                                                 <div className="d-flex align-items-center">
                                                     <img src={bath} className="me-5px h-20px" alt="" />
-                                                    <span className="fw-600 alt-font text-dark-gray">0{prop.bathrooms}</span>
+                                                    <span className="fw-600 alt-font text-dark-gray">{prop?.bathrooms ? prop.bathrooms.toString().padStart(2, '0') : '00'}</span>
                                                 </div>
                                                 <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                             </div>
@@ -244,7 +243,7 @@ const AllProperties = () => {
                                                 <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src={size} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">{prop.plots}</span>
+                                                <span className="fw-600 alt-font text-dark-gray">{prop?.plots ? prop.plots.toString().padStart(2, '0') : '00'}</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">{prop?.plots ? 'Plots' : ''}</span> 
                                         </div>
