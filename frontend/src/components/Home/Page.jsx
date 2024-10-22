@@ -26,7 +26,7 @@ const Page = () => {
         setPage(value)
     }
     const getProperties = async () => {
-      const response = await fetch(`${url}?page=${page}&limit=6`);
+      const response = await fetch(`${url}?page=${page}&limit=12`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -35,7 +35,7 @@ const Page = () => {
     };
     
     const { data, isError, isLoading, isSuccess } = useQuery(
-      ["recentProps", page],
+      ["properties", page],
       getProperties,
       {
         keepPreviousData: true,

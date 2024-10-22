@@ -14,14 +14,9 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
   const { auth } = useAuth();
   const url = `${baseURL}shop`;
   const navigate = useNavigate()
-  const [image, setImage] = useState()
   const [error, setError] = useState(null);
 
-  const handleFileUpload = async (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]); // Ensure the file is selected
-    }
-  };
+
   const {
     register,
     handleSubmit,
@@ -36,21 +31,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
     const formData = new FormData();
   
   // Append form fields
-  formData.append('title', data.title);
-  formData.append('description', data.description);
-  formData.append('price', data.price);
-  formData.append('owner', auth.user?._id);
-  formData.append('location', data.location);
-  formData.append('shopType', data.shopType);
-  formData.append('shopCategory', data.shopCategory);
-  formData.append('leaseDuration', data.leaseDuration);
-  formData.append('securityDeposit', data.securityDeposit);
-  
-  // Append the image file if it exists
-  if (image) {
-    formData.append('image', image);
+  for (const key in data) {
+    if (data[key]) {
+      formData.append(key, data[key]);
+    }
   }
-
   // Log the FormData contents
   for (let [key, value] of formData.entries()) {
     console.log(`${key}: ${value}`);
@@ -78,8 +63,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
   })
 
   const handleCreateShop = (data) => {
-  const shopData = { ...data, image }; 
-  mutate(shopData); 
+  mutate(data); 
   setTimeout(() => {
     handleCloseShopModal();
   }, 3000);
@@ -95,21 +79,21 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
       {/* <!-- Main modal --> */}
       <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute top-8  z-50 justify-center items-center w-full outline-none "
       >
         <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
           {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-5">
             {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900 ">
                 Create Shop
               </h3>
               <button
                 type="button"
                 onClick={() => {handleCloseShopModal()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -127,14 +111,14 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
+            
             {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handleCreateShop)} 
               method='post'
               encType='multipart/form-data'
             >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-3 mb-4">
                 <div>
                   <label
                     htmlFor="name"
@@ -167,13 +151,14 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter the Description"
                     required=""
+                    rows='8'
                     >
                   </textarea>
                 </div>
 
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="description"
+                    htmlFor="price"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Price
@@ -181,7 +166,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="price"
                     rows="4"
-                    type='number'
+                    type='text'
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop Price here"
@@ -215,22 +200,6 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="description"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    shopType
-                  </label>
-                  <input
-                    id="shoptype"
-                    name='shopType'
-                    type='text'
-                    {...register("shopType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Shop Type here"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="description"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     shopCategory
@@ -254,7 +223,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="leaseDuration"
                     name='leaseDuration'
-                    type='number'
+                    type='text'
                     {...register("leaseDuration", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop leaseDuration here"
@@ -263,28 +232,34 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="loation"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900"
                   >
                     security Deposit
                   </label>
                   <input
                     id="securityDeposit"
                     name='securityDeposit'
-                    type='number'
+                    type='text'
                     {...register("securityDeposit", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop security Deposit here"
                   />
                 </div>
-                <div className='sm:col-span-2'>
-                  <input 
-                    className='border border-gray-500 text-gray-300 font-medium focus:outline-gray-300 rounded-md px-2 py-2'
-                    type="file"
-                    name="image"
-                    id="image"
-                    title='image'
-                    onChange={handleFileUpload} 
-                  />
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="type"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Type
+                  </label>
+                    <select name="propertyType" id="propertyType"
+                      {...register("propertyType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select land type" disabled selected>Select Land Type</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Sell">Sell</option>
+                    </select>
                 </div>
               </div>
               <button
@@ -306,6 +281,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                 Add new Shop
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>

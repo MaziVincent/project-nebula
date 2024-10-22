@@ -163,7 +163,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     Description:
                   </label>
                   <textarea
-                    rows='4'
+                    rows='8'
                     type="text"
                     name="description"
                     id="description"

@@ -36,7 +36,7 @@ const PropertyDetails = ({property, closeModal}) => {
   console.log(property);
 
   return (
-    <div>
+    <div className=' lg:sticky lg:overflow-auto h-dvh px-2'>
       {!property ? (
       <div className="flex justify-center items-center">
         <CircularProgress />
@@ -46,7 +46,7 @@ const PropertyDetails = ({property, closeModal}) => {
         <button
           type="button"
           onClick={closeModal}
-          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center lg:hidden"
+          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-400 rounded-full text-sm p-1.5 ml-auto inline-flex items-center lg:hidden"
           data-modal-toggle="defaultModal"
         >
         <svg
@@ -67,7 +67,7 @@ const PropertyDetails = ({property, closeModal}) => {
       <h3 className="text-2xl font-bold">Property Details</h3>
       <div className="mt-5">
         <img
-          src="https://via.placeholder.com/200"
+          src={property.imageUrls[0]}
           alt="Featured Property"
           className="w-full h-48 object-cover rounded-lg mb-5"
         />

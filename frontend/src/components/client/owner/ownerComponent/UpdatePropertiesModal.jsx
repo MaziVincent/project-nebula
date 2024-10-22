@@ -10,7 +10,7 @@ import useFetch from "../../../../hooks/useFetch";
 import useUpdate from "../../../../hooks/useUpdate" // Custom hook for fetching data
 import { CircularProgress } from '@mui/material';
 
-const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
+const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) => {
   const queryClient = useQueryClient();
   const { auth } = useAuth();
   const navigate = useNavigate();
@@ -18,9 +18,11 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
-  const url = `${baseURL}property`;
+  //const url = `${baseURL}property`;
+  console.log(url)
 
   const [selectedProperty, setSelectedProperty] = useState(null)
+
   const {
     register,
     handleSubmit,
@@ -38,12 +40,6 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
     }
   }, [property, setValue]);
 
-  const handleFileUpload = (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]);
-    }
-  };
-
   const updateProperty = async (data) => {
     if (!auth || !auth?.accessToken) {
       navigate('/login');
@@ -51,19 +47,19 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
     }
     const formData = new FormData();
 
-   // Append form fields
-   for (const key in data) {
-    if (data[key]) {
-      formData.append(key, data[key]);
+    //Append form fields
+    for (const key in data) {
+      if (data[key]) {
+        formData.append(key, data[key]);
+      }
     }
-  }
-    //console.log(data)
+    console.log(formData)
 
     try {
       const response = await update(url, data, auth?.accessToken);
       console.log(response);
       setTimeout(() => {
-        handleCloseUpdate();
+        // handleCloseUpdate();
       }, 3000);
       toast.success('Property updated successfully');
     } catch (err) {
@@ -79,6 +75,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
 
   const handlePropertyUpdate = (data) => {
     mutate(data);
+    console.log(data)
     
   };
 
@@ -88,7 +85,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
   return (
     <Modal
       open={openUpdate}
-      onClose={() => {handleUpdateClose()}}
+      onClose={() => {handleCloseUpdate()}}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -96,21 +93,21 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
       { property ? (
         <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
         <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
-          {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
-            {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-svh">
+          
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-5">
+            
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900 ">
                 Update
               </h3>
               <button
                 type="button"
                 onClick={() => {handleCloseUpdate()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -128,14 +125,12 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
-            {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handlePropertyUpdate)} 
               method='post'
-              encType='multipart/form-data'
+              // encType='multipart/form-data'
             >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-4 mb-4">
                 <div>
                   <label
                     htmlFor="name"
@@ -161,7 +156,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                     Description
                   </label>
                   <textarea
-                    rows='4'
+                    rows='8'
                     type="text"
                     name="description"
                     id="description"
@@ -216,7 +211,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
 
                 {
                   selectedProperty === 'House' && (
-                    <div className='gap-4 mb-4 grid sm:grid-cols-2'>
+                    <div className='gap-4 mb-4'>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="bedrooms"
@@ -329,7 +324,6 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                           placeholder="Enter docType here"
                         />
                       </div>
-                      
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="exteriorFeatures"
@@ -556,22 +550,19 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                     </div>
                   )
                 }
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="type"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Type
+                <div className="mb-4">
+                  <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+                    Status:
                   </label>
-                    <select name="propertyType" id="propertyType"
-                      {...register("propertyType", { required: true })}
-                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    >
-                      <option value="select house type" disabled selected>Select House Type</option>
-                        <option value="Rent">Rent</option>
-                        <option value="Sell">Sell</option>
-                        <option value="Lease">Lease</option>
-                    </select>
+                  <select
+                    id="status"
+                    {...register("propertyType", { required: true })}
+                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  >
+                    <option value="Rent">Rent</option>
+                    <option value="Sell">Sell</option>
+                    <option value="Lease">Lease</option>
+                  </select>
                 </div>
               </div>
               <button
@@ -581,6 +572,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate}) => {
                 Update
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div> 

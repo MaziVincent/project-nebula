@@ -66,7 +66,7 @@ const Header = () => {
                 Home
               </Link>
               <Link to='/about' onClick={handleShowNav} className={location.pathname === '/about' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>About</Link>
-              <Link to='/rent' onClick={handleShowNav} className={location.pathname === '/rent' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>Rent</Link>
+              <Link to={`/rent`} onClick={handleShowNav} className={location.pathname === '/rent' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>Rent</Link>
               <Link to='/sell' onClick={handleShowNav} className={` ${location.pathname === '/sell' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'} inline-flex items-center gap-1 group`}>
                 Sell
                 <span className=" block rounded-full bg-red-200 px-2 text-sm text-red-600 group-hover:bg-red-100 group-hover:text-red-400">Hot</span>

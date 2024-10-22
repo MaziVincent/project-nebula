@@ -15,6 +15,10 @@ const CustomerOverview = () => {
   const fetch = useFetch();
   const url = `${baseUrl}recentProps`
 
+  const [page, setPage] = useState(1)
+    const handleChange = (event, value) =>{
+        setPage(value)
+    }
   const [openModal, setOpenModal] = useState(false)
   const [selectedProperty, setSelectedProperty] = useState(null)
   const handleProperty = (property) => {
@@ -26,7 +30,7 @@ const CustomerOverview = () => {
     setOpenModal(false); // Close modal
   };
   const getProperties = async () => {
-    const result = await fetch(url, auth.accessToken);
+    const result = await fetch(`${url}?page=${page}&limit=12`, auth.accessToken);
 
     return result.data;
   };
@@ -97,7 +101,7 @@ const CustomerOverview = () => {
         data.map((props) => (
         <div key={props._id} className="bg-white p-5 rounded-lg shadow-md">
           <img
-            src="https://via.placeholder.com/150"
+            src={props.imageUrls[0]}
             alt="House 2"
             className="w-full h-40 object-cover rounded-lg mb-3"
           />
@@ -138,8 +142,7 @@ const CustomerOverview = () => {
     </div>
     </div>
       
-    {/* Property Details Sidebar */}
-    {selectedProperty && ( // Render only if a property is selected
+    {selectedProperty && ( 
         <div className="hidden lg:block lg:w-1/4 bg-white shadow-lg">
           <div className="p-5">
             <PropertyDetails property={selectedProperty} closeModal={closeModal} />
@@ -147,14 +150,13 @@ const CustomerOverview = () => {
         </div>
       )}
 
-      {/* Property Details Modal for Small Screens */}
       {
         isSmallScreen && (
           <Modal
         open={openModal}
         onClose={closeModal}
         aria-labelledby="property-details-modal"
-        className="sm:block lg:hidden" // Modal only for small screens
+        className="sm:block lg:hidden" 
       >
         <div className="fixed inset-0 z-50 bg-white p-5 overflow-auto">
           <PropertyDetails property={selectedProperty} closeModal={closeModal} />

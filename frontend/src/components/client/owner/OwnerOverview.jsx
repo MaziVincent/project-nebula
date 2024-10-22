@@ -24,6 +24,7 @@ const OwnerOverview = () => {
   // const { agentId } = useParams();
 
   const [propertyType, setPropertyType] = useState(false)
+  const [selectedPropertyType, setSelectedPropertyType] = useState('')
   const handlePropertyType = () => {
     setPropertyType(!propertyType)
   }
@@ -50,6 +51,7 @@ const OwnerOverview = () => {
   const [selectedProperty, setSelectedProperty] = useState(null)
   const handleOpenUpdate = (property) => {
     setSelectedProperty(property)
+    setSelectedPropertyType(property.type)
     setOpenUpdate(true)
   }
   const handleCloseUpdate = () => {
@@ -70,7 +72,7 @@ const OwnerOverview = () => {
   const [propertyStatus, setPropertyStatus] = useState(null);
 
   const agentId = auth?.user?._id
-  console.log(agentId)
+  // console.log(agentId)
   const getProperties = async () => {
     const response = await fetch(`${url}/${agentId}`, auth.accessToken);
     return response.data;
@@ -95,9 +97,9 @@ const OwnerOverview = () => {
       setTools(_id)
     }
   }
-  console.log(data);
+  // console.log(data);
   return (
-    <div>
+    <div className=" h-dvh">
       {
         isLoading ? (
           <div>Loading...</div>
@@ -105,7 +107,7 @@ const OwnerOverview = () => {
           <div>Error: {error.message}</div>
         ) : (
           <div>
-            <h1 className=" text-2xl font-semibold text-start text-green-900"> Overview</h1>
+            <h1 className=" text-2xl font-semibold mt-4 text-green-900 text-center"> Overview</h1>
             <div>
               <div className=" flex justify-between items-center mb-4">
               <h2 className=" text-3xl font-normal text-start text-green-900 mb-0">Properties</h2>
@@ -199,17 +201,11 @@ const OwnerOverview = () => {
                           <tr key={property._id} className="hover:bg-green-50">
                         <th className=" gap-3 items-center px-6 py-4 font-normal text-green-900">
                           <div className="relative max-h-10 max-w-10">
-                            {/* <input type="checkbox" /> */}
-                            {/* <img
-                              className="h-full w-full rounded-full object-cover object-center"
-                              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                              alt=""
-                            /> */}
+                          
                             {/* <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span> */}
                           </div>
                           <div className="text-sm">
                             <div className="font-medium text-green-900">{property.title}</div>
-                            {/* <div className="text-gray-400">jobs@sailboatui.com</div> */}
                           </div>
                         </th>
                         <td className="px-6 py-4">
@@ -288,8 +284,12 @@ const OwnerOverview = () => {
                             </svg>
                             </Link>
                             <button
-                              onClick={() => 
-                                handleOpenUpdate(property)}
+                              onClick={() => {
+                                handleOpenUpdate(property);
+                                
+                              } 
+                               
+                              }
                               x-data="{ tooltip: 'Edite' }"
                             >
                               <svg
@@ -346,7 +346,7 @@ const OwnerOverview = () => {
         )
       }
       <div>
-      <UpdatePropertiesModal openUpdate={openUpdate} handleCloseUpdate={handleCloseUpdate} property={selectedProperty} />
+      <UpdatePropertiesModal openUpdate={openUpdate} handleCloseUpdate={handleCloseUpdate} property={selectedProperty} url={`${baseURL}${selectedPropertyType}`} />
       <CreateNewApartmentModal open={openModal} handleClose={handleClose} />
       <CreateNewHouseModal open={openHouseModal} handleCloseHouseModal={handleCloseHouseModal} />
       <CreateNewLandModal open={openLandModal} handleCloseLandModal={handleCloseLandModal} />

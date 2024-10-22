@@ -50,16 +50,11 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
     }
     const formData = new FormData();
     formData.append('_id', shop._id)
-    console.log(shop._id)
-    formData.append('title', data.title);
-    formData.append('description', data.description);
-    formData.append('price', data.price);
-    formData.append('location', data.location);
-    if (image) formData.append('image', image);
-    formData.append('shopType', data.shopType);
-    formData.append('category', data.category);
-    formData.append('leaseDuration', data.leaseDuration);
-    formData.append('securityDeposit', data.securityDeposit);
+    for (const key in data) {
+      if (data[key]) {
+        formData.append(key, data[key]);
+      }
+    }
     //console.log(data)
 
     try {
@@ -170,6 +165,7 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter the Description"
                     required
+                    rows='8'
                   />
                 </div>
 
@@ -182,7 +178,7 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
                   </label>
                   <input
                     id="price"
-                    type="number"
+                    type="text"
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Shop Price here"
@@ -211,22 +207,6 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
                     type="hidden" 
                   />
                 </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="shopType"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Shop Type
-                  </label>
-                  <input
-                    id="shopType"
-                    type="text"
-                    {...register("shopType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
-                    placeholder="Enter Shop Type here"
-                  />
-                </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="shopCategory"
@@ -251,7 +231,7 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
                   </label>
                   <input
                     id="leaseDuration"
-                    type="number"
+                    type="text"
                     {...register("leaseDuration", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Lease Duration here"
