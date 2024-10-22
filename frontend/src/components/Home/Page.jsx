@@ -103,51 +103,7 @@ const Page = () => {
                             </div>
                         </div> 
                     </div>
-                    {/* <!-- end slider item */}
-                    {/* <!-- start slider item */}
-                    {/* <div className="swiper-slide cover-background" style={{backgroundImage:"url('https://via.placeholder.com/1920x1080')"}}
-                    > 
                     
-                    </div> */}
-                    {/* <!-- end slider item */}
-                    {/* <!-- start slider item */}
-                    {/* <div className="swiper-slide cover-background" style={{backgroundImage:"url('https://via.placeholder.com/1920x939')"}}> 
-                        <div className="container h-100">
-                            <div className="row align-items-center h-100">
-                                <div className="col-md-8 position-relative text-white">
-                                    <span className="fs-20 d-block mb-15px">Valmont road, Boulder, CO 80301</span>
-                                    <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-70 xs-w-100 ls-minus-2px">Saturate <span className="fw-700">house</span></div>  
-                                    <a href="demo-real-estate-contact.html" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
-                                    <a href="demo-real-estate-property-details.html" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
-                                </div>
-                            </div> 
-                        </div>
-                        <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
-                            <div className="row">
-                                <div className="col-xl-7 lg-mb-25px">
-                                    <div className="row">
-                                        <div className="col text-center border-end border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src="images/demo-real-estate-icon-bed.svg" alt="" />
-                                            <span className="alt-font fs-16 fw-500 d-block">3 Beds</span>
-                                        </div>
-                                        <div className="col text-center border-end border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src="images/demo-real-estate-icon-bath.svg" alt="" />
-                                            <span className="alt-font fs-16 fw-500 d-block">3 Baths</span>
-                                        </div>
-                                        <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src="images/demo-real-estate-icon-car.svg" alt="" />
-                                            <span className="alt-font fs-16 fw-500 d-block">2 Parking</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
-                                    <span className="fw-500 mb-5px d-block alt-font">For sell price</span>
-                                    <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px">$23,99,000</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-                    {/* <!-- end slider item */}
                 </div>
                 {/* <!-- start slider pagination  */}
                 <div className="container">

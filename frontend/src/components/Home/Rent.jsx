@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 import RentPic from '../../assets/images/photos/rent.jpg'
 import House from '../../assets/images/photos/house.jpg'
-<<<<<<< HEAD
-import { useQuery } from "react-query";
-import { Pagination } from '@mui/material'
-import { Link } from 'react-router-dom'
-import baseURL from '../../shared/baseURL';
-=======
 import apartment from '../../assets/images/demo-real-estate-icon-apartment.svg'
 import home from '../../assets/images/demo-real-estate-icon-home.svg'
 import office from '../../assets/images/demo-real-estate-icon-office.svg'
@@ -18,7 +12,6 @@ import realtor from '../../assets/images/logo-realtor.svg'
 import redfin from '../../assets/images/logo-redfin.svg'
 import zillow from '../../assets/images/logo-zillow.svg'
 import trulia from '../../assets/images/logo-trulia.svg'
->>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
 const Rent = () => {
     const url = `${baseURL}properties`;
     const [page, setPage] = useState(1);
@@ -183,20 +176,6 @@ const Rent = () => {
                 </div>
                 <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center"> 
                     {/*  start box item  */}
-<<<<<<< HEAD
-                    {
-                     Array.isArray(data?.properties) && data.properties.length > 0 ? (
-                        data.properties
-                          .filter(prop => prop.propertyType === 'Rent')
-                          .map(prop => (
-                                <div key={prop._id} className="col mb-30px">
-                                <div className="border-radius-6px overflow-hidden box-shadow-large">
-                                    <div className="image position-relative">
-                                        <a href={`/property_details/${prop._id}`}>
-                                            <img src={prop.imageUrls[2]} alt="" className=' w-[600px] h-[300px]' />
-                                        </a>
-                                        <div className="col-auto bg-orange border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">{prop.propertyType}</div>
-=======
                     <div className="col mb-30px">
                         <div className="border-radius-6px overflow-hidden box-shadow-large">
                             <div className="image position-relative">
@@ -241,43 +220,10 @@ const Rent = () => {
                                     </div>
                                     <div className="col text-end">
                                         <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,89,000</span>
->>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                                     </div> 
                                     <div className="bg-white">
                                         <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
                                             <div className="d-flex align-items-center">
-<<<<<<< HEAD
-                                                <a href={`/property_details/${prop._id}`} className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</a>
-                                            </div>
-                                            <p className="mb-20px">{prop.location}</p>
-                                            <div className="row g-0">
-                                                <div className="col">
-                                                    <div className="d-flex align-items-center">
-                                                        <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                        <span className="fw-600 alt-font text-dark-gray">{prop?.bedrooms ? prop.bedrooms.toString().padStart(2, '0') : '00'}</span>
-                                                    </div>
-                                                    <span className="d-block lh-18 fs-15">{prop?.bedrooms ? 'Bedrooms' : ''}</span> 
-                                                </div>
-                                                <div className="col">
-                                                    <div className="d-flex align-items-center">
-                                                        <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                        <span className="fw-600 alt-font text-dark-gray">{prop?.bathrooms ? prop.bathrooms.toString().padStart(2, '0') : '00'}</span>
-                                                    </div>
-                                                    <span className="d-block lh-18 fs-15">{prop?.bathrooms ? 'Bathrooms' : ''}</span> 
-                                                </div>
-                                                {/* <div className="col">
-                                                    <div className="d-flex align-items-center">
-                                                        <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                        <span className="fw-600 alt-font text-dark-gray">360m<sup>2</sup></span>
-                                                    </div>
-                                                    <span className="d-block lh-18 fs-15">Living area</span> 
-                                                </div> */}
-                                            </div>
-                                        </div> 
-                                        <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                            <div className="col">
-                                                <a href={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
-=======
                                                 <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">05</span>
                                             </div>
@@ -294,15 +240,12 @@ const Rent = () => {
                                             <div className="d-flex align-items-center">
                                                 <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">780m<sup>2</sup></span>
->>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                                             </div>
                                             <div className="col text-end">
                                                 <span className="text-[18px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
                                             </div> 
                                         </div> 
                                     </div>
-<<<<<<< HEAD
-=======
                                 </div> 
                                 <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
                                     <div className="col">
@@ -362,17 +305,10 @@ const Rent = () => {
                                     <div className="col text-end">
                                         <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,50,000</span>
                                     </div> 
->>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                                 </div>
                             </div> 
-<<<<<<< HEAD
-                            ))
-                        ) : (
-                          <p>No available properties for rent</p>
-                        )
-                    }
+                      
                     
-=======
                             <div className="bg-white">
                                 <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
                                     <div className="d-flex align-items-center">
@@ -516,7 +452,6 @@ const Rent = () => {
                             </div>
                         </div>
                     </div>  
->>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                     {/*  end box item     */}
                 </div> 
                 <div className="row">
