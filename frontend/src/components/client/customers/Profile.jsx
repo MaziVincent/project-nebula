@@ -8,6 +8,7 @@ import baseURL from '../../../shared/baseURL';
 import { CircularProgress } from '@mui/material';
 import Avatar from '../../../assets/images/photos/profile.png';
 import UpdateProfileModal from './UpdateProfileModal';
+import { Info } from '@mui/icons-material';
 
 const Profile = () => {
   const { auth } = useAuth();
@@ -40,7 +41,7 @@ const Profile = () => {
   }, [id]);
 
   return (
-    <div className="max-md:pt-24">
+    <div className="max-md:pt-24 px-4 pt-5">
       <ToastContainer />
       <div className="max-md:pt-10 pl-4">
         <Link to="/dashboard">
@@ -69,14 +70,20 @@ const Profile = () => {
               className="w-32 h-32 rounded-full object-cover"
             />
             <h1 className="text-2xl font-bold text-gray-800 mt-3 mb-4">{`${customer.firstname} ${customer.lastname}`}</h1>
-            <p className="text-gray-600 mb-2"><span>Email: </span>{customer?.email}</p>
           </div>
-          <div className="flex flex-col items-center justify-center mt-3">
-            <h1 className="text-2xl font-bold text-gray-800">Contact Information</h1>
-            <p className="text-gray-600">{customer?.phone}</p>
-            <p className="text-gray-600">{customer?.address}</p>
+          <div className=' border-[1px] border-gray-300 rounded-lg mt-4 w-4/5 mb-4 h-auto'>
+            <h1 className=' text-2xl flex items-center gap-1 py-2 px-2 text-gray-600 font-sans mb-2'>
+              <span className=' text-gray-600'><Info/></span>
+              <span className=' pt-1'>Personal Information</span>
+            </h1>
+            <p className="text-gray-600 mb-4 flex flex-col items-start leading-5 px-2"><span>Email: </span>{customer?.email}</p>
+            <p className="text-gray-600 mb-4 flex flex-col items-start leading-5 px-2"><span>Phone:</span>{customer?.phone}</p>
+            <p className="text-gray-600 mb-4 px-2"><span>Status:</span> {customer?.status}</p>
+            <div className="flex flex-col items-center justify-center mt-3">
+              {/* <h1 className="text-2xl font-bold text-gray-800">Contact Information</h1> */}
+              <p className="text-gray-600">{customer?.address}</p>
+            </div>
           </div>
-
           <div>
             <button
             onClick={() => {

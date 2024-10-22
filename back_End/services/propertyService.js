@@ -130,6 +130,30 @@ const uploadPropertyImage = async (files, id ) => {
     
 };
 
+getPropertiesByStatus = async(data) => {
+    let page = parseInt(data.page) || 1;
+    let limit = parseInt(data.limit) || 6;
+    let skip = (page - 1) * limit;
+    const status = 'Available';
+    try {
+        const properties = await Property.find({status}).populate('owner').skip(skip).limit(limit).exec();
+        const totalCount = await Property.countDocuments();
+        return {properties, page, totalPage:Math.ceil(totalCount/limit)};
+    } catch (e) {
+        return {error: e.message}
+    }
+}
+
+const getPropertyByType = async (propertyType) => {
+    try {
+        const properties = await Property.find({ propertyType: propertyType }).populate('owner').exec();
+        if (!properties) return { error: "Properties not found" };
+        return properties;
+    } catch (e) {
+        return { error: e.message };
+    }
+};
+
 module.exports = {
     getProperties,
     getPropertiesByOwner,
@@ -137,5 +161,7 @@ module.exports = {
     deleteProperty,
     getRecentProperties,
     propertyStatus,
-    uploadPropertyImage
+    uploadPropertyImage,
+    getPropertiesByStatus,
+    getPropertyByType
 };

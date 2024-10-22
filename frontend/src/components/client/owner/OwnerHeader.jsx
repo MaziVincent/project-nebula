@@ -13,7 +13,7 @@ const OwnerHeader = ({ setAside }) => {
     const currentHour = new Date().getHours();
     if (currentHour < 12) {
       return 'Good morning';
-    } else if (currentHour < 18) {
+    } else if (currentHour < 16) {
       return 'Good afternoon';
     } else {
       return 'Good evening';
@@ -21,7 +21,7 @@ const OwnerHeader = ({ setAside }) => {
   };  
   const location = useLocation()
   const {auth, setAuth, persist, setPersist} = useContext(AuthContext)
-  console.log(auth)
+  // console.log(auth)
   return (
     <nav className="bg-green-50 border-b border-gray-200 px-4 py-2.5 fixed left-0 right-0 top-0 z-50">
       <ToastContainer />
@@ -87,51 +87,32 @@ const OwnerHeader = ({ setAside }) => {
                     <span className={`w-3 h-3 rounded-full block mt-4`}>
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className={`h-3 w-3 ${auth?.user?.verified ? 'text-blue-600' : 'text-red-400'}`}
+                        height="24px" 
                         viewBox="0 -960 960 960" 
-                        fill="currentColor">
-                        <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z"
+                        width="24px"
+                        className={`h-3 w-3 ${auth?.user?.verified ? 'text-blue-600' : 'text-gray-400'}`}
+                        fill="currentColor"
+                        >
+                        <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"
                         />
                       </svg>
                     </span>
                   </h2>
-                  {/* <span className=" text-sm">Choose your property smartly and purchase it in less time.</span> */}
+                  
                 </div>
               </div>
             ) : (
-              <h2>Loading user information...</h2> // In case the user data is still being fetched
+              <h2>Loading user information...</h2> 
             )}
           </div>
         </div>
         <div className="flex justify-between items-center gap-2">
-        {/* <div className=" mr-8 max-md:hidden">
-          <Link>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-8 w-8 text-red-500"
-              viewBox="0 -960 960 960" 
-              fill="currentColor"
-            >
-              <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
-              />
-            </svg>
-          </Link>
-        </div> */}
+        
           <div className=" h-14 w-14 rounded-full self-end relative">
             <img src={auth?.user?.profile ? auth.user.profile : Profile} alt="" className="w-full h-full rounded-full relative" />
-            <span className=" w-2 h-2 rounded-full bg-green-600 block absolute top-9 right-0"></span>
+            <span className=" w-4 h-4 rounded-full bg-green-600 border-2 border-white block absolute top-9 right-0"></span>
           </div>
-          {/* <div>
-            <span>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-500"
-                viewBox="0 -960 960 960"
-                fill="currentColor">
-                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
-              </svg>
-            </span>
-          </div> */}
+          
         </div>
       </div>
     </nav>

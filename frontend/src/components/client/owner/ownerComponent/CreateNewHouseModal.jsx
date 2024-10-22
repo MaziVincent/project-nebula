@@ -76,21 +76,21 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
       {/* <!-- Main modal --> */}
       <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className="overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
         <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-svh">
           {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-5">
             {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900 ">
                 Create House
               </h3>
               <button
                 type="button"
                 onClick={() => {handleCloseHouseModal()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -108,14 +108,14 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
+            
             {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handleCreateHouse)} 
               method='post'
               // encType='multipart/form-data'
             >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-3 mb-5">
                 <div>
                   <label
                     htmlFor="name"
@@ -141,7 +141,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     Description
                   </label>
                   <textarea
-                    rows='4'
+                    rows='8'
                     type="text"
                     name="description"
                     id="description"
@@ -253,7 +253,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     id="yearBuilt"
                     name='yearBuilt'
                     type='text'
-                    {...register("yearBuilt")}
+                    {...register("yearBuilt", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter yearBuilt here"
                   />
@@ -285,7 +285,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     id="stories"
                     name='stories'
                     type='text'
-                    {...register("stories")}
+                    {...register("stories", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter stories here"
                   />
@@ -306,7 +306,6 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     placeholder="Enter docType here"
                   />
                 </div>
-               
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="exteriorFeatures"
@@ -407,6 +406,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                 Add New House
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>

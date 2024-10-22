@@ -3,8 +3,55 @@ import RentPic from '../../assets/images/photos/rent.jpg'
 import House from '../../assets/images/photos/house.jpg'
 import HomePic from '../../assets/images/photos/home2.jpg'
 import TopImg from '../../assets/images/photos/olp2.jpg'
+import { useQuery } from "react-query";
+import { Pagination } from '@mui/material'
+import { Link } from 'react-router-dom'
+import baseURL from '../../shared/baseURL';
+import { useState } from 'react';
 
 const Sell = () => {
+    const url = `${baseURL}properties`;
+    const [page, setPage] = useState(1);
+  
+    const handleChange = (event, value) => {
+      setPage(value);
+    };
+  
+    const getProperties = async () => {
+      const response = await fetch(`${url}?page=${page}&limit=6`);
+     
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json(); // Fixing data parsing
+  
+    };
+  
+    const { data, isError, isLoading, isSuccess } = useQuery(
+      ["properties", page],
+      getProperties,
+      {
+        keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount: "always",
+        onSuccess: () => {
+          setTimeout(() => {
+            console.log('Fetch successful');
+          }, 2000);
+        },
+      }
+    );
+    console.log(data);
+  
+    if (isLoading) {
+      return <p>Loading properties...</p>;
+    }
+  
+    if (isError) {
+      return <p>Error loading properties: {data?.message || 'Something went wrong'}</p>; // Adjusting error message to show if available
+    }
+  
+    
   return (
     <div>
       {/*  start page title  */}
@@ -124,325 +171,70 @@ const Sell = () => {
                 </div>
                 <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
                     {/*  start box item  */}
-                    <div className="col mb-30px">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
-                                    <img src={House} alt="" />
-                                </a>
-                                <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Sell</div>
-                            </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Luxury villa in Texas</a>
-                                    </div>
-                                    <p className="mb-20px">982 Monroe ave, rochester</p>
-                                    <div className="row g-0">
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">04</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">05</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">360m<sup>2</sup></span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Living area</span> 
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
-                                    </div>
-                                    <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,89,000</span>
-                                    </div> 
-                                </div> 
-                            </div>
-                        </div>
-                    </div> 
-                    {/*  end box item  */}
                     {/*  start box item  */}
-                    <div className="col mb-30px">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
-                                    <img src={House} alt="" />
-                                </a>
-                                <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Sell</div>
-                            </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Modern villa in Oregon</a>
-                                    </div>
-                                    <p className="mb-20px">1261 Sampson street senver</p>
-                                    <div className="row g-0">
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">05</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">05</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">780m<sup>2</sup></span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Living area</span> 
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
-                                    </div>
-                                    <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$8,50,000</span>
+                    {
+                     Array.isArray(data?.properties) && data.properties.length > 0 ? (
+                        data.properties
+                          .filter(prop => prop.propertyType === 'Sell')
+                          .map(prop => (
+                                <div key={prop._id} className="col mb-30px">
+                                <div className="border-radius-6px overflow-hidden box-shadow-large">
+                                    <div className="image position-relative">
+                                        <a href={`/property_details/${prop._id}`}>
+                                            <img src={prop.imageUrls[2]} alt="" className=' w-[600px] h-[300px]' />
+                                        </a>
+                                        <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">{prop.propertyType}</div>
                                     </div> 
-                                </div> 
-                            </div>
-                        </div>
-                    </div> 
-                    {/*  end box item  */}
-                    {/*  start box item  */}
-                    <div className="col mb-30px">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
-                                    <img src={House} alt="" />
-                                </a>
-                                <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Sell</div>
-                            </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Ranch style in Florida</a>
-                                    </div>
-                                    <p className="mb-20px">2814 Hampton meadows</p>
-                                    <div className="row g-0">
-                                        <div className="col">
+                                    <div className="bg-white">
+                                        <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                                <a href={`/property_details/${prop._id}`} className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</a>
                                             </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                            <p className="mb-20px">{prop.location}</p>
+                                            <div className="row g-0">
+                                                <div className="col">
+                                                    <div className="d-flex align-items-center">
+                                                        <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                        <span className="fw-600 alt-font text-dark-gray">{prop?.bedrooms ? prop.bedrooms.toString().padStart(2, '0') : '00'}</span>
+                                                    </div>
+                                                    <span className="d-block lh-18 fs-15">{prop?.bedrooms ? 'Bedrooms' : ''}</span> 
+                                                </div>
+                                                <div className="col">
+                                                    <div className="d-flex align-items-center">
+                                                        <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                        <span className="fw-600 alt-font text-dark-gray">{prop?.bathrooms ? prop.bathrooms.toString().padStart(2, '0') : '00'}</span>
+                                                    </div>
+                                                    <span className="d-block lh-18 fs-15">{prop?.bathrooms ? 'Bathrooms' : ''}</span> 
+                                                </div>
+                                                {/* <div className="col">
+                                                    <div className="d-flex align-items-center">
+                                                        <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                        <span className="fw-600 alt-font text-dark-gray">360m<sup>2</sup></span>
+                                                    </div>
+                                                    <span className="d-block lh-18 fs-15">Living area</span> 
+                                                </div> */}
                                             </div>
-                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">260m<sup>2</sup></span>
+                                        </div> 
+                                        <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                            <div className="col">
+                                                <a href={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
                                             </div>
-                                            <span className="d-block lh-18 fs-15">Living area</span> 
-                                        </div>
+                                            <div className="col text-end">
+                                                <span className="text-[18px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
+                                            </div> 
+                                        </div> 
                                     </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
-                                    </div>
-                                    <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,50,000</span>
-                                    </div> 
                                 </div>
-                            </div>
-                        </div>
-                    </div>  
-                    {/*  end box item  */}
-                    {/*  start box item  */}
-                    <div className="col lg-mb-30px">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
-                                    <img src={House} alt="" />
-                                </a>
-                                <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Sell</div>
                             </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Ranch style in Illinois</a>
-                                    </div>
-                                    <p className="mb-20px">4403 Pick street pleasant view</p>
-                                    <div className="row g-0">
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">03</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">05</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">250m<sup>2</sup></span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Living area</span> 
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
-                                    </div>
-                                    <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,00,000</span>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
+                            ))
+                        ) : (
+                          <p>No available properties for rent</p>
+                        )
+                    } 
                     {/*  end box item  */}
-                    {/*  start box item  */}
-                    <div className="col sm-mb-30px">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
-                                    <img src={House} alt="" />
-                                </a>
-                                <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Sell</div>
-                            </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Cottage in Oklahoma</a>
-                                    </div>
-                                    <p className="mb-20px">1151 Bungalow road norfolk</p>
-                                    <div className="row g-0">
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">03</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">03</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">300m<sup>2</sup></span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Living area</span> 
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
-                                    </div>
-                                    <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$5,50,000</span>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    {/*  end box item  */}
-                    {/*  start box item  */}
-                    <div className="col">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
-                                    <img src={House} alt="" />
-                                </a>
-                                <div className="col-auto bg-base-color border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Sell</div>
-                            </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Modern house in Texas</a>
-                                    </div>
-                                    <p className="mb-20px">3259 Filbert street bethlehem</p>
-                                    <div className="row g-0">
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">04</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">04</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                        </div>
-                                        <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">620m<sup>2</sup></span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Living area</span> 
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
-                                    </div>
-                                    <div className="col text-end">
-                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,95,000</span>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                    {/*  end box item     */}
                 </div> 
-                <div className="row">
-                    <div className="mt-5 xs-mt-10 d-flex justify-content-center" >
-                        {/*  start pagination  */}
-                        <ul className="pagination pagination-style-01 fs-13 alt-font fw-600 mb-0">
-                            <li className="page-item"><a className="page-link" href="#"><i className="feather icon-feather-arrow-left fs-18 d-xs-none"></i></a></li>
-                            <li className="page-item"><a className="page-link" href="#">01</a></li>
-                            <li className="page-item active"><a className="page-link" href="#">02</a></li>
-                            <li className="page-item"><a className="page-link" href="#">03</a></li>
-                            <li className="page-item"><a className="page-link" href="#">04</a></li>
-                            <li className="page-item"><a className="page-link" href="#"><i className="feather icon-feather-arrow-right fs-18 d-xs-none"></i></a></li>
-                        </ul>
-                        {/*  end pagination  */}
-                    </div> 
+                <div className=" flex justify-center mt-4 mb-">
+                    <Pagination variant="outlined" size="large" count={data?.totalPage} page={page} onChange={handleChange} />
                 </div>
             </div>
         </section>

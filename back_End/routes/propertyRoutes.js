@@ -26,4 +26,8 @@ router.route('/upload/:id')
         filesSizeLimiter,
         propertyController.uploadPropertyImageHandler
     );
+router.route('/propertystatus')
+    .get(propertyController.getPropertiesByStatusHandler)
+router.route('/propertytype')
+    .get(propertyController.getPropertyByTypeHandler)
 module.exports = router;
