@@ -14,6 +14,7 @@ const getPropertiesHandler = async (req, res) => {
   const data = {
     page: req.query.page,
     limit: req.query.limit,
+    status:req.query.status
   }
   const properties = await getProperties(data)
   if(!properties) return res.status(404).json({message: 'Properties not found'})
@@ -88,7 +89,7 @@ const getPropertiesByTypeHandler = async (req, res) => {
     limit: req.query.limit,
     type: req.query.type
   }
-  console.log(data)
+  
   const properties = await getPropertiesByType(data)
   if(!properties) return res.status(404).json({message: 'Properties not found'})
   return res.status(200).json(properties)
