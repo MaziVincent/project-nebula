@@ -49,6 +49,7 @@ import OwnerProfile from './components/client/owner/OwnerProfile';
 //import SignUp from './components/auth/SignUp';
 import PropertyDtls from './components/Home/PropertyDtls';
 import RequireAuthAdmin from './components/auth/RequireAuthAdmin';
+import AllProperties from './components/Home/AllProperties';
 
 function App() {
   const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/rent' element={<Rent />} />
               <Route path='/contact' element={<Contact />} />
+              <Route path='/allproperties' element={<AllProperties />} />
               <Route path='/sell' element={<Sell />} />
               <Route path='/property_details/:id' element={<PropertyDtls />} />
             </Route>

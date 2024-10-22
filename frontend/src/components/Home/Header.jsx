@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import SignUp from "../auth/SignUp";
 import SignIn from "../auth/SignIn";
 import { useLocation } from "react-router-dom";
+import { ChevronRight, ExpandMore } from "@mui/icons-material";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -36,10 +37,9 @@ const Header = () => {
     setShowNav(!showNav);
   };
 
-  const [isModal, setIsModal] = useState(false);
-  const toggleModal = () => {
-    setIsModal(!isModal);
-    setOpenLogin(false);
+  const [propType, setPropType] = useState(false);
+  const togglePropType = () => {
+    setPropType(!propType);
   };
   
   const isSmallScreen = window.innerWidth <= 1024;
@@ -66,11 +66,31 @@ const Header = () => {
                 Home
               </Link>
               <Link to='/about' onClick={handleShowNav} className={location.pathname === '/about' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>About</Link>
-              <Link to={`/rent`} onClick={handleShowNav} className={location.pathname === '/rent' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>Rent</Link>
-              <Link to='/sell' onClick={handleShowNav} className={` ${location.pathname === '/sell' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'} inline-flex items-center gap-1 group`}>
-                Sell
-                <span className=" block rounded-full bg-red-200 px-2 text-sm text-red-600 group-hover:bg-red-100 group-hover:text-red-400">Hot</span>
-              </Link>
+              <div >
+                <button onClick={togglePropType} className={location.pathname === '/allproperties' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500 '}>
+                  Properties
+                  <span>
+                    <ExpandMore />
+                  </span>
+                </button>
+                {
+                  propType && (
+                    <div className="flex gap-4 bg-white px-4 py-4 rounded-lg shadow-md absolute w-full right-0 max-md:flex-col max-md:relative max-md:shadow-none">
+                  <Link to='/allproperties' onClick={handleShowNav} className={` ${location.pathname === '/allproperties' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'} relative inline-flex items-center gap-1 group`}>
+                    All Properties
+                  </Link>
+                  <Link to={`/rent`} onClick={handleShowNav} className={location.pathname === '/rent' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>Rent</Link>
+                  <Link 
+                    to={`/sell`} 
+                    onClick={handleShowNav} 
+                    className={` ${location.pathname === '/sell' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'} inline-flex items-center gap-1 group`}>
+                    Sell
+                    <span className=" block rounded-full bg-red-200 px-2 text-sm text-red-600 group-hover:bg-red-100 group-hover:text-red-400">Hot</span>
+                  </Link>
+                </div>
+                  )
+                }
+              </div>
               <Link to='/contact' onClick={handleShowNav} className={location.pathname === '/contact' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>
                 Contact
               </Link>
