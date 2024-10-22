@@ -24,6 +24,7 @@ import baseURL from '../../shared/baseURL'
 import { useQuery } from "react-query";
 import { Pagination } from '@mui/material'
 import { Link } from 'react-router-dom'
+import loader from '../../assets/images/loader.gif'
 
 const Page = () => {
     const url = `${baseURL}properties`;
@@ -33,7 +34,7 @@ const Page = () => {
         setPage(value)
     }
     const getProperties = async () => {
-      const response = await fetch(`${url}?page=${page}&limit=12`);
+      const response = await fetch(`${url}?page=${page}&limit=6`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -71,10 +72,10 @@ const Page = () => {
                         <div className="container h-100">
                             <div className="row align-items-center h-100">
                                 <div className="col-md-8 position-relative text-white">
-                                    <span className="fs-20 d-block mb-15px">Valmont road, Boulder, CO 80301</span>
+                                    <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
                                     <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
-                                    <a href="demo-real-estate-contact.html" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
-                                    <a href="demo-real-estate-property-details.html" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                    <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
+                                    <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
                                 </div>
                             </div> 
                         </div>
@@ -98,7 +99,7 @@ const Page = () => {
                                 </div>
                                 <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
                                     <span className="fw-500 mb-5px d-block alt-font">For sell price</span>
-                                    <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px">$30,99,000</h4>
+                                    <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
                                 </div>
                             </div>
                         </div> 
@@ -115,11 +116,6 @@ const Page = () => {
                         </div>
                     </div>
                 </div>
-                {/* <!-- end slider pagination */}
-                {/* <!-- start slider navigation */}
-                {/*<div className="slider-one-slide-prev-1 icon-very-small text-white swiper-button-prev slider-navigation-style-06"><i className="line-icon-Arrow-OutLeft icon-extra-large"></i></div>
-                <div className="slider-one-slide-next-1 icon-very-small text-white swiper-button-next slider-navigation-style-06"><i className="line-icon-Arrow-OutRight icon-extra-large"></i></div>
-                {/* <!-- end slider navigation  */}
             </div>
         </section>
         {/* Start section */}
@@ -137,7 +133,7 @@ const Page = () => {
                         </figure>
                     </div>
                     <div className="col-xl-5 offset-xl-1 col-lg-6">
-                        <span className="fs-20 d-inline-block mb-15px text-base-color">Online property marketplace</span> 
+                        <span className="fs-20 d-inline-block mb-15px text-base-color">Mega Real Estate Group </span> 
                         <h2 className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none sm-w-85" data-shadow-animation="true" data-animation-delay="700">We help you find your <span className="fw-700 text-highlight">new place.<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span></span></h2> 
                         <p className="w-80 md-w-100">Online property marketplace to buy, sell, and rent residential and commercial properties. Used by millions of renters to find property.</p>
                         <div className="mb-35px">
@@ -167,14 +163,14 @@ const Page = () => {
                             {/* end features box item */}
                         </div>
                         <div className="d-inline-block">
-                            <a href="/about" className="btn btn-dark-gray btn-medium btn-round-edge me-25px">About company</a> 
-                            <a href="/sell" className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0">
+                            <Link to="/about" className="btn btn-dark-gray btn-medium btn-round-edge me-25px">About company</Link> 
+                            <Link to="/sell" className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0">
                                 <span>
                                     <span className="btn-text">Find property</span>
                                     <span className="btn-icon"><i className="feather icon-feather-arrow-right"></i></span>
                                     <span className="btn-icon"><i className="feather icon-feather-arrow-right"></i></span>
                                 </span> 
-                            </a>
+                            </Link>
                         </div>
                     </div> 
                 </div>
@@ -194,12 +190,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">20K</div>
-                                <a href="/sell" className="d-block">
+                                <Link to="/sell" className="d-block">
                                     <img src={Apartment} alt="" />
-                                </a>
+                                </Link>
                             </div>
                             <div className="feature-box-content">
-                                <a href="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Apartment</a>
+                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Apartment</Link>
                             </div>
                         </div>  
                     </div>
@@ -209,12 +205,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">18K</div>
-                                <a href="/sell" className="d-block">
+                                <Link href="/sell" className="d-block">
                                     <img src={Condomium} alt="" />
-                                </a>
+                                </Link>
                             </div>
                             <div className="feature-box-content">
-                                <a href="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Land</a>
+                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Land</Link>
                             </div>
                         </div>  
                     </div>
@@ -224,12 +220,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">22K</div>
-                                <a href="/sell" className="d-block">
+                                <Link href="/sell" className="d-block">
                                     <img src={Estate} alt="" />
-                                </a>
+                                </Link>
                             </div>
                             <div className="feature-box-content">
-                                <a href="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Home</a>
+                                <Link href="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Home</Link>
                             </div>
                         </div>  
                     </div>
@@ -239,12 +235,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">09K</div>
-                                <a href="/sell" className="d-block">
+                                <Link to="/sell" className="d-block">
                                     <img src={Office} alt="" />
-                                </a>
+                                </Link>
                             </div>
                             <div className="feature-box-content">
-                                <a href="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Office</a>
+                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Office</Link>
                             </div>
                         </div>  
                     </div>
@@ -254,12 +250,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">20K</div>
-                                <a href="/sell" className="d-block">
+                                <Link to="/sell" className="d-block">
                                     <img src={Shop} alt="" />
-                                </a>
+                                </Link>
                             </div>
                             <div className="feature-box-content">
-                                <a href="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Shop</a>
+                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Shop</Link>
                             </div>
                         </div>  
                     </div>
@@ -276,24 +272,24 @@ const Page = () => {
                     </div>
                     <div className="col-md-4" >
                         <div className="d-flex justify-content-center justify-content-md-end">
-                            <a href="/sell" className="fw-600 alt-font text-dark-gray text-dark-gray-hover d-flex align-items-center">View all property<span className="d-flex align-items-center justify-content-center bg-dark-gray h-40px w-40px text-center rounded-circle fs-16 text-white ms-10px"><i className="feather icon-feather-arrow-right"></i></span></a>
+                            <Link to="/sell" className="fw-600 alt-font text-dark-gray text-dark-gray-hover d-flex align-items-center">View all property<span className="d-flex align-items-center justify-content-center bg-dark-gray h-40px w-40px text-center rounded-circle fs-16 text-white ms-10px"><i className="feather icon-feather-arrow-right"></i></span></Link>
                         </div>
                     </div>
                 </div>
                 <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
-                    {/* < start box item */}
+                    {isLoading && <div> <img src={loader} alt='loader' /> </div>}
                     {
                         Array.isArray(data?.properties) && data?.properties?.length > 0 ? (
-                            data?.properties.filter((prop) => prop.status === 'Available').length > 0 ? (
+                            
                             data?.properties
                                 .filter((prop) => prop.status === 'Available')
                                 .map((prop) => (
                         <div key={prop._id} className="col mb-30px">
                         <div className="border-radius-6px overflow-hidden box-shadow-large">
                             <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
+                                <span >
                                     <img src={prop.imageUrls[1]} alt="" className="w-[600px] h-[300px]"  />
-                                </a>
+                                </span>
                                 <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-yellow-400"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
                             </div> 
                             <div className="bg-white">
@@ -345,17 +341,15 @@ const Page = () => {
 
                     </div>
                         ))
-                    ) : (
+                    ): (
                         <div>No Available Properties</div> // Show this if no property is "Available"
                     )
-                    ) : (
-                    <div>No Properties Found</div> // Show this if the properties array is empty
-                    )
+                    
                 }
                 </div> 
-                    <div className=" flex justify-center mt-4 mb-">
+                    {/* <div className=" flex justify-center mt-4 mb-">
                         <Pagination variant="outlined" size="large" count={data?.totalPage} page={page} onChange={handleChange} />
-                    </div>
+                    </div> */}
             </div>
         </section>
         {/* end section */}
@@ -395,8 +389,8 @@ const Page = () => {
                              {/* end features box item  */}
                         </div>
                         <div className="d-inline-block">
-                            <a href="/about" className="btn btn-dark-gray btn-medium btn-round-edge me-15px xs-mb-10px">about more</a> 
-                            <a href="demo-real-estate-agents.html" className="btn btn-medium btn-round-edge btn-transparent-light-gray border-1 fw-700 xs-mb-10px">Trusted agents</a>
+                            <Link to="/about" className="btn btn-dark-gray btn-medium btn-round-edge me-15px xs-mb-10px">about more</Link> 
+                            <a href="#" className="btn btn-medium btn-round-edge btn-transparent-light-gray border-1 fw-700 xs-mb-10px">Trusted agents</a>
                         </div>
                     </div> 
                     
@@ -404,7 +398,7 @@ const Page = () => {
                          {/* start popup video  */}
                         <figure className="position-relative mb-0 border-radius-6px overflow-hidden"> 
                             <img src={Est_Vid} className="w-100 border-radius-6px" alt="" />
-                            <a href="https://youtu.be/PHhuIg6oLC4?si=670DErgFl3s1MJpe" className="absolute-middle-center text-center rounded-circle video-icon-box video-icon-large popup-vimeo">
+                            <a href="#" className="absolute-middle-center text-center rounded-circle video-icon-box video-icon-large popup-vimeo">
                                 <span>
                                     <span className="video-icon bg-white">
                                         <i className="fa-solid fa-play text-dark-gray"></i>
@@ -638,7 +632,7 @@ const Page = () => {
                             </div>
                             <div className="feature-box-content last-paragraph-no-margin">
                                 <span className="alt-font fw-600 text-dark-gray fs-19 d-inline-block mb-5px">Sell your home</span>
-                                <p className="w-80 md-w-70 mx-auto">Lorem dummy printing typesetting industry.</p>
+                                <p className="w-80 md-w-70 mx-auto">Contact us today and sell your home.</p>
                             </div>                        
                         </div>
                     </div>
@@ -651,7 +645,7 @@ const Page = () => {
                             </div>
                             <div className="feature-box-content last-paragraph-no-margin">
                                 <span className="alt-font fw-600 text-dark-gray fs-19 d-inline-block mb-5px">Free photoshoot</span>
-                                <p className="w-80 md-w-70 mx-auto">Lorem dummy printing typesetting industry.</p>
+                                <p className="w-80 md-w-70 mx-auto">We capture and showcase accurate images.</p>
                             </div>                        
                         </div>
                     </div>
@@ -664,7 +658,7 @@ const Page = () => {
                             </div>
                             <div className="feature-box-content last-paragraph-no-margin">
                                 <span className="alt-font fw-600 text-dark-gray fs-19 d-inline-block mb-5px">Buy a home</span>
-                                <p className="w-80 md-w-70 mx-auto">Lorem dummy printing typesetting industry.</p>
+                                <p className="w-80 md-w-70 mx-auto">Reach out to us and buy your dream home.</p>
                             </div>                        
                         </div>
                     </div>
@@ -677,7 +671,7 @@ const Page = () => {
                             </div>
                             <div className="feature-box-content last-paragraph-no-margin">
                                 <span className="d-inline-block alt-font fw-600 text-dark-gray fs-19 d-inline-block mb-5px">Free appraisal</span>
-                                <p className="w-80 md-w-70 mx-auto">Lorem dummy printing typesetting industry.</p>
+                                <p className="w-80 md-w-70 mx-auto">We can give your free and accurate appraisal.</p>
                             </div>                        
                         </div>
                     </div>
@@ -690,7 +684,7 @@ const Page = () => {
                                 <i className="bi bi-patch-check icon-medium text-base-color"></i>
                             </div>
                             <div className="feature-box-content alt-font text-dark-gray fs-22 fw-600">
-                                We are growing fast! Today crafto has <span className="text-decoration-line-bottom">36k+ active residents.</span>
+                                We are growing fast! Today Mega Real Estate has <span className="text-decoration-line-bottom">36k+ active residents.</span>
                             </div>
                         </div>
                     </div>
@@ -727,11 +721,12 @@ const Page = () => {
                             <div className="swiper-wrapper mb-40px">
                                  {/* start text slider item  */}
                                 <div className="swiper-slide review-style-08">
-                                    <p className="w-80 xl-w-90 lg-w-100">Love the theme, really neat and super easy to use. But the customer support is what makes this an even greater theme! ThemeZaa solved all the problems. I had with my custom settings.</p>
+                                    <p className="w-80 xl-w-90 lg-w-100">
+                                    "Mega Real Estate made my home buying experience so easy! They really listened to my needs and found the perfect home for my family. I couldn't be happier with their service."</p>
                                     <div className="mt-20px">
                                         <img className="rounded-circle w-95px h-95px me-15px" src={Rev1} alt="" />
                                         <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> harvard</div>
+                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> Okoro</div>
                                             <div className="review-star-icon fs-18">
                                                 <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
                                             </div> 
