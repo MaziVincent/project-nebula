@@ -1,7 +1,17 @@
 import React from 'react'
 import RentPic from '../../assets/images/photos/rent.jpg'
 import House from '../../assets/images/photos/house.jpg'
-
+import apartment from '../../assets/images/demo-real-estate-icon-apartment.svg'
+import home from '../../assets/images/demo-real-estate-icon-home.svg'
+import office from '../../assets/images/demo-real-estate-icon-office.svg'
+import bed from '../../assets/images/demo-real-estate-icon-bed-small.svg'
+import bath from '../../assets/images/demo-real-estate-icon-bath-small.svg'
+import size from '../../assets/images/demo-real-estate-icon-size-small.svg'
+import remax from '../../assets/images/logo-remax.svg'
+import realtor from '../../assets/images/logo-realtor.svg'
+import redfin from '../../assets/images/logo-redfin.svg'
+import zillow from '../../assets/images/logo-zillow.svg'
+import trulia from '../../assets/images/logo-trulia.svg'
 const Rent = () => {
   return (
     <div>
@@ -14,7 +24,9 @@ const Rent = () => {
                         <h2 className="alt-font text-dark-gray fw-500 mb-0 ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Help you find the <span className="fw-700 text-highlight d-inline-block">perfect one.<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span></span></h2>
                     </div>
                     <div className="col-lg-5 offset-xxl-2 offset-xl-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-                        <span className="d-block w-85 lg-w-100">Online property marketplace to buy, sell, and rent residential and commercial properties. Used by millions of renters to find property.</span>
+                        <span className="d-block w-85 lg-w-100">
+                        We are a dedicated team of real estate professionals committed to 
+                        helping you find your dream home or ideal investment property.</span>
                     </div>
                 </div>
             </div>
@@ -46,7 +58,7 @@ const Rent = () => {
                                     <h4 className="d-inline-block text-dark-gray fw-800 ls-minus-1px alt-font mb-0 d-inline-block">8215</h4>
                                 </div>
                                 <div className="feature-box-icon me-0">
-                                    <img src="images/demo-real-estate-icon-apartment.svg" alt="" />
+                                    <img src={apartment} alt="" />
                                 </div>
                             </div>
                             {/*  end features box item  */}
@@ -70,7 +82,7 @@ const Rent = () => {
                                     <h4 className="d-inline-block text-dark-gray fw-800 ls-minus-1px me-5px alt-font mb-0 d-inline-block">9235</h4>
                                 </div>
                                 <div className="feature-box-icon me-0">
-                                    <img src="images/demo-real-estate-icon-home.svg" alt="" />
+                                    <img src={home} alt="" />
                                 </div>
                             </div>
                             {/*  end features box item  */}
@@ -99,7 +111,7 @@ const Rent = () => {
                                     <h4 className="d-inline-block text-dark-gray fw-800 ls-minus-1px me-5px alt-font mb-0 d-inline-block">4413</h4>
                                 </div>
                                 <div className="feature-box-icon me-0">
-                                    <img src="images/demo-real-estate-icon-office.svg" alt="" />
+                                    <img src={office} alt="" />
                                 </div>
                             </div>
                             {/*  end features box item  */}
@@ -139,21 +151,21 @@ const Rent = () => {
                                     <div className="row g-0">
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">04</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bath} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">05</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">360m<sup>2</sup></span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Living area</span> 
@@ -190,21 +202,21 @@ const Rent = () => {
                                     <div className="row g-0">
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">05</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bath} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">05</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">780m<sup>2</sup></span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Living area</span> 
@@ -241,21 +253,21 @@ const Rent = () => {
                                     <div className="row g-0">
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">04</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bath} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">04</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">260m<sup>2</sup></span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Living area</span> 
@@ -292,21 +304,21 @@ const Rent = () => {
                                     <div className="row g-0">
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">03</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bath} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">05</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">250m<sup>2</sup></span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Living area</span> 
@@ -343,21 +355,21 @@ const Rent = () => {
                                     <div className="row g-0">
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">03</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bath} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">03</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">300m<sup>2</sup></span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Living area</span> 
@@ -394,21 +406,21 @@ const Rent = () => {
                                     <div className="row g-0">
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">04</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bath} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">04</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bathrooms</span> 
                                         </div>
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">620m<sup>2</sup></span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Living area</span> 
@@ -458,42 +470,42 @@ const Rent = () => {
                         <div className="swiper-wrapper marquee-slide">
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-remax.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={remax} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-zillow.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={zillow} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-realtor.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={realtor} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-redfin.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={redfin} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-trulia.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={trulia} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-remax.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={remax} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-zillow.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={zillow} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-realtor.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={realtor} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                         </div> 

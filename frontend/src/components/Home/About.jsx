@@ -7,6 +7,13 @@ import TrustPic from '../../assets/images/photos/OIP.jpg'
 import LegalPic from '../../assets/images/photos/legal.jpg'
 import RevPic from '../../assets/images/photos/review.jpg'
 import Rev1 from '../../assets/images/photos/download.jpeg'
+import seven from '../../assets/images/demo-real-estate-07.png'
+import eight from '../../assets/images/demo-real-estate-08.png'
+import trustpilot from '../../assets/images/demo-real-estate-trustpilot.svg'
+import logo1 from '../../assets/images/demo-real-estate-logo-01.svg'
+import logo2 from '../../assets/images/demo-real-estate-logo-02.svg'
+import logo3 from '../../assets/images/demo-real-estate-logo-03.svg'
+import { Link } from 'react-router-dom'
 
 const About = () => {
   return (
@@ -16,11 +23,14 @@ const About = () => {
             <div className="container">
                 <div className="row align-items-center align-items-lg-end justify-content-center extra-very-small-screen g-0">
                     <div className="col-xxl-5 col-xl-6 col-lg-7 position-relative page-title-extra-small md-mb-30px md-mt-auto" >
-                        <h1 className="text-base-color">About crafto real estate</h1>
-                        <h2 className="alt-font text-dark-gray fw-500 mb-0 ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Welcome to crafto <span className="fw-700 text-highlight d-inline-block">real estate<span className="bg-base-color h-10px bottom-3px opacity-3 separator-animation"></span></span> business.</h2>
+                        <h1 className="text-base-color">About mega real estate</h1>
+                        <h2 className="alt-font text-dark-gray fw-500 mb-0 ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Welcome to Mega <span className="fw-700 text-highlight d-inline-block">real estate<span className="bg-base-color h-10px bottom-3px opacity-3 separator-animation"></span></span> business.</h2>
                     </div>
                     <div className="col-lg-5 offset-xxl-2 offset-xl-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-                        <span className="d-block w-85 lg-w-100">Online property marketplace to buy, sell, and rent residential and commercial properties. Used by millions of renters to find property.</span>
+                        <span className="d-block w-85 lg-w-100">
+                        We are a dedicated team of real estate professionals committed to 
+                        helping you find your dream home or ideal investment property. 
+                        </span>
                     </div>
                 </div>
             </div>
@@ -53,28 +63,31 @@ const About = () => {
                         </figure>
                     </div>
                     <div className="col-xl-5 offset-xl-1 col-lg-6 mb-8 order-1 order-lg-2 md-mb-40px" > 
-                        <span className="fs-20 d-inline-block mb-15px text-base-color">Online property marketplace</span> 
+                        <span className="fs-20 d-inline-block mb-15px text-base-color">Mega property marketplace</span> 
                         <h2 className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">We help you find your <span className="fw-700 text-highlight d-inline-block">new place.<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span></span></h2> 
-                        <p className="w-80 lg-w-100">Online property marketplace to buy, sell, and rent residential and commercial properties. Used by millions of renters to find property.</p>
+                        <p className="w-80 lg-w-100">
+                        Making the process of buying, selling, or renting properties as seamless and 
+                        stress-free as possible. We believe in providing exceptional customer service, 
+                        complete transparency, and expert guidance every step of the way.</p>
                         <div className="pt-20px pb-20px ps-30px pe-30px xs-p-20px border border-color-extra-medium-gray border-radius-6px mb-15px icon-with-text-style-08 w-80 lg-w-100">
                             <div className="feature-box feature-box-left-icon-middle">
                                 <div className="feature-box-icon me-10px">
                                     <i className="bi bi-people icon-very-medium text-base-color"></i>
                                 </div>
                                 <div className="feature-box-content">
-                                    <span className="alt-font fw-600 text-dark-gray d-block fs-18 lh-26">10,000+ people trusting agency.</span>
+                                    <span className="alt-font fw-600 text-dark-gray d-block fs-18 lh-26">10,000+ people trust us.</span>
                                 </div>
                             </div>
                         </div>
                         <p className="fs-13 mb-35px xs-lh-20">Our selection of the best <span className="text-dark-gray text-decoration-line-bottom">places around</span> the world and pick yours.</p>
-                        <a href="demo-real-estate-agents.html" className="btn btn-dark-gray btn-medium btn-round-edge me-25px">Trusted agents</a> 
-                        <a href="demo-real-estate-sell.html" className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0">
+                        <a href="#" className="btn btn-dark-gray btn-medium btn-round-edge me-25px">Trusted agents</a> 
+                        <Link to="/sell" className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0">
                             <span>
                                 <span className="btn-text">Find property</span>
                                 <span className="btn-icon"><i className="feather icon-feather-arrow-right"></i></span>
                                 <span className="btn-icon"><i className="feather icon-feather-arrow-right"></i></span>
                             </span> 
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -96,7 +109,8 @@ const About = () => {
                             </div>
                             <div className="feature-box-content">
                                 <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">Best services</span>
-                                <p>Lorem ipsum is simply printing typesetting.</p>
+                                <p className="">We strive to exceed expectations in every transaction, 
+                                    from finding the perfect property to finalizing deals.</p>
                             </div>                        
                         </div>
                     </div>
@@ -109,7 +123,7 @@ const About = () => {
                             </div>
                             <div className="feature-box-content">
                                 <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">User friendly</span>
-                                <p>Lorem ipsum is simply printing typesetting.</p>
+                                <p>We put our clients' needs at the heart of everything we do, ensuring their satisfaction is our priority.</p>
                             </div>                        
                         </div>
                     </div>
@@ -122,7 +136,7 @@ const About = () => {
                             </div>
                             <div className="feature-box-content">
                                 <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">Trusted property</span>
-                                <p>Lorem ipsum is simply printing typesetting.</p>
+                                <p>We believe in being honest and upfront with our clients, ensuring trust is built from the first interaction.</p>
                             </div>                        
                         </div>
                     </div>
@@ -135,7 +149,7 @@ const About = () => {
                             </div>
                             <div className="feature-box-content">
                                 <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">Legal advisor</span>
-                                <p>Lorem ipsum is simply printing typesetting.</p>
+                                <p> We have a strong legal backing to ensure everything is handled legally and transparently.</p>
                             </div>                        
                         </div>
                     </div>
@@ -148,7 +162,7 @@ const About = () => {
                                 <i className="bi bi-patch-check icon-medium text-base-color"></i>
                             </div>
                             <div className="feature-box-content alt-font text-dark-gray fs-22 fw-600">
-                                We are growing fast! Today crafto has <span className="text-decoration-line-bottom">36k+ active residents.</span>
+                                We are growing fast! Today Mega Real Estate has <span className="text-decoration-line-bottom">36k+ active residents.</span>
                             </div>
                         </div>
                     </div>
@@ -158,8 +172,8 @@ const About = () => {
           {/* end section   */}
           {/* start section   */}
         <section className="position-relative overflow-hidden pt-0">
-            <img src="images/demo-real-estate-07.png" alt="" className="position-absolute left-100px top-50px z-index-minus-1" data-bottom-top="transform: translate3d(80px, 0px, 0px);" data-top-bottom="transform: translate3d(-180px, 0px, 0px);" />
-            <img src="images/demo-real-estate-08.png" alt="" className="position-absolute right-100px top-100px z-index-minus-1" data-bottom-top="transform:scale(1.4, 1.4) translate3d(0px, 0px, 0px);" data-top-bottom="transform:scale(1, 1) translate3d(-400px, 0px, 0px);" />
+            <img src={seven} alt="" className="position-absolute left-100px top-50px z-index-minus-1" data-bottom-top="transform: translate3d(80px, 0px, 0px);" data-top-bottom="transform: translate3d(-180px, 0px, 0px);" />
+            <img src={eight} alt="" className="position-absolute right-100px top-100px z-index-minus-1" data-bottom-top="transform:scale(1.4, 1.4) translate3d(0px, 0px, 0px);" data-top-bottom="transform:scale(1, 1) translate3d(-400px, 0px, 0px);" />
             <div className="container">  
                 <div className="row align-items-center justify-content-center">  
                     <div className="col-lg-6 text-end md-mb-50px" > 
@@ -174,7 +188,7 @@ const About = () => {
                                     <span className="text-dark-gray d-block alt-font fw-600">2488 Reviews</span>
                                     <div className="d-inline-block fs-12 text-uppercase bg-base-color ps-20px pe-20px lh-30 text-white border-radius-100px box-shadow-large">Excellent score</div>
                                 </div>
-                                <img src="images/demo-real-estate-trustpilot.svg" className="h-30px mb-20px" alt="" />
+                                <img src={trustpilot} className="h-30px mb-20px" alt="" />
                             </figcaption>
                         </figure>
                     </div>
@@ -185,7 +199,8 @@ const About = () => {
                             <div className="swiper-wrapper mb-40px">
                                   {/* start text slider item   */}
                                 <div className="swiper-slide review-style-08">
-                                    <p className="w-80 lg-w-100">Love the theme, really neat and super easy to use. But the customer support is what makes this an even greater theme! ThemeZaa solved all the problems. I had with my custom settings.</p>
+                                    <p className="w-80 lg-w-100">
+                                    "Mega Real Estate made my home buying experience so easy! They really listened to my needs and found the perfect home for my family. I couldn't be happier with their service."</p>
                                     <div className="mt-20px">
                                         <img className="rounded-circle w-95px h-95px me-15px" src={Rev1} alt="" />
                                         <div className="d-inline-block align-middle text-start">
@@ -245,7 +260,7 @@ const About = () => {
                     <div className="col md-mb-30px">
                         <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
                             <div className="pt-10 pb-10">
-                                <img src="images/demo-real-estate-logo-01.svg" className="h-40px" alt="" />
+                                <img src={logo1} className="h-40px" alt="" />
                             </div>
                             <div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
                                 <div className="alt-font mx-auto lh-28">Property sell listed - <span className="fw-700 text-dark-gray">275% Growth</span></div>
@@ -255,7 +270,7 @@ const About = () => {
                     <div className="col md-mb-30px">
                         <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
                             <div className="pt-10 pb-10">
-                                <img src="images/demo-real-estate-logo-02.svg" className="h-40px" alt="" />
+                                <img src={logo2} className="h-40px" alt="" />
                             </div>
                             <div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
                                 <div className="alt-font mx-auto lh-28">Property selling - <span className="fw-700 text-dark-gray">235% Growth</span></div>
@@ -265,7 +280,7 @@ const About = () => {
                     <div className="col">
                         <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
                             <div className="pt-10 pb-10">
-                                <img src="images/demo-real-estate-logo-03.svg" className="h-40px" alt="" />
+                                <img src={logo3} className="h-40px" alt="" />
                             </div>
                             <div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
                                 <div className="alt-font mx-auto lh-28">Property agents - <span className="fw-700 text-dark-gray">175% Growth</span></div>
