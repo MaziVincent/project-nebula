@@ -7,7 +7,7 @@ import {ToastContainer, toast } from 'react-toastify';
 import { Link, useParams } from 'react-router-dom';
 import baseURL from '../../../shared/baseURL';
 import UpdateShopModal from './UpdateShopModal';
-import DeletePropertyModal from '../property/DeletepropertyModal';
+import DeletePropertyModal from '../property/DeletePropertyModal';
 import { Modal } from '@mui/material';
 import UploadPropertyImage from '../property/UploadPropertyImage';
 

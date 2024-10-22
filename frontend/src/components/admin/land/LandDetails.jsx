@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import {ToastContainer, toast } from 'react-toastify';
 import { Link, useParams } from 'react-router-dom';
 import baseURL from '../../../shared/baseURL';
-import DeletePropertyModal from '../property/DeletepropertyModal';
+import DeletePropertyModal from '../property/DeletePropertyModal';
 import UpdateLandModal from './UpdateLandModal';
 import UploadPropertyImage from '../property/UploadPropertyImage';
 

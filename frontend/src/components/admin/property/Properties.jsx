@@ -6,9 +6,7 @@ import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
-import DeletePropertyModal from "./DeletepropertyModal";
-import { set } from "react-hook-form";
-
+import DeletePropertyModal from "./DeletePropertyModal";
 
 
 const Properties = () => {

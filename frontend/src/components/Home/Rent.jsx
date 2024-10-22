@@ -1,10 +1,24 @@
 import React, { useState } from 'react'
 import RentPic from '../../assets/images/photos/rent.jpg'
 import House from '../../assets/images/photos/house.jpg'
+<<<<<<< HEAD
 import { useQuery } from "react-query";
 import { Pagination } from '@mui/material'
 import { Link } from 'react-router-dom'
 import baseURL from '../../shared/baseURL';
+=======
+import apartment from '../../assets/images/demo-real-estate-icon-apartment.svg'
+import home from '../../assets/images/demo-real-estate-icon-home.svg'
+import office from '../../assets/images/demo-real-estate-icon-office.svg'
+import bed from '../../assets/images/demo-real-estate-icon-bed-small.svg'
+import bath from '../../assets/images/demo-real-estate-icon-bath-small.svg'
+import size from '../../assets/images/demo-real-estate-icon-size-small.svg'
+import remax from '../../assets/images/logo-remax.svg'
+import realtor from '../../assets/images/logo-realtor.svg'
+import redfin from '../../assets/images/logo-redfin.svg'
+import zillow from '../../assets/images/logo-zillow.svg'
+import trulia from '../../assets/images/logo-trulia.svg'
+>>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
 const Rent = () => {
     const url = `${baseURL}properties`;
     const [page, setPage] = useState(1);
@@ -59,7 +73,9 @@ const Rent = () => {
                         <h2 className="alt-font text-dark-gray fw-500 mb-0 ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Help you find the <span className="fw-700 text-highlight d-inline-block">perfect one.<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span></span></h2>
                     </div>
                     <div className="col-lg-5 offset-xxl-2 offset-xl-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-                        <span className="d-block w-85 lg-w-100">Online property marketplace to buy, sell, and rent residential and commercial properties. Used by millions of renters to find property.</span>
+                        <span className="d-block w-85 lg-w-100">
+                        We are a dedicated team of real estate professionals committed to 
+                        helping you find your dream home or ideal investment property.</span>
                     </div>
                 </div>
             </div>
@@ -91,7 +107,7 @@ const Rent = () => {
                                     <h4 className="d-inline-block text-dark-gray fw-800 ls-minus-1px alt-font mb-0 d-inline-block">8215</h4>
                                 </div>
                                 <div className="feature-box-icon me-0">
-                                    <img src="images/demo-real-estate-icon-apartment.svg" alt="" />
+                                    <img src={apartment} alt="" />
                                 </div>
                             </div>
                             {/*  end features box item  */}
@@ -115,7 +131,7 @@ const Rent = () => {
                                     <h4 className="d-inline-block text-dark-gray fw-800 ls-minus-1px me-5px alt-font mb-0 d-inline-block">9235</h4>
                                 </div>
                                 <div className="feature-box-icon me-0">
-                                    <img src="images/demo-real-estate-icon-home.svg" alt="" />
+                                    <img src={home} alt="" />
                                 </div>
                             </div>
                             {/*  end features box item  */}
@@ -144,7 +160,7 @@ const Rent = () => {
                                     <h4 className="d-inline-block text-dark-gray fw-800 ls-minus-1px me-5px alt-font mb-0 d-inline-block">4413</h4>
                                 </div>
                                 <div className="feature-box-icon me-0">
-                                    <img src="images/demo-real-estate-icon-office.svg" alt="" />
+                                    <img src={office} alt="" />
                                 </div>
                             </div>
                             {/*  end features box item  */}
@@ -167,6 +183,7 @@ const Rent = () => {
                 </div>
                 <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center"> 
                     {/*  start box item  */}
+<<<<<<< HEAD
                     {
                      Array.isArray(data?.properties) && data.properties.length > 0 ? (
                         data.properties
@@ -179,10 +196,57 @@ const Rent = () => {
                                             <img src={prop.imageUrls[2]} alt="" className=' w-[600px] h-[300px]' />
                                         </a>
                                         <div className="col-auto bg-orange border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">{prop.propertyType}</div>
+=======
+                    <div className="col mb-30px">
+                        <div className="border-radius-6px overflow-hidden box-shadow-large">
+                            <div className="image position-relative">
+                                <a href="demo-real-estate-property-details.html">
+                                    <img src={House} alt="" />
+                                </a>
+                                <div className="col-auto bg-orange border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Rent</div>
+                            </div> 
+                            <div className="bg-white">
+                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
+                                    <div className="d-flex align-items-center">
+                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Luxury villa in Texas</a>
+                                    </div>
+                                    <p className="mb-20px">982 Monroe ave, rochester</p>
+                                    <div className="row g-0">
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bed} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bath} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">05</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={size} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">360m<sup>2</sup></span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Living area</span> 
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                    <div className="col">
+                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                    </div>
+                                    <div className="col text-end">
+                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,89,000</span>
+>>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                                     </div> 
                                     <div className="bg-white">
                                         <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
                                             <div className="d-flex align-items-center">
+<<<<<<< HEAD
                                                 <a href={`/property_details/${prop._id}`} className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</a>
                                             </div>
                                             <p className="mb-20px">{prop.location}</p>
@@ -213,20 +277,246 @@ const Rent = () => {
                                         <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
                                             <div className="col">
                                                 <a href={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+=======
+                                                <img src={bed} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">05</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bath} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">05</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={size} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">780m<sup>2</sup></span>
+>>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                                             </div>
                                             <div className="col text-end">
                                                 <span className="text-[18px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
                                             </div> 
                                         </div> 
                                     </div>
+<<<<<<< HEAD
+=======
+                                </div> 
+                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                    <div className="col">
+                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                    </div>
+                                    <div className="col text-end">
+                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$8,50,000</span>
+                                    </div> 
+                                </div> 
+                            </div>
+                        </div>
+                    </div> 
+                    {/*  end box item  */}
+                    {/*  start box item  */}
+                    <div className="col mb-30px">
+                        <div className="border-radius-6px overflow-hidden box-shadow-large">
+                            <div className="image position-relative">
+                                <a href="demo-real-estate-property-details.html">
+                                    <img src={House} alt="" />
+                                </a>
+                                <div className="col-auto bg-orange border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Rent</div>
+                            </div> 
+                            <div className="bg-white">
+                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
+                                    <div className="d-flex align-items-center">
+                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Ranch style in Florida</a>
+                                    </div>
+                                    <p className="mb-20px">2814 Hampton meadows</p>
+                                    <div className="row g-0">
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bed} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bath} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={size} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">260m<sup>2</sup></span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Living area</span> 
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                    <div className="col">
+                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                    </div>
+                                    <div className="col text-end">
+                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,50,000</span>
+                                    </div> 
+>>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                                 </div>
                             </div> 
+<<<<<<< HEAD
                             ))
                         ) : (
                           <p>No available properties for rent</p>
                         )
                     }
                     
+=======
+                            <div className="bg-white">
+                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
+                                    <div className="d-flex align-items-center">
+                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Ranch style in Illinois</a>
+                                    </div>
+                                    <p className="mb-20px">4403 Pick street pleasant view</p>
+                                    <div className="row g-0">
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bed} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">03</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bath} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">05</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={size} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">250m<sup>2</sup></span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Living area</span> 
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                    <div className="col">
+                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                    </div>
+                                    <div className="col text-end">
+                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,00,000</span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    {/*  end box item  */}
+                    {/*  start box item  */}
+                    <div className="col sm-mb-30px">
+                        <div className="border-radius-6px overflow-hidden box-shadow-large">
+                            <div className="image position-relative">
+                                <a href="demo-real-estate-property-details.html">
+                                    <img src={House} alt="" />
+                                </a>
+                                <div className="col-auto bg-orange border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Rent</div>
+                            </div> 
+                            <div className="bg-white">
+                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
+                                    <div className="d-flex align-items-center">
+                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Cottage in Oklahoma</a>
+                                    </div>
+                                    <p className="mb-20px">1151 Bungalow road norfolk</p>
+                                    <div className="row g-0">
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bed} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">03</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bath} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">03</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={size} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">300m<sup>2</sup></span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Living area</span> 
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                    <div className="col">
+                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                    </div>
+                                    <div className="col text-end">
+                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$5,50,000</span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    {/*  end box item  */}
+                    {/*  start box item  */}
+                    <div className="col">
+                        <div className="border-radius-6px overflow-hidden box-shadow-large">
+                            <div className="image position-relative">
+                                <a href="demo-real-estate-property-details.html">
+                                    <img src={House} alt="" />
+                                </a>
+                                <div className="col-auto bg-orange border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px">Rent</div>
+                            </div> 
+                            <div className="bg-white">
+                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
+                                    <div className="d-flex align-items-center">
+                                        <a href="demo-real-estate-property-details.html" className="alt-font text-dark-gray fw-700 fs-22 me-10px">Modern house in Texas</a>
+                                    </div>
+                                    <p className="mb-20px">3259 Filbert street bethlehem</p>
+                                    <div className="row g-0">
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bed} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bath} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">04</span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                        </div>
+                                        <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={size} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">620m<sup>2</sup></span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Living area</span> 
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                    <div className="col">
+                                        <a href="demo-real-estate-property-details.html" className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                    </div>
+                                    <div className="col text-end">
+                                        <span className="fs-24 alt-font text-dark-gray fw-700 mb-0">$6,95,000</span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+>>>>>>> 88077ee02fd87de61bddd009c83106f1a7c4caa7
                     {/*  end box item     */}
                 </div> 
                 <div className="row">
@@ -259,42 +549,42 @@ const Rent = () => {
                         <div className="swiper-wrapper marquee-slide">
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-remax.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={remax} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-zillow.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={zillow} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-realtor.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={realtor} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-redfin.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={redfin} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-trulia.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={trulia} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-remax.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={remax} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-zillow.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={zillow} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
                             <div className="swiper-slide">
-                                <a href="#"><img src="images/logo-realtor.svg" alt="" className="h-35px xs-h-30px" /></a>
+                                <a href="#"><img src={realtor} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                         </div> 

@@ -1,4 +1,10 @@
 import React from 'react'
+import RentPic from '../../assets/images/photos/rent.jpg'
+import promise from '../../assets/images/photos/promise.png'
+import proud from '../../assets/images/photos/proudness.png'
+import supreme from '../../assets/images/photos/supreme.png'
+import search from '../../assets/images/photos/search.png'
+
 
 const Contact = () => {
   return (
@@ -12,7 +18,9 @@ const Contact = () => {
                         <h2 className="alt-font text-dark-gray fw-500 mb-0 ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Have questions? <span className="fw-700 text-highlight d-inline-block">Ready to help!<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span></span></h2>
                     </div>
                     <div className="col-lg-5 offset-xxl-2 offset-xl-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-                        <span className="d-block w-85 lg-w-100" >Online property marketplace to buy, sell, and rent residential and commercial properties. Used by millions of renters to find property.</span>
+                        <span className="d-block w-85 lg-w-100" >
+                        We are a dedicated team of real estate professionals committed to 
+                        helping you find your dream home or ideal investment property.</span>
                     </div>
                 </div>
             </div>
@@ -23,7 +31,7 @@ const Contact = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12 p-0 position-relative">
-                        <img src="https://via.placeholder.com/1920x600" alt="" className="w-100" />
+                        <img src={RentPic} alt="" className="w-100" />
                         <div className="alt-font fw-600 fs-350 lg-fs-275 md-fs-250 sm-fs-200 xs-fs-140 ls-minus-5px xs-ls-minus-2px position-absolute right-minus-50px lg-right-minus-0px bottom-minus-80px md-bottom-minus-60px xs-bottom-minus-40px text-white text-outline text-outline-width-3px" data-bottom-top="transform: translate3d(80px, 0px, 0px);" data-top-bottom="transform: translate3d(-280px, 0px, 0px);">contact</div>
                     </div>
                 </div>
@@ -38,7 +46,7 @@ const Contact = () => {
                         <h6 className="alt-font fw-700 text-dark-gray mb-15px">London</h6>
                         <div className="row row-cols-1 row-cols-sm-2 mb-10">
                             <div className="col last-paragraph-no-margin xs-mb-20px">
-                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Crafto - UK</span>
+                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Mega - UK</span>
                                 <p className="w-80 lg-w-100">401 Broadway, 24th Floor,<br /> Orchard View, London, UK</p>
                             </div>
                             <div className="col">
@@ -50,7 +58,7 @@ const Contact = () => {
                         <h6 className="alt-font fw-700 text-dark-gray mb-15px">New york</h6>
                         <div className="row row-cols-1 row-cols-sm-2">
                             <div className="col last-paragraph-no-margin xs-mb-20px">
-                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Crafto - USA</span>
+                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Mega - USA</span>
                                 <p className="w-80 lg-w-100">27 Eden Walk Eden Centre,<br /> Orchard, New York, USA</p>
                             </div>
                             <div className="col">
@@ -111,7 +119,7 @@ const Contact = () => {
                     <div className="col icon-with-text-style-01 md-mb-40px">
                         <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-25px">
-                                <img src="https://via.placeholder.com/150x150" className="h-85px" alt="" />
+                                <img src={proud} className="h-85px" alt="" />
                             </div>
                             <div className="feature-box-content">
                                 <span className="d-inline-block fs-19 lh-26 alt-font text-dark-gray fw-600 w-75 lg-w-100">Take pride in your work.</span>
@@ -123,7 +131,7 @@ const Contact = () => {
                     <div className="col icon-with-text-style-01 md-mb-40px">
                         <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-25px">
-                                <img src="https://via.placeholder.com/150x150" className="h-85px" alt="" />
+                                <img src={promise} className="h-85px" alt="" />
                             </div>
                             <div className="feature-box-content">
                                 <span className="d-inline-block fs-19 lh-26 alt-font text-dark-gray fw-600 w-75 lg-w-100">Deliver on your promises.</span>
@@ -135,7 +143,7 @@ const Contact = () => {
                     <div className="col icon-with-text-style-01 xs-mb-40px">
                         <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-25px">
-                                <img src="https://via.placeholder.com/150x150" className="h-85px" alt="" />
+                                <img src={supreme} className="h-85px" alt="" />
                             </div>
                             <div className="feature-box-content">
                                 <span className="d-inline-block fs-19 lh-26 alt-font text-dark-gray fw-600 w-75 lg-w-100">Work with the supreme.</span>
@@ -147,7 +155,7 @@ const Contact = () => {
                     <div className="col icon-with-text-style-01">
                         <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-25px">
-                                <img src="https://via.placeholder.com/150x150" className="h-85px" alt="" />
+                                <img src={search} className="h-85px" alt="" />
                             </div>
                             <div className="feature-box-content">
                                 <span className="d-inline-block fs-19 lh-26 alt-font text-dark-gray fw-600 w-75 lg-w-100">Transparency in dealings.</span>

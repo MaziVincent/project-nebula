@@ -1,6 +1,13 @@
 
 import React, { useState } from 'react'
 import Condomium from '../../assets/images/demo-real-estate-icon-condominium.svg'
+import bed from '../../assets/images/demo-real-estate-icon-bed-small.svg'
+import bath from '../../assets/images/demo-real-estate-icon-bath-small.svg'
+import size from '../../assets/images/demo-real-estate-icon-size-small.svg'
+import seven from '../../assets/images/demo-real-estate-07.png'
+import eight from '../../assets/images/demo-real-estate-08.png'
+import trustpilot from '../../assets/images/demo-real-estate-trustpilot.svg'
+import car from '../../assets/images/demo-real-estate-icon-car.svg'
 import Apartment from '../../assets/images/demo-real-estate-icon-apartment.svg'
 import Estate from '../../assets/images/demo-real-estate-icon-home.svg'
 import Office from '../../assets/images/demo-real-estate-icon-office.svg'
@@ -76,15 +83,15 @@ const Page = () => {
                                 <div className="col-xl-7 lg-mb-25px">
                                     <div className="row">
                                         <div className="col text-center border-end border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src="images/demo-real-estate-icon-bed.svg" alt="" />
+                                            <img className="mb-5px h-50px" src={bed} alt="" />
                                             <span className="alt-font fs-16 fw-500 d-block">4 Beds</span>
                                         </div>
                                         <div className="col text-center border-end border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src="images/demo-real-estate-icon-bath.svg" alt="" />
+                                            <img className="mb-5px h-50px" src={bath} alt="" />
                                             <span className="alt-font fs-16 fw-500 d-block">3 Baths</span>
                                         </div>
                                         <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src="images/demo-real-estate-icon-car.svg" alt="" />
+                                            <img className="mb-5px h-50px" src={car} alt="" />
                                             <span className="alt-font fs-16 fw-500 d-block">4 Parking</span>
                                         </div>
                                     </div>
@@ -362,7 +369,7 @@ const Page = () => {
                         <div className="border-radius-6px overflow-hidden box-shadow-large">
                             <div className="image position-relative">
                                 <a href="demo-real-estate-property-details.html">
-                                    <img src={prop.imageUrls[1]} alt="" class="w-[600px] h-[300px]"  />
+                                    <img src={prop.imageUrls[1]} alt="" className="w-[600px] h-[300px]"  />
                                 </a>
                                 <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-yellow-400"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
                             </div> 
@@ -377,7 +384,7 @@ const Page = () => {
                                             prop?.bedrooms && (
                                                 <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-bed-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={bed} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">0{prop.bedrooms}</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">Bedrooms</span> 
@@ -387,7 +394,7 @@ const Page = () => {
                                         {prop?.bathrooms && (
                                             <div className="col">
                                                 <div className="d-flex align-items-center">
-                                                    <img src="images/demo-real-estate-icon-bath-small.svg" className="me-5px h-20px" alt="" />
+                                                    <img src={bath} className="me-5px h-20px" alt="" />
                                                     <span className="fw-600 alt-font text-dark-gray">0{prop.bathrooms}</span>
                                                 </div>
                                                 <span className="d-block lh-18 fs-15">Bathrooms</span> 
@@ -395,7 +402,7 @@ const Page = () => {
                                         )}
                                         <div className="col">
                                             <div className="d-flex align-items-center">
-                                                <img src="images/demo-real-estate-icon-size-small.svg" className="me-5px h-20px" alt="" />
+                                                <img src={size} className="me-5px h-20px" alt="" />
                                                 <span className="fw-600 alt-font text-dark-gray">{prop.plots}</span>
                                             </div>
                                             <span className="d-block lh-18 fs-15">{prop?.plots ? 'Plots' : ''}</span> 
@@ -770,8 +777,8 @@ const Page = () => {
          {/* end section  */}
           {/* start section  */}
         <section className="position-relative overflow-hidden">
-            <img src="images/demo-real-estate-07.png" alt="" className="position-absolute left-100px top-50px z-index-minus-1" data-bottom-top="transform: translate3d(80px, 0px, 0px);" data-top-bottom="transform: translate3d(-180px, 0px, 0px);" />
-            <img src="images/demo-real-estate-08.png" alt="" className="position-absolute right-100px top-100px z-index-minus-1" data-bottom-top="transform:scale(1.4, 1.4) translate3d(0px, 0px, 0px);" data-top-bottom="transform:scale(1, 1) translate3d(-400px, 0px, 0px);" />
+            <img src={seven} alt="" className="position-absolute left-100px top-50px z-index-minus-1" data-bottom-top="transform: translate3d(80px, 0px, 0px);" data-top-bottom="transform: translate3d(-180px, 0px, 0px);" />
+            <img src={eight} alt="" className="position-absolute right-100px top-100px z-index-minus-1" data-bottom-top="transform:scale(1.4, 1.4) translate3d(0px, 0px, 0px);" data-top-bottom="transform:scale(1, 1) translate3d(-400px, 0px, 0px);" />
             <div className="container">  
                 <div className="row align-items-center justify-content-center">  
                     <div className="col-lg-6 text-end md-mb-50px" > 
@@ -786,7 +793,7 @@ const Page = () => {
                                     <span className="text-dark-gray d-block alt-font fw-600">2488 Reviews</span>
                                     <div className="d-inline-block fs-12 text-uppercase bg-base-color ps-20px pe-20px lh-30 text-white border-radius-100px box-shadow-large">Excellent score</div>
                                 </div>
-                                <img src="images/demo-real-estate-trustpilot.svg" className="h-30px mb-20px" alt="" />
+                                <img src={trustpilot} className="h-30px mb-20px" alt="" />
                             </figcaption>
                         </figure>
                     </div>

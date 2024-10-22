@@ -12,7 +12,7 @@ import NewHouseModal from "./agentComponent/NewHouseModal";
 import NewLandModal from "./agentComponent/NewLandModal";
 import NewShopModal from "./agentComponent/NewShopModal";
 import UpdatePropertyModal from "./agentComponent/UpdatePropertyModal";
-import DeletePropertyModal from "../../admin/property/DeletepropertyModal";
+import DeletePropertyModal from "../../admin/property/DeletePropertyModal";
 import PropertyStatusModal from "./agentComponent/PropertyStatusModal";
 import { CircularProgress } from "@mui/material";
 

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Add } from "@mui/icons-material";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import DeletePropertyModal from "../../admin/property/DeletepropertyModal";
+import DeletePropertyModal from "../../admin/property/DeletePropertyModal";
 import CreateNewHouseModal from "./ownerComponent/CreateNewHouseModal";
 import CreateApartmentModal from "../../admin/apartment/CreateApartmentModal";
 import CreateNewLandModal from "./ownerComponent/CreateNewLandModal";

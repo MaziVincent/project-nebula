@@ -2,14 +2,14 @@ import useAuth from "../../hooks/useAuth";
 import { useQuery } from "react-query";
 import { blue, brown, green, grey, purple, yellow } from "@mui/material/colors";
 import baseUrl from "../../shared/baseURL";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+// import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+// import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import useFetch from "../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { Apartment, ArrowRightAlt, Group, Groups, House, Landscape, Store } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 import { useState } from "react";
-import DeletePropertyModal from "./property/DeletepropertyModal";
+import DeletePropertyModal from "./property/DeletePropertyModal";
 
 
 const Overview = () => {
