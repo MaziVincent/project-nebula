@@ -36,6 +36,7 @@ app.use('/logout', require('./routes/logout'));
 app.use('/recentProps', require('./routes/recentProps'));
 app.use('/customer', require('./routes/customer'));
 app.use('/properties', require('./routes/propertyRoutes'));
+//app.use('/property', require('./routes/property'));
 app.use(verifyJWT);
 app.use('/owner', require('./routes/owner'));
 app.use('/admin', require('./routes/admin'));

@@ -6,7 +6,7 @@ const {
     getRecentProperties,
     propertyStatus,
     uploadPropertyImage,
-    getPropertiesByStatus,
+    getPropertiesByType,
     getPropertyByType
 } = require('../services/propertyService')
 
@@ -82,23 +82,24 @@ const uploadPropertyImageHandler = async (req, res) => {
   }
 };
 
-const getPropertiesByStatusHandler = async (req, res) => {
+const getPropertiesByTypeHandler = async (req, res) => {
   const data = {
     page: req.query.page,
     limit: req.query.limit,
-    status: req.body.status
+    type: req.query.type
   }
-  const properties = await getPropertiesByStatus(data)
+  console.log(data)
+  const properties = await getPropertiesByType(data)
   if(!properties) return res.status(404).json({message: 'Properties not found'})
   return res.status(200).json(properties)
 };
 
-const getPropertyByTypeHandler = async (req, res) => {
-  const propertyType = req.body
-  const properties = await getPropertyByType(propertyType)
-  if(!properties) return res.status(404).json({message: 'Properties not found'})
-  return res.status(200).json(properties)
-};
+// const getPropertyByTypeHandler = async (req, res) => {
+//   const propertyType = req.body
+//   const properties = await getPropertyByType(propertyType)
+//   if(!properties) return res.status(404).json({message: 'Properties not found'})
+//   return res.status(200).json(properties)
+// };
 
 module.exports = {
   getPropertiesHandler,
@@ -108,6 +109,6 @@ module.exports = {
   propertyStatusHandler,
   getRecentPropertiesHandler,
   uploadPropertyImageHandler,
-  getPropertiesByStatusHandler,
-  getPropertyByTypeHandler
+  getPropertiesByTypeHandler,
+ // getPropertyByTypeHandler
 }

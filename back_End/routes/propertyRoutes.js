@@ -9,11 +9,12 @@ const filesSizeLimiter = require('../middleware/filiesSizeLimiter');
 
 router.route('/')
     .get(propertyController.getPropertiesHandler)
-router.route('/:id')
-    .get(propertyController.getPropertyHandler)
-    .delete(propertyController.deletePropertyHandler)
+
 router.route('/owner/:id')
     .get(propertyController.getPropertiesByOwnerHandler); 
+
+router.route('/type')
+    .get(propertyController.getPropertiesByTypeHandler)
 
 router.route('/status/:id')
     .put( propertyController.propertyStatusHandler)
@@ -26,8 +27,9 @@ router.route('/upload/:id')
         filesSizeLimiter,
         propertyController.uploadPropertyImageHandler
     );
-router.route('/propertystatus')
-    .get(propertyController.getPropertiesByStatusHandler)
-router.route('/propertytype')
-    .get(propertyController.getPropertyByTypeHandler)
+
+router.route('/:id')
+    .get(propertyController.getPropertyHandler)
+    .delete(propertyController.deletePropertyHandler)
+
 module.exports = router;

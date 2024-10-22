@@ -204,7 +204,7 @@ const About = () => {
                                     <div className="mt-20px">
                                         <img className="rounded-circle w-95px h-95px me-15px" src={Rev1} alt="" />
                                         <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> harvard</div>
+                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> Okoro</div>
                                             <div className="review-star-icon fs-18">
                                                 <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
                                             </div> 
