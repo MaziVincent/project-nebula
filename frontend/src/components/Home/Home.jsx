@@ -9,8 +9,8 @@ import baseURL from '../../shared/baseURL'
 const Home = () => {
 
   useEffect(() => {
-    const ping = () => {
-     const res =  axios.get(`${baseURL}ping`)
+    const ping = async () => {
+     const res = await axios.get(`${baseURL}ping`)
      console.log(res.data)
     }
 
