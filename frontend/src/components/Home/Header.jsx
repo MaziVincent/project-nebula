@@ -67,7 +67,7 @@ const Header = () => {
               </Link>
               <Link to='/about' onClick={handleShowNav} className={location.pathname === '/about' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>About</Link>
               <div >
-                <button onClick={togglePropType} className={location.pathname === '/allproperties' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>
+                <button onClick={togglePropType} className={['/allproperties', '/rent', '/sell'].includes(location.pathname) ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>
                   Properties
                   <span>
                     <ExpandMore />
