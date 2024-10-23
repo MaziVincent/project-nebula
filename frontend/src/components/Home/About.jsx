@@ -1,4 +1,8 @@
 import React from 'react'
+import {Swiper, SwiperSlide} from '../../shared/Swiper'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/autoplay'
 import AboutImg from '../../assets/images/photos/about.jpeg'
 import AboutImg2 from '../../assets/images/photos/estate-vid.jpeg'
 import ServiceImg from '../../assets/images/photos/service.jpg'
@@ -14,6 +18,7 @@ import logo1 from '../../assets/images/demo-real-estate-logo-01.svg'
 import logo2 from '../../assets/images/demo-real-estate-logo-02.svg'
 import logo3 from '../../assets/images/demo-real-estate-logo-03.svg'
 import { Link } from 'react-router-dom'
+import Marquee from "react-fast-marquee";
 
 const About = () => {
   return (
@@ -196,51 +201,75 @@ const About = () => {
                         <span className="fs-20 d-inline-block mb-15px text-base-color">Clients feedback</span>
                         <h2 className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Here is what our <span className="fw-700 text-highlight d-inline-block">client's<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span></span> have to say</h2>
                         <div className="swiper position-relative" data-slider-options='{ "autoHeight": true, "loop": true, "allowTouchMove": true, "autoplay": { "delay": 4000, "disableOnInteraction": false }, "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" }, "effect": "fade" }'>
-                            <div className="swiper-wrapper mb-40px">
-                                  {/* start text slider item   */}
-                                <div className="swiper-slide review-style-08">
-                                    <p className="w-80 lg-w-100">
-                                    "Mega Real Estate made my home buying experience so easy! They really listened to my needs and found the perfect home for my family. I couldn't be happier with their service."</p>
-                                    <div className="mt-20px">
-                                        <img className="rounded-circle w-95px h-95px me-15px" src={Rev1} alt="" />
-                                        <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> Okoro</div>
-                                            <div className="review-star-icon fs-18">
-                                                <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
-                                            </div> 
-                                        </div>
-                                    </div> 
-                                </div>
-                                  {/* end text slider item   */}
-                                  {/* start text slider item   */}
-                                <div className="swiper-slide review-style-08">
-                                    <p className="w-80 lg-w-100">I've purchased several themes over the years and this theme, by far is absolutely amazing. It's built extremely well the back end was well thought out the design options are endless.</p>
-                                    <div className="mt-20px">
-                                        <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
-                                        <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Shoko</span> mugikura</div>
-                                            <div className="review-star-icon fs-18">
-                                                <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
-                                            </div> 
-                                        </div>
-                                    </div> 
-                                </div>
-                                  {/* end text slider item   */}
-                                  {/* start text slider item   */}
-                                <div className="swiper-slide review-style-08">
-                                    <p className="w-80 lg-w-100">The theme is very valid and offers many possibilities of customization to adapt it to your needs, but the thing I got the most out of it was the relationship with the support team.</p>
-                                    <div className="mt-20px">
-                                        <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
-                                        <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Leonel</span> mooney</div>
-                                            <div className="review-star-icon fs-18">
-                                                <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
-                                            </div> 
-                                        </div>
-                                    </div> 
-                                </div>
-                                  {/* end text slider item   */}
-                            </div> 
+                            <div >
+                                <Swiper
+                                    modules={[Autoplay]}
+                                    slidesPerView={1}
+                                    loop={true}
+                                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                    spaceBetween={30}
+                                    breakpoints={{
+                                    1200: { slidesPerView: 2 },
+                                    768: { slidesPerView: 2 },
+                                    320: { slidesPerView: 1 },
+                                    }}
+                                    navigation={{
+                                    nextEl: ".swiper-button-next",
+                                    prevEl: ".swiper-button-prev",
+                                    }}
+                                    className="swiper-wrapper mb-40px"
+                                >
+                                    {/* start text slider item  */}
+                                    <SwiperSlide>
+                                    <div className="swiper-slide review-style-08">
+                                        <p className="w-80 xl-w-90 lg-w-100">
+                                        "Mega Real Estate made my home buying experience so easy! They really listened to my needs and found the perfect home for my family. I couldn't be happier with their service."</p>
+                                        <div className="mt-20px">
+                                            <img className="rounded-circle w-95px h-95px me-15px" src={Rev1} alt="" />
+                                            <div className="d-inline-block align-middle text-start">
+                                                <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> Okoro</div>
+                                                <div className="review-star-icon fs-18">
+                                                    <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    </SwiperSlide>
+                                    {/* end text slider item  */}
+                                    {/* start text slider item  */}
+                                    <SwiperSlide>
+                                    <div className="swiper-slide review-style-08">
+                                        <p className="w-80 xl-w-90 lg-w-100">I've purchased several themes over the years and this theme, by far is absolutely amazing. It's built extremely well the back end was well thought out the design options are endless.</p>
+                                        <div className="mt-20px">
+                                            <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
+                                            <div className="d-inline-block align-middle text-start">
+                                                <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Shoko</span> mugikura</div>
+                                                <div className="review-star-icon fs-18">
+                                                    <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    </SwiperSlide>
+                                    {/* end text slider item  */}
+                                    {/* start text slider item  */}
+                                    <SwiperSlide>
+                                    <div className="swiper-slide review-style-08">
+                                        <p className="w-80 xl-w-90 lg-w-100">The theme is very valid and offers many possibilities of customization to adapt it to your needs, but the thing I got the most out of it was the relationship with the support team.</p>
+                                        <div className="mt-20px">
+                                            <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
+                                            <div className="d-inline-block align-middle text-start">
+                                                <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Leonel</span> mooney</div>
+                                                <div className="review-star-icon fs-18">
+                                                    <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    </SwiperSlide>
+                                    {/* end text slider item  */}
+                                </Swiper>
+                            </div>
                             <div className="d-flex justify-content-center justify-content-lg-start">
                                   {/* start slider navigation   */}
                                 <div className="slider-one-slide-prev-1 swiper-button-prev slider-navigation-style-04 border border-color-extra-medium-gray"><i className="fa-solid fa-arrow-left icon-small text-dark-gray"></i></div>
@@ -257,7 +286,8 @@ const About = () => {
         <section className="pt-0 pb-30px sm-pb-50px overlap-height">
             <div className="container overlap-gap-section">
                 <div className="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center align-items-center">
-                    <div className="col md-mb-30px">
+                <Marquee>
+                <div className="col md-mb-30px mr-8">
                         <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
                             <div className="pt-10 pb-10">
                                 <img src={logo1} className="h-40px" alt="" />
@@ -267,7 +297,7 @@ const About = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col md-mb-30px">
+                    <div className="col md-mb-30px mr-8">
                         <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
                             <div className="pt-10 pb-10">
                                 <img src={logo2} className="h-40px" alt="" />
@@ -277,7 +307,7 @@ const About = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="col md-mb-30px mr-8">
                         <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
                             <div className="pt-10 pb-10">
                                 <img src={logo3} className="h-40px" alt="" />
@@ -287,6 +317,7 @@ const About = () => {
                             </div>
                         </div>
                     </div>
+                </Marquee>
                 </div>
                 <div className="row justify-content-center align-items-center mt-5 md-mt-7" >
                     <div className="col-12 text-center align-items-center">

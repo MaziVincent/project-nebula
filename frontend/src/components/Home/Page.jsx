@@ -1,5 +1,9 @@
 
 import React, { useState } from 'react'
+import {Swiper, SwiperSlide} from '../../shared/Swiper'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/autoplay'
 import Condomium from '../../assets/images/demo-real-estate-icon-condominium.svg'
 import bed from '../../assets/images/demo-real-estate-icon-bed-small.svg'
 import bath from '../../assets/images/demo-real-estate-icon-bath-small.svg'
@@ -22,7 +26,7 @@ import Home from '../../assets/images/photos/home-in-vancouver.jpeg'
 import Rev1 from '../../assets/images/photos/download.jpeg'
 import baseURL from '../../shared/baseURL'
 import { useQuery } from "react-query";
-import { Pagination } from '@mui/material'
+// import { Pagination } from '@mui/material'
 import { Link } from 'react-router-dom'
 import loader from '../../assets/images/loader.gif'
 
@@ -65,47 +69,141 @@ const Page = () => {
       <section className="p-0 top-space-margin">
             <div className="swiper full-screen md-h-600px sm-h-500px swiper-number-pagination-style-01" //</section>data-slider-options='{ "slidesPerView": 1, "loop": true, "pagination": { "el": ".swiper-number", "clickable": true }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "autoplay": { "delay": 4000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }' data-number-pagination="1"//
             >
-                <div className="swiper-wrapper">
-                    {/* <!-- start slider item */}
-                    <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Villa})` }}
-                    > 
-                        <div className="container h-100">
-                            <div className="row align-items-center h-100">
-                                <div className="col-md-8 position-relative text-white">
-                                    <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
-                                    <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
-                                    <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
-                                    <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                <Swiper
+                    modules={[Autoplay]}
+                    slidesPerView={1}
+                    loop={true}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    spaceBetween={30}
+                    breakpoints={{
+                    1200: { slidesPerView: 2 },
+                    768: { slidesPerView: 2 },
+                    320: { slidesPerView: 1 },
+                    }}
+                    className="swiper-wrapper"
+                >
+                    <SwiperSlide>
+                        <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Villa})` }}
+                        > 
+                            <div className="container h-100">
+                                <div className="row align-items-center h-100">
+                                    <div className="col-md-8 position-relative text-white">
+                                        <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
+                                        <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
+                                        <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
+                                        <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
+                                <div className="row justify-content-center">
+                                    <div className="col-xl-7 lg-mb-25px">
+                                        <div className="row">
+                                            <div className="col text-center border-end border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={bed} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">4 Beds</span>
+                                            </div>
+                                            <div className="col text-center border-end border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={bath} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">3 Baths</span>
+                                            </div>
+                                            <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={car} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">4 Parking</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
+                                        <span className="fw-500 mb-5px d-block alt-font">For sell price</span>
+                                        <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
+                                    </div>
+                                </div>
+                            </div> 
+                        
+                        </div>
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Villa})`}}
+                        > 
+                            <div className="container h-100">
+                                <div className="row align-items-center h-100">
+                                    <div className="col-md-8 position-relative text-white">
+                                        <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
+                                        <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
+                                        <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
+                                        <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
+                                <div className="row justify-content-center">
+                                    <div className="col-xl-7 lg-mb-25px">
+                                        <div className="row">
+                                            <div className="col text-center border-end border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={bed} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">4 Beds</span>
+                                            </div>
+                                            <div className="col text-center border-end border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={bath} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">3 Baths</span>
+                                            </div>
+                                            <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={car} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">4 Parking</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
+                                        <span className="fw-500 mb-5px d-block alt-font">For sell price</span>
+                                        <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
+                                    </div>
                                 </div>
                             </div> 
                         </div>
-                        <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
-                            <div className="row justify-content-center">
-                                <div className="col-xl-7 lg-mb-25px">
-                                    <div className="row">
-                                        <div className="col text-center border-end border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src={bed} alt="" />
-                                            <span className="alt-font fs-16 fw-500 d-block">4 Beds</span>
-                                        </div>
-                                        <div className="col text-center border-end border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src={bath} alt="" />
-                                            <span className="alt-font fs-16 fw-500 d-block">3 Baths</span>
-                                        </div>
-                                        <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
-                                            <img className="mb-5px h-50px" src={car} alt="" />
-                                            <span className="alt-font fs-16 fw-500 d-block">4 Parking</span>
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Villa})` }}
+                        > 
+                            <div className="container h-100">
+                                <div className="row align-items-center h-100">
+                                    <div className="col-md-8 position-relative text-white">
+                                        <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
+                                        <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
+                                        <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
+                                        <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
+                                <div className="row justify-content-center">
+                                    <div className="col-xl-7 lg-mb-25px">
+                                        <div className="row">
+                                            <div className="col text-center border-end border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={bed} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">4 Beds</span>
+                                            </div>
+                                            <div className="col text-center border-end border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={bath} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">3 Baths</span>
+                                            </div>
+                                            <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
+                                                <img className="mb-5px h-50px" src={car} alt="" />
+                                                <span className="alt-font fs-16 fw-500 d-block">4 Parking</span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
+                                        <span className="fw-500 mb-5px d-block alt-font">For sell price</span>
+                                        <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
+                                    </div>
                                 </div>
-                                <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
-                                    <span className="fw-500 mb-5px d-block alt-font">For sell price</span>
-                                    <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                    
-                </div>
+                            </div> 
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
+                
                 {/* <!-- start slider pagination  */}
                 <div className="container">
                     <div className="row g-0">
@@ -453,9 +551,28 @@ const Page = () => {
                     </div>
                     <div className="col-xl-8 col-lg-7">
                         <div className="outside-box-right-20 sm-outside-box-right-0" >
-                            <div className="swiper magic-cursor slider-one-slide" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 30, "loop": true, "pagination": { "el": ".slider-three-slide-pagination", "clickable": true, "dynamicBullets": true }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 }, "320": { "slidesPerView": 1 } }, "effect": "slide" }'>
-                                <div className="swiper-wrapper">
-                                     {/* start slider item   */}
+                            <div className="swiper slider-one-slide" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 30, "loop": true, "pagination": { "el": ".slider-three-slide-pagination", "clickable": true, "dynamicBullets": true }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 }, "320": { "slidesPerView": 1 } }, "effect": "slide" }'>
+                        
+                                     <Swiper
+                                        modules={[Autoplay]}
+                                        slidesPerView={1}
+                                        loop={true}
+                                        autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                        spaceBetween={30}
+                                        breakpoints={{
+                                        1200: { slidesPerView: 2 },
+                                        768: { slidesPerView: 2 },
+                                        320: { slidesPerView: 1 },
+                                        }}
+                                        pagination={{ clickable: true }}  // Enable clickable pagination dots
+                                        navigation={{                     // Enable navigation with custom buttons
+                                            nextEl: '.swiper-button-next',
+                                            prevEl: '.swiper-button-prev',
+                                        }}
+                                        className="swiper-wrapper"
+                                     >
+                                        {/* start slider item   */}
+                                    <SwiperSlide>
                                     <div className="swiper-slide">
                                          {/* start interactive banner item  */}
                                         <div className="col interactive-banner-style-05">
@@ -480,8 +597,10 @@ const Page = () => {
                                         </div>
                                          {/* end interactive banner item  */}
                                     </div>
+                                    </SwiperSlide>
                                      {/* end slider item  */}
                                      {/* start slider item  */}
+                                    <SwiperSlide>
                                     <div className="swiper-slide">
                                          {/* start interactive banner item  */}
                                         <div className="col interactive-banner-style-05">
@@ -506,8 +625,10 @@ const Page = () => {
                                         </div>
                                          {/* end interactive banner item  */}
                                     </div>
+                                    </SwiperSlide>
                                      {/* end slider item  */}
                                      {/* start slider item  */}
+                                    <SwiperSlide>
                                     <div className="swiper-slide">
                                          {/* start interactive banner item  */}
                                         <div className="col interactive-banner-style-05">
@@ -532,8 +653,10 @@ const Page = () => {
                                         </div>
                                          {/* end interactive banner item  */}
                                     </div>
+                                    </SwiperSlide>
                                      {/* end slider item   */}
                                      {/* start slider item  */}
+                                    <SwiperSlide>
                                     <div className="swiper-slide">
                                          {/* start interactive banner item  */}
                                         <div className="col interactive-banner-style-05">
@@ -557,8 +680,10 @@ const Page = () => {
                                             </figure>
                                         </div>
                                          {/* end interactive banner item  */}
-                                    </div>    
+                                    </div>  
+                                    </SwiperSlide>  
                                      {/* start slider item  */}
+                                    <SwiperSlide>
                                     <div className="swiper-slide">
                                          {/* start interactive banner item  */}
                                         <div className="col interactive-banner-style-05">
@@ -583,8 +708,10 @@ const Page = () => {
                                         </div>
                                          {/* end interactive banner item  */}
                                     </div>
+                                    </SwiperSlide>
                                     {/* <!-- end slider item --> */}
                                      {/* start slider item  */}
+                                    <SwiperSlide>
                                     <div className="swiper-slide">
                                          {/* start interactive banner item  */}
                                         <div className="col interactive-banner-style-05">
@@ -609,8 +736,9 @@ const Page = () => {
                                         </div>
                                          {/* end interactive banner item  */}
                                     </div>
+                                    </SwiperSlide>
                                      {/* end slider item   */}
-                                </div>
+                                     </Swiper>
                             </div>
                         </div>
                     </div>
@@ -721,50 +849,74 @@ const Page = () => {
                         <span className="fs-20 d-inline-block mb-15px text-base-color">Clients feedback</span>
                         <h2 className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Here is what our <span className="fw-700 text-highlight d-inline-block">client's<span className="bg-base-color h-10px bottom-4px opacity-3 separator-animation"></span></span> have to say</h2>
                         <div className="swiper position-relative" data-slider-options='{ "autoHeight": true, "loop": true, "allowTouchMove": true, "autoplay": { "delay": 4000, "disableOnInteraction": false }, "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" }, "effect": "fade" }'>
-                            <div className="swiper-wrapper mb-40px">
-                                 {/* start text slider item  */}
-                                <div className="swiper-slide review-style-08">
-                                    <p className="w-80 xl-w-90 lg-w-100">
-                                    "Mega Real Estate made my home buying experience so easy! They really listened to my needs and found the perfect home for my family. I couldn't be happier with their service."</p>
-                                    <div className="mt-20px">
-                                        <img className="rounded-circle w-95px h-95px me-15px" src={Rev1} alt="" />
-                                        <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> Okoro</div>
-                                            <div className="review-star-icon fs-18">
-                                                <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
-                                            </div> 
-                                        </div>
-                                    </div> 
-                                </div>
-                                 {/* end text slider item  */}
-                                 {/* start text slider item  */}
-                                <div className="swiper-slide review-style-08">
-                                    <p className="w-80 xl-w-90 lg-w-100">I've purchased several themes over the years and this theme, by far is absolutely amazing. It's built extremely well the back end was well thought out the design options are endless.</p>
-                                    <div className="mt-20px">
-                                        <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
-                                        <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Shoko</span> mugikura</div>
-                                            <div className="review-star-icon fs-18">
-                                                <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
-                                            </div> 
-                                        </div>
-                                    </div> 
-                                </div>
-                                 {/* end text slider item  */}
-                                 {/* start text slider item  */}
-                                <div className="swiper-slide review-style-08">
-                                    <p className="w-80 xl-w-90 lg-w-100">The theme is very valid and offers many possibilities of customization to adapt it to your needs, but the thing I got the most out of it was the relationship with the support team.</p>
-                                    <div className="mt-20px">
-                                        <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
-                                        <div className="d-inline-block align-middle text-start">
-                                            <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Leonel</span> mooney</div>
-                                            <div className="review-star-icon fs-18">
-                                                <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
-                                            </div> 
-                                        </div>
-                                    </div> 
-                                </div>
-                                 {/* end text slider item  */}
+                            <div >
+                                <Swiper
+                                    modules={[Autoplay]}
+                                    slidesPerView={1}
+                                    loop={true}
+                                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                    spaceBetween={30}
+                                    breakpoints={{
+                                    1200: { slidesPerView: 2 },
+                                    768: { slidesPerView: 2 },
+                                    320: { slidesPerView: 1 },
+                                    }}
+                                    navigation={{
+                                    nextEl: ".swiper-button-next",
+                                    prevEl: ".swiper-button-prev",
+                                    }}
+                                    className="swiper-wrapper mb-40px"
+                                >
+                                    {/* start text slider item  */}
+                                    <SwiperSlide>
+                                    <div className="swiper-slide review-style-08">
+                                        <p className="w-80 xl-w-90 lg-w-100">
+                                        "Mega Real Estate made my home buying experience so easy! They really listened to my needs and found the perfect home for my family. I couldn't be happier with their service."</p>
+                                        <div className="mt-20px">
+                                            <img className="rounded-circle w-95px h-95px me-15px" src={Rev1} alt="" />
+                                            <div className="d-inline-block align-middle text-start">
+                                                <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Alexander</span> Okoro</div>
+                                                <div className="review-star-icon fs-18">
+                                                    <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    </SwiperSlide>
+                                    {/* end text slider item  */}
+                                    {/* start text slider item  */}
+                                    <SwiperSlide>
+                                    <div className="swiper-slide review-style-08">
+                                        <p className="w-80 xl-w-90 lg-w-100">I've purchased several themes over the years and this theme, by far is absolutely amazing. It's built extremely well the back end was well thought out the design options are endless.</p>
+                                        <div className="mt-20px">
+                                            <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
+                                            <div className="d-inline-block align-middle text-start">
+                                                <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Shoko</span> mugikura</div>
+                                                <div className="review-star-icon fs-18">
+                                                    <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    </SwiperSlide>
+                                    {/* end text slider item  */}
+                                    {/* start text slider item  */}
+                                    <SwiperSlide>
+                                    <div className="swiper-slide review-style-08">
+                                        <p className="w-80 xl-w-90 lg-w-100">The theme is very valid and offers many possibilities of customization to adapt it to your needs, but the thing I got the most out of it was the relationship with the support team.</p>
+                                        <div className="mt-20px">
+                                            <img className="rounded-circle w-95px h-95px me-15px" src="https://via.placeholder.com/148x148" alt="" />
+                                            <div className="d-inline-block align-middle text-start">
+                                                <div className="text-dark-gray alt-font fs-20"><span className="fw-700">Leonel</span> mooney</div>
+                                                <div className="review-star-icon fs-18">
+                                                    <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    </SwiperSlide>
+                                    {/* end text slider item  */}
+                                </Swiper>
                             </div> 
                             <div className="d-flex justify-content-center justify-content-lg-start">
                                  {/* start slider navigation  */}

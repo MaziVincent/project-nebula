@@ -4,7 +4,7 @@ import promise from '../../assets/images/photos/promise.png'
 import proud from '../../assets/images/photos/proudness.png'
 import supreme from '../../assets/images/photos/supreme.png'
 import search from '../../assets/images/photos/search.png'
-
+import Marquee from "react-fast-marquee";
 
 const Contact = () => {
   return (
@@ -115,7 +115,8 @@ const Contact = () => {
         <section className="overlap-height half-section">
             <div className="container overlap-gap-section"> 
                 <div className="row row-cols-1 row-cols-lg-4 row-cols-sm-2 justify-content-center" >
-                    {/* start features box item  */}
+                    <Marquee>
+                        {/* start features box item  */}
                     <div className="col icon-with-text-style-01 md-mb-40px">
                         <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-25px">
@@ -163,6 +164,7 @@ const Contact = () => {
                         </div>
                     </div>
                     {/* end features box item  */}
+                    </Marquee>
                 </div>  
             </div>
         </section>
