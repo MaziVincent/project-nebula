@@ -140,7 +140,7 @@ const uploadPropertyImage = async (files, id) => {
             if (property == null) {
               return { error: "Property not found" };
             }
-            property.imageUrls.push(result.url);
+            property.imageUrls.push(result.secure_url);
             await property.save();
             resolve("File Uploaded Successfully to DB");
           } catch (err) {
