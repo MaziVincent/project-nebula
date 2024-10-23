@@ -17,6 +17,13 @@ import Estate from '../../assets/images/demo-real-estate-icon-home.svg'
 import Office from '../../assets/images/demo-real-estate-icon-office.svg'
 import Shop from '../../assets/images/demo-real-estate-icon-shop.svg'
 import Villa from '../../assets/images/photos/estate.jpg'
+import Bg1 from '../../assets/images/photos/bg1.jpg'
+import Bg4 from '../../assets/images/photos/bg4.jpg'
+import Bg5 from '../../assets/images/photos/bg5.jpg'
+import Swip1 from '../../assets/images/photos/swip1.jpg'
+import Swip2 from '../../assets/images/photos/swip4.jpg'
+import Swip5 from '../../assets/images/photos/swip5.jpg'
+import Swip3 from '../../assets/images/photos/swip3.jpg'
 import InfoSec from '../../assets/images/photos/new-est.png'
 import House from '../../assets/images/photos/house.jpg'
 import Image from '../../assets/images/photos/image.jpg'
@@ -26,7 +33,6 @@ import Home from '../../assets/images/photos/home-in-vancouver.jpeg'
 import Rev1 from '../../assets/images/photos/download.jpeg'
 import baseURL from '../../shared/baseURL'
 import { useQuery } from "react-query";
-// import { Pagination } from '@mui/material'
 import { Link } from 'react-router-dom'
 import loader from '../../assets/images/loader.gif'
 
@@ -83,7 +89,7 @@ const Page = () => {
                     className="swiper-wrapper"
                 >
                     <SwiperSlide>
-                        <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Villa})` }}
+                        <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Bg1})` }}
                         > 
                             <div className="container h-100">
                                 <div className="row align-items-center h-100">
@@ -164,7 +170,7 @@ const Page = () => {
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Villa})` }}
+                        <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Bg4})` }}
                         > 
                             <div className="container h-100">
                                 <div className="row align-items-center h-100">
@@ -578,7 +584,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src={Top} className="w-100 border-radius-6px" alt="" />
+                                                    <img src={Swip1} className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-orange border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-orange lh-18">
@@ -606,7 +612,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://via.placeholder.com/370x510" className="w-100 border-radius-6px" alt="" />
+                                                    <img src={Swip2} className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -616,7 +622,7 @@ const Page = () => {
                                                     </div>
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
-                                                    <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
+                                                    <img src={Bg1} className="mb-auto h-70px" alt="" />
                                                     <a href="/sell" className="text-white alt-font fw-600 fs-26">Paris, France</a> 
                                                     <span className="opacity-7 text-white">20 property listing</span>
                                                     <a href="/sell" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
