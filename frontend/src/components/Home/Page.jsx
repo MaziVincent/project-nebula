@@ -37,6 +37,7 @@ import baseURL from '../../shared/baseURL'
 import { useQuery } from "react-query";
 import { Link } from 'react-router-dom'
 import loader from '../../assets/images/loader.gif'
+import PageSkeleton from './skeletons/PageSkeleton'
 
 const Page = () => {
     const url = `${baseURL}properties`;
@@ -382,83 +383,115 @@ const Page = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
-                    {isLoading && <div> <img src={loader} alt='loader' /> </div>}
-                    {
-                        data?.properties?.length > 0 ? (
-                            
-                            data?.properties
-                                .map((prop) => (
-                        <div key={prop._id} className="col mb-30px">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <span >
-                                    <img src={prop.imageUrls[1]} alt="" className="w-[600px] h-[300px]"  />
-                                </span>
-                                <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-yellow-400"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
-                            </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="/property_details" className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</a>
+                {
+                    isLoading && 
+                    <div><PageSkeleton /></div>
+                }
+                {
+                    isSuccess &&
+                    <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
+                        {
+                            data?.properties?.length > 0 ? (
+                            data.properties.map((prop) => (
+                                <div key={prop._id} className="col mb-30px">
+                                <div className="border-radius-6px overflow-hidden box-shadow-large">
+                                    <div className="image position-relative">
+                                    <span>
+                                        <img
+                                        src={prop.imageUrls[1]}
+                                        alt={prop.title}
+                                        className="w-[600px] h-[300px]"
+                                        />
+                                    </span>
+                                    <div
+                                        className={`col-auto ${
+                                        prop.propertyType === "Sell" ? "bg-base-color" : "bg-yellow-400"
+                                        } border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}
+                                    >
+                                        {prop.propertyType}
                                     </div>
-                                    <p className="mb-20px">{prop.location}</p>
-                                    <div className="row g-0">
-                                        {
-                                            prop?.bedrooms && (
-                                                <div className="col">
+                                    </div>
+                                    <div className="bg-white">
+                                    <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
+                                        <div className="d-flex align-items-center">
+                                        <a
+                                            href="/property_details"
+                                            className="alt-font text-dark-gray fw-700 fs-22 me-10px"
+                                        >
+                                            {prop.title}
+                                        </a>
+                                        </div>
+                                        <p className="mb-20px">{prop.location}</p>
+                                        <div className="row g-0">
+                                        {prop?.bedrooms && (
+                                            <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src={bed} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">{prop?.bedrooms ? prop.bedrooms.toString().padStart(2, '0') : '00'}</span>
+                                                <span className="fw-600 alt-font text-dark-gray">
+                                                {prop.bedrooms.toString().padStart(2, "0")}
+                                                </span>
                                             </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                            )
-                                        }
-                                        {prop?.bathrooms && (
-                                            <div className="col">
-                                                <div className="d-flex align-items-center">
-                                                    <img src={bath} className="me-5px h-20px" alt="" />
-                                                    <span className="fw-600 alt-font text-dark-gray">{prop?.bathrooms ? prop.bathrooms.toString().padStart(2, '0') : '00'}</span>
-                                                </div>
-                                                <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                            <span className="d-block lh-18 fs-15">Bedrooms</span>
                                             </div>
                                         )}
-                                        {
-                                            prop?.size || prop?.plots && (
-                                                <div className="col">
+                                        {prop?.bathrooms && (
+                                            <div className="col">
+                                            <div className="d-flex align-items-center">
+                                                <img src={bath} className="me-5px h-20px" alt="" />
+                                                <span className="fw-600 alt-font text-dark-gray">
+                                                {prop.bathrooms.toString().padStart(2, "0")}
+                                                </span>
+                                            </div>
+                                            <span className="d-block lh-18 fs-15">Bathrooms</span>
+                                            </div>
+                                        )}
+                                        {(prop?.size || prop?.plots) && (
+                                            <div className="col">
                                             <div className="d-flex align-items-center">
                                                 <img src={size} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">{prop?.plots ? prop.plots.toString().padStart(2, '0') : '00'}</span>
+                                                <span className="fw-600 alt-font text-dark-gray">
+                                                {prop?.plots
+                                                    ? prop.plots.toString().padStart(2, "0")
+                                                    : "00"}
+                                                </span>
                                             </div>
-                                            <span className="d-block lh-18 fs-15">{prop?.plots ? 'Plots' : ''}</span> 
+                                            <span className="d-block lh-18 fs-15">
+                                                {prop?.plots ? "Plots" : ""}
+                                            </span>
+                                            </div>
+                                        )}
                                         </div>
-                                            )
-                                        }
                                     </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <Link to={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
+                                    <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                        <div className="col">
+                                        <Link
+                                            to={`/property_details/${prop._id}`}
+                                            className="btn btn-dark-gray btn-very-small btn-round-edge fw-600"
+                                        >
+                                            View details
+                                        </Link>
+                                        </div>
+                                        <div className="col text-end">
+                                        <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">
+                                            &#8358;{prop.price}
+                                        </span>
+                                        </div>
                                     </div>
-                                    <div className="col text-end">
-                                        <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
-                                    </div> 
-                                </div> 
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            ))
+                            ) : (
+                            <div>No Available Properties</div>
+                            )
+                        }
 
                     </div>
-                        ))
-                    ): (
-                        <div>No Available Properties</div> // Show this if no property is "Available"
-                    )
-                    
                 }
-                </div> 
-                    {/* <div className=" flex justify-center mt-4 mb-">
-                        <Pagination variant="outlined" size="large" count={data?.totalPage} page={page} onChange={handleChange} />
-                    </div> */}
+                {
+                    isError && 
+                    <p>Error Fetching Data</p>
+                }
             </div>
         </section>
         {/* end section */}

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import bed from '../../assets/images/demo-real-estate-icon-bed-small.svg'
 import bath from '../../assets/images/demo-real-estate-icon-bath-small.svg'
 import size from '../../assets/images/demo-real-estate-icon-size-small.svg'
+import PageSkeleton from './skeletons/PageSkeleton'
 
 const AllProperties = () => {
     const url = `${baseURL}properties`;
@@ -196,80 +197,92 @@ const AllProperties = () => {
                         <h3 className="alt-font text-dark-gray fw-500 ls-minus-1px shadow-none" data-shadow-animation="true" data-animation-delay="700">Latest property for <span className="fw-700 text-highlight">sell<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span></span></h3>
                     </div>
                 </div>
-                <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
-                    {/*  start box item  */}
-                    {/*  start box item  */}
-                    {
-                        data?.properties?.length > 0 ? (
-                            data?.properties
-                            .map((prop) => (
-                        <div key={prop._id} className="col mb-30px">
-                        <div className="border-radius-6px overflow-hidden box-shadow-large">
-                            <div className="image position-relative">
-                                <a href="demo-real-estate-property-details.html">
-                                    <img src={prop.imageUrls[1]} alt="" className="w-[600px] h-[300px]"  />
-                                </a>
-                                <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-orange"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
-                            </div> 
-                            <div className="bg-white">
-                                <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
-                                    <div className="d-flex align-items-center">
-                                        <a href="/property_details" className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</a>
-                                    </div>
-                                    <p className="mb-20px">{prop.location}</p>
-                                    <div className="row g-0">
-                                        {
-                                            prop?.bedrooms && (
-                                                <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src={bed} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">{prop?.bedrooms ? prop.bedrooms.toString().padStart(2, '0') : '00'}</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">Bedrooms</span> 
-                                        </div>
-                                            )
-                                        }
-                                        {prop?.bathrooms && (
-                                            <div className="col">
-                                                <div className="d-flex align-items-center">
-                                                    <img src={bath} className="me-5px h-20px" alt="" />
-                                                    <span className="fw-600 alt-font text-dark-gray">{prop?.bathrooms ? prop.bathrooms.toString().padStart(2, '0') : '00'}</span>
-                                                </div>
-                                                <span className="d-block lh-18 fs-15">Bathrooms</span> 
-                                            </div>
-                                        )}
-                                        {
-                                            prop?.size || prop?.plots && (
-                                                <div className="col">
-                                            <div className="d-flex align-items-center">
-                                                <img src={size} className="me-5px h-20px" alt="" />
-                                                <span className="fw-600 alt-font text-dark-gray">{prop?.plots ? prop.plots.toString().padStart(2, '0') : '00'}</span>
-                                            </div>
-                                            <span className="d-block lh-18 fs-15">{prop?.plots ? 'Plots' : ''}</span> 
-                                        </div>
-                                            )
-                                        }
-                                    </div>
-                                </div> 
-                                <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
-                                    <div className="col">
-                                        <Link to={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
-                                    </div>
-                                    <div className="col text-end">
-                                        <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
-                                    </div> 
-                                </div> 
-                            </div>
-                        </div>
-
+                {
+                    isLoading &&
+                    <div>
+                        <PageSkeleton />
                     </div>
-                        ))
-                    ) : (
-                        <div>No Available Properties</div> // Show this if no property is "Available"
-                    )
                 }
-                    {/*  end box item  */}
-                </div> 
+                {
+                    isSuccess &&
+                    <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 justify-content-center" > 
+                        
+                        {
+                            data?.properties?.length > 0 ? (
+                                data?.properties
+                                .map((prop) => (
+                            <div key={prop._id} className="col mb-30px">
+                            <div className="border-radius-6px overflow-hidden box-shadow-large">
+                                <div className="image position-relative">
+                                    <a href="demo-real-estate-property-details.html">
+                                        <img src={prop.imageUrls[1]} alt="" className="w-[600px] h-[300px]"  />
+                                    </a>
+                                    <div className={`col-auto ${prop.propertyType === "Sell" ? 'bg-base-color' : "bg-orange"}  border-radius-50px ps-15px pe-15px text-uppercase alt-font fw-600 text-white fs-12 lh-24 position-absolute left-20px top-20px`}>{prop.propertyType}</div>
+                                </div> 
+                                <div className="bg-white">
+                                    <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
+                                        <div className="d-flex align-items-center">
+                                            <a href="/property_details" className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</a>
+                                        </div>
+                                        <p className="mb-20px">{prop.location}</p>
+                                        <div className="row g-0">
+                                            {
+                                                prop?.bedrooms && (
+                                                    <div className="col">
+                                                <div className="d-flex align-items-center">
+                                                    <img src={bed} className="me-5px h-20px" alt="" />
+                                                    <span className="fw-600 alt-font text-dark-gray">{prop?.bedrooms ? prop.bedrooms.toString().padStart(2, '0') : '00'}</span>
+                                                </div>
+                                                <span className="d-block lh-18 fs-15">Bedrooms</span> 
+                                            </div>
+                                                )
+                                            }
+                                            {prop?.bathrooms && (
+                                                <div className="col">
+                                                    <div className="d-flex align-items-center">
+                                                        <img src={bath} className="me-5px h-20px" alt="" />
+                                                        <span className="fw-600 alt-font text-dark-gray">{prop?.bathrooms ? prop.bathrooms.toString().padStart(2, '0') : '00'}</span>
+                                                    </div>
+                                                    <span className="d-block lh-18 fs-15">Bathrooms</span> 
+                                                </div>
+                                            )}
+                                            {
+                                                prop?.size || prop?.plots && (
+                                                    <div className="col">
+                                                <div className="d-flex align-items-center">
+                                                    <img src={size} className="me-5px h-20px" alt="" />
+                                                    <span className="fw-600 alt-font text-dark-gray">{prop?.plots ? prop.plots.toString().padStart(2, '0') : '00'}</span>
+                                                </div>
+                                                <span className="d-block lh-18 fs-15">{prop?.plots ? 'Plots' : ''}</span> 
+                                            </div>
+                                                )
+                                            }
+                                        </div>
+                                    </div> 
+                                    <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
+                                        <div className="col">
+                                            <Link to={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
+                                        </div>
+                                        <div className="col text-end">
+                                            <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
+                                        </div> 
+                                    </div> 
+                                </div>
+                            </div>
+
+                        </div>
+                            ))
+                        ) : (
+                            <div>No Available Properties</div> // Show this if no property is "Available"
+                        )
+                    }
+                        {/*  end box item  */}
+                    </div> 
+                }
+                {
+                    isError && 
+                    <p>Error Fetching Propeties</p>
+                }
                 <div className=" flex justify-center mt-4 mb-">
                     <Pagination variant="outlined" size="large" count={data?.totalPage} page={page} onChange={handleChange} />
                 </div>
