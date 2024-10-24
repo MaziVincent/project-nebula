@@ -188,7 +188,7 @@ const About = () => {
                                 <div className="bg-white pt-35px pb-35px border-radius-8px mb-15px position-relative top-minus-1px">
                                     <h1 className="fw-700 ls-minus-3px text-dark-gray mb-0 alt-font">4.8</h1>
                                     <div className="text-golden-yellow fs-18 ls-1px">
-                                        <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill bg-gray-300"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i>
                                     </div>
                                     <span className="text-dark-gray d-block alt-font fw-600">2488 Reviews</span>
                                     <div className="d-inline-block fs-12 text-uppercase bg-base-color ps-20px pe-20px lh-30 text-white border-radius-100px box-shadow-large">Excellent score</div>

@@ -20,10 +20,12 @@ import Villa from '../../assets/images/photos/estate.jpg'
 import Bg1 from '../../assets/images/photos/bg1.jpg'
 import Bg4 from '../../assets/images/photos/bg4.jpg'
 import Bg5 from '../../assets/images/photos/bg5.jpg'
-import Swip1 from '../../assets/images/photos/swip1.jpg'
-import Swip2 from '../../assets/images/photos/swip4.jpg'
-import Swip5 from '../../assets/images/photos/swip5.jpg'
-import Swip3 from '../../assets/images/photos/swip3.jpg'
+import Swip1 from '../../assets/images/photos/pexe1.jpeg'
+import Swip2 from '../../assets/images/photos/pexel6.webp'
+import Swip4 from '../../assets/images/photos/pexel7.webp'
+import Swip3 from '../../assets/images/photos/pexel4.jpeg'
+import Swip5 from '../../assets/images/photos/pexel8.jpeg'
+import Swip6 from '../../assets/images/photos/pexel9.jpeg'
 import InfoSec from '../../assets/images/photos/new-est.png'
 import House from '../../assets/images/photos/house.jpg'
 import Image from '../../assets/images/photos/image.jpg'
@@ -640,7 +642,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://via.placeholder.com/370x510" className="w-100 border-radius-6px" alt="" />
+                                                    <img src={Swip3} className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -668,7 +670,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://via.placeholder.com/370x510" className="w-100 border-radius-6px" alt="" />
+                                                    <img src={Swip4} className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -695,7 +697,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://via.placeholder.com/370x510" className="w-100 border-radius-6px" alt="" />
+                                                    <img src={Swip5} className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -723,7 +725,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://via.placeholder.com/370x510" className="w-100 border-radius-6px" alt="" />
+                                                    <img src={Swip6} className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
