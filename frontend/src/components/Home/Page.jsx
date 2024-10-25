@@ -702,12 +702,12 @@ const Page = () => {
                                         autoplay={{ delay: 3000, disableOnInteraction: false }}
                                         spaceBetween={30}
                                         breakpoints={{
-                                        1200: { slidesPerView: 1 },
+                                        1200: { slidesPerView: 2 },
                                         768: { slidesPerView: 1 },
                                         320: { slidesPerView: 1 },
                                         }}
-                                        pagination={{ clickable: true }}  // Enable clickable pagination dots
-                                        navigation={{                     // Enable navigation with custom buttons
+                                        pagination={{ clickable: true }}  
+                                        navigation={{                     
                                             nextEl: '.swiper-button-next',
                                             prevEl: '.swiper-button-prev',
                                         }}
