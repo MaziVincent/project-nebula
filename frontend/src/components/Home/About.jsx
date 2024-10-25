@@ -209,8 +209,8 @@ const About = () => {
                                     autoplay={{ delay: 3000, disableOnInteraction: false }}
                                     spaceBetween={30}
                                     breakpoints={{
-                                    1200: { slidesPerView: 2 },
-                                    768: { slidesPerView: 2 },
+                                    1200: { slidesPerView: 1 },
+                                    768: { slidesPerView: 1 },
                                     320: { slidesPerView: 1 },
                                     }}
                                     navigation={{
