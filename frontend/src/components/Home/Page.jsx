@@ -88,7 +88,7 @@ const childVariants = {
     }
 }
 
-const Page = ({ slideContent, slideIndex }) => {
+const Page = () => {
     const url = `${baseURL}properties`;
 
     const [page, setPage] = useState(1)
@@ -145,8 +145,7 @@ const Page = ({ slideContent, slideIndex }) => {
                         > 
                             <motion.div 
                                 className="container h-100"
-                                key={slideIndex}
-                                variants={cardVariants}
+                                k                                variants={cardVariants}
                                 initial="hidden"
                                 animate="visible"
                                 >
@@ -167,7 +166,7 @@ const Page = ({ slideContent, slideIndex }) => {
                                        </motion.div>
                                     </div>
                                 </div> 
-                                {slideContent}
+                                {}
                             </motion.div>
                             <motion.div 
                                 className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
@@ -207,8 +206,7 @@ const Page = ({ slideContent, slideIndex }) => {
                         > 
                             <motion.div
                                 className="container h-100"
-                                key={slideIndex}
-                                variants={cardVariants}
+                                k                                variants={cardVariants}
                                 initial="hidden"
                                 animate="visible"
                                 >
@@ -265,8 +263,7 @@ const Page = ({ slideContent, slideIndex }) => {
                         > 
                             <motion.div
                                 className="container h-100"
-                                key={slideIndex}
-                                variants={cardVariants}
+                                k                                variants={cardVariants}
                                 initial="hidden"
                                 animate="visible"
                             >
