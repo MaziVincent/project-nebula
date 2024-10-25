@@ -428,12 +428,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">22K</div>
-                                <Link href="/allproeprties" className="d-block">
+                                <Link href="/allproperties" className="d-block">
                                     <img src={Estate} alt="" />
                                 </Link>
                             </div>
                             <div className="feature-box-content">
-                                <Link href="/allproeprties" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Home</Link>
+                                <Link href="/allproperties" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Home</Link>
                             </div>
                         </div>  
                     </div>
@@ -787,9 +787,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
-                                                    <a href="/allproeprties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
+                                                    <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
-                                                    <a href="/allproeprties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -870,9 +870,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
-                                                    <a href="/allproeprties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
+                                                    <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
-                                                    <a href="/allproeprties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
