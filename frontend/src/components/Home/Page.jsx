@@ -36,7 +36,6 @@ import Rev1 from '../../assets/images/photos/download.jpeg'
 import baseURL from '../../shared/baseURL'
 import { useQuery } from "react-query";
 import { Link } from 'react-router-dom'
-import loader from '../../assets/images/loader.gif'
 import PageSkeleton from './skeletons/PageSkeleton'
 import { motion } from 'framer-motion'
 
