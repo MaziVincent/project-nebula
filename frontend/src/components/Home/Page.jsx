@@ -374,7 +374,7 @@ const Page = () => {
                         </div>
                         <div className="d-inline-block">
                             <Link to="/about" className="btn btn-dark-gray btn-medium btn-round-edge me-25px">About company</Link> 
-                            <Link to="/sell" className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0">
+                            <Link to="/allproperties" className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0">
                                 <span>
                                     <span className="btn-text">Find property</span>
                                     <span className="btn-icon"><i className="feather icon-feather-arrow-right"></i></span>
@@ -400,12 +400,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">20K</div>
-                                <Link to="/sell" className="d-block">
+                                <Link to="/allproperties" className="d-block">
                                     <img src={Apartment} alt="" />
                                 </Link>
                             </div>
                             <div className="feature-box-content">
-                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Apartment</Link>
+                                <Link to="/allproperties" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Apartment</Link>
                             </div>
                         </div>  
                     </div>
@@ -415,12 +415,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">18K</div>
-                                <Link href="/sell" className="d-block">
+                                <Link href="/allproperties" className="d-block">
                                     <img src={Condomium} alt="" />
                                 </Link>
                             </div>
                             <div className="feature-box-content">
-                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Land</Link>
+                                <Link to="/allproperties" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Land</Link>
                             </div>
                         </div>  
                     </div>
@@ -430,12 +430,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">22K</div>
-                                <Link href="/sell" className="d-block">
+                                <Link href="/allproeprties" className="d-block">
                                     <img src={Estate} alt="" />
                                 </Link>
                             </div>
                             <div className="feature-box-content">
-                                <Link href="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Home</Link>
+                                <Link href="/allproeprties" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Home</Link>
                             </div>
                         </div>  
                     </div>
@@ -445,12 +445,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">09K</div>
-                                <Link to="/sell" className="d-block">
+                                <Link to="/allproperties" className="d-block">
                                     <img src={Office} alt="" />
                                 </Link>
                             </div>
                             <div className="feature-box-content">
-                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Office</Link>
+                                <Link to="/allproperties" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Office</Link>
                             </div>
                         </div>  
                     </div>
@@ -460,12 +460,12 @@ const Page = () => {
                         <div className="feature-box pt-45px pb-25px">
                             <div className="feature-box-icon mb-10px">
                                 <div className="text-uppercase alt-font fw-700 text-base-color fs-12 lh-22 bg-base-color-transparent border-radius-4px position-absolute left-18px top-18px ps-10px pe-10px">20K</div>
-                                <Link to="/sell" className="d-block">
+                                <Link to="/allproperties" className="d-block">
                                     <img src={Shop} alt="" />
                                 </Link>
                             </div>
                             <div className="feature-box-content">
-                                <Link to="/sell" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Shop</Link>
+                                <Link to="/allproperties" className="alt-font text-dark-gray text-dark-gray-hover fw-700 fs-15 lh-20 text-uppercase">Shop</Link>
                             </div>
                         </div>  
                     </div>
@@ -482,7 +482,7 @@ const Page = () => {
                     </div>
                     <div className="col-md-4" >
                         <div className="d-flex justify-content-center justify-content-md-end">
-                            <Link to="/sell" className="fw-600 alt-font text-dark-gray text-dark-gray-hover d-flex align-items-center">View all property<span className="d-flex align-items-center justify-content-center bg-dark-gray h-40px w-40px text-center rounded-circle fs-16 text-white ms-10px"><i className="feather icon-feather-arrow-right"></i></span></Link>
+                            <Link to="/allproperties" className="fw-600 alt-font text-dark-gray text-dark-gray-hover d-flex align-items-center">View all property<span className="d-flex align-items-center justify-content-center bg-dark-gray h-40px w-40px text-center rounded-circle fs-16 text-white ms-10px"><i className="feather icon-feather-arrow-right"></i></span></Link>
                         </div>
                     </div>
                 </div>
@@ -733,9 +733,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src={Image} className="mb-auto h-70px" alt="" />
-                                                    <a href="/sell" className="text-white alt-font fw-600 fs-26">Washington, USA</a> 
+                                                    <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Washington, USA</a> 
                                                     <span className="opacity-7 text-white">17 property listing</span>
-                                                    <a href="/sell" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -761,9 +761,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src={Bg1} className="mb-auto h-70px" alt="" />
-                                                    <a href="/sell" className="text-white alt-font fw-600 fs-26">Paris, France</a> 
+                                                    <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Paris, France</a> 
                                                     <span className="opacity-7 text-white">20 property listing</span>
-                                                    <a href="/sell" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -789,9 +789,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
-                                                    <a href="/sell" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
+                                                    <a href="/allproeprties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
-                                                    <a href="/sell" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproeprties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -817,9 +817,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
-                                                    <a href="/sell" className="text-white alt-font fw-600 fs-26">San francisco, USA</a> 
+                                                    <a href="/allproperties" className="text-white alt-font fw-600 fs-26">San francisco, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
-                                                    <a href="/sell" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -844,9 +844,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
-                                                    <a href="/sell" className="text-white alt-font fw-600 fs-26">Paris, France</a> 
+                                                    <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Paris, France</a> 
                                                     <span className="opacity-7 text-white">20 property listing</span>
-                                                    <a href="/sell" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -872,9 +872,9 @@ const Page = () => {
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                                                     <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
-                                                    <a href="/sell" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
+                                                    <a href="/allproeprties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
-                                                    <a href="/sell" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <a href="/allproeprties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
                                                 </figcaption>
                                             </figure>
                                         </div>
