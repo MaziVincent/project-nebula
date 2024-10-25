@@ -322,7 +322,6 @@ const Page = () => {
                         <div className="col-12 position-relative">
                             {/* <!-- start slider pagination  */}
                             <div className="swiper-pagination left-0 text-start swiper-pagination-clickable swiper-number fs-14 alt-font ls-05px"></div>  
-                            {/* <!-- end slider pagination */}
                         </div>
                     </div>
                 </div>
