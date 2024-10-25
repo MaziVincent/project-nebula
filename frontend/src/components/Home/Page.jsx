@@ -316,7 +316,6 @@ const Page = () => {
                     </SwiperSlide>
                 </Swiper>
                 
-                {/* <!-- start slider pagination  */}
                 <div className="container">
                     <div className="row g-0">
                         <div className="col-12 position-relative">
