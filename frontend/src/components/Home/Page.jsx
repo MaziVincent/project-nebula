@@ -38,8 +38,57 @@ import { useQuery } from "react-query";
 import { Link } from 'react-router-dom'
 import loader from '../../assets/images/loader.gif'
 import PageSkeleton from './skeletons/PageSkeleton'
+import { motion } from 'framer-motion'
 
-const Page = () => {
+const cardVariants = {
+    hidden: { 
+        opacity: 0, 
+        y: 50 
+    },
+    visible: { 
+        opacity: 1, 
+        y: 0, 
+        transition: {
+            type: 'spring',
+            mass: 0.4,
+            damping: 8,
+            // duration: 0.5,
+            when: "beforeChildren",
+        }
+    },
+};
+
+const nextVariants = {
+    hidden: {
+        opacity: 0,
+        x: 50
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            type: 'spring',
+            stiffness: 120,
+            // damping: 20,
+            duration: 0.5,
+        }
+    },
+}
+
+const childVariants = {
+    hidden: {
+        opacity: 0
+    },
+    visible: {
+        opacity: 1,
+        // transition: {
+        //     duration: 0.5,
+        //     delay: 0.5
+        // }
+    }
+}
+
+const Page = ({ slideContent, slideIndex }) => {
     const url = `${baseURL}properties`;
 
     const [page, setPage] = useState(1)
@@ -94,17 +143,38 @@ const Page = () => {
                     <SwiperSlide>
                         <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Bg1})` }}
                         > 
-                            <div className="container h-100">
-                                <div className="row align-items-center h-100">
+                            <motion.div 
+                                className="container h-100"
+                                key={slideIndex}
+                                variants={cardVariants}
+                                initial="hidden"
+                                animate="visible"
+                                >
+                                <div  className="row align-items-center h-100">
                                     <div className="col-md-8 position-relative text-white">
                                         <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
-                                        <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
-                                        <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
-                                        <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                        <motion.div 
+                                            className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                                            variants={childVariants}
+                                        >
+                                            Luxurious <span className="fw-700">mansion</span>
+                                        </motion.div>  
+                                       <motion.div
+                                            variants={childVariants}
+                                       >
+                                            <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
+                                            <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                       </motion.div>
                                     </div>
                                 </div> 
-                            </div>
-                            <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
+                                {slideContent}
+                            </motion.div>
+                            <motion.div 
+                                className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
+                                variants={nextVariants}
+                                initial="hidden"
+                                animate="visible"
+                                >
                                 <div className="row justify-content-center">
                                     <div className="col-xl-7 lg-mb-25px">
                                         <div className="row">
@@ -127,7 +197,7 @@ const Page = () => {
                                         <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
                                     </div>
                                 </div>
-                            </div> 
+                            </motion.div> 
                         
                         </div>
                     </SwiperSlide>
@@ -135,17 +205,35 @@ const Page = () => {
                     <SwiperSlide>
                         <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Villa})`}}
                         > 
-                            <div className="container h-100">
+                            <motion.div
+                                className="container h-100"
+                                key={slideIndex}
+                                variants={cardVariants}
+                                initial="hidden"
+                                animate="visible"
+                                >
                                 <div className="row align-items-center h-100">
                                     <div className="col-md-8 position-relative text-white">
                                         <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
-                                        <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
-                                        <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
-                                        <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                        <motion.div 
+                                            className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                                            variants={childVariants}
+                                        >Luxurious <span className="fw-700">mansion</span></motion.div>  
+                                       <div
+                                        variants={childVariants}
+                                       >
+                                            <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
+                                            <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                       </div>
                                     </div>
                                 </div> 
-                            </div>
-                            <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
+                            </motion.div>
+                            <motion.div
+                                className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
+                                variants={nextVariants}
+                                initial="hidden"
+                                animate="visible"
+                            >
                                 <div className="row justify-content-center">
                                     <div className="col-xl-7 lg-mb-25px">
                                         <div className="row">
@@ -168,24 +256,42 @@ const Page = () => {
                                         <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
                                     </div>
                                 </div>
-                            </div> 
+                            </motion.div> 
                         </div>
                     </SwiperSlide>
 
                     <SwiperSlide>
                         <div className="swiper-slide cover-background" style={{ backgroundImage: `url(${Bg4})` }}
                         > 
-                            <div className="container h-100">
+                            <motion.div
+                                className="container h-100"
+                                key={slideIndex}
+                                variants={cardVariants}
+                                initial="hidden"
+                                animate="visible"
+                            >
                                 <div className="row align-items-center h-100">
                                     <div className="col-md-8 position-relative text-white">
                                         <span className="fs-20 d-block mb-15px">Mile 50 road, Abakaliki, EB, 480301</span>
-                                        <div className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px">Luxurious <span className="fw-700">mansion</span></div>  
-                                        <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
-                                        <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                        <motion.div 
+                                            className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                                            variants={childVariants}
+                                        >Luxurious <span className="fw-700">mansion</span></motion.div>  
+                                        <motion.div
+                                            variants={childVariants}
+                                        >
+                                            <a href="#" className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px">Schedule visit</a>
+                                            <a href="#" className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px">View details</a>
+                                        </motion.div>
                                     </div>
                                 </div> 
-                            </div>
-                            <div className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px">
+                            </motion.div>
+                            <motion.div 
+                                className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
+                                variants={nextVariants}
+                                initial="hidden"
+                                animate="visible"
+                            >
                                 <div className="row justify-content-center">
                                     <div className="col-xl-7 lg-mb-25px">
                                         <div className="row">
@@ -208,7 +314,7 @@ const Page = () => {
                                         <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
                                     </div>
                                 </div>
-                            </div> 
+                            </motion.div> 
                         </div>
                     </SwiperSlide>
                 </Swiper>
