@@ -2,17 +2,26 @@ const express = require('express');
 const router = express.Router();
 const landController = require('../controllers/landController');
 const verifyRoles = require('../middleware/verifyRoles');
-const upload = require('../middleware/upload')
+const fileUpload = require('express-fileupload');
+const filesPayloadExists = require('../middleware/filesPayloadExists');
+const fileExtLimiter = require('../middleware/fileExtLimiter');
+const filesSizeLimiter = require('../middleware/filiesSizeLimiter');
+
 router.route('/')
     .get(landController.getLandsHandler)
-    .post(verifyRoles('Admin', 'Agent', 'Owner'),
-        landController.createLandHandler
-    )
-    .put(verifyRoles('Admin'), landController.updateLandHandler)
-router.route('/:id') //id of the land
-    .delete(verifyRoles('Admin'), landController.deleteLandHandler)
+    .post(verifyRoles('Admin', 'Agent', 'Owner'),landController.createLandHandler)
+    .put(verifyRoles('Admin', 'Agent', 'Owner'), landController.updateLandHandler)
+router.route('/status/:id') 
+    .put(verifyRoles('Admin', 'Agent', 'Owner'), landController.landStatusHandler)
+router.route('/docupload/:id')
+    .put(
+        fileUpload({ createParentPath: true }),
+        filesPayloadExists,
+        fileExtLimiter(['.png', '.jpg', '.jpeg']),
+        filesSizeLimiter,
+        landController.uploadDocImageHandler
+);
+router.route('/:id') 
+    .delete(verifyRoles('Admin', 'Agent', 'Owner'), landController.deleteLandHandler)
     .get(landController.getLandHandler);
-router.route('/status/:id') //id of the land
-    .put(verifyRoles('Admin'), landController.landStatusHandler)
-    
 module.exports = router;

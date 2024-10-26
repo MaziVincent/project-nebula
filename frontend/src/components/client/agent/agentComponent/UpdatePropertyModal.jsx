@@ -36,7 +36,9 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
       setPropertyType(property.type);
     }
   }, [property, setValue]);
+
   const updateProperty = async (data) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -73,12 +75,14 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
       }, 3000);
       toast.success('Property updated successfully');
     } catch (err) {
+      setIsLoading(false)
       setError(err.response?.data?.error || err.message);
     }
   };
 
   const { mutate } = useMutation(updateProperty, {
     onSuccess: () => {
+      setIsLoading(false)
       queryClient.invalidateQueries('properties');
     }
   });
@@ -88,9 +92,6 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
     
   };
 
-  if (isLoading) {
-    return <p>{CircularProgress}</p>;
-  }
   console.log(propertyType)
   return (
     <Modal
@@ -565,7 +566,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                Update
+                {isLoading ? <CircularProgress /> : 'Update'}
               </button>
             </form>
             </div>

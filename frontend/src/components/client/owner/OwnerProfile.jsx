@@ -41,7 +41,7 @@ const OwnerProfile = () => {
   }, [id]);
 
   return (
-    <div className="max-md:pt-24">
+    <div className="sm:pt-24">
       <ToastContainer />
       <div className="max-md:pt-10 pl-4">
         <Link to="/owner">
@@ -70,12 +70,14 @@ const OwnerProfile = () => {
               className="w-32 h-32 rounded-full object-cover"
             />
             <h1 className="text-2xl font-bold text-gray-800 mt-3 mb-4">{`${owner.firstname} ${owner.lastname}`}</h1>
-            <p className="text-gray-600 mb-2"><span>Email: </span>{owner?.email}</p>
           </div>
-          <div className="flex flex-col items-center justify-center mt-3">
-            <h1 className="text-2xl font-bold text-gray-800">Contact Information</h1>
-            <p className="text-gray-600">{owner?.phone}</p>
-            <p className="text-gray-600">{owner?.address}</p>
+          <div className="flex flex-col items-start justify-start my-4 border  w-full px-4 py-2">
+            <h1 className="text-2xl font-bold text-gray-800 mb-2">Personal Information</h1>
+            <p className="text-gray-600 mb-2"><span>Email: </span>{owner?.email}</p>
+            <p className="text-gray-600"><span>Phone: </span>{owner?.phone}</p>
+            <p className="text-gray-600"><span>Contact Address: </span>{owner?.address}</p>
+            <p className="text-gray-600"><span>Identity Type: </span>{owner?.identityType}</p>
+            <p className="text-gray-600"><span>Verification: </span>{owner?.verified ? 'Verified' : 'Not verified'}</p>
           </div>
 
           <div>

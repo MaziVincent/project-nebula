@@ -37,13 +37,8 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
     }
   }, [shop, setValue]);
 
-  const handleFileUpload = (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]);
-    }
-  };
-
   const updateShop = async (data) => {
+    setIsLoading(true);
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -65,12 +60,14 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
       }, 3000);
       toast.success('Shop updated successfully');
     } catch (err) {
+      setIsLoading(false);
       setError(err.response?.data?.error || err.message);
     }
   };
 
   const { mutate } = useMutation(updateShop, {
     onSuccess: () => {
+      setIsLoading(false)
       queryClient.invalidateQueries('shop');
     }
   });
@@ -97,18 +94,18 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
     >
       <div
         id="defaultModal"
-        className="overflow-y-auto overflow-x-hidden absolute top-3/6 right-1/4 z-50 justify-center items-center w-2/4 h-modal md:h-full"
+        className="overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900">
                 Update Shop
               </h3>
               <button
                 type="button"
                 onClick={() => { handleUpdateClose(); }}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
               >
                 <svg
                   aria-hidden="true"
@@ -124,15 +121,12 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
                   ></path>
                 </svg>
               </button>
-            </div>
-
-            {/* Form */}
             <form 
               onSubmit={handleSubmit(handleUpdateShop)} 
               method="post"
               encType="multipart/form-data"
             >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-2 mb-4">
                 <div>
                   <label
                     htmlFor="title"
@@ -260,10 +254,11 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
                 type="submit"
                 className="inline-flex items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300"
               >
-                Update Shop
+                {isLoading ? <CircularProgress /> : 'Update Shop'}
               </button>
             </form>
             <ToastContainer />
+            </div>
           </div>
         </div>
       </div>

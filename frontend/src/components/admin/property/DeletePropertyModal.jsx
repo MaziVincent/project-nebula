@@ -9,8 +9,10 @@ const DeletePropertyModal = ({ openDelete, handleDeleteClose, propertyId, url}) 
   const { auth } = useAuth();
   const deleteItem = useDelete();
   const queryClient = useQueryClient()
+  const [isLoading, setIsLoading] = useState(false)
 
   const deleteProperty = async () => {
+    setIsLoading(true)
     if (!auth || !auth.accessToken) {
       toast.error("You are not authorized to perform this action");
       return;
@@ -24,8 +26,10 @@ const DeletePropertyModal = ({ openDelete, handleDeleteClose, propertyId, url}) 
         setTimeout(() => {
           handleDeleteClose();
         }, 1000);
+        setIsLoading(false)
 
       } else {
+        setIsLoading(false)
         toast.error("Failed to delete property");
       }
       console.log(response);
@@ -59,7 +63,7 @@ return (
                 className=" bg-red-600 px-2 rounded-lg text-white"
                 onClick={deleteProperty}
               >
-                Delete
+                {isLoading ? <CircularProgress size={20} color="white" /> : 'Delete'}
               </button>
               <button
                 className=" bg-gray-300 px-2 rounded-lg text-gray-800"

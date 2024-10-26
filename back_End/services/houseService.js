@@ -1,18 +1,16 @@
 const mongoose = require('mongoose');
 const House = require('../model/House');
 const User = require('../model/User');
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const createHouse = async (data) => {
     const ownerId = new mongoose.Types.ObjectId(data.owner);
-    // const files1 = data.files['images'] || [];
-    // const files2 = data.files['docImages'] || [];
-
-    // const imageNames = files1.map(file => file.path);
-    // const docImageNames = files2.map(file => file.path);
-
-    // const images = JSON.stringify(imageNames)
-    // const docImages = JSON.stringify(docImageNames)
-    // Use data.exteriorFeatures here
     const exteriorFeaturesArray = data.exteriorFeatures ? data.exteriorFeatures.split(', ') : [];
     const interiorFeaturesArray = data.interiorFeatures ? data.interiorFeatures.split(', ') : [];
     const livingRoomFeaturesArray = data.livingRoomFeatures ? data.livingRoomFeatures.split(', ') : [];
@@ -132,6 +130,48 @@ const houseStatus = async (id, status) => {
     }
 };
 
+const uploadDocImage = async (files, id) => {
+    console.log(files);
+    const houseId = new mongoose.Types.ObjectId(id);
+  
+    const uploadPromises = Object.keys(files).map(async (key) => {
+      const file = files[key];
+  
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: "RealEstate",
+          },
+          async (error, result) => {
+            if (error) {
+              return reject(error);
+            }
+  
+            try {
+              const house = await House.findById({
+                _id: houseId,
+              }).exec();
+  
+              if (house == null) {
+                return { error: "House not found" };
+              }
+              house.docImage.push(result.secure_url);
+              await house.save();
+              resolve("File Uploaded Successfully to DB");
+            } catch (err) {
+              console.log(err);
+  
+              reject(err);
+            }
+          }
+        );
+        uploadStream.end(file.data);
+      });
+    });
+  
+    return Promise.all(uploadPromises);
+  };
+
 module.exports = {
     createHouse, 
     getHouses, 
@@ -139,5 +179,6 @@ module.exports = {
     updateHouse, 
     deleteHouse, 
     houseExists,
-    houseStatus
+    houseStatus,
+    uploadDocImage
 }

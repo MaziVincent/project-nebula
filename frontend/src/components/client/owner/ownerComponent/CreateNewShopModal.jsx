@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const CreateNewShopModal = ({open, handleCloseShopModal}) => {
   const queryClient = useQueryClient();
@@ -15,7 +16,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
   const url = `${baseURL}shop`;
   const navigate = useNavigate()
   const [error, setError] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
@@ -24,6 +25,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
   } = useForm({ mode: "all" });
 
   const createShop = async (data) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login')
       return;
@@ -47,6 +49,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
         handleCloseShopModal();
       }, 3000);
     } catch (err) {
+      setIsLoading(false)
       setError(err.response?.data?.error || err.message)
     }
     console.log(formData)
@@ -55,6 +58,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
   const {mutate} = useMutation(createShop, {
     
     onSuccess : ()=>{
+      setIsLoading(false)
       queryClient.invalidateQueries('shop')
       toast.success('New Shop Created Successfully')
 
@@ -278,7 +282,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add new Shop
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Add new Shop'}
               </button>
             </form>
             </div>

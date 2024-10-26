@@ -17,6 +17,8 @@ const LandStatusModal = ({openStatus, handleCloseStatus, land}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const url = `${baseURL}land/status`;
+  const [isLoading, setIsLoading] = useState(false)
+
   const { 
     register,
     setValue,
@@ -33,6 +35,7 @@ const LandStatusModal = ({openStatus, handleCloseStatus, land}) => {
   }, [land, setValue]);
 
   const updateLandStatus = async (status) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -48,6 +51,7 @@ const LandStatusModal = ({openStatus, handleCloseStatus, land}) => {
           handleCloseStatus(); 
         }, 2000);
     } catch (error) {
+      setIsLoading(false)
       toast.error(error.message);
     }
   };
@@ -55,6 +59,7 @@ const LandStatusModal = ({openStatus, handleCloseStatus, land}) => {
   const { mutate } = useMutation(updateLandStatus, {
     onSuccess: () => {
       queryClient.invalidateQueries('lands');
+      setIsLoading(false)
     }
   });
 
@@ -96,7 +101,7 @@ const LandStatusModal = ({openStatus, handleCloseStatus, land}) => {
           type="submit"
           className="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600"
         >
-          Update Status
+          {isLoading ? <CircularProgress size={20} color="white" /> : 'Update Status'}
         </button>
       </form>
       {/* Update Shop Status */}

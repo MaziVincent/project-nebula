@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const NewLandModal = ({open, handleCloseLandModal}) => {
   const queryClient = useQueryClient();
@@ -15,6 +16,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
   const url = `${baseURL}land`;
   const navigate = useNavigate()
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
   
   const {
     register,
@@ -23,6 +25,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
   } = useForm({ mode: "all" });
 
     const createLand = async (data) => {
+      setIsLoading(true)
       if (!auth || !auth?.accessToken) {
         navigate('/login')
         return;
@@ -43,6 +46,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
           handleCloseLandModal();
         }, 3000);
       } catch (err) {
+        setIsLoading(false)
         setError(err.response?.data?.error || err.message)
       }
       console.log(formData)
@@ -53,15 +57,12 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
       onSuccess : ()=>{
         queryClient.invalidateQueries('lands')
         toast.success('New Land Created Successfully')
-        setLoading(false)
+        setIsLoading(false)
       }
     })
 
     const handleCreateLand = (data) => {
-    // Pass the image and form data to mutate
-    setLoading(true)
-    const landData = { ...data, image, docImage }; 
-    mutate(landData);  // Pass both form data and image
+    mutate(data);  
     setTimeout(() => {
       handleCloseLandModal();
     }, 3000);
@@ -276,7 +277,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add New Land
+                {isLoading ? <CircularProgress /> : 'Add New Land'}
               </button>
             </form>
             </div>

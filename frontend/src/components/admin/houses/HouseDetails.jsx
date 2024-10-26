@@ -8,6 +8,8 @@ import baseURL from '../../../shared/baseURL';
 import DeletePropertyModal from '../property/DeletePropertyModal';
 import UpdateHouseModal from './UpdateHouseModal';
 import UploadPropertyImage from '../property/UploadPropertyImage';
+import UploadHouseDocModal from './UploadHouseDocModal';
+import { div } from 'framer-motion/client';
 
 
 const HouseDetails = () => {
@@ -15,7 +17,6 @@ const HouseDetails = () => {
   const fetch = useFetch();
   const url = `${baseURL}house`;
   const { id } = useParams();
-  const imageUrl = `${baseURL}`;
   
   //updatemodal
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -28,16 +29,23 @@ const HouseDetails = () => {
   const handleOpenDelete = () => setOpenDelete(true);
   const handleDeleteClose = () => setOpenDelete(false);
   const [propertyId, setPropertyId] = useState("")
+  const [houseId, setHouseId] = useState("")
 
   //upload modal
   const [openUpload, setOpenUpload] = useState(false);
   const handleOpenUpload = () => setOpenUpload(true);
   const handleUploadClose = () => setOpenUpload(false);
 
+  //document upload
+  const [openDocUpload, setOpenDocUpload] = useState(false)
+  const handleOpenDocUpload = () => setOpenDocUpload(true)
+  const handleDocUploadClose = () => setOpenDocUpload(false)
+
   // State for apartment details and other shops
   const [house, setHouse] = useState(null);
-  const [otherHouses, setOtherHouses] = useState([]);
-  
+  const [isUpload, setIsUpload] = useState(false)
+  const toggleUpload = () => setIsUpload(!isUpload)
+
   const handleHouseDetails = async () => {
     try {
       // Fetch the specific house details
@@ -45,32 +53,6 @@ const HouseDetails = () => {
       if (result.data) {
         setHouse(result.data); 
         console.log("House details:", result.data);
-  
-        // Fetch other houses
-        // const otherHousesResult = await fetch(`${url}`, auth.accessToken);
-        // console.log("Other Houses result:", otherHousesResult.data);
-  
-        // let housesArray = [];
-  
-        // // Determine the correct format of the data
-        // if (Array.isArray(otherHousesResult.data)) {
-        //   housesArray = otherHousesResult.data;
-        // } else if (otherHousesResult.data && otherHousesResult.data.houses) {
-        //   housesArray = otherHousesResult.data.houses;
-        // } else {
-        //   toast.error("No other houses found or data format is incorrect.");
-        //   return;
-        // }
-  
-        // // Filter out the current house
-        // const filteredHouses = housesArray.filter(house => house._id !== id);
-  
-        // if (filteredHouses.length > 0) {
-        //   setOtherHouses(filteredHouses);
-        //   toast.success("House details fetched successfully");
-        // } else {
-        //   toast.warn("No other houses available.");
-        // }
         
       }
     } catch (error) {
@@ -173,21 +155,21 @@ const HouseDetails = () => {
             </div>
           </div>
           {/* Add more shop details as needed */}
-          <div className=' flex justify-start items-start gap-4 my-4 '>
+          <div className=' flex justify-start items-start gap-4 my-4 relative'>
             <button
               onClick={() => {
                 handleUpdateOpen();
                 setHouse(house);
               }}
-              className=' bg-gray-300 max-sm:bg-blue-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-blue-100 rounded-lg px-2'
+              className=' bg-gray-300 max-sm:bg-blue-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-blue-100 rounded-lg py-2 px-2'
               >
               <span className='md:block max-sm:hidden'>Edit House</span>
               <span className=' md:hidden max-sm:block'>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  height="48px" 
+                  height="28px" 
                   viewBox="0 -960 960 960" 
-                  width="48px" 
+                  width="28px" 
                   fill="currentColor"
                   className=' text-blue-600'
                   >
@@ -200,16 +182,16 @@ const HouseDetails = () => {
               onClick={() => {handleOpenDelete() 
                 setPropertyId(house._id)
               }} 
-              className=' bg-red-600 max-sm:bg-red-100 bg-opacity-70 text-white px-2 rounded-lg shadow-md shadow-red-300 max-sm:shadow-red-100'
+              className=' bg-red-600 max-sm:bg-red-100 bg-opacity-70 text-white py-2 px-2 rounded-lg shadow-md shadow-red-300 max-sm:shadow-red-100'
               >
               <span className=' max-sm:hidden md:block'>Delete House 
               </span>
               <span className=' md:hidden max-sm:block'>
               <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              height="48px" 
+              height="28px" 
               viewBox="0 -960 960 960" 
-              width="48px" 
+              width="28px" 
               fill="currentcolor"
               className=' text-red-600'
               >
@@ -218,27 +200,61 @@ const HouseDetails = () => {
               </svg>
               </span>
             </button>
-            <button
-              onClick={() => {
-                handleOpenUpload();
-                setPropertyId(house._id);
-              }}
-              className=' bg-gray-300 max-sm:bg-sky-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-sky-100 rounded-lg px-2'
-              >
-              <span className=' md:block max-sm:hidden'>Upload House Image</span>
-              <span className=' md:hidden max-sm:block'>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  height="48px" 
-                  viewBox="0 -960 960 960" 
-                  width="48px" 
-                  fill="currentColor"
-                  className='text-sky-600'
-                  >
-                  <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
-                  />
-                </svg>
+            <button onClick={toggleUpload}>
+              <span className='relative flex items-center gap-2 bg-sky-600 hover:bg-sky-700 rounded-lg px-2 py-2'>
+                <span className=' max-sm:hidden lg:block text-sky-100'>Upload
+                </span>
+                <span className=''>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    height="28px" 
+                    viewBox="0 -960 960 960" 
+                    width="28px" 
+                    fill="currentColor"
+                    className='text-sky-200'
+                    >
+                    <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                    />
+                  </svg>
+                </span>
               </span>
+              {
+                isUpload &&
+                  <div className='absolute flex flex-col justify-start items-start px-2 gap-2 bg-sky-600 rounded-lg bottom-[50px]'>
+                    <button
+                      onClick={() => {
+                        handleOpenUpload();
+                        setPropertyId(house._id);
+                      }}
+                      className=' text-gray-700'
+                      >
+                      <span className='text-white'>House Image</span>
+                      {/* <span className=' md:hidden max-sm:block'>
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          height="48px" 
+                          viewBox="0 -960 960 960" 
+                          width="48px" 
+                          fill="currentColor"
+                          className='text-sky-600'
+                          >
+                          <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                          />
+                        </svg>
+                      </span> */}
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        handleOpenDocUpload();
+                        setHouseId(house._id);
+                      }}
+                      className=' text-gray-700'
+                      >
+                      <span className='text-white'>Document</span>
+                    </button>
+                  </div>
+              }
             </button>
           </div>
         </div>
@@ -250,6 +266,7 @@ const HouseDetails = () => {
       url={url}
       />
       <UploadPropertyImage openUpload={openUpload} handleUploadClose={handleUploadClose} propertyId={propertyId} />
+      <UploadHouseDocModal openDocUpload={openDocUpload} handleDocUploadClose={handleDocUploadClose} houseId={houseId} />
     </div>
   )
 }

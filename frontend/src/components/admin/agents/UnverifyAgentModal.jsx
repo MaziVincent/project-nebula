@@ -14,8 +14,10 @@ const UnverifyAgentModal = ({ openUnverify, handleUnverifyClose, agentId }) => {
   const navigate = useNavigate();
   const update = useUpdate();
   const url = `${baseURL}agent/unverify`;
+  const [isLoading, setIsLoading] = useState(false)
 
   const unVerifyAgent = async () => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -30,7 +32,7 @@ const UnverifyAgentModal = ({ openUnverify, handleUnverifyClose, agentId }) => {
     }
   };
 
-  const { mutate, isLoading } = useMutation(unVerifyAgent, {
+  const { mutate } = useMutation(unVerifyAgent, {
     onSuccess: () => {
       queryClient.invalidateQueries('agent');
       handleUnverifyClose();
@@ -38,6 +40,7 @@ const UnverifyAgentModal = ({ openUnverify, handleUnverifyClose, agentId }) => {
     },
     onError: (error) => {
       toast.error(`Failed to verify agent: ${error.message}`);
+      setIsLoading(false)
     }
   });
 
@@ -45,9 +48,6 @@ const UnverifyAgentModal = ({ openUnverify, handleUnverifyClose, agentId }) => {
     mutate();
   };
 
-  if (isLoading) {
-    return <CircularProgress />;
-  }
 
   return (
     <Modal 
@@ -73,7 +73,7 @@ const UnverifyAgentModal = ({ openUnverify, handleUnverifyClose, agentId }) => {
                 className=" bg-red-600 px-2 rounded-lg text-white"
                 onClick={handleUnVerifyAgent}
               >
-                Unverify
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Unverify'}
               </button>
               <button
                 className=" bg-gray-300 px-2 rounded-lg text-gray-800"

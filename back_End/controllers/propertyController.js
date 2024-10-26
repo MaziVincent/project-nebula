@@ -74,11 +74,11 @@ const uploadPropertyImageHandler = async (req, res) => {
     const _id = req.params.id
     // console.log(_id)
     const result = await uploadPropertyImage(files, _id);
-    console.log(result)
+    // console.log(result)
     return res.status(200).json({message : result})
   } catch (error) {
-    console.log("Hello");
-    console.log(error);
+    // console.log("Hello");
+    // console.log(error);
     return res.status(500).json({error: error})
   }
 };

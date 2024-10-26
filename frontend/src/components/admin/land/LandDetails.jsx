@@ -8,13 +8,13 @@ import baseURL from '../../../shared/baseURL';
 import DeletePropertyModal from '../property/DeletePropertyModal';
 import UpdateLandModal from './UpdateLandModal';
 import UploadPropertyImage from '../property/UploadPropertyImage';
+import UploadLandDocModal from './UploadLandDocModal';
 
 const LandDetails = () => {
   const { auth } = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}land`;
   const { id } = useParams();
-  const imageUrl = `${baseURL}`;
   
   //updatemodal
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -27,15 +27,24 @@ const LandDetails = () => {
   const handleOpenDelete = () => setOpenDelete(true);
   const handleDeleteClose = () => setOpenDelete(false);
   const [propertyId, setPropertyId] = useState("")
+  const [landId, setLandId] = useState("")
 
 
   //upload image
   const [openUpload, setOpenUpload] = useState(false)
   const handleOpenUpload = () => setOpenUpload(true)
   const handleUploadClose = () => setOpenUpload(false)
-  // State for apartment details and other shops
+
+  //document upload
+  const [openDocUpload, setOpenDocUpload] = useState(false)
+  const handleOpenDocUpload = () => setOpenDocUpload(true)
+  const handleDocUploadClose = () => setOpenDocUpload(false)
+
   const [land, setLand] = useState(null);
   
+  const [isUpload, setIsUpload] = useState(false)
+  const toggleUpload = () => setIsUpload(!isUpload) 
+
   const handleLandDetails = async () => {
     try {
       // Fetch the specific lands details
@@ -99,7 +108,7 @@ const LandDetails = () => {
               <p>docType: <span>{land.docType}</span></p>
               <p>ownershipType: <span>{land.ownershipType}</span></p>
               <div>
-                <img src={`${imageUrl}${land.docImage[0]}`} alt="" />
+                <img src={''} alt="" />
               </div>
             </div>
           </div>
@@ -108,20 +117,21 @@ const LandDetails = () => {
             <span>{land.description}</span>
           </p>
           {/* Add more shop details as needed */}
-          <div className="mt-4 flex gap-2">
+          <div className=' flex justify-start items-start gap-4 my-4 relative'>
             <button
-            onClick={() => {
-              handleUpdateOpen();
-              setLand(land);
-            }}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded max-sm:bg-blue-100 max-sm:hover:bg-blue-300">
-              <span className='md:block max-sm:hidden'>Update Land</span>
+              onClick={() => {
+                handleUpdateOpen();
+                setLand(land);
+              }}
+              className=' bg-gray-300 max-sm:bg-blue-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-blue-100 rounded-lg py-2 px-2'
+              >
+              <span className='md:block max-sm:hidden'>Edit House</span>
               <span className=' md:hidden max-sm:block'>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  height="48px" 
+                  height="28px" 
                   viewBox="0 -960 960 960" 
-                  width="48px" 
+                  width="28px" 
                   fill="currentColor"
                   className=' text-blue-600'
                   >
@@ -130,18 +140,20 @@ const LandDetails = () => {
                 </svg>
               </span>
             </button>
-            <button onClick={() => {handleOpenDelete() 
+            <button
+              onClick={() => {handleOpenDelete() 
                 setPropertyId(land._id)
-              }}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded max-sm:bg-red-100 max-sm:hover:bg-red-300">
-              <span className=' max-sm:hidden md:block'>Delete Land 
+              }} 
+              className=' bg-red-600 max-sm:bg-red-100 bg-opacity-70 text-white py-2 px-2 rounded-lg shadow-md shadow-red-300 max-sm:shadow-red-100'
+              >
+              <span className=' max-sm:hidden md:block'>Delete House 
               </span>
               <span className=' md:hidden max-sm:block'>
               <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              height="48px" 
+              height="28px" 
               viewBox="0 -960 960 960" 
-              width="48px" 
+              width="28px" 
               fill="currentcolor"
               className=' text-red-600'
               >
@@ -150,26 +162,49 @@ const LandDetails = () => {
               </svg>
               </span>
             </button>
-            <button
-            onClick={() => {
-              handleOpenUpload();
-              setPropertyId(land._id);
-            }}
-              className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-2 rounded max-sm:bg-sky-100 max-sm:hover:bg-sky-300">
-               <span className=' md:block max-sm:hidden'>Upload Land Image</span>
-              <span className=' md:hidden max-sm:block'>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  height="48px" 
-                  viewBox="0 -960 960 960" 
-                  width="48px" 
-                  fill="currentColor"
-                  className='text-sky-600'
-                  >
-                  <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
-                  />
-                </svg>
+            <button onClick={toggleUpload}>
+              <span className='relative flex items-center gap-2 bg-sky-600 hover:bg-sky-700 rounded-lg px-2 py-2'>
+                <span className=' max-sm:hidden lg:block text-sky-100'>Upload
+                </span>
+                <span className=''>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    height="28px" 
+                    viewBox="0 -960 960 960" 
+                    width="28px" 
+                    fill="currentColor"
+                    className='text-sky-200'
+                    >
+                    <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                    />
+                  </svg>
+                </span>
               </span>
+              {
+                isUpload &&
+                  <div className='absolute flex flex-col justify-start items-start px-2 gap-2 bg-sky-600 rounded-lg bottom-[50px]'>
+                    <button
+                      onClick={() => {
+                        handleOpenUpload();
+                        setPropertyId(land._id);
+                      }}
+                      className=' text-gray-700'
+                      >
+                      <span className='text-white'>Land Image</span>
+                    
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        handleOpenDocUpload();
+                        setLandId(land._id);
+                      }}
+                      className=' text-gray-700'
+                      >
+                      <span className='text-white'>Document</span>
+                    </button>
+                  </div>
+              }
             </button>
           </div>
         </div>
@@ -183,6 +218,7 @@ const LandDetails = () => {
       url={`${url}`}
       />
       <UploadPropertyImage openUpload={openUpload} handleUploadClose={handleUploadClose} propertyId={propertyId} />
+      <UploadLandDocModal openDocUpload={openDocUpload} handleDocUploadClose={handleDocUploadClose} landId={landId} />
     </div>
   )
 }

@@ -17,6 +17,8 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const url = `${baseURL}user/status`;
+  const [isLoading, setIsLoading] = useState(false)
+
   const { 
     register,
     setValue,
@@ -33,6 +35,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
   }, [userId, setValue]);
 
   const updateUserStatus = async (status) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -63,6 +66,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
         }
         handleCloseStatus(); 
       }, 2000);
+      setIsLoading(false)
     }
   });
 
@@ -100,7 +104,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
           type="submit"
           className="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600"
         >
-          Update Status
+          {isLoading ? <CircularProgress size={20} color='white' /> : 'Update Status'}
         </button>
       </form>
       {/* Update Shop Status */}

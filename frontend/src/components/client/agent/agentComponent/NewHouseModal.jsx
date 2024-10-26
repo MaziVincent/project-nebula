@@ -3,10 +3,11 @@ import usePost from "../../../../hooks/usePost";
 import useAuth from "../../../../hooks/useAuth";
 import baseURL from '../../../../shared/baseURL';
 import Modal from '@mui/material/Modal';
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const NewHouseModal = ({open, handleCloseHouseModal}) => {
   const queryClient = useQueryClient();
@@ -15,6 +16,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
   const url = `${baseURL}house`;
   const navigate = useNavigate()
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
@@ -23,6 +25,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
   } = useForm({ mode: "all" });
 
     const createHouse = async (data) => {
+      setIsLoading(true)
       if (!auth || !auth?.accessToken) {
         navigate('/login')
         return;
@@ -46,6 +49,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
           handleCloseHouseModal();
         }, 3000);
       } catch (err) {
+        setIsLoading(false)
         setError(err.response?.data?.error || err.message)
       }
       console.log(formData)
@@ -54,10 +58,10 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
     const {mutate} = useMutation(createHouse, {
       
       onSuccess : ()=>{
+        setIsLoading(false)
         queryClient.invalidateQueries('houses')
         toast.success('New House Created Successfully')
 
-    
       }
     })
 
@@ -405,7 +409,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add New House
+                {isLoading ? <CircularProgress /> : 'Add New House'}
               </button>
             </form>
             </div>

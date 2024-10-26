@@ -50,7 +50,7 @@ const PropertyDetails = () => {
 
   return (
     <div>
-      <div className=' max-md:pt-10 pl-4'>
+      <div className=' sm:pt-10 pl-4'>
         <Link to='/agent' >
           <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -150,28 +150,6 @@ const PropertyDetails = () => {
           </p>
         </div>
         <div className=' flex justify-start items-start gap-4 my-4 '>
-            {/* <button
-              onClick={() => {
-                handle();
-                setProperty(property);
-              }}
-              className=' bg-gray-300 max-sm:bg-blue-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-blue-100 rounded-lg px-2'
-              >
-              <span className='md:block max-sm:hidden'>Edit House</span>
-              <span className=' md:hidden max-sm:block'>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  height="48px" 
-                  viewBox="0 -960 960 960" 
-                  width="48px" 
-                  fill="currentColor"
-                  className=' text-blue-600'
-                  >
-                  <path d="M180-180h44l472-471-44-44-472 471v44Zm-60 60v-128l575-574q8-8 19-12.5t23-4.5q11 0 22 4.5t20 12.5l44 44q9 9 13 20t4 22q0 11-4.5 22.5T823-694L248-120H120Zm659-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z"
-                  />
-                </svg>
-              </span>
-            </button> */}
             <button
               onClick={() => {
                 handleOpenUpload();

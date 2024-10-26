@@ -45,10 +45,6 @@ const UnverifyOwnerModal = ({ openUnverify, handleUnverifyClose, ownerId }) => {
     mutate();
   };
 
-  if (isLoading) {
-    return <CircularProgress />;
-  }
-
   return (
     <Modal 
     open={openUnverify}
@@ -73,7 +69,7 @@ const UnverifyOwnerModal = ({ openUnverify, handleUnverifyClose, ownerId }) => {
                 className=" bg-red-600 px-2 rounded-lg text-white"
                 onClick={handleUnVerifyOwner}
               >
-                Unverify
+                {isLoading ? <CircularProgress size={20} color="white" /> : 'Unverify'}
               </button>
               <button
                 className=" bg-gray-300 px-2 rounded-lg text-gray-800"

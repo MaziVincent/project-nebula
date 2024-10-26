@@ -37,6 +37,7 @@ const EditProfileModal = ({openUpdate, handleUpdateClose, owner}) => {
   }, [owner, setValue]);
 
   const EditOwner = async (data) => {
+    setIsLoading(true);
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -52,11 +53,13 @@ const EditProfileModal = ({openUpdate, handleUpdateClose, owner}) => {
       console.log(response);
     } catch (err) {
       setError(err.response?.data?.error || err.message);
+      setIsLoading(false)
     }
   };
 
   const { mutate } = useMutation(EditOwner, {
     onSuccess: () => {
+      setIsLoading(false);
       queryClient.invalidateQueries('owner');
       setTimeout(() => {
         handleUpdateClose();
@@ -69,10 +72,6 @@ const EditProfileModal = ({openUpdate, handleUpdateClose, owner}) => {
     mutate(data);
     
   };
-
-  if (isLoading) {
-    return <p>{CircularProgress}</p>;
-  }
   return (
     <Modal
       open={openUpdate}
@@ -83,21 +82,21 @@ const EditProfileModal = ({openUpdate, handleUpdateClose, owner}) => {
       {/* <!-- Main modal --> */}
       <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-5 right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute top-8  z-50 justify-center items-center w-full outline-none"
       >
         <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
           {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-5">
             {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900 ">
                 Update your Profile Information
               </h3>
               <button
                 type="button"
                 onClick={() => {handleUpdateClose()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -115,8 +114,6 @@ const EditProfileModal = ({openUpdate, handleUpdateClose, owner}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
-            {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handleCustomerUpdate)} 
               method='post'
@@ -258,9 +255,14 @@ const EditProfileModal = ({openUpdate, handleUpdateClose, owner}) => {
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                Update Profile
+                {isLoading ? (
+                  <CircularProgress style={{ color: "white" }} size={20} />
+                ) : (
+                  "Update Profile"
+                )}
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>
