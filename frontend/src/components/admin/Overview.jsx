@@ -31,7 +31,7 @@ const Overview = () => {
   };
 
   const { data, isError, isLoading, isSuccess } = useQuery(
-    ["recentProps"],
+    ["properties"],
      getProperties,
     { keepPreviousData: true,
         staleTime: 10000,
@@ -82,9 +82,8 @@ const Overview = () => {
   return (
     <div className="w-full h-auto max-md:pt-12">
        <div className=" bg-gray-50 w-full ">
-        <h1 className=" text-2xl p-1 text-gray-700">
+        <h1 className=" text-3xl font-bold p-1 text-gray-700">
           Dashboard
-          <span className=" text-xl"><sub>Control panel</sub></span>
         </h1>
        </div>
       <div className="flex justify-center gap-4 items-center flex-wrap">

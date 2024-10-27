@@ -57,7 +57,7 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
     const {mutate} = useMutation(createLand, {
       
       onSuccess : ()=>{
-        queryClient.invalidateQueries('lands')
+        queryClient.invalidateQueries('properties')
         toast.success('New Land Created Successfully')
         setLoading(false)
       }

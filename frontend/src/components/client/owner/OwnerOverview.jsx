@@ -112,21 +112,21 @@ const OwnerOverview = () => {
               <div className=" flex justify-between items-center mb-4">
               <h2 className=" text-3xl font-normal text-start text-green-900 mb-0">Properties</h2>
               <div className=" relative">
-                <button onClick={handlePropertyType} className=" bg-green-600 rounded-lg text-emerald-50 px-2 py-2 inline-flex items-center">
+                <button onClick={handlePropertyType} className=" bg-green-600 rounded-lg text-xl font-semibold text-emerald-50 px-2 py-2 inline-flex items-center">
                   <span><Add /></span>
                   Add New Property
                 </button>
                 {
                   propertyType && (
-                    <div className=" absolute bg-green-500 w-full px-2 rounded-lg py-2">
-                      <h4 className=" text-sm mb-1 text-center text-green-700 tracking-widest">select property type</h4>
-                      <div className=" flex flex-col gap-2 w-full items-start overflow-auto h-20">
+                    <div className=" absolute bg-green-50 w-full px-2 rounded-lg py-2 z-50 shadow-lg">
+                      <h4 className=" text-lg mb-1 text-center text-green-700 tracking-widest">select property type</h4>
+                      <div className=" flex flex-col gap-2 w-full items-start overflow-auto h-40">
                         <button 
                           onClick={() => {
                             handleOpenHouse()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>House
                         </button>
                         <button 
@@ -134,7 +134,7 @@ const OwnerOverview = () => {
                             handleOpen()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>Apartment
                         </button>
                         <button 
@@ -142,7 +142,7 @@ const OwnerOverview = () => {
                             handleOpenLand()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>Land
                         </button>
                         <button 
@@ -150,7 +150,7 @@ const OwnerOverview = () => {
                             handleOpenShop()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>Shop
                         </button>
                       </div>
@@ -161,41 +161,41 @@ const OwnerOverview = () => {
               </div>
               <div className=" border-dashed border rounded-md border-red-900 h-auto">
                 <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
-                  <table className="w-full min-w-max border-collapse bg-green-800 text-left text-sm text-gray-500 max-lg:w-full">
-                    <thead className="bg-green-100">
+                  <table className="w-full min-w-max border-collapse text-left text-sm text-gray-500 max-lg:w-full">
+                    <thead className="bg-gray-100 text-lg font-semibold">
                       <tr>
                         <th
                           scope="col"
-                          className="px-6 py-4 font-medium text-green-900"
+                          className="px-6 py-4 font-medium text-gray-900"
                         >
                           Title
                         </th>
                         <th
                           scope="col"
-                          className="px-6 py-4 font-medium text-green-900"
+                          className="px-6 py-4 font-medium text-gray-900"
                         >
                           Status
                         </th>
                         <th
                           scope="col"
-                          className="px-6 py-4 font-medium text-green-900"
+                          className="px-6 py-4 font-medium text-gray-900"
                         >
                           Date Created
                         </th>
                         <th
                           scope="col"
-                          className="px-6 py-4 font-medium text-green-900"
+                          className="px-6 py-4 font-medium text-gray-900"
                         >
                           property Type
                         </th>
                         <th
                         
                           scope="col"
-                          className="px-6 py-4 font-medium text-green-900"
+                          className="px-6 py-4 font-medium text-gray-900"
                         >Tools</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-green-200 border-t border-green-100 bg-green-100">
+                    <tbody className="divide-y divide-green-200 border-t border-green-100 ">
                       { data?.properties.length  > 0 ?(
                         data?.properties.map((property) => (
                           <tr key={property._id} className="hover:bg-green-50">

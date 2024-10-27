@@ -61,7 +61,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
       
       onSuccess : ()=>{
         setIsLoading(false)        
-        queryClient.invalidateQueries('houses')
+        queryClient.invalidateQueries('properties')
         toast.success('New House Created Successfully')
 
       }

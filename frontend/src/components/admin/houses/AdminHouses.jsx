@@ -71,11 +71,11 @@ const AdminHouses = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  console.log(data);
+  //console.log(data);
   return (
     <div className=' pt-10 max-sm:mt-10 h-screen'>
       <ToastContainer />
-      <h3 className=' text-gray-700 font-semibold text-2xl text-center'>Houses</h3>
+      <h3 className=' text-gray-700 font-semibold text-3xl text-center'>Houses</h3>
       <div className=' mb-4 max-md:w-full'>
         {
           loading || isLoading ? <div className=' flex justify-center'><CircularProgress /></div> : null
@@ -86,9 +86,9 @@ const AdminHouses = () => {
             Add House
           </span>
         </button> */}
-        <span className=' text-lg text-gray-500'>Total House</span>
-        <span className='block w-[100px] bg-cyan-500 min-w-max py-1 px-2 rounded-xl text-cyan-50 text-center'>
-          {data?.houses.length ? data.houses.length.toString().padStart(2, '0') : '00'}
+        <span className=' text-2xl text-gray-500'>Total House</span>
+        <span className='block w-[100px] bg-cyan-600 min-w-max py-1 px-2 rounded-xl text-white text-2xl font-bold text-center'>
+          {data?.houses.length ? data.houses.length: 0 }
         </span>
       </div>
       <div className=" border-dashed border rounded-md border-red-900 h-auto">

@@ -84,9 +84,9 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
         className="overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
         <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
-          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
+          <div className="relative  w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-2xl font-semibold text-gray-900">
                 Update Apartment
               </h3>
               <button
@@ -113,6 +113,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
               onSubmit={handleSubmit(handleApartmentUpdate)} 
               method="post"
               // encType="multipart/form-data"
+              
             >
               <div className="flex flex-col gap-2 mb-4">
                 <div>

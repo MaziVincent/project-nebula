@@ -71,7 +71,7 @@ const AdminApartments = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  console.log(data);
+  //console.log(data);
 
   // const handleDelete = async(_id) => {
   //   try {
@@ -91,7 +91,7 @@ const AdminApartments = () => {
   return (
     <div className=' pt-10 max-sm:mt-10 h-screen'>
       <ToastContainer />
-      <h3 className=' text-gray-700 font-semibold text-2xl text-center'>Apartments</h3>
+      <h3 className=' text-gray-700 font-semibold text-4xl text-center'>Apartments</h3>
       <div className=' mb-4 max-md:w-full'>
         {/* <button onClick={handleOpen} className=''>
           <span className=' '>
@@ -99,15 +99,15 @@ const AdminApartments = () => {
             Add Apartment  
           </span>
         </button> */}
-        <span className=' text-lg text-gray-500'>Total Apartment</span>
-        <span className='block w-[100px] bg-cyan-500 min-w-max py-1 px-2 rounded-xl text-cyan-50 text-center'>
-        {data?.apartments.length ? data.apartments.length.toString().padStart(2, '0') : '00'}
+        <span className=' text-2xl text-gray-500'>Total Apartments </span>
+        <span className='block w-[100px] text-2xl font-bold bg-cyan-600 min-w-max py-1 px-2 rounded-xl text-cyan-50 text-center'>
+        {data?.apartments.length ? data.apartments.length : 0 }
         </span>
       </div>
       <div className=" border-dashed border rounded-md border-red-900 h-auto">
         <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
-          <table className="w-full min-w-max border-collapse bg-white text-left text-sm text-gray-500 max-lg:w-full">
-            <thead className="bg-gray-50">
+          <table className="w-full min-w-max border-collapse rounded-lg shadow-xl bg-white text-left text-sm text-gray-500 max-lg:w-full">
+            <thead className="bg-gray-200 rounded-lg">
               <tr>
                 <th
                   scope="col"

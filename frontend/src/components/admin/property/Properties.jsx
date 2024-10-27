@@ -78,20 +78,18 @@ const Properties = () => {
   return (
     <div className="w-full h-auto max-md:pt-12">
        <div className=" bg-gray-50 w-full ">
-        <h1 className=" text-2xl p-1 text-gray-700">
-          Explore the list of all properties
+        <h1 className=" text-3xl font-bold p-1 text-gray-700">
+          All Properties
         </h1>
        </div>
-      <div className=" pt-4 pb-2 ">
-        <h2 className=" text-2xl text-center text-gradient">All Properties</h2>
-      </div>
+     
       <div className=" border-dashed border rounded-md border-red-900 h-auto">
         <div>
-          <span className="flex gap-2 justify-between items-center px-2 text-right">
-            <span>
+          <span className="flex gap-2 font-semibold items-center px-2 text-right">
+            <span className="text-xl">
               Total Properties: 
             </span>
-            <span>
+            <span className="text-2xl">
               {propertyCounts.total}
             </span>
           </span>

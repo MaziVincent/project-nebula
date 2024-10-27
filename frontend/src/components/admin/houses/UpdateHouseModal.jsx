@@ -96,7 +96,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
           <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
             {/* <!-- Modal header --> */}
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h3 className="text-lg font-semibold text-gray-900 ">
+              <h3 className="text-2xl font-semibold text-gray-900 ">
                 Update House
               </h3>
               <button
@@ -241,7 +241,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="squareFootage"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    squareFootage:
+                    SquareFootage:
                   </label>
                   <input
                     id="squareFootage"
@@ -257,7 +257,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="yearBuilt"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    yearBuilt:
+                    YearBuilt:
                   </label>
                   <input
                     id="yearBuilt"
@@ -273,7 +273,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="lotSize"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    lotSize:
+                    LotSize:
                   </label>
                   <input
                     id="lotSize"
@@ -305,7 +305,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="docType"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    docType:
+                    Document Type:
                   </label>
                   <input
                     id="docType"
@@ -321,7 +321,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="exteriorFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    exteriorFeatures:
+                    Exterior Features:
                   </label>
                   <input
                     id="exteriorFeatures"
@@ -337,7 +337,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="interiorFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    interiorFeatures:
+                    Interior Features:
                   </label>
                   <input
                     id="interiorFeatures"
@@ -353,7 +353,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="livingRoomFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    livingRoomFeatures:
+                    LivingRoom Features:
                   </label>
                   <input
                     id="livingRoomFeatures"
@@ -369,7 +369,7 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="kitchenFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    kitchenFeatures:
+                    Kitchen Features:
                   </label>
                   <input
                     id="kitchenFeatures"

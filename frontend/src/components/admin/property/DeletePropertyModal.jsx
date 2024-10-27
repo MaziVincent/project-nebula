@@ -53,8 +53,8 @@ return (
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 w-full max-w-md bg-white rounded-lg shadow-lg"
       >
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            Confirm Delete Property
+          <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+            Confirm Property Delete
           </h3>
           <p className="text-gray-700 mb-6">
             Are you sure you want to delete this property? This action cannot be undone.

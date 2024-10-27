@@ -53,7 +53,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
     
     onSuccess : ()=>{
       setIsLoading(false)
-      queryClient.invalidateQueries('apartments')
+      queryClient.invalidateQueries('properties')
       toast.success('New Apartment Created Successfully')
 
   
