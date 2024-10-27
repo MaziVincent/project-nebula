@@ -17,6 +17,8 @@ const ApartmentStatusModal = ({openStatus, handleCloseStatus, apartment}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const url = `${baseURL}apartment/status`;
+  const [isLoading, setIsLoading] = useState(false)
+
   const { 
     register,
     setValue,
@@ -33,6 +35,7 @@ const ApartmentStatusModal = ({openStatus, handleCloseStatus, apartment}) => {
   }, [apartment, setValue]);
 
   const updateApartmentStatus = async (status) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -48,6 +51,7 @@ const ApartmentStatusModal = ({openStatus, handleCloseStatus, apartment}) => {
           handleCloseStatus(); 
         }, 2000);
     } catch (error) {
+      setIsLoading(false)
       toast.error(error.message);
     }
   };
@@ -55,14 +59,12 @@ const ApartmentStatusModal = ({openStatus, handleCloseStatus, apartment}) => {
   const { mutate } = useMutation(updateApartmentStatus, {
     onSuccess: () => {
       queryClient.invalidateQueries('apartments');
+      setIsLoading(false)
     }
   });
 
   const handleStatusUpdate = (data) => {
     mutate(data.status);
-    setTimeout(() => {
-      handleCloseStatus();
-    }, 3000);
     
   };
 
@@ -97,7 +99,7 @@ const ApartmentStatusModal = ({openStatus, handleCloseStatus, apartment}) => {
           type="submit"
           className="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600"
         >
-          Update Status
+          {isLoading ? <CircularProgress size={20} color='white' /> : 'Update Status'}
         </button>
       </form>
       {/* Update Shop Status */}

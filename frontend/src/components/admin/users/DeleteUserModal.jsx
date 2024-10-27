@@ -11,8 +11,10 @@ const DeleteUserModal = ({ openDelete, handleDeleteClose, userId, url}) => {
   const deleteUser = useDelete();
   const queryClient = useQueryClient()
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleDeleteUser = async () => {
+    setIsLoading(true)
     if (!auth || !auth.accessToken) {
       toast.error("You are not authorized to perform this action");
       navigate("/login");
@@ -27,8 +29,9 @@ const DeleteUserModal = ({ openDelete, handleDeleteClose, userId, url}) => {
         setTimeout(() => {
           handleDeleteClose();
         }, 1000);
-
+        setIsLoading(false)
       } else {
+        setIsLoading(false)
         toast.error("Failed to delete user");
       }
       console.log(response);
@@ -62,7 +65,7 @@ const DeleteUserModal = ({ openDelete, handleDeleteClose, userId, url}) => {
                 className=" bg-red-600 px-2 rounded-lg text-white"
                 onClick={handleDeleteUser}
               >
-                Delete
+                {isLoading ? <CircularProgress size={20} color="white" /> : 'Delete'}
               </button>
               <button
                 className=" bg-gray-300 px-2 rounded-lg text-gray-800"

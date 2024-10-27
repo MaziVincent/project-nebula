@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const CreateHouseModal = ({open, handleClose}) => {
   const queryClient = useQueryClient();
@@ -14,21 +15,9 @@ const CreateHouseModal = ({open, handleClose}) => {
   const { auth } = useAuth();
   const url = `${baseURL}house`;
   const navigate = useNavigate()
-  const [image, setImage] = useState()
-  const [docImage, setDocImage] = useState()
   const [error, setError] = useState(null);
-
-  const handleFileUpload = (e) => {
-    const { name, files } = e.target;
-    if (files.length > 0) {
-      if (name === 'image') {
-        setImage(files[0]); // Set the image file
-      } else if (name === 'docImage') {
-        setDocImage(files[0]); // Set the document image file
-      }
-    }
-  };
-  
+  const [isLoading, setIsLoading] = useState(false)
+ 
   const {
     register,
     handleSubmit,
@@ -36,6 +25,7 @@ const CreateHouseModal = ({open, handleClose}) => {
   } = useForm({ mode: "all" });
 
     const createHouse = async (data) => {
+      setIsLoading(true)
       if (!auth || !auth?.accessToken) {
         navigate('/login')
         return;
@@ -44,16 +34,9 @@ const CreateHouseModal = ({open, handleClose}) => {
     
     // Append form fields
     for (const key in data) {
-      if (data[key] && key !== 'image' && key !== 'docImage') {
+      if (data[key]) {
         formData.append(key, data[key]);
       }
-    }
-    // Append the image file if it exists
-    if (image) {
-      formData.append('image', image);
-    }
-    if (docImage) {
-      formData.append('docImage', docImage);
     }
     // Log the FormData contents
     for (let [key, value] of formData.entries()) {
@@ -66,6 +49,7 @@ const CreateHouseModal = ({open, handleClose}) => {
           handleClose();
         }, 3000);
       } catch (err) {
+        setIsLoading(false)
         setError(err.response?.data?.error || err.message)
       }
       console.log(formData)
@@ -76,17 +60,12 @@ const CreateHouseModal = ({open, handleClose}) => {
       onSuccess : ()=>{
         queryClient.invalidateQueries('houses')
         toast.success('New House Created Successfully')
-
-    
+        setIsLoading(false)
       }
     })
 
     const handleCreateHouse = (data) => {
-    const houseData = { ...data, image, docImage }; 
-    mutate(houseData);  
-    setTimeout(() => {
-      handleClose();
-    }, 3000);
+    mutate(data);  
   };
   return (
     <Modal
@@ -98,21 +77,21 @@ const CreateHouseModal = ({open, handleClose}) => {
       {/* <!-- Main modal --> */}
       <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
         <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
           {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
             {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900 ">
                 Create House
               </h3>
               <button
                 type="button"
                 onClick={() => {handleClose()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -130,14 +109,12 @@ const CreateHouseModal = ({open, handleClose}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
-            {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handleCreateHouse)} 
               method='post'
               encType='multipart/form-data'
             >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-2 mb-4">
                 <div>
                   <label
                     htmlFor="name"
@@ -426,9 +403,10 @@ const CreateHouseModal = ({open, handleClose}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add New House
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Add New House'}
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>

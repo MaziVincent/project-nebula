@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const CreateApartmentModal = ({open, handleClose}) => {
   const queryClient = useQueryClient();
@@ -14,14 +15,10 @@ const CreateApartmentModal = ({open, handleClose}) => {
   const { auth } = useAuth();
   const url = `${baseURL}apartment`;
   const navigate = useNavigate()
-  const [image, setImage] = useState()
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleFileUpload = async (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]); // Ensure the file is selected
-    }
-  };
+
   const {
     register,
     handleSubmit,
@@ -29,6 +26,7 @@ const CreateApartmentModal = ({open, handleClose}) => {
   } = useForm({ mode: "all" });
 
   const createApartment = async (data) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login')
       return;
@@ -36,21 +34,12 @@ const CreateApartmentModal = ({open, handleClose}) => {
     const formData = new FormData();
   
   // Append form fields
-  formData.append('title', data.title);
-  formData.append('description', data.description);
-  formData.append('price', data.price);
-  formData.append('owner', auth.user?._id);
-  formData.append('location', data.location);
-  formData.append('bedrooms', data.bedrooms);
-  formData.append('bathrooms', data.bathrooms);
-  formData.append('floorArea', data.floorArea);
-  
-  // Append the image file if it exists
-  if (image) {
-    formData.append('image', image);
+  for (const key in data) {
+    if (data[key]){
+      formData.append(key, data[key]);
+    }
   }
-
-  // Log the FormData contents
+  
   for (let [key, value] of formData.entries()) {
     console.log(`${key}: ${value}`);
   }
@@ -61,6 +50,7 @@ const CreateApartmentModal = ({open, handleClose}) => {
         handleClose();
       }, 3000);
     } catch (err) {
+      setIsLoading(false)
       setError(err.response?.data?.error || err.message)
     }
     console.log(formData)
@@ -71,18 +61,13 @@ const CreateApartmentModal = ({open, handleClose}) => {
     onSuccess : ()=>{
       queryClient.invalidateQueries('apartments')
       toast.success('New Apartment Created Successfully')
+      setIsLoading(false)
 
-  
     }
   })
 
   const handleCreateApartment = (data) => {
-  // Pass the image and form data to mutate
-  const apartmentData = { ...data, image }; 
-  mutate(apartmentData);  // Pass both form data and image
-  setTimeout(() => {
-    handleClose();
-  }, 3000);
+  mutate(data);
 };
   // console.log(auth)
   return (
@@ -95,21 +80,21 @@ const CreateApartmentModal = ({open, handleClose}) => {
       {/* <!-- Main modal --> */}
       <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className="overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
         <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
           {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
             {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900 ">
                 Create Apartment
               </h3>
               <button
                 type="button"
                 onClick={() => {handleClose()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -127,14 +112,12 @@ const CreateApartmentModal = ({open, handleClose}) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
-            {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handleCreateApartment)} 
               method='post'
               encType='multipart/form-data'
             >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-2 mb-4">
                 <div>
                   <label
                     htmlFor="name"
@@ -294,9 +277,10 @@ const CreateApartmentModal = ({open, handleClose}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add new Aparrtment
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Add new Aparrtment'}
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>

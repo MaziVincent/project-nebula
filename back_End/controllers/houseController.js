@@ -5,7 +5,8 @@ const {
     updateHouse,
     deleteHouse,
     houseExists,
-    houseStatus
+    houseStatus,
+    uploadDocImage
 } = require('../services/houseService')
 
 const createHouseHandler = async (req, res) => {
@@ -105,11 +106,27 @@ const houseStatusHandler = async (req, res) => {
     res.json({message: 'House status updated successfully', data: result})
 };
 
+  const uploadDocImageHandler = async (req, res) => {
+    try{
+      if(!req.files) return res.status(400).json({status: "error", message: "Missing files"})
+      const files = req.files
+      const _id = req.params.id
+      console.log(_id)
+      const result = await uploadDocImage(files, _id);
+      console.log(result)
+      return res.status(200).json({message : result})
+    } catch (error) {
+      console.log("Hello");
+      console.log(error);
+      return res.status(500).json({error: error})
+    }
+  };
 module.exports = {
     createHouseHandler,
     getHousesHandler,
     getHouseHandler,
     updateHouseHandler,
     deleteHouseHandler,
-    houseStatusHandler
+    houseStatusHandler,
+    uploadDocImageHandler
 }

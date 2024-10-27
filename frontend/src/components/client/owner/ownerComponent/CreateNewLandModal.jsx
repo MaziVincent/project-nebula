@@ -27,6 +27,7 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
   } = useForm({ mode: "all" });
 
     const createLand = async (data) => {
+      setLoading(true)
       if (!auth || !auth?.accessToken) {
         navigate('/login')
         return;
@@ -47,6 +48,7 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
           handleCloseLandModal();
         }, 3000);
       } catch (err) {
+        setLoading(false)
         setError(err.response?.data?.error || err.message)
       }
       console.log(formData)
@@ -62,7 +64,6 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
     })
 
     const handleCreateLand = (data) => {
-    setLoading(true) 
     mutate(data); 
     setTimeout(() => {
       handleCloseLandModal();
@@ -278,7 +279,7 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add New Land
+                {loading ? <CircularProgress color='white' size={20} /> : 'Add New Land'}
               </button>
             </form>
             </div>

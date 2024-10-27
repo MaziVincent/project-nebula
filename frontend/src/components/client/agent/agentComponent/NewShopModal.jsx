@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const NewShopModal = ({open, handleCloseShopModal}) => {
   const queryClient = useQueryClient();
@@ -14,14 +15,9 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
   const { auth } = useAuth();
   const url = `${baseURL}shop`;
   const navigate = useNavigate()
-  const [image, setImage] = useState()
   const [error, setError] = useState(null);
-
-  const handleFileUpload = async (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]); // Ensure the file is selected
-    }
-  };
+  const [isLoading, setIsLoading] = useState(false)
+  
   const {
     register,
     handleSubmit,
@@ -29,6 +25,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
   } = useForm({ mode: "all" });
 
   const createShop = async (data) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login')
       return;
@@ -42,10 +39,6 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
     }
   }
   
-  // Append the image file if it exists
-  if (image) {
-    formData.append('image', image);
-  }
 
   // Log the FormData contents
   for (let [key, value] of formData.entries()) {
@@ -58,6 +51,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
         handleCloseShopModal();
       }, 3000);
     } catch (err) {
+      setIsLoading(false)
       setError(err.response?.data?.error || err.message)
     }
     console.log(formData)
@@ -66,10 +60,10 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
   const {mutate} = useMutation(createShop, {
     
     onSuccess : ()=>{
+      setIsLoading(false)
       queryClient.invalidateQueries('shop')
       toast.success('New Shop Created Successfully')
 
-  
     }
   })
 
@@ -291,7 +285,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add new Shop
+                {isLoading ? <CircularProgress /> : 'Add new Shop'}
               </button>
             </form>
             </div>

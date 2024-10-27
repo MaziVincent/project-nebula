@@ -14,8 +14,10 @@ const AgentVerifyModal = ({ openVerify, handleVerifyClose, agentId }) => {
   const navigate = useNavigate();
   const update = useUpdate();
   const url = `${baseURL}agent/verify`;
+  const [isLoading, setIsLoading] = useState(false)
 
   const verifyAgent = async () => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -26,15 +28,17 @@ const AgentVerifyModal = ({ openVerify, handleVerifyClose, agentId }) => {
       const response = await update(`${url}/${agentId}`, {}, auth?.accessToken);
       console.log(response); 
     } catch (error) {
+      setIsLoading(false)
       throw new Error(error.response?.data?.message || 'Error verifying agent');
     }
   };
 
-  const { mutate, isLoading } = useMutation(verifyAgent, {
+  const { mutate } = useMutation(verifyAgent, {
     onSuccess: () => {
       queryClient.invalidateQueries('agent');
       handleVerifyClose();
       toast.success('Agent verified successfully');
+      setIsLoading(false)
     },
     onError: (error) => {
       toast.error(`Failed to verify agent: ${error.message}`);
@@ -45,9 +49,6 @@ const AgentVerifyModal = ({ openVerify, handleVerifyClose, agentId }) => {
     mutate();
   };
 
-  if (isLoading) {
-    return <CircularProgress />;
-  }
 
   return (
     <Modal 
@@ -73,7 +74,7 @@ const AgentVerifyModal = ({ openVerify, handleVerifyClose, agentId }) => {
                 className=" bg-green-600 px-2 rounded-lg text-white"
                 onClick={handleVerifyAgent}
               >
-                Verify
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Verify'}
               </button>
               <button
                 className=" bg-gray-300 px-2 rounded-lg text-gray-800"

@@ -45,9 +45,6 @@ const VerifyOwnerModal = ({ openVerify, handleVerifyClose, ownerId }) => {
     mutate();
   };
 
-  if (isLoading) {
-    return <CircularProgress />;
-  }
 
   return (
     <Modal 
@@ -73,7 +70,7 @@ const VerifyOwnerModal = ({ openVerify, handleVerifyClose, ownerId }) => {
                 className=" bg-green-600 px-2 rounded-lg text-white"
                 onClick={handleVerifyOwner}
               >
-                Verify
+                {isLoading ? <CircularProgress size={20} color="white" /> : 'Verify'}
               </button>
               <button
                 className=" bg-gray-300 px-2 rounded-lg text-gray-800"

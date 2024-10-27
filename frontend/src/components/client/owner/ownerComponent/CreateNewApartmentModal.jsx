@@ -3,10 +3,11 @@ import usePost from "../../../../hooks/usePost";
 import useAuth from "../../../../hooks/useAuth";
 import baseURL from '../../../../shared/baseURL';
 import Modal from '@mui/material/Modal';
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const CreateNewApartmentModal = ({open, handleClose}) => {
   const queryClient = useQueryClient();
@@ -14,14 +15,9 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
   const { auth } = useAuth();
   const url = `${baseURL}apartment`;
   const navigate = useNavigate()
-  const [image, setImage] = useState()
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleFileUpload = async (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]); // Ensure the file is selected
-    }
-  };
   const {
     register,
     handleSubmit,
@@ -29,6 +25,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
   } = useForm({ mode: "all" });
 
   const createApartment = async (data) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login')
       return;
@@ -46,6 +43,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
         handleClose();
       }, 3000);
     } catch (err) {
+      setIsLoading(false)
       setError(err.response?.data?.error || err.message)
     }
     console.log(formData)
@@ -54,6 +52,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
   const {mutate} = useMutation(createApartment, {
     
     onSuccess : ()=>{
+      setIsLoading(false)
       queryClient.invalidateQueries('apartments')
       toast.success('New Apartment Created Successfully')
 
@@ -62,9 +61,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
   })
 
   const handleCreateApartment = (data) => {
-  // Pass the image and form data to mutate
-  const apartmentData = { ...data, image }; 
-  mutate(apartmentData);  // Pass both form data and image
+  mutate(data);  
   setTimeout(() => {
     handleClose();
   }, 3000);
@@ -277,7 +274,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add new Aparrtment
+                {isLoading ? <CircularProgress color='white' size={20} /> : 'Create Apartment'}
               </button>
             </form>
             </div>

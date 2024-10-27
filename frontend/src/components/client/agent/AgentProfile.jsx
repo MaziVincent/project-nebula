@@ -42,7 +42,7 @@ const AgentProfile = () => {
   return (
     <div className="max-md:pt-24">
       <ToastContainer />
-      <div className="max-md:pt-10 pl-4">
+      <div className="sm:pt-10 pl-4">
         <Link to="/agent">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -70,11 +70,15 @@ const AgentProfile = () => {
             />
             <h1 className="text-2xl font-bold text-gray-800 mt-3 mb-4">{`${agent.firstname} ${agent.lastname}`}</h1>
           </div>
-          <div className="flex flex-col items-center justify-center mt-3">
-            <h1 className="text-2xl font-bold text-gray-800">Contact Information</h1>
+          <div className="flex flex-col items-start justify-start mt-3 border w-full my-5 px-4 py-2">
+            <h1 className="text-2xl font-bold text-gray-800">Personal Information</h1>
+            <p className="text-gray-600 mb-2"><span>Agency Name: </span>{agent?.agencyName}</p>
             <p className="text-gray-600 mb-2"><span>Email: </span>{agent?.email}</p>
-            <p className="text-gray-600 mb-2">{agent?.phone}</p>
-            <p className="text-gray-600 mb-2">{agent?.contactAddress}</p>
+            <p className="text-gray-600 mb-2"><span>Phone: </span>{agent?.phone}</p>
+            <p className="text-gray-600 mb-2"><span>Location: </span>{agent?.contactAddress}</p>
+            <p className="text-gray-600 mb-2"><span>Office Address: </span>{agent?.officeAddress}</p>
+            <p className="text-gray-600 mb-2"><span>Verification: </span>{agent?.verified ? 'Verified' : 'Not Verified'}</p>
+            <p className="text-gray-600 mb-2"><span>Identity Type: </span>{agent?.identityType}</p>
           </div>
 
           <div>

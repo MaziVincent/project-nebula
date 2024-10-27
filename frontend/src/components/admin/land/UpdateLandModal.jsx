@@ -14,7 +14,6 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   const queryClient = useQueryClient();
   const { auth } = useAuth();
   const navigate = useNavigate();
-  const [image, setImage] = useState();
   const [error, setError] = useState(null);
   const fetch = useFetch();
   const update = useUpdate();
@@ -37,13 +36,9 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
     }
   }, [land, setValue]);
 
-  const handleFileUpload = (e) => {
-    if (e.target.files.length > 0) {
-      setImage(e.target.files[0]);
-    }
-  };
 
   const updateLand = async (data) => {
+    setIsLoading(true);
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -66,6 +61,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
       }, 3000);
       toast.success('Land updated successfully');
     } catch (err) {
+      setIsLoading(false)
       setError(err.response?.data?.error || err.message);
     }
   };
@@ -73,21 +69,15 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   const { mutate } = useMutation(updateLand, {
     onSuccess: () => {
       queryClient.invalidateQueries('lands');
+      setIsLoading(false);
     }
   });
 
   const handleLandUpdate = (data) => {
-    const updatedData = { ...data };
-    mutate(updatedData);
-    setTimeout(() => {
-      handleUpdateClose();
-    }, 3000);
+    mutate(data)
     
   };
 
-  if (isLoading) {
-    return <p>{CircularProgress}</p>;
-  }
   return (
     <Modal
       open={openUpdate}
@@ -98,21 +88,21 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
       {/* <!-- Main modal --> */}
       <div
         id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-3/6   right-1/4 z-50 justify-center items-center w-2/4  h-modal md:h-full"
+        className=" overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
       >
         <ToastContainer />
-        <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
           {/* <!-- Modal content --> */}
-          <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
+          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
             {/* <!-- Modal header --> */}
-            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h3 className="text-lg font-semibold text-gray-900 ">
                 Update Land
               </h3>
               <button
                 type="button"
                 onClick={() => {handleUpdateClose()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -130,14 +120,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            </div>
-            {/* <!-- Modal body --> */}
             <form 
               onSubmit={handleSubmit(handleLandUpdate)} 
               method='post'
               encType='multipart/form-data'
             >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-2 mb-4">
                 <div>
                   <label
                     htmlFor="name"
@@ -288,9 +276,10 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                Update Land
+                {isLoading ? <CircularProgress /> : 'Update Land'}
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>

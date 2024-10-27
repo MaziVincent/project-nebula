@@ -11,16 +11,14 @@ import { CircularProgress, Modal } from '@mui/material'
 import { useParams } from 'react-router-dom'
 
 
-const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
+const UploadLandDocModal = ({landId, openDocUpload, handleDocUploadClose}) => {
     const [error, setError] = useState('')
-    const navigate = useNavigate()
     const queryClient = useQueryClient()
     const { auth } = useAuth()
-    const url = `${baseURL}properties/upload`
-    const {id} = useParams()
+    const url = `${baseURL}land/docupload`
     const [isLoading, setIsLoading] =useState(false)
 
-    // console.log(propertyId)
+    console.log(landId)
     // const propertyId = id
     const { 
       register, 
@@ -39,10 +37,8 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
       
     }
 
-   
-
       try {
-        const response = await axios.put(`${url}/${propertyId}`, formData, {
+        const response = await axios.put(`${url}/${landId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${auth.accessToken}`
@@ -56,16 +52,17 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     }
     const {mutate} = useMutation(uploadImage, {
       onSuccess: () => {
-        queryClient.invalidateQueries('property')
+        queryClient.invalidateQueries('land')
         setTimeout(() => {
           toast.success('Image uploaded successfully')
-          handleUploadClose()
+          handleDocUploadClose()
           setIsLoading(false)
         }, 1000)
         
       },
       onError: (error) => {
         setError(error.response?.data?.error || error.message)
+        setIsLoading(false)
       }
     })
     const onSubmit = (data) => {
@@ -74,8 +71,8 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
     }
   return (
     <Modal
-    open={openUpload}
-    onClose={handleUploadClose}
+    open={openDocUpload}
+    onClose={handleDocUploadClose}
     aria-labelledby="modal-modal-title"
     aria-describedby="modal-modal-description"
     >
@@ -87,11 +84,11 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
           <div className=" relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-10">
             <div className='p-6 space-y-4 md:space-y-6 sm:p-8 overflow-y-scr'>
               <h5 className="pb-2" id="">
-                  Upload Property Image
+                  Upload Land Document
               </h5>
               <button
                 type="button"
-                onClick={() => {handleUploadClose()}}
+                onClick={() => {handleDocUploadClose()}}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
@@ -119,7 +116,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
               >
                   <div className="mb-3">
                       <label htmlFor="image" className="">
-                          Image
+                          Document Image
                       </label>
                       <input
                           type="file"
@@ -141,12 +138,12 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
                           type="button"
                           className=" bg-gray-300 px-6 py-1 rounded-lg"
                           data-bs-dismiss="modal"
-                          onClick={handleUploadClose}
+                          onClick={handleDocUploadClose}
                       >
                           Close
                       </button>
-                      <button type="submit" className="bg-blue-600 px-6 py-1 rounded-lg text-white">
-                          {isLoading ? <CircularProgress color='white' size={20} /> : 'Upload'}
+                      <button type="submit" className="bg-blue-600 px-6 py-1 rounded-lg text-white inline-flex items-center justify-center">
+                          {isLoading ? <CircularProgress color='white' size={24} /> : 'Upload'}
                       </button>
                   </div>
                 </form>
@@ -160,4 +157,4 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
   )
 }
 
-export default UploadPropertyImage
+export default UploadLandDocModal

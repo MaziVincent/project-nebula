@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
   const queryClient = useQueryClient();
@@ -15,6 +16,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
   const url = `${baseURL}house`;
   const navigate = useNavigate()
  const [error, setError] = useState(null);
+ const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
@@ -23,6 +25,8 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
   } = useForm({ mode: "all" });
 
     const createHouse = async (data) => {
+      setIsLoading(true)
+      
       if (!auth || !auth?.accessToken) {
         navigate('/login')
         return;
@@ -46,6 +50,8 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
           handleCloseHouseModal();
         }, 3000);
       } catch (err) {
+        setIsLoading(false)
+        
         setError(err.response?.data?.error || err.message)
       }
       console.log(formData)
@@ -54,6 +60,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
     const {mutate} = useMutation(createHouse, {
       
       onSuccess : ()=>{
+        setIsLoading(false)        
         queryClient.invalidateQueries('houses')
         toast.success('New House Created Successfully')
 
@@ -403,7 +410,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add New House
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Add New House'}
               </button>
             </form>
             </div>

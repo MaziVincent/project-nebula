@@ -17,6 +17,8 @@ const ShopStatusUpdateModal = ({openStatus, handleCloseStatus, shop}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const url = `${baseURL}shop/status`;
+  const [isLoading, setIsLoading] = useState(false)
+
   const { 
     register,
     setValue,
@@ -33,6 +35,7 @@ const ShopStatusUpdateModal = ({openStatus, handleCloseStatus, shop}) => {
   }, [shop, setValue]);
 
   const updateShopStatus = async (status) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -48,12 +51,14 @@ const ShopStatusUpdateModal = ({openStatus, handleCloseStatus, shop}) => {
           handleCloseStatus(); 
         }, 2000);
     } catch (error) {
+      setIsLoading(false)
       toast.error(error.message);
     }
   };
 
   const { mutate } = useMutation(updateShopStatus, {
     onSuccess: () => {
+      setIsLoading(false)
       queryClient.invalidateQueries('shops');
     }
   });
@@ -100,7 +105,7 @@ const ShopStatusUpdateModal = ({openStatus, handleCloseStatus, shop}) => {
           type="submit"
           className="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600"
         >
-          Update Status
+         {isLoading ? <CircularProgress size={20} color='white' /> : ' Update Status'}
         </button>
       </form>
       {/* Update Shop Status */}
