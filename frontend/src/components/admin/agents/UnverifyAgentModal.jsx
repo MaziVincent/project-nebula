@@ -7,6 +7,7 @@ import useAuth from '../../../hooks/useAuth';
 import useUpdate from '../../../hooks/useUpdate';
 import CircularProgress from '@mui/material/CircularProgress';
 import baseURL from '../../../shared/baseURL';
+import { useState } from 'react';
 
 const UnverifyAgentModal = ({ openUnverify, handleUnverifyClose, agentId }) => {
   const { auth } = useAuth();

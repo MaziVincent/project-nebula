@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import React from 'react';
 import useFetch from '../../../hooks/useFetch';
 import useAuth from '../../../hooks/useAuth';
 import {ToastContainer, toast } from 'react-toastify';
