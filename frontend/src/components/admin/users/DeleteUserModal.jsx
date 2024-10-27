@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Modal } from "@mui/material";
 import {CircularProgress} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const DeleteUserModal = ({ openDelete, handleDeleteClose, userId, url}) => {
   const { auth } = useAuth();
