@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from "react";
 import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
+import logo from "../../assets/images/megalogo.png"
 import DRELBX2 from "../../assets/images/demo-real-estate-logo-black@2x.png";
 import Condomium from "../../assets/images/demo-real-estate-icon-condominium.svg";
 import Apartment from "../../assets/images/demo-real-estate-icon-apartment.svg";
@@ -48,9 +49,10 @@ const Header = () => {
       <header className=" px-14 max-lg:px-10">
         <nav className=" py-3">
           <div className="flex items-center justify-between">
-            <div className=" max-sm:w-52">
-              <Link to='/' className="">
-                <img src={DRELB} alt="" />
+            <div className=" max-sm:w-52 ">
+              <Link to='/' className=" flex justify-center items-center">
+                <img src={logo} alt="" />
+                <span className="font-bold text-2xl"> MegaTech RealEstate</span>
               </Link>
             </div>
             <div className=" h-5 border-r border-gray-400 max-lg:hidden">
@@ -114,7 +116,7 @@ const Header = () => {
                       <i className="feather icon-feather-phone-outgoing"></i>
                     </span>
                     <span className="d-none d-xxl-inline-block">
-                      +234916-140-3450
+                      +2347046047536
                     </span>
                   </a>
                 </div>

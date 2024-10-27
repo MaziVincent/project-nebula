@@ -1,5 +1,6 @@
 import React from "react";
 import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
+import logo from "../../assets/images/megalogo.png"
 import FooterImg from "../../assets/images/photos/footerimg.jpg";
 import { Link } from "react-router-dom";
 
@@ -88,16 +89,22 @@ const Footer = () => {
           </div>
           <div className="row justify-content-center mt-5 mb-4 sm-mb-35px">
             <div className="col-lg-3 last-paragraph-no-margin md-mb-35px text-center text-lg-start">
-              <a
-                href="demo-real-estate.html"
+              <Link
+                to="/"
                 className="footer-logo mb-10px d-inline-block"
               >
+                <div className="flex justify-center items-center">
                 <img
-                  src={DRELB}
+                  src={logo}
                   data-at2x="images/demo-real-estate-logo-black@2x.png"
                   alt=""
                 />
-              </a>
+                <span className="text-xl font-bold">
+                  MegaTech RealEstate
+                </span>
+                </div>
+                
+              </Link>
               <p className="w-85 lg-w-100">Your trusted property provider.</p>
               <div className="elements-social social-icon-style-02 mt-15px">
                 <ul className="small-icon dark">
@@ -179,14 +186,14 @@ const Footer = () => {
                 href="mailto:info@domain.com"
                 className="text-dark-gray text-decoration-line-bottom lh-22 d-inline-block mb-20px"
               >
-                info@domain.com
+                info@megatechrealestate.ng
               </a>
               <span className="d-block lh-normal">Customer care</span>
               <a
                 href="tel:12345678910"
                 className="text-dark-gray text-decoration-line-bottom lh-22 d-inline-block"
               >
-                +1 234 567 8910
+                07046047536
               </a>
             </div>
           </div>
