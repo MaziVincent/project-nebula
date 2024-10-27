@@ -4,6 +4,7 @@ import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { Modal } from "@mui/material";
 import {CircularProgress} from "@mui/material";
+import { useState } from "react";
 
 const DeletePropertyModal = ({ openDelete, handleDeleteClose, propertyId, url}) => {
   const { auth } = useAuth();
