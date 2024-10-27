@@ -212,7 +212,6 @@ const Blog = () => {
                 </div> 
             </div>
         </section>
-        {/* end section */}
     </div>
   )
 }
