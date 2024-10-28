@@ -46,20 +46,20 @@ const Header = () => {
   const isSmallScreen = window.innerWidth <= 1024;
   return (
     <div className="fixed z-50 w-full bg-white top-0">
-      <header className=" px-14 max-lg:px-10">
+      <header className="md:px-14 max-lg:px-10">
         <nav className=" py-3">
           <div className="flex items-center justify-between">
-            <div className=" max-sm:w-52 ">
+            <div className=" max-sm:w-4/5">
               <Link to='/' className=" flex justify-center items-center">
-                <img src={logo} alt="" />
-                <span className="font-bold text-2xl"> MegaTech RealEstate</span>
+                <img src={logo} alt="" className="" />
+                <span className="font-bold md:text-2xl sm:text-lg"> MegaTech RealEstate</span>
               </Link>
             </div>
             <div className=" h-5 border-r border-gray-400 max-lg:hidden">
 
             </div>
             <div 
-              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden'} gap-10 lg:gap-5 transition-all duration-500 ease-in-out transform opacity-100`}>
+              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute max-sm:top-28 md:top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden'} gap-10 lg:gap-5 transition-all duration-500 ease-in-out transform opacity-100`}>
               <Link
                 to='/'
                 onClick={handleShowNav}
