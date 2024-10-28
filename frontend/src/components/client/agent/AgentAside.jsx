@@ -56,49 +56,29 @@ const AgentAside = ({aside, setAside}) => {
               <span className="ml-3">Profile</span>
             </Link>
           </li>
-          <li>
-            <Link
-              to=""
-              className={`flex items-center border-l-4 border-green-50 hover:border-green-600 p-2 text-base font-medium text-gray-900 rounded-r-lg  hover:bg-gray-100 ${location.pathname === '/admin/properties' ? 'border-green-600 text-green-600' : ''} group`}
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className={`w-7 h-7 ml-2 text-gray-500 transition duration-75 group-hover:text-green-900 ${location.pathname === '/' ? 'text-green-900' : ''}`}
-                viewBox="0 -960 960 960"
-                fill="currentColor">
-                <path d="M320-520q17 0 28.5-11.5T360-560q0-17-11.5-28.5T320-600q-17 0-28.5 11.5T280-560q0 17 11.5 28.5T320-520Zm160 0q17 0 28.5-11.5T520-560q0-17-11.5-28.5T480-600q-17 0-28.5 11.5T440-560q0 17 11.5 28.5T480-520Zm160 0q17 0 28.5-11.5T680-560q0-17-11.5-28.5T640-600q-17 0-28.5 11.5T600-560q0 17 11.5 28.5T640-520ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"
-                />
-              </svg>
-              <span className="ml-3">Mesages</span>
-            </Link>
-          </li>
         </ul>
         <ul className="pt-5 mt-5 pl-0 pr-4 space-y-4 border-t border-green-100">
           <li>
-            <button
-              onClick={handleOpenLogoutModal}
-              to="#"
-              className="flex items-center border-l-4 w-full border-green-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                aria-hidden="true"
-                className="flex-shrink-0 w-6 h-7 ml-2 text-red-500 transition duration-75 group-hover:text-red-700"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                >
-                  <path d="M0,0h24v24H0V0z" 
-                  fill="none"/>
-                  <path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/>
-              </svg>
-              <span className="ml-3">Logout</span>
-            </button>
           </li>
         </ul>
       </div>
-      <div className=" text-xs p-5 text-gray-800">
-        &copy;2024 Real Estate Management System
-      </div>
+      <button
+        onClick={handleOpenLogoutModal}
+        className="flex items-center border-l-4 w-full border-green-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group"
+      >
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          aria-hidden="true"
+          className="flex-shrink-0 w-6 h-7 ml-2 text-red-500 transition duration-75 group-hover:text-red-700"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          >
+            <path d="M0,0h24v24H0V0z" 
+            fill="none"/>
+            <path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/>
+        </svg>
+        <span className="ml-3">Logout</span>
+      </button>
       <LogoutModal
         open={openLogoutModal}
         handleClose={handleCloseLogoutModal}

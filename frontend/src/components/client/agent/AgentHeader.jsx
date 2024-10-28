@@ -109,9 +109,9 @@ const AgentHeader = ({ setAside }) => {
         </div> */}
           <div className=" h-14 w-14 rounded-full self-end relative">
             <img src={auth?.user?.profile ? auth.user.profile : Profile} alt="" className="w-full h-full rounded-full relative" />
-            <span className=" w-2 h-2 rounded-full bg-green-600 block absolute top-9 right-0"></span>
+            <span className=" w-3.5 h-3.5 rounded-full bg-green-600 border-2 border-white block absolute top-9 right-0"></span>
           </div>
-          <div>
+          {/* <div>
             <span>
               <svg 
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,7 @@ const AgentHeader = ({ setAside }) => {
                 <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
               </svg>
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>
