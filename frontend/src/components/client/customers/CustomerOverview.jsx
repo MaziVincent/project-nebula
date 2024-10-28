@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import PropertyDetails from "./PropertyDetails";
 import { useState } from "react";
 import { Modal } from "@mui/material";
+import PageSkeleton from "../../Home/skeletons/PageSkeleton";
+import { div } from "framer-motion/m";
 
 const CustomerOverview = () => {
   const {auth} = useAuth();
@@ -52,7 +54,7 @@ const CustomerOverview = () => {
       {/* Greeting Section */}
 
       {/* Subheading before Search */}
-      <h2 className="text-2xl font-bold mb-4">Find Your Best Property 🏠🌆</h2>
+      <h2 className="text-2xl font-bold mb-4 pt-5">Find Your Best Property 🏠🌆</h2>
 
       {/* Search Section */}
       <div className="flex items-center space-x-4 gap-2 mb-5 max-sm:flex-col">
@@ -96,50 +98,53 @@ const CustomerOverview = () => {
       </div>
 
       {/* Property Listings */}
-      <div className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
-      { Array.isArray(data) && data?.length > 0 ?(
-        data.map((props) => (
-        <div key={props._id} className="bg-white p-5 rounded-lg shadow-md">
-          <img
-            src={props.imageUrls[0]}
-            alt="House 2"
-            className="w-full h-40 object-cover rounded-lg mb-3"
-          />
-          <h4 className="text-gray-500 text-base uppercase font-semibold mb-2">{props.title}</h4>
-          <h3 className="text-xl font-bold mb-3">${props.price}</h3>
-            <span className=" flex justify-between mb-3">
-              <span className=" flex flex-col leading-5 items-center">
-                {props.bedrooms}
-                <span>{props?.bedrooms ? 'Bedrooms' : '' }</span>
+      {isLoading && <div><PageSkeleton /></div> }
+      {isSuccess && (
+        <div className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
+        { data?.length > 0 ?(
+          data?.map((props) => (
+          <div key={props._id} className="bg-white p-5 rounded-lg shadow-md">
+            <img
+              src={props.imageUrls[0]}
+              alt="House 2"
+              className="w-full h-40 object-cover rounded-lg mb-3"
+            />
+            <h4 className="text-gray-500 text-base uppercase font-semibold mb-2">{props.title}</h4>
+            <h3 className="text-xl font-bold mb-3">${props.price}</h3>
+              <span className=" flex justify-between mb-3">
+                <span className=" flex flex-col leading-5 items-center">
+                  {props.bedrooms}
+                  <span>{props?.bedrooms ? 'Bedrooms' : '' }</span>
+                </span>
+                <span className=" flex flex-col leading-5 items-center">
+                  {props.bathrooms}
+                  <span>{props?.bathrooms ? 'Bathrooms' : '' }</span>
+                </span>
               </span>
-              <span className=" flex flex-col leading-5 items-center">
-                {props.bathrooms}
-                <span>{props?.bathrooms ? 'Bathrooms' : '' }</span>
+            <p className="text-gray-600 inline-flex items-center gap-1">
+              <span>
+                <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-6 h-6 text-green-600"
+                viewBox="0 -960 960 960"
+                fill="currentColor">
+                <path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"
+                />
+                </svg>
               </span>
-            </span>
-          <p className="text-gray-600 inline-flex items-center gap-1">
+              {props.location}</p>
+            <button onClick={() => handleProperty(props)} className="mt-4 w-full bg-emerald-500 text-white px-4 py-1 rounded-lg">View</button>
+          </div>
+         ))
+        ): (
+          <div>
             <span>
-              <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="w-6 h-6 text-green-600"
-              viewBox="0 -960 960 960"
-              fill="currentColor">
-              <path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"
-              />
-              </svg>
+              No data available
             </span>
-            {props.location}</p>
-          <button onClick={() => handleProperty(props)} className="mt-4 w-full bg-emerald-500 text-white px-4 py-1 rounded-lg">View</button>
-        </div>
-       ))
-      ): (
-        <div>
-          <span>
-            No data available
-          </span>
-        </div>
+          </div>
+        )}
+      </div>
       )}
-    </div>
     </div>
       
     {selectedProperty && ( 

@@ -41,7 +41,7 @@ const UpdateProfileModal = ({openUpdate, handleUpdateClose, customer}) => {
   const updateCustomer = async (data) => {
     setIsLoading(true)
     if (!auth || !auth?.accessToken) {
-      navigate('/login');
+      navigate('/');
       return;
     }
     const formData = new FormData();
@@ -137,6 +137,7 @@ const UpdateProfileModal = ({openUpdate, handleUpdateClose, customer}) => {
                     {...register("firstname", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Type First name"
+                    disabled
 
                   />
                 </div>
@@ -154,6 +155,7 @@ const UpdateProfileModal = ({openUpdate, handleUpdateClose, customer}) => {
                     {...register("lastname", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Lastname here"
+                    disabled
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -189,44 +191,12 @@ const UpdateProfileModal = ({openUpdate, handleUpdateClose, customer}) => {
                     placeholder="Enter Phone Number"
                   />
                 </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Password:
-                  </label>
-                  <input
-                    id="password"
-                    name='password'
-                    type='password'
-                    {...register("password", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="********"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="wishlist"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Wishlist:
-                  </label>
-                  <input
-                    id="wishlist"
-                    name='wishlist'
-                    type='text'
-                    {...register("wishlist", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter wishlist here"
-                  />
-                </div>
               </div>
               <button
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                {isLoading ? <CircularProgress /> : 'Update Profile'}
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Update Profile'}
               </button>
             </form>
             </div>

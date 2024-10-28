@@ -55,7 +55,6 @@ const updateCustomer = async (id, data) => {
             const hashedPassword = await bcrypt.hash(data.password, 10);
                 customer.password = hashedPassword;
         }
-
         const result = await customer.save();
         return result;
     } catch (e) {

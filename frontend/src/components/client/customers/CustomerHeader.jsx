@@ -129,12 +129,12 @@ const CustomerHeader = ({ setAside }) => {
           </div>
         </div>
 
-        <div className="flex bg-gray-100 gap-1 rounded-3xl border">
-          <Link className="rounded-l-xl pl-1 py-1">
-            <span className=" bg-white px-2 py-1 rounded-l-3xl">Buy</span>
+        <div className="flex bg-gray-200 rounded-3xl border-[1px] border-gray-100">
+          <Link to='/dashboard/sell' className="rounded-l-xl pl-1 py-1  text-gray-800 hover:text-gray-600">
+            <span className={` ${location.pathname === '/dashboard/sell' ? 'bg-gray-100 text-gray-700' : ''} px-2 py-1 rounded-l-3xl border-r border-gray-100`}>Buy</span>
           </Link>
-          <Link className=" rounded-r-xl pr-1 py-1">
-            <span className=" bg-white px-2 py-1 rounded-r-3xl">Rent</span>
+          <Link to='/dashboard/rentals' className=" rounded-r-xl pr-1 py-1 text-gray-800 hover:text-gray-600">
+            <span className={` ${location.pathname === '/dashboard/rentals' ? 'bg-gray-50 text-gray-700' : ''} px-2 py-1 rounded-r-3xl`}>Rent</span>
           </Link>
         </div>
         {/* <div className="flex items-center lg:order-2">
@@ -161,34 +161,13 @@ const CustomerHeader = ({ setAside }) => {
           </button>
         </div> */}
         <div className="flex justify-between items-center gap-2">
-        <div className=" mr-8 max-md:hidden">
-          <Link>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-8 w-8 text-red-500"
-              viewBox="0 -960 960 960" 
-              fill="currentColor"
-            >
-              <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
-              />
-            </svg>
-          </Link>
-        </div>
           <div className=" h-14 w-14 rounded-full self-end relative">
-            <img src={auth?.user?.profile ? auth.user.profile : Profile} alt="" className="w-full h-full rounded-full relative" />
-            <span className=" w-2 h-2 rounded-full bg-green-600 block absolute top-9 right-0"></span>
+            <Link to={`/dashboard/profile/${auth?.user?._id}`}>
+              <img src={auth?.user?.profile ? auth.user.profile : Profile} alt="" className="w-full h-full rounded-full relative" />
+            </Link>
+            <span className=" w-3.5 h-3.5 rounded-full border-2 border-white bg-green-600 block absolute top-9 right-0"></span>
           </div>
-          <div>
-            <span>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-500"
-                viewBox="0 -960 960 960"
-                fill="currentColor">
-                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
-              </svg>
-            </span>
-          </div>
+          {/*  */}
         </div>
       </div>
     </nav>

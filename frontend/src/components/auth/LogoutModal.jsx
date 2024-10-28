@@ -35,11 +35,11 @@ const LogoutModal = ({ open, handleClose }) => {
               NO
             </button>
             <button
-            className=' bg-red-500 text-white px-2 rounded-lg shadow-md shadow-red-300'
+            className=' bg-red-500 text-white px-2 rounded-lg shadow-md shadow-red-300 inline-flex items-center justify-center'
               onClick={handleLogout}
               disabled={isLoggingOut}
             >
-              {isLoggingOut ? <CircularProgress size={24} /> : 'YES'}
+              {isLoggingOut ? <CircularProgress size={20} color='white' /> : 'YES'}
             </button>
           </div>
         </div>
