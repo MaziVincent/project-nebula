@@ -16,6 +16,7 @@ import baseURL from '../../shared/baseURL'
 import { useQuery } from 'react-query'
 import { Pagination } from '@mui/material'
 import PageSkeleton from './skeletons/PageSkeleton'
+import Marquee from 'react-fast-marquee'
 
 const Rent = () => {
     const url = `${baseURL}properties`;
@@ -323,46 +324,48 @@ const Rent = () => {
                 <div className="row position-relative clients-style-08">
                     <div className="col swiper text-center feather-shadow mb-3" data-slider-options='{ "slidesPerView": 2, "spaceBetween":0, "speed": 4000, "loop": true, "pagination": { "el": ".slider-four-slide-pagination-2", "clickable": false }, "allowTouchMove": false, "autoplay": { "delay":0, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-four-slide-next-2", "prevEl": ".slider-four-slide-prev-2" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
                         <div className="swiper-wrapper marquee-slide">
-                            {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <Marquee className='swiper-wrapper marquee-slide'>
+                                {/*  start client item  */}
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={remax} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={zillow} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={realtor} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={redfin} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={trulia} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={remax} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={zillow} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
                             {/*  start client item  */}
-                            <div className="swiper-slide">
+                            <div className="swiper-slide mr-4">
                                 <a href="#"><img src={realtor} alt="" className="h-35px xs-h-30px" /></a>
                             </div>
                             {/*  end client item  */}
+                            </Marquee>
                         </div> 
                     </div>  
                 </div>

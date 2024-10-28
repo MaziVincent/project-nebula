@@ -191,7 +191,6 @@ const Header = () => {
           handleCloseLogin={dispatch}
         />
       </header>
-      {/* <SignUp open={openModal} handleClose={handleClose} /> */}
     </div>
   );
 };
