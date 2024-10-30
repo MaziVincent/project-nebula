@@ -178,6 +178,17 @@ const getPropertiesByType = async (data) => {
   }
 };
 
+const handleFeaturedProperty =  async (data) => {
+
+  const property = await Property.findById(data._id).exec();
+  if (!property) return { error: "Property not found" };
+
+  property.isFeaturedProperty = data.featured
+  await property.save();
+  return { message: "Property made Featured successfully" };
+
+}
+
 // const getPropertyByType = async (propertyType) => {
 //     try {
 //         const properties = await Property.find({ propertyType: propertyType }).populate('owner').exec();
@@ -197,5 +208,6 @@ module.exports = {
   propertyStatus,
   uploadPropertyImage,
   getPropertiesByType,
+  handleFeaturedProperty
   //getPropertyByType
 };

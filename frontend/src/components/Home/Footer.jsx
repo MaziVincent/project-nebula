@@ -1,6 +1,6 @@
 import React from "react";
 import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
-import logo from "../../assets/images/megalogo.png"
+import logo3 from "../../assets/images/megalogo3.svg"
 import FooterImg from "../../assets/images/photos/footerimg.jpg";
 import { Link } from "react-router-dom";
 
@@ -95,13 +95,11 @@ const Footer = () => {
               >
                 <div className="flex justify-center items-center">
                 <img
-                  src={logo}
+                  src={logo3}
                   data-at2x="images/demo-real-estate-logo-black@2x.png"
                   alt=""
                 />
-                <span className="text-xl font-bold">
-                  MegaTech RealEstate
-                </span>
+               
                 </div>
                 
               </Link>

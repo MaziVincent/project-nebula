@@ -1,6 +1,8 @@
 import React, { useState, useReducer } from "react";
 import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
-import logo from "../../assets/images/megalogo.png"
+import logo from "../../assets/images/megalogo.svg"
+import logo2 from "../../assets/images/megalogo2.svg"
+import logo3 from "../../assets/images/megalogo3.svg"
 import DRELBX2 from "../../assets/images/demo-real-estate-logo-black@2x.png";
 import Condomium from "../../assets/images/demo-real-estate-icon-condominium.svg";
 import Apartment from "../../assets/images/demo-real-estate-icon-apartment.svg";
@@ -47,12 +49,11 @@ const Header = () => {
   return (
     <div className="fixed z-50 w-full bg-white top-0">
       <header className=" px-14 max-lg:px-10">
-        <nav className=" py-3">
+        <nav className="py-3">
           <div className="flex items-center justify-between">
-            <div className=" max-sm:w-52 ">
+            <div className=" w-52 lg:w-72 p-1 ">
               <Link to='/' className=" flex justify-center items-center">
-                <img src={logo} alt="" />
-                <span className="font-bold text-2xl"> MegaTech RealEstate</span>
+                <img src={logo3} alt="" className=" w-full z-20 " />
               </Link>
             </div>
             <div className=" h-5 border-r border-gray-400 max-lg:hidden">

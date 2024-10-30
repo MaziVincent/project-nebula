@@ -192,7 +192,7 @@ const Page = () => {
                                     </div>
                                     <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
                                         <span className="fw-500 mb-5px d-block alt-font">For sell price</span>
-                                        <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px"> &#8358; 30,99,000</h4>
+                                        <h4 className="text-gray-900 text-3xl font-bold"> &#8358; 30,99,000</h4>
                                     </div>
                                 </div>
                             </motion.div> 

@@ -37,6 +37,10 @@ const PropertySchema = new Schema({
   propertyType: {
     type: String,
     required: true
+  },
+  isFeaturedProperty:{
+    type: Boolean,
+    default: false
   }
 
 },{timestamps: true, ...options});
