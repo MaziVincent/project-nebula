@@ -51,7 +51,7 @@ const Header = () => {
       <header className="md:px-14 max-lg:px-10">
         <nav className="py-3">
           <div className="flex items-center justify-between">
-            <div className=" w-4/5lg:w-72 p-1 ">
+            <div className=" w-52 lg:w-80 p-1 ">
               <Link to='/' className=" flex justify-center items-center">
                 <img src={logo3} alt="" className=" w-full z-20 " />
               </Link>
