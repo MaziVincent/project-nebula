@@ -1,6 +1,6 @@
 import React from "react";
 import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
-import logo3 from "../../assets/images/megalogo3.svg"
+import logo3 from "../../assets/images/megalogo4.svg"
 import FooterImg from "../../assets/images/photos/footerimg.jpg";
 import { Link } from "react-router-dom";
 

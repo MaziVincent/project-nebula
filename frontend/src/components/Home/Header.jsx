@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
-import logo from "../../assets/images/megalogo.svg"
+import logo4 from "../../assets/images/megalogo4.svg"
 import logo2 from "../../assets/images/megalogo2.svg"
 import logo3 from "../../assets/images/megalogo3.svg"
 import DRELBX2 from "../../assets/images/demo-real-estate-logo-black@2x.png";
@@ -51,9 +51,9 @@ const Header = () => {
       <header className="md:px-14 max-lg:px-10">
         <nav className="py-3">
           <div className="flex items-center justify-between">
-            <div className=" w-52 lg:w-80 p-1 ">
+            <div className=" w-60 lg:w-80 p-1 ">
               <Link to='/' className=" flex justify-center items-center">
-                <img src={logo3} alt="" className=" w-full z-20 " />
+                <img src={logo4} alt="" className=" w-full z-20 " />
               </Link>
             </div>
             <div className=" h-5 border-r border-gray-400 max-lg:hidden">
