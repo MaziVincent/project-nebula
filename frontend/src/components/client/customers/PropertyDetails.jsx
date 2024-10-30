@@ -78,11 +78,11 @@ const PropertyDetails = ({property, closeModal}) => {
         </p>
         <span className=" flex justify-between mb-3">
           <span className=" flex flex-col leading-5 items-center">
-            {property.bedrooms}
+            {property?.bedrooms ? property.bedrooms.toString().padStart(2, '0') : '00'}
             <span>{property?.bedrooms ? 'Bedrooms' : '' }</span>
           </span>
           <span className=" flex flex-col leading-5 items-center">
-            {property.bathrooms}
+            {property?.bathrooms ? property.bathrooms.toString().padStart(2, '0') : '00'}
             <span>{property?.bathrooms ? 'Bathrooms' : '' }</span>
           </span>
         </span>

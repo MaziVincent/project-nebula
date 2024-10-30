@@ -88,7 +88,7 @@ const AdminHouses = () => {
         </button> */}
         <span className=' text-2xl text-gray-500'>Total House</span>
         <span className='block w-[100px] bg-cyan-600 min-w-max py-1 px-2 rounded-xl text-white text-2xl font-bold text-center'>
-          {data?.houses.length ? data.houses.length: 0 }
+          {data?.houses.length ? data.houses.length.toString().padStart(2, '0') : '00'}
         </span>
       </div>
       <div className=" border-dashed border rounded-md border-red-900 h-auto">

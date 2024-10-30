@@ -50,6 +50,8 @@ import OwnerProfile from './components/client/owner/OwnerProfile';
 import PropertyDtls from './components/Home/PropertyDtls';
 import RequireAuthAdmin from './components/auth/RequireAuthAdmin';
 import AllProperties from './components/Home/AllProperties';
+import PropertyForRent from './components/client/customers/PropertyForRent';
+import PropertyForSell from './components/client/customers/PropertyForSell';
 
 function App() {
   const queryClient = new QueryClient();
@@ -70,7 +72,7 @@ function App() {
               <Route path='/property_details/:id' element={<PropertyDtls />} />
             </Route>
 
-            //login route
+            {/* login route */}
               <Route path='/login' element={<Login />} />
               
             {/*  admin route */}
@@ -121,6 +123,8 @@ function App() {
                   <Route index element={<CustomerOverview />} />
                   <Route path='/dashboard/profile/:id' element={<Profile />} />
                   <Route path='/dashboard/properties' element={<AllProperty />} />
+                  <Route path='/dashboard/rentals' element={<PropertyForRent />} />
+                  <Route path='/dashboard/sell' element={<PropertyForSell />} />
                 </Route>
               </Route>
             </Route>

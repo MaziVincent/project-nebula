@@ -1,9 +1,6 @@
 import useAuth from "../../../hooks/useAuth";
-import { useQuery } from "react-query";
-import { blue, brown, green, grey, purple, yellow } from "@mui/material/colors";
+import { useQuery } from "react-query"
 import baseUrl from "../../../shared/baseURL";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import PropertyDetails from "./PropertyDetails";
@@ -11,7 +8,7 @@ import { useState } from "react";
 import { Modal, Pagination } from "@mui/material";
 import PageSkeleton from "../../Home/skeletons/PageSkeleton";
 
-const AllProperty = () => {
+const PropertyForSell = () => {
   const {auth} = useAuth();
   const fetch = useFetch();
   const url = `${baseUrl}properties`
@@ -32,7 +29,7 @@ const AllProperty = () => {
     setOpenModal(false); // Close modal
   };
   const getProperties = async () => {
-    const result = await fetch(`${url}?page=${page}&limit=6`, auth.accessToken);
+    const result = await fetch(`${url}/type?page=${page}&limit=6&type=Sell`, auth.accessToken);
     console.log(result);
     return result.data;
   };
@@ -47,7 +44,6 @@ const AllProperty = () => {
   );
 
   const isSmallScreen = window.innerWidth <= 1024;
-
   return (
     <div className="flex overflow-y-auto max-md:pt-10">
     {/* Main Content */}
@@ -55,7 +51,7 @@ const AllProperty = () => {
       {/* Greeting Section */}
 
       {/* Subheading before Search */}
-      <h2 className="text-2xl font-bold mb-4 pt-5">Find Your Best Property 🏠🌆</h2>
+      <h2 className="text-2xl font-bold mb-4 pt-5">Find Your Best Property For Sell 🏠🌆</h2>
 
       {/* Search Section */}
       <div className="flex items-center space-x-4 gap-2 mb-5 max-sm:flex-col">
@@ -111,14 +107,14 @@ const AllProperty = () => {
               className="w-full h-40 object-cover rounded-lg mb-3"
             />
             <h4 className="text-gray-500 text-base uppercase font-semibold mb-2">{props.title}</h4>
-            <h3 className="text-xl font-bold mb-3">&#8358;{props.price}</h3>
+            <h3 className="text-xl font-bold mb-3">${props.price}</h3>
               <span className=" flex justify-between mb-3">
                 <span className=" flex flex-col leading-5 items-center">
-                  {props?.bedrooms ? props.bedrooms.toString().padStart(2, '0') : '00'}
+                  {props.bedrooms}
                   <span>{props?.bedrooms ? 'Bedrooms' : '' }</span>
                 </span>
                 <span className=" flex flex-col leading-5 items-center">
-                  {props?.bathrooms ? props.bathrooms.toString().padStart(2, '0') : '00'}
+                  {props.bathrooms}
                   <span>{props?.bathrooms ? 'Bathrooms' : '' }</span>
                 </span>
               </span>
@@ -179,4 +175,4 @@ const AllProperty = () => {
   )
 }
 
-export default AllProperty
+export default PropertyForSell

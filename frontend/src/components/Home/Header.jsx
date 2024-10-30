@@ -48,10 +48,10 @@ const Header = () => {
   const isSmallScreen = window.innerWidth <= 1024;
   return (
     <div className="fixed z-50 w-full bg-white top-0">
-      <header className=" px-14 max-lg:px-10">
+      <header className="md:px-14 max-lg:px-10">
         <nav className="py-3">
           <div className="flex items-center justify-between">
-            <div className=" w-52 lg:w-72 p-1 ">
+            <div className=" w-4/5lg:w-72 p-1 ">
               <Link to='/' className=" flex justify-center items-center">
                 <img src={logo3} alt="" className=" w-full z-20 " />
               </Link>
@@ -60,7 +60,7 @@ const Header = () => {
 
             </div>
             <div 
-              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden'} gap-10 lg:gap-5 transition-all duration-500 ease-in-out transform opacity-100`}>
+              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute max-sm:top-28 md:top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden'} gap-10 lg:gap-5 transition-all duration-500 ease-in-out transform opacity-100`}>
               <Link
                 to='/'
                 onClick={handleShowNav}
@@ -192,7 +192,6 @@ const Header = () => {
           handleCloseLogin={dispatch}
         />
       </header>
-      {/* <SignUp open={openModal} handleClose={handleClose} /> */}
     </div>
   );
 };

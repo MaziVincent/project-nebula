@@ -13,7 +13,7 @@ const CustomerAside = ({ aside, setAside }) => {
   console.log(auth)
   return (
     <aside
-      className={`fixed top-0 left-0 z-40 w-36 h-screen pb-3 pt-5 transition-transform  bg-white border-r border-gray-100 max-sm:w-96 md:translate-x-0 ${
+      className={`fixed top-0 left-0 z-40 w-36 h-dvh pb-3 pt-5 transition-transform  bg-white border-r border-gray-100 max-sm:w-96 md:translate-x-0 ${
         aside ? "translate-x-0" : "-translate-x-full"
       }`}
       aria-label="Sidenav"
@@ -73,7 +73,7 @@ const CustomerAside = ({ aside, setAside }) => {
               </span>
             </Link>
             </li>
-          <li className="">
+          {/* <li className="">
             <Link className={`flex items-center border-l-4 border-gray-50 hover:border-green-500 p-2 text-base font-medium text-gray-900 rounded-r-lg  hover:bg-gray-100 ${location.pathname === '/admin/lands' ? 'border-green-500 text-green-500' : ''} hover:text-green-500 group`}>
               <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -87,8 +87,8 @@ const CustomerAside = ({ aside, setAside }) => {
                 My order
               </span>
             </Link>
-          </li>
-          <li className="">
+          </li> */}
+          {/* <li className="">
             <Link className={`flex items-center border-l-4 border-gray-50 hover:border-green-500 p-2 text-base font-medium text-gray-900 rounded-r-lg  hover:bg-gray-100 ${location.pathname === '/' ? 'border-green-500 text-green-500' : ''} hover:text-green-500 group`}>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -102,7 +102,7 @@ const CustomerAside = ({ aside, setAside }) => {
                 Message
               </span>
             </Link>
-          </li>
+          </li> */}
         </ul>
         <ul className="pt-5 mt-5 pl-0 pr-4 space-y-4 border-t border-gray-200">
           <li className="">
@@ -122,31 +122,31 @@ const CustomerAside = ({ aside, setAside }) => {
             </span>
             </Link>
           </li>
-          <li>
-            <button
-              onClick={handleOpenLogoutModal}
-              to="#"
-              className="flex items-center border-l-4 w-full border-gray-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                aria-hidden="true"
-                className="flex-shrink-0 w-6 h-7 ml-2 text-red-500 transition duration-75 group-hover:text-red-700"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                >
-                  <path d="M0,0h24v24H0V0z" 
-                  fill="none"/>
-                  <path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/>
-              </svg>
-              <span className="ml-3">Logout</span>
-            </button>
+          <li className="">
           </li>
         </ul>
       </div>
-      <div className=" text-xs p-5 text-gray-800">
+      <button
+        onClick={handleOpenLogoutModal}
+        to="#"
+        className="flex items-center border-l-4 w-full border-gray-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group"
+      >
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          aria-hidden="true"
+          className="flex-shrink-0 w-6 h-7 ml-2 text-red-500 transition duration-75 group-hover:text-red-700"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          >
+            <path d="M0,0h24v24H0V0z" 
+            fill="none"/>
+            <path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/>
+        </svg>
+        <span className="ml-3">Logout</span>
+      </button>
+      {/* <div className=" text-xs p-5 text-gray-800">
         &copy;2024 Real Estate Management System
-      </div>
+      </div> */}
       <LogoutModal
         open={openLogoutModal}
         handleClose={handleCloseLogoutModal}
