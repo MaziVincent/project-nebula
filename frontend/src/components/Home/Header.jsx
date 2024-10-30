@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
-import logo4 from "../../assets/images/megalogo4.svg"
+import logo5 from "../../assets/images/megalogo5.svg"
 import logo2 from "../../assets/images/megalogo2.svg"
 import logo3 from "../../assets/images/megalogo3.svg"
 import DRELBX2 from "../../assets/images/demo-real-estate-logo-black@2x.png";
@@ -53,7 +53,7 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <div className=" w-[30rem] p-1 ">
               <Link to='/' className=" flex justify-center items-center">
-                <img src={logo4} alt="" className=" w-full z-20 " />
+                <img src={logo5} alt="" className=" w-full z-20 " />
               </Link>
             </div>
             <div className=" h-5 border-r border-gray-400 max-lg:hidden">
