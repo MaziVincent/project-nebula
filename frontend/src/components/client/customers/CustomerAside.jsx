@@ -125,25 +125,24 @@ const CustomerAside = ({ aside, setAside }) => {
           <li className="">
           </li>
         </ul>
+        <button
+          onClick={handleOpenLogoutModal}
+          className="flex items-center border-l-4 w-full border-gray-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group mt-20"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            aria-hidden="true"
+            className="flex-shrink-0 w-6 h-7 ml-2 text-red-500 transition duration-75 group-hover:text-red-700"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            >
+              <path d="M0,0h24v24H0V0z" 
+              fill="none"/>
+              <path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/>
+          </svg>
+          <span className="ml-3">Logout</span>
+        </button>
       </div>
-      <button
-        onClick={handleOpenLogoutModal}
-        to="#"
-        className="flex items-center border-l-4 w-full border-gray-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group"
-      >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          aria-hidden="true"
-          className="flex-shrink-0 w-6 h-7 ml-2 text-red-500 transition duration-75 group-hover:text-red-700"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          >
-            <path d="M0,0h24v24H0V0z" 
-            fill="none"/>
-            <path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/>
-        </svg>
-        <span className="ml-3">Logout</span>
-      </button>
       {/* <div className=" text-xs p-5 text-gray-800">
         &copy;2024 Real Estate Management System
       </div> */}

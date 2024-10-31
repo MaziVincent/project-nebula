@@ -173,7 +173,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="price"
                     rows="4"
-                    type='text'
+                    type='number'
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop Price here"
@@ -211,14 +211,27 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                   >
                     shopCategory
                   </label>
-                  <input
+                  {/* <input
                     id="shopCategory"
                     name='shopCategory'
                     type='text'
                     {...register("shopCategory", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop Category here"
-                  />
+                  /> */}
+                  <select name="shopCategory" id="shopCategory"
+                    {...register("shopCategory", { required: true })}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                  >
+                    <option value="Select Shop Category" selected disabled>Select Shop Category</option>
+                    <option value="Warehouse">Warehouse</option>
+                    <option value="Retail Store">Retail Store</option>
+                    <option value="Office Space">Office Space</option>
+                    <option value="Showroom">Showroom</option>
+                    <option value="Pharmacy Store">Pharmacy Store</option>
+                    <option value="Boutique">Boutique</option>
+                    <option value="General Purpose">General Purpose</option>
+                  </select>
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -230,7 +243,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="leaseDuration"
                     name='leaseDuration'
-                    type='text'
+                    type='number'
                     {...register("leaseDuration", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop leaseDuration here"
@@ -246,7 +259,7 @@ const NewShopModal = ({open, handleCloseShopModal}) => {
                   <input
                     id="securityDeposit"
                     name='securityDeposit'
-                    type='text'
+                    type='number'
                     {...register("securityDeposit", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop security Deposit here"

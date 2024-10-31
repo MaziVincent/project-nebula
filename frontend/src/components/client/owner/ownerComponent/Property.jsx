@@ -49,7 +49,7 @@ const Property = () => {
 
   return (
     <div>
-      <div className=" max-md:pt-10 pl-4">
+      <div className="pt-10 pl-4">
         <Link to="/owner">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -204,8 +204,8 @@ const Property = () => {
                 </span>
               </button>
 
-              {property.type === "Land" ||
-                (property.type === "House" && (
+              {(property.type === "Land" ||
+                property.type === "House") && (
                   <button onClick={handleOpenDocUpload}>
                     <span className="relative flex items-center gap-2 bg-sky-600 hover:bg-sky-700 rounded-lg px-2 py-2">
                       <span className=" max-sm:hidden lg:block text-sky-100">
@@ -225,7 +225,7 @@ const Property = () => {
                       </span>
                     </span>
                   </button>
-                ))}
+                )}
             </div>
           </div>
         </div>

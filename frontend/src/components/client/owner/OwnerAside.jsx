@@ -62,11 +62,9 @@ const OwnerAside = ({aside, setAside}) => {
           <li>
           </li>
         </ul>
-      </div>
       <button
         onClick={handleOpenLogoutModal}
-        to="#"
-        className="flex items-center border-l-4 w-full border-green-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group"
+        className="flex items-center border-l-4 w-full border-green-50 hover:border-red-600 p-2 text-base font-medium text-red-500 hover:text-red-700 rounded-r-lg transition duration-75 hover:bg-gray-100 group mt-20"
       >
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -81,6 +79,7 @@ const OwnerAside = ({aside, setAside}) => {
         </svg>
         <span className="ml-3">Logout</span>
       </button>
+      </div>
       <LogoutModal
         open={openLogoutModal}
         handleClose={handleCloseLogoutModal}

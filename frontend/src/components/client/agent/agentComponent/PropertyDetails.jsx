@@ -8,6 +8,7 @@ import baseURL from '../../../../shared/baseURL';
 import { CircularProgress, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
 import UploadPropertyImage from '../../../admin/property/UploadPropertyImage';
+import UploadDocument from '../../UploadDocument';
 
 const PropertyDetails = () => {
   const { auth } = useAuth();
@@ -24,9 +25,9 @@ const PropertyDetails = () => {
   const [property, setProperty] = useState(null);
   const [propertyId, setPropertyId] = useState("");
 
-  const [openUpdate, setOpenUpdate] = useState(false)
-  const handleOpenUpdate = () => setOpenUpdate(true)
-  const handleCloseUpdate = () => setOpenUpdate(false)
+  const [openDocUpload, setOpenDocUpload] = useState(false);
+  const handleOpenDocUpload = () => setOpenDocUpload(true);
+  const handleDocUploadClose = () => setOpenDocUpload(false);
 
   const getProperty = async () => {
     try {
@@ -150,32 +151,60 @@ const PropertyDetails = () => {
           </p>
         </div>
         <div className=' flex justify-start items-start gap-4 my-4 '>
-            <button
-              onClick={() => {
-                handleOpenUpload();
-                setPropertyId(property._id);
-              }}
-              className=' bg-green-600 max-sm:bg-sky-100 text-green-100 bg-opacity-70 shadow-md shadow-green-300 max-sm:shadow-green-100 rounded-lg px-2 py-2'
-              >
-              <span className=' md:block max-sm:hidden font-medium font-sans'>Upload {property.type} Image</span>
-              <span className=' md:hidden max-sm:block'>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  height="48px" 
-                  viewBox="0 -960 960 960" 
-                  width="48px" 
-                  fill="currentColor"
-                  className='text-sky-600'
-                  >
-                  <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              handleOpenUpload();
+              setPropertyId(property._id);
+            }}
+            className=' bg-green-600 max-sm:bg-sky-100 text-green-100 bg-opacity-70 shadow-md shadow-green-300 max-sm:shadow-green-100 rounded-lg px-2 py-2'
+            >
+            <span className=' md:block max-sm:hidden font-medium font-sans'>Upload {property.type} Image</span>
+            <span className=' md:hidden max-sm:block'>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                height="48px" 
+                viewBox="0 -960 960 960" 
+                width="48px" 
+                fill="currentColor"
+                className='text-sky-600'
+                >
+                <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"
+                />
+              </svg>
+            </span>
+          </button>
+          {(property.type === "Land" ||
+            property.type === "House") && (
+              <button onClick={handleOpenDocUpload}>
+                <span className="relative flex items-center gap-2 bg-sky-600 hover:bg-sky-700 rounded-lg px-2 py-2">
+                  <span className=" max-sm:hidden lg:block text-sky-100">
+                    Upload Document
+                  </span>
+                  <span className="">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="28px"
+                      viewBox="0 -960 960 960"
+                      width="28px"
+                      fill="currentColor"
+                      className="text-sky-200"
+                    >
+                      <path d="M452-202h60v-201l82 82 42-42-156-152-154 154 42 42 84-84v201ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z" />
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            )}
+        </div>
     </div>
     )}
     <UploadPropertyImage openUpload={openUpload} handleUploadClose={handleUploadClose} propertyId={propertyId} />
+    <UploadDocument
+        id={id}
+        openDocUpload={openDocUpload}
+        handleDocUploadClose={handleDocUploadClose}
+        url={`${baseURL}${property?.type}`}
+      />
     </div>
   )
 }
