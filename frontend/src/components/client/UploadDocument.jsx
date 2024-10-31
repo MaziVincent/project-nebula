@@ -1,24 +1,21 @@
+
 import React, { useEffect } from 'react'
-import baseURL from '../../../shared/baseURL'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
-import useAuth from '../../../hooks/useAuth'
+import useAuth from '../../hooks/useAuth'
 import {set, useForm} from 'react-hook-form'
 import axios from 'axios'
 import { CircularProgress, Modal } from '@mui/material'
-import { useParams } from 'react-router-dom'
 
 
-const UploadLandDocModal = ({landId, openDocUpload, handleDocUploadClose}) => {
+const UploadDocument = ({id, openDocUpload, handleDocUploadClose, url}) => {
     const [error, setError] = useState('')
     const queryClient = useQueryClient()
     const { auth } = useAuth()
-    const url = `${baseURL}land/upload`
     const [isLoading, setIsLoading] =useState(false)
 
-    console.log(landId)
+   // console.log(id)
     // const propertyId = id
     const { 
       register, 
@@ -38,7 +35,7 @@ const UploadLandDocModal = ({landId, openDocUpload, handleDocUploadClose}) => {
     }
 
       try {
-        const response = await axios.put(`${url}/${landId}`, formData, {
+        const response = await axios.put(`${url}/docupload/${id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${auth.accessToken}`
@@ -52,7 +49,7 @@ const UploadLandDocModal = ({landId, openDocUpload, handleDocUploadClose}) => {
     }
     const {mutate} = useMutation(uploadImage, {
       onSuccess: () => {
-        queryClient.invalidateQueries('land')
+        queryClient.invalidateQueries('property')
         setTimeout(() => {
           toast.success('Image uploaded successfully')
           handleDocUploadClose()
@@ -84,7 +81,7 @@ const UploadLandDocModal = ({landId, openDocUpload, handleDocUploadClose}) => {
           <div className=" relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-10">
             <div className='p-6 space-y-4 md:space-y-6 sm:p-8 overflow-y-scr'>
               <h5 className="pb-2" id="">
-                  Upload Land Document
+                  Upload Document
               </h5>
               <button
                 type="button"
@@ -157,4 +154,4 @@ const UploadLandDocModal = ({landId, openDocUpload, handleDocUploadClose}) => {
   )
 }
 
-export default UploadLandDocModal
+export default UploadDocument

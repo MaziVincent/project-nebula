@@ -22,7 +22,7 @@ router
   .put(
     fileUpload({ createParentPath: true }),
     filesPayloadExists,
-    fileExtLimiter([".png", ".jpg", ".jpeg"]),
+    fileExtLimiter([".png", ".jpg", ".jpeg",".webp"]),
     filesSizeLimiter,
     propertyController.uploadPropertyImageHandler
   );

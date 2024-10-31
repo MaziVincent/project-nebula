@@ -43,7 +43,7 @@ const Overview = () => {
     }
   );
 
-  // console.log(data)
+ console.log(data)
 
   const propertyCounts = data && Array.isArray(data)
   ? data.reduce(
@@ -193,13 +193,19 @@ const Overview = () => {
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
+                  Type
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-medium text-gray-900"
+                >
                   Date Created
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
-                  Owner
+                  Owner / Agent
                 </th>
                 <th
                 
@@ -225,11 +231,15 @@ const Overview = () => {
                     {props.status}
                   </span>
                 </td>
+                <td className="px-6 py-4">{props.type}</td>
                 <td className="px-6 py-4">{props.createdAt.substring(0,10)}</td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-2">
+                <td className="px-6 py-4 flex items-center">
+                  <div className="flex flex-col justify-center items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {props.owner.firstname}
+                      {props.owner.firstname} {props.owner.lastname}
+                    </span>
+                    <span className="text-gray-500 text-sm">
+                      {props.owner.type}
                     </span>
                   </div>
                 </td>

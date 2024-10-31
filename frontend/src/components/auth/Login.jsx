@@ -74,7 +74,7 @@ const Login = () => {
     setPersist((prev) => !prev)
   }
   useEffect(() => {
-    localStorage.setItem('persist', persist)
+  localStorage.setItem('persist', persist)
   }, [persist])
   console.log(auth)
   return (

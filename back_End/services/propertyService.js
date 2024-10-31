@@ -17,6 +17,7 @@ const getProperties = async (data) => {
   try {
     if (status) {
       const properties = await Property.find({ status: status })
+        .sort({ createdAt: -1 })
         .populate("owner")
         .skip(skip)
         .limit(limit)
@@ -30,6 +31,7 @@ const getProperties = async (data) => {
 
 
         const properties = await Property.find()
+        .sort({ createdAt: -1 })
         .populate("owner")
         .skip(skip)
         .limit(limit)

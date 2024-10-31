@@ -19,7 +19,7 @@ const HouseSchema = Property.discriminator('House', new Schema({
     type: String,
     required: true
   },
-  docImage: {
+  docImages: {
     type: [String]
   },
   yearBuilt: {

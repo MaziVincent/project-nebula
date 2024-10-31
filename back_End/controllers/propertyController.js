@@ -103,16 +103,17 @@ const getPropertiesByTypeHandler = async (req, res) => {
 
 const setFeaturedPropertyHandler = async (req, res) => {
   const _id = req.params.id;
-  const featured = req.query.featured;
+  const featured = req.body.featured;
   const data = { _id, featured };
+
 
   try {
     const result = await handleFeaturedProperty(data);
     if (result.error) {
-      return res.status(404).json({ result });
+      return res.status(404).json( result );
     }
 
-    res.json({ result });
+    res.status(200).json( result );
   } catch (err) {
     res.status(400).json(err);
   }

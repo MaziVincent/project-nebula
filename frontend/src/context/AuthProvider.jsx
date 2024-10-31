@@ -6,7 +6,8 @@ export const AuthProvider = ({ children }) => {
     user: null,
     token: "",
   });
-  const [persist, setPersist] = useState(localStorage.getItem('persist') || false)
+  const persistValue = localStorage.getItem('persist')
+  const [persist, setPersist] = useState( persistValue == "true" || false)
   return (
     <AuthContext.Provider value={{ auth, setAuth, persist, setPersist }}>
       {children}

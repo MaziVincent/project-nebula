@@ -100,13 +100,13 @@ const uploadDocImageHandler = async (req, res) => {
       if(!req.files) return res.status(400).json({status: "error", message: "Missing files"})
       const files = req.files
       const _id = req.params.id
-      // console.log(_id)
+       console.log(_id)
       const result = await uploadDocImage(files, _id);
     //   console.log(result)
       return res.status(200).json({message : result})
     } catch (error) {
     //   console.log("Hello");
-    //   console.log(error);
+       console.log(error);
       return res.status(500).json({error: error})
     }
   };

@@ -69,7 +69,7 @@ const LandDetails = () => {
   useEffect(() => {
     handleLandDetails();
   }, [id]);
-  // console.log(land);
+  console.log(land);
   return (
     <div className='mt-4'>
         <ToastContainer />
@@ -125,7 +125,7 @@ const LandDetails = () => {
               }}
               className=' bg-gray-300 max-sm:bg-blue-100 text-gray-700 bg-opacity-70 shadow-md shadow-gray-300 max-sm:shadow-blue-100 rounded-lg py-2 px-2'
               >
-              <span className='md:block max-sm:hidden'>Edit House</span>
+              <span className='md:block max-sm:hidden'>Edit Land </span>
               <span className=' md:hidden max-sm:block'>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -146,7 +146,7 @@ const LandDetails = () => {
               }} 
               className=' bg-red-600 max-sm:bg-red-100 bg-opacity-70 text-white py-2 px-2 rounded-lg shadow-md shadow-red-300 max-sm:shadow-red-100'
               >
-              <span className=' max-sm:hidden md:block'>Delete House 
+              <span className=' max-sm:hidden md:block'>Delete Land 
               </span>
               <span className=' md:hidden max-sm:block'>
               <svg 
@@ -164,7 +164,7 @@ const LandDetails = () => {
             </button>
             <button onClick={toggleUpload}>
               <span className='relative flex items-center gap-2 bg-sky-600 hover:bg-sky-700 rounded-lg px-2 py-2'>
-                <span className=' max-sm:hidden lg:block text-sky-100'>Upload
+                <span className=' max-sm:hidden lg:block text-sky-100'>Upload 
                 </span>
                 <span className=''>
                   <svg 
@@ -182,15 +182,15 @@ const LandDetails = () => {
               </span>
               {
                 isUpload &&
-                  <div className='absolute flex flex-col justify-start items-start px-2 gap-2 bg-sky-600 rounded-lg bottom-[50px]'>
+                  <div className='absolute flex flex-col justify-start items-start  gap-3 w-20 bg-sky-100 rounded-lg bottom-[50px] shadow-xl'>
                     <button
                       onClick={() => {
                         handleOpenUpload();
                         setPropertyId(land._id);
                       }}
-                      className=' text-gray-700'
+                      className=' text-gray-700 hover:bg-sky-300 p-2 text-nowrap w-full rounded-lg'
                       >
-                      <span className='text-white'>Land Image</span>
+                      <span className=' font-semibold px-2'>Land Image</span>
                     
                     </button>
 
@@ -199,9 +199,9 @@ const LandDetails = () => {
                         handleOpenDocUpload();
                         setLandId(land._id);
                       }}
-                      className=' text-gray-700'
+                      className='  text-gray-700 hover:bg-sky-300 p-2 text-nowrap w-full rounded-lg'
                       >
-                      <span className='text-white'>Document</span>
+                      <span className=' font-semibold px-2'>Document</span>
                     </button>
                   </div>
               }

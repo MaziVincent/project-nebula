@@ -110,7 +110,7 @@ const landStatus = async (id, status) => {
 };
 
 const uploadDocImage = async (files, id) => {
-    console.log(files);
+    //console.log(files);
     const landId = new mongoose.Types.ObjectId(id);
   
     const uploadPromises = Object.keys(files).map(async (key) => {
@@ -127,14 +127,12 @@ const uploadDocImage = async (files, id) => {
             }
   
             try {
-              const land = await Land.findById({
-                _id: landId,
-              }).exec();
+              const land = await Land.findById(landId).exec();
   
               if (land == null) {
                 return { error: "Land not found" };
               }
-              land.docImage.push(result.secure_url);
+              land.docImages.push(result.secure_url);
               await land.save();
               resolve("File Uploaded Successfully to DB");
             } catch (err) {

@@ -4,7 +4,7 @@ const Property = require('./Property');
 
 const LandSchema = Property.discriminator('Land', new Schema({
   plots: {
-    type: String,
+    type: Number,
     required: true
   },
   docType: {
@@ -13,7 +13,6 @@ const LandSchema = Property.discriminator('Land', new Schema({
   },
   docImages: {
     type: [String],
-    required: true
   },
   ownershipType: {
     type: String,

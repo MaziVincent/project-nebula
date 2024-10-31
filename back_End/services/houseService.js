@@ -155,7 +155,7 @@ const uploadDocImage = async (files, id) => {
               if (house == null) {
                 return { error: "House not found" };
               }
-              house.docImage.push(result.secure_url);
+              house.docImages.push(result.secure_url);
               await house.save();
               resolve("File Uploaded Successfully to DB");
             } catch (err) {
