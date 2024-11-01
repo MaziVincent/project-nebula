@@ -60,19 +60,21 @@ const deleteUser = async (id) => {
         return {error: e.message}
     }
 };
+const activateUser = async (status, id) => {
+  console.log(id, status);
+  try {
+      const userId = new mongoose.Types.ObjectId(id);
+      const user = await User.findById(userId);
+      if (!user) return { error: "User not found" };
+      user.status = status;
+      await user.save();
+      
+      return user;
+  } catch (e) {
+      return { error: e.message };
+  }
+};
 
-const activateUser = async (id, status) => {
-    console.log(id, status);
-    try{
-        const user = await User.findOne({_id : id}).exec();
-        if(!user) return {error: "User not found"};
-        user.status = status;
-        await user.save();
-        return user;
-    } catch (e) {
-        return {error: e.message}
-    }
-}
 
 const uploadProfilePicture = async (files, id) => {
   console.log(files);

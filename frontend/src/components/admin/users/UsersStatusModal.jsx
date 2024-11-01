@@ -55,7 +55,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
  console.log(userId)
 
   const { mutate } = useMutation(updateUserStatus, {
-    onSuccess: ( status) => {
+    onSuccess: (data, status) => {
       queryClient.invalidateQueries('users');
       setTimeout(() => {
         if (status === 'Active') {
@@ -65,7 +65,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
         } else {
           toast.error('Failed to update user status');
         }
-        // handleCloseStatus(); 
+        handleCloseStatus(); 
       }, 2000);
       setIsLoading(false)
     }

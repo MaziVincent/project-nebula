@@ -53,6 +53,9 @@ const handleActivate = async (req, res) => {
   if(!req.params.id) {
     return res.status(400).json({ message: 'User ID required' });
   }
+  if (!req.body.status) {
+    return res.status(400).json({ message: 'Status required' });
+  }
   const status = req.body.status
   const _id = req.params.id 
   const result = await activateUser(status, _id);

@@ -57,7 +57,7 @@ const AdminProfile = () => {
     <div className="max-md:pt-24">
       <ToastContainer />
       <div className="sm:pt-10 pl-4">
-        <Link to="/agent">
+        <Link to="/admin">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 28 28"
