@@ -9,6 +9,7 @@ import { CircularProgress, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
 import UploadPropertyImage from '../../../admin/property/UploadPropertyImage';
 import UploadDocument from '../../UploadDocument';
+import { useQuery } from 'react-query';
 
 const PropertyDetails = () => {
   const { auth } = useAuth();
@@ -32,22 +33,25 @@ const PropertyDetails = () => {
   const getProperty = async () => {
     try {
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
         setProperty(result.data); 
-      }
     } catch (error) {
       toast.error("Error fetching Agent's details");
       console.log("Fetch error:", error);
     }
   };
   
-  
-
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    getProperty();
-  }, [id]);
-  console.log(property);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["property"],
+     getProperty,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
 
   return (
     <div>

@@ -52,6 +52,7 @@ import RequireAuthAdmin from './components/auth/RequireAuthAdmin';
 import AllProperties from './components/Home/AllProperties';
 import PropertyForRent from './components/client/customers/PropertyForRent';
 import PropertyForSell from './components/client/customers/PropertyForSell';
+import AdminProfile from './components/admin/AdminProfile';
 
 function App() {
   const queryClient = new QueryClient();
@@ -80,6 +81,7 @@ function App() {
               <Route element={<RequireAuthAdmin allowedRoles={[roles.admin]} />}>
                 <Route path='/admin' element={<Dashboard />} >
                   <Route index element={<Overview />} />
+                  <Route path='/admin/profile/:id' element={<AdminProfile />} />
                   <Route path='/admin/properties' element={<Properties />} />
 
                   {/*admin shop route */}

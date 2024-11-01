@@ -9,6 +9,7 @@ import DeletePropertyModal from '../property/DeletePropertyModal';
 import UpdateLandModal from './UpdateLandModal';
 import UploadPropertyImage from '../property/UploadPropertyImage';
 import UploadLandDocModal from './UploadLandDocModal';
+import { useQuery } from 'react-query';
 
 const LandDetails = () => {
   const { auth } = useAuth();
@@ -49,31 +50,31 @@ const LandDetails = () => {
     try {
       // Fetch the specific lands details
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        setLand(result.data); 
-        // console.log("Land details:", result.data);
-  
-      } else {
-        toast.warn("No other land available.");
-      }
+      setLand(result.data); 
+     return result.data
     } catch (error) {
       toast.error("Error fetching other details");
       console.log("Fetch error:", error);
     }
   };
   
-  
-  
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["land"],
+     handleLandDetails,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
 
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    handleLandDetails();
-  }, [id]);
-  console.log(land);
   return (
     <div className='mt-4'>
         <ToastContainer />
-        <div className=' max-md:pt-10 mt-0 mb-2'>
+        <div className='py-5 mt-0 mb-2'>
         <Link to='/admin/lands'>
           <svg 
           xmlns="http://www.w3.org/2000/svg" 

@@ -8,10 +8,10 @@ const ShopSchema = Property.discriminator('Shop', new Schema({
         required: true
     },
     leaseDuration: {
-        type: String,
+        type: Number,
     },
     securityDeposit: {
-        type: String,
+        type: Number,
     }
 }));
 

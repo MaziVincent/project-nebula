@@ -1,6 +1,13 @@
 const Agent = require('../model/Agent');
 const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
+const cloudinary = require("cloudinary").v2;
+const mongoose = require("mongoose");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const createAgent = async (data) => {
     const profile = data.file ? data.file.path : null;
@@ -122,6 +129,45 @@ const unVerifyAgent = async(id) => {
     }
 }
 
+const uploadDocument = async (files, id) => {
+    console.log(files);
+    const agentId = new mongoose.Types.ObjectId(id);
+  
+    const uploadPromises = Object.keys(files).map(async (key) => {
+      const file = files[key];
+  
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: "RealEstate",
+          },
+          async (error, result) => {
+            if (error) {
+              return reject(error);
+            }
+  
+            try {
+              const agent = await Agent.findById(agentId).exec();
+  
+              if (agent == null) {
+                return { error: "Agent not found" };
+              }
+              agent.identityImage = result.secure_url;
+              await agent.save();
+              resolve("File Uploaded Successfully to DB");
+            } catch (err) {
+              console.log(err);
+  
+              reject(err);
+            }
+          }
+        );
+        uploadStream.end(file.data);
+      });
+    });
+  
+    return Promise.all(uploadPromises);
+  };
 module.exports = {
     createAgent, 
     getAllAgents, 
@@ -130,5 +176,6 @@ module.exports = {
     deleteAgent, 
     agentExists,
     verifyAgent,
-    unVerifyAgent
+    unVerifyAgent,
+    uploadDocument
 }

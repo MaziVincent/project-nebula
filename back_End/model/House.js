@@ -12,8 +12,7 @@ const HouseSchema = Property.discriminator('House', new Schema({
     required: true
   },
   squareFootage: {
-    type: String,
-    required: true
+    type: Number
   },
   docType: {
     type: String,
@@ -23,31 +22,25 @@ const HouseSchema = Property.discriminator('House', new Schema({
     type: [String]
   },
   yearBuilt: {
-    type: String,
-    required: true
+    type: Number
   },
   lotSize: {
-    type: String,
-    required: true
+    type: Number
   },
   stories: {
-    type: String,
+    type: Number,
   },
   exteriorFeatures: {
-    type: [String],
-    required: true
+    type: [String]
   },
   interiorFeatures: {
-    type: [String],
-    required: true
+    type: [String]
   },
   livingRoomFeatures: {
-    type: [String],
-    required: true
+    type: [String]
   },
   kitchenFeatures: {
-    type: [String],
-    required: true
+    type: [String]
   }
 }),)
 

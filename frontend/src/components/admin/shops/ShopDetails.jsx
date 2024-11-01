@@ -10,7 +10,7 @@ import UpdateShopModal from './UpdateShopModal';
 import DeletePropertyModal from '../property/DeletePropertyModal';
 import { Modal } from '@mui/material';
 import UploadPropertyImage from '../property/UploadPropertyImage';
-
+import { useQuery } from 'react-query';
 
 const ShopDetails = () => {
   const { auth } = useAuth();
@@ -51,15 +51,23 @@ const ShopDetails = () => {
     }
   };
 
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    handleShopDetail();
-  }, [id]);
-  console.log(shop);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["shop"],
+     handleShopDetail,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
+
   return (
       <div className='mt-2'>
         <ToastContainer />
-        <div className=' max-md:pt-10 mt-0 mb-2'>
+        <div className='py-5 mt-0 mb-2'>
         <Link to='/admin/shops' >
           <svg 
           xmlns="http://www.w3.org/2000/svg" 

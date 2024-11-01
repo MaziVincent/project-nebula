@@ -215,7 +215,7 @@ const Overview = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              { Array.isArray(data) && data?.length > 0 ?(
+              { data?.length > 0 ?(
                  data.map((props) => (
                   <tr key={props._id} className="hover:bg-gray-50">
                 <th className=" gap-3 items-center px-6 py-4 font-normal text-gray-900">

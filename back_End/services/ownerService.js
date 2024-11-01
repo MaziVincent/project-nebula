@@ -1,6 +1,14 @@
-const mongoose = require('mongoose');
+
 const Owner = require('../model/Owner');
 const bcrypt = require('bcrypt');
+const cloudinary = require("cloudinary").v2;
+const mongoose = require("mongoose");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const createOwner = async (data) => {
     try {
@@ -113,6 +121,45 @@ const unVerifyOwner = async (id) => {
     }
 }
 
+const uploadDocument = async (files, id) => {
+    console.log(files);
+    const ownerId = new mongoose.Types.ObjectId(id);
+  
+    const uploadPromises = Object.keys(files).map(async (key) => {
+      const file = files[key];
+  
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: "RealEstate",
+          },
+          async (error, result) => {
+            if (error) {
+              return reject(error);
+            }
+  
+            try {
+              const owner = await Owner.findById(ownerId).exec();
+  
+              if (owner == null) {
+                return { error: "Owner not found" };
+              }
+              owner.identityImage = result.secure_url;
+              await owner.save();
+              resolve("File Uploaded Successfully to DB");
+            } catch (err) {
+              console.log(err);
+  
+              reject(err);
+            }
+          }
+        );
+        uploadStream.end(file.data);
+      });
+    });
+  
+    return Promise.all(uploadPromises);
+  };
 module.exports = {
     createOwner,
     getOwners,
@@ -121,5 +168,6 @@ module.exports = {
     deleteOwner,
     ownerExists,
     verifyowner,
-    unVerifyOwner
+    unVerifyOwner,
+    uploadDocument
 }

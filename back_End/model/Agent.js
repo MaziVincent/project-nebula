@@ -24,7 +24,6 @@ const AgentSchema = User.discriminator('Agent', new Schema({
   },
   agencyName: {
     type: String,
-    required: true
   },
   officeAddress: {
     type: String,

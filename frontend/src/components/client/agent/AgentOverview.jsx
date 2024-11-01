@@ -109,7 +109,7 @@ const AgentOverview = () => {
     );
   }
   return (
-    <div>
+    <div className=" h-dvh">
       {
         isLoading ? (
           <div>Loading...</div>

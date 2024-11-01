@@ -35,8 +35,8 @@ const Login = () => {
         withCredentials: true
       })
       if (response.status !== 200) {
-        throw new Error('Network response was not ok')
         setIsLoading(false)
+        throw new Error('Network response was not ok')
       }
       setAuth(response.data)
       console.log(response.data)
@@ -49,8 +49,6 @@ const Login = () => {
           navigate('/agent')
         } else if(response.data?.user?.type === 'Owner'){
           navigate('/owner')
-        }else {
-          navigate('/dashboard')
         }
         setIsLoading(false)
       }, 5000);
@@ -78,17 +76,17 @@ const Login = () => {
   }, [persist])
   console.log(auth)
   return (
-    <div className=" bg-gray-100 dark:bg-gray-900 dark:text-white min-h-screen">
+    <div className=" bg-gray-100 min-h-screen">
       <ToastContainer />
       <div className="contaoner mx-auto max-w-7xl py-14 px-4">
         <div className=" sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className=" mt-6 text-center text-3xl font-bold tracking-tight text-gray-700 dark:text-gray-300">
+          <h2 className=" mt-6 text-center text-3xl font-bold tracking-tight text-gray-700">
             Sign in to your account
           </h2>
          
         </div>
         <div className=" mt-8 sm:mx-auto sm:w-full sm:max-w-md  ">
-          <div className=" dark:bg-gray-700 bg-gray-10  shadow rounded-lg">
+          <div className=" bg-gray-10  shadow rounded-lg">
             <div className=" p-8">
               <form
                 onSubmit={handleSubmit(login)}
@@ -97,7 +95,7 @@ const Login = () => {
                 <div className=" space-y-6">
                   <div>
                     <label
-                      className=" block text-base font-medium text-gray-700 dark:text-white"
+                      className=" block text-base font-medium text-gray-700"
                       htmlFor="user_email"
                     >
                       Email address
@@ -105,7 +103,7 @@ const Login = () => {
                     <div className="input mt-2 relative rounded-md shadow-sm">
                       <input
                         placeholder="Email Address"
-                        className="rounded-md px-2 py-3 bg-gray-50 dark:bg-gray-700 dark:text-white"
+                        className="rounded-md px-2 py-3 bg-gray-50 text-gray-700"
                         required="required"
                         type="email"
                         {...register("email", 
@@ -124,7 +122,7 @@ const Login = () => {
 
                   <div className="">
                     <label
-                      className=" block text-base font-medium text-gray-700 dark:text-white"
+                      className=" block text-base font-medium text-gray-700"
                       htmlFor="password"
                     >
                       Password
@@ -132,7 +130,7 @@ const Login = () => {
                     <div className="input mt-2 relative rounded-md shadow-sm">
                       <input
                         placeholder="*********"
-                        className=" dark:bg-gray-700 dark:text-white block w-full rounded-md border py-3 px-3 focus:outline-none border-gray-300 focus:ring-blue-600 focus:border-blue-600"
+                        className=" block w-full rounded-md border py-3 px-3 focus:outline-none border-gray-300 focus:ring-blue-600 focus:border-blue-600"
                         required="required"
                         type="password"
                         {...register("password",{required : true },
@@ -163,7 +161,7 @@ const Login = () => {
                         checked={persist}
                       />
                       <label
-                        className=" ml-2 text-base block text-gray-900 dark:text-gray-50 mb-0"
+                        className=" ml-2 text-base block text-gray-900 mb-0"
                         htmlFor="remember-me"
                       >
                         Remember me
@@ -171,7 +169,7 @@ const Login = () => {
                     </div>
 
                     <div className=" text-base">
-                      <Link className=" font-medium text-gray-600 dark:text-gray-50 underline">
+                      <Link className=" font-medium text-gray-600 underline">
                         Forgot your password{" "}
                       </Link>
                     </div>
