@@ -719,7 +719,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src={Swip1} className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554542/RealEstate/WhatsApp_Image_2024-11-02_at_14.35.21_ba83i1.jpg" className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-orange border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-orange lh-18">
@@ -729,7 +729,7 @@ const Page = () => {
                                                     </div>
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
-                                                    <img src={Image} className="mb-auto h-70px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554467/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_2_bdg9ss.jpg" className="mb-auto h-70px" alt="" />
                                                     <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Washington, USA</a> 
                                                     <span className="opacity-7 text-white">17 property listing</span>
                                                     <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
@@ -747,7 +747,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src={Swip2} className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554467/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_yakulf.jpg" className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -757,7 +757,7 @@ const Page = () => {
                                                     </div>
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
-                                                    <img src={Bg1} className="mb-auto h-70px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554467/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_yakulf.jpg" className="mb-auto h-70px" alt="" />
                                                     <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Paris, France</a> 
                                                     <span className="opacity-7 text-white">20 property listing</span>
                                                     <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
@@ -775,7 +775,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src={Swip3} className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_2_wcfnkc.jpg" className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -785,7 +785,7 @@ const Page = () => {
                                                     </div>
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
-                                                    <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_2_wcfnkc.jpg" className="mb-auto h-70px" alt="" />
                                                     <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
                                                     <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
@@ -803,7 +803,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src={Swip4} className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_1_nrrc98.jpg" className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -813,7 +813,7 @@ const Page = () => {
                                                     </div>
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
-                                                    <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_1_nrrc98.jpg" className="mb-auto h-70px" alt="" />
                                                     <a href="/allproperties" className="text-white alt-font fw-600 fs-26">San francisco, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
                                                     <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
@@ -830,7 +830,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src={Swip5} className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_3_fihijm.jpg" className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -840,7 +840,7 @@ const Page = () => {
                                                     </div>
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
-                                                    <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_3_fihijm.jpg" className="mb-auto h-70px" alt="" />
                                                     <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Paris, France</a> 
                                                     <span className="opacity-7 text-white">20 property listing</span>
                                                     <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
@@ -858,7 +858,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src={Swip6} className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_1_zzdjx9.jpg" className="w-100 border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -868,10 +868,10 @@ const Page = () => {
                                                     </div>
                                                 </a>
                                                 <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
-                                                    <img src="https://via.placeholder.com/130x130" className="mb-auto h-70px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_1_zzdjx9.jpg" className="mb-auto h-70px" alt="" />
                                                     <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
                                                     <span className="opacity-7 text-white">45 property listing</span>
-                                                    <a href="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></a>
+                                                    <Link to="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></Link>
                                                 </figcaption>
                                             </figure>
                                         </div>
@@ -879,6 +879,32 @@ const Page = () => {
                                     </div>
                                     </SwiperSlide>
                                      {/* end slider item   */}
+                                     <SwiperSlide>
+                                    <div className="swiper-slide">
+                                         {/* start interactive banner item  */}
+                                        <div className="col interactive-banner-style-05">
+                                            <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
+                                                <a href="#">
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_s3cyuk.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
+                                                    <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
+                                                        <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
+                                                            <i className="fa-solid fa-check fs-10"></i> 
+                                                        </div>
+                                                        <span className="d-inline-block align-middle alt-font fw-600 text-white fs-12 text-uppercase">Verified</span>
+                                                    </div>
+                                                </a>
+                                                <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_s3cyuk.jpg" className="mb-auto h-70px" alt="" />
+                                                    <a href="/allproperties" className="text-white alt-font fw-600 fs-26">Chicago, USA</a> 
+                                                    <span className="opacity-7 text-white">45 property listing</span>
+                                                    <Link to="/allproperties" className="btn btn-light-base-color btn-small btn-round-edge btn-box-shadow mt-20px">All properties<i className="feather icon-feather-arrow-right icon-very-small"></i></Link>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                         {/* end interactive banner item  */}
+                                    </div>
+                                    </SwiperSlide>
                                      </Swiper>
                             </div>
                         </div>
