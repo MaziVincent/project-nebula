@@ -176,7 +176,7 @@ const About = () => {
           </h2>
 
           <div className="flex justify-center">
-            <p className="w-full md:w-4/6 bg-white rounded-lg p-5 ">
+            <p className="w-full md:w-5/6 bg-white rounded-lg p-5 ">
               Whether you are selling, buying, renting, or leasing real estate
               in Nigeria, we can offer an end-to-end service that guarantees a
               stress-free and successful property acquisition journey. Take a
@@ -252,8 +252,9 @@ const About = () => {
                     We are committed to growth: helping your property business
                     expand and maximise its profits, assisting you as you grow
                     your portfolio, and we’re there to help manage your
-                    properties effectively and profitably. we work as your real estate department, helping
-                    propel you on your journey of growth. 
+                    properties effectively and profitably. we work as your real
+                    estate department, helping propel you on your journey of
+                    growth.
                   </p>
                 </div>
               </div>
@@ -282,6 +283,48 @@ const About = () => {
               </div>
             </div> */}
             {/* end features box item   */}
+          </div>
+          <h2
+            className="text-center alt-font text-gray-900 "
+            data-shadow-animation="true"
+            data-animation-delay="700"
+          >
+            <span className="fw-700 text-highlight d-inline-block">
+              OUR PROMISE
+              <span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
+            </span>
+          </h2>
+
+          <div className="flex justify-center">
+            <p className="w-full md:w-11/12 bg-white rounded-lg p-5 ">
+              We are committed to consistently offering you the most powerful
+              and user- friendly technology available anywhere. This will enable
+              you to learn your markets faster and stay up-to-date more easily.
+              We are excited to offer payment structures that are designed to
+              reward you generously, surpassing what other real estate companies
+              typically provide. This is a testament to our unwavering
+              dedication to absolute integrity. As our company continues to gain
+              recognition for our intelligence, integrity, and track record of
+              success, we are thrilled to share the prosperity with everyone
+              involved, ensuring that it is not limited to just a few
+              individuals. We use a variety of marketing methods and tools to
+              attract and engage our target audience. We have a strong online
+              presence on, Telegram, Facebook, Twitter, and Instagram, where we
+              post regular updates, tips, testimonials, and featured listings.
+              We also have a professional website that showcases our listings
+              with high-quality photos, videos, virtual tours, floor plans, and
+              detailed descriptions. Our Agency established strong partnerships
+              with renowned real estate developers both within and outside the
+              country in order to enhance our visibility and expand our outreach
+              to potential buyers or renters. Thank you for your time and
+              consideration. We hope that our presentation has piqued your
+              interest and convinced you of our expertise. If you are ready to
+              sell or buy your property with us, please contact us. We promise
+              to give you the best possible service and get you the best
+              possible deal. We also offer a free home staging service and a
+              100% satisfaction guarantee. If you have any questions or concerns
+              please do not hesitate to contact us!
+            </p>
           </div>
           <div className="row justify-content-center">
             <div className="col-auto icon-with-text-style-08">
@@ -426,7 +469,7 @@ const About = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                        "Mega Real Estate made my home buying experience so
+                          "Mega Real Estate made my home buying experience so
                           easy! They really listened to my needs and found the
                           perfect home for my family. I couldn't be happier with
                           their service."
@@ -457,7 +500,7 @@ const About = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                        "Mega Real Estate made my home buying experience so
+                          "Mega Real Estate made my home buying experience so
                           easy! They really listened to my needs and found the
                           perfect home for my family. I couldn't be happier with
                           their service."
