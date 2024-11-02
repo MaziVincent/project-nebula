@@ -43,6 +43,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
     console.log(status)
      const formData = new FormData();
      formData.append("status", status);
+     console.log(formData)
     try {
       const response = await update(`${url}/${userId}`, formData, auth?.accessToken);
       console.log(response.data);
@@ -51,7 +52,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
     }
     console.log(formData)
   };
- // console.log(userId)
+ console.log(userId)
 
   const { mutate } = useMutation(updateUserStatus, {
     onSuccess: (data, status) => {
@@ -72,6 +73,7 @@ const UsersStatusModal = ({openStatus, handleCloseStatus, userId}) => {
 
   const handleStatusUpdate = (data) => {
    mutate(data.status);
+    console.log(data.status)
   };
 
   return (

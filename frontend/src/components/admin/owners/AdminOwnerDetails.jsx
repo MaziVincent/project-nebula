@@ -11,7 +11,8 @@ import DeleteUserModal from '../users/DeleteUserModal';
 import UpdateOwnerModal from './UpdateOwnerModal';
 import VerifyOwnerModal from './VerifyOwnerModal';
 import UnverifyOwnerModal from './UnverifyOwnerModal';
-
+import { useQuery } from 'react-query';
+ 
 const AdminOwnerDetails = () => {
   const { auth } = useAuth();
   const fetch = useFetch();
@@ -49,25 +50,30 @@ const AdminOwnerDetails = () => {
     try {
       // Fetch the specific apartment details
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        setOwner(result.data); 
-      }
+      setOwner(result.data);
+      return result.data;
     } catch (error) {
       toast.error("Error fetching Owner's details");
       console.log("Fetch error:", error);
     }
   };
   
-  
-
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    handleOwnerDetails();
-  }, [id]);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["owner"],
+     handleOwnerDetails,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
   return (
     <div className=' max-md:pt-24 max-sm:h-screen'>
       <ToastContainer />
-      <div className=' max-md:pt-10 pl-4'>
+      <div className=' py-5 pl-4'>
         <Link to='/admin/owners' >
           <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -88,13 +94,13 @@ const AdminOwnerDetails = () => {
                 <div className="md:w-full">
                 <h4 className=' text-xl mb-0 pb-2'>Profile Image:</h4>
                 <div className=' border'>
-                  <img src={`${imageUrl}${owner.profile}`} alt={owner.firstname} className="w-full h-auto" />
+                  <img src={owner.profile} alt={owner.firstname} className="w-full h-auto" />
                 </div>
                 </div>
                 <div className="md:w-full">
                   <h4 className=' text-xl mb-0 pb-2'>Identity Image:</h4>
                   <div className=' border'>
-                    <img src={`${imageUrl}${owner.identityImage}`} alt={owner.identityType} className="w-full h-auto" />
+                    <img src={owner.identityImage} alt={owner.identityType} className="w-full h-auto" />
 
                   </div>
                 </div>

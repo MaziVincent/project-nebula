@@ -9,6 +9,7 @@ import { CircularProgress, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import UploadPropertyImage from "../../../admin/property/UploadPropertyImage";
 import UploadDocument from "../../UploadDocument";
+import { useQuery } from "react-query";
 
 const Property = () => {
   const { auth } = useAuth();
@@ -32,24 +33,29 @@ const Property = () => {
   const getProperty = async () => {
     try {
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        setProperty(result.data);
-      }
+        setProperty(result.data); 
     } catch (error) {
       toast.error("Error fetching Agent's details");
       console.log("Fetch error:", error);
     }
   };
 
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    getProperty();
-  }, [id]);
-  console.log(property);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["property"],
+     getProperty,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
 
   return (
     <div>
-      <div className=" max-md:pt-10 pl-4">
+      <div className="pt-10 pl-4">
         <Link to="/owner">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -204,8 +210,8 @@ const Property = () => {
                 </span>
               </button>
 
-              {property.type === "Land" ||
-                (property.type === "House" && (
+              {(property.type === "Land" ||
+                property.type === "House") && (
                   <button onClick={handleOpenDocUpload}>
                     <span className="relative flex items-center gap-2 bg-sky-600 hover:bg-sky-700 rounded-lg px-2 py-2">
                       <span className=" max-sm:hidden lg:block text-sky-100">
@@ -225,7 +231,7 @@ const Property = () => {
                       </span>
                     </span>
                   </button>
-                ))}
+                )}
             </div>
           </div>
         </div>

@@ -8,7 +8,9 @@ import baseURL from '../../../shared/baseURL';
 import { CircularProgress } from '@mui/material';
 import Avatar from '../../../assets/images/photos/profile.png';
 import ProfileUpdateModal from './ProfileUpdateModal';
-
+import UploadProfile from '../../subcomponents/UploadProfile';
+import UploadIdImage from '../UploadIdImage';
+import { useQuery } from 'react-query';
 const AgentProfile = () => {
   const { auth } = useAuth();
   const fetch = useFetch();
@@ -19,26 +21,41 @@ const AgentProfile = () => {
   const [openUpdate, setOpenUpdate] = useState(false);
   const handleUpdateOpen = () => setOpenUpdate(true);
   const handleUpdateClose = () => setOpenUpdate(false);
-  const [isLoading, setIsLoading] = useState(true); // Loading state
+
+
+  const [openUpload, setOpenUpload] = useState(false)
+  const handleOpenUpload = () => setOpenUpload(true)
+  const handleUploadClose = () => setOpenUpload(false)
+
+  //identity image
+  const [openDocUpload, setOpenDocUpload] = useState(false);
+  const handleOpenDocUpload = () => setOpenDocUpload(true);
+  const handleDocUploadClose = () => setOpenDocUpload(false);
 
   const handleProfile = async () => {
     try {
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
         setAgent(result.data);
-      }
     } catch (error) {
       toast.error("Error fetching your profile details");
       console.log("Fetch error:", error);
-    } finally {
-      setIsLoading(false); // Stop loading after the request finishes
     }
   };
 
-  useEffect(() => {
-    handleProfile();
-  }, [id]);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["agent"],
+     handleProfile,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
 
+  // console.log(agent);
   return (
     <div className="max-md:pt-24">
       <ToastContainer />
@@ -62,15 +79,38 @@ const AgentProfile = () => {
         </div>
       ) : agent ? (
         <div className="flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center relative">
             <img
               src={agent?.profile ? agent.profile : Avatar}
               alt="Profile"
-              className="w-32 h-32 rounded-full object-cover"
+              className="w-32 h-32 rounded-full object-cover relative"
             />
+            {!agent?.profile && 
+              <div className=' absolute z-20 bg-black opacity-60 w-32 h-32 flex justify-center items-center rounded-full top-0'>
+              <button className=''
+                onClick={handleOpenUpload}
+              >
+                <span>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  height="34px" 
+                  viewBox="0 -960 960 960" 
+                  width="34px" 
+                  fill="currentColor"
+                  className=' text-white'
+                  >
+                  <path 
+                  d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z"
+                  />
+                </svg>
+                </span>
+              </button>
+              </div>
+            }
             <h1 className="text-2xl font-bold text-gray-800 mt-3 mb-4">{`${agent.firstname} ${agent.lastname}`}</h1>
           </div>
-          <div className="flex flex-col items-start justify-start mt-3 border w-full my-5 px-4 py-2">
+          <div className=' grid grid-cols-1 lg:grid-cols-2  mt-3 border w-full'>
+          <div className="flex flex-col items-start justify-start my-5 px-4 py-2">
             <h1 className="text-2xl font-bold text-gray-800">Personal Information</h1>
             <p className="text-gray-600 mb-2"><span>Agency Name: </span>{agent?.agencyName}</p>
             <p className="text-gray-600 mb-2"><span>Email: </span>{agent?.email}</p>
@@ -79,6 +119,31 @@ const AgentProfile = () => {
             <p className="text-gray-600 mb-2"><span>Office Address: </span>{agent?.officeAddress}</p>
             <p className="text-gray-600 mb-2"><span>Verification: </span>{agent?.verified ? 'Verified' : 'Not Verified'}</p>
             <p className="text-gray-600 mb-2"><span>Identity Type: </span>{agent?.identityType}</p>
+            <p className="text-gray-600 mb-2"><span>Identity Number: </span>{agent?.identityNumber}</p>
+          </div>
+          <div className=' flex flex-col my-5 px-4'>
+            <p className='text-2xl font-semibold text-start lg:text-center text-gray-700'>Identity Image</p>
+            {
+              agent?.identityImage ? (
+                <div className='flex justify-start items-center'>
+                  <img
+                    src={agent?.identityImage}
+                    alt=""
+                    className="w-32 h-32 object-cover"
+                  />
+                </div>
+              ) : (
+                <div className='flex justify-start items-center'>
+                  <button
+                    onClick={handleOpenDocUpload}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2"
+                  >
+                    Upload Id
+                  </button>
+                </div>
+              )
+            }
+          </div>
           </div>
 
           <div>
@@ -87,7 +152,7 @@ const AgentProfile = () => {
               handleUpdateOpen();
               setAgent(agent);
             }}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2">
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded mr-2 mt-10">
               Update
             </button>
           </div>
@@ -98,6 +163,13 @@ const AgentProfile = () => {
         </div>
       )}
       <ProfileUpdateModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} agent={agent} />
+      <UploadProfile openUpload={openUpload} handleUploadClose={handleUploadClose} userId={id} />
+      <UploadIdImage
+        id={id}
+        openDocUpload={openDocUpload}
+        handleDocUploadClose={handleDocUploadClose}
+        url={`${url}`}
+      />
     </div>
   );
 };

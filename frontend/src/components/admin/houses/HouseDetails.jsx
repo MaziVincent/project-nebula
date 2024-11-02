@@ -9,7 +9,7 @@ import DeletePropertyModal from "../property/DeletePropertyModal";
 import UpdateHouseModal from "./UpdateHouseModal";
 import UploadPropertyImage from "../property/UploadPropertyImage";
 import UploadHouseDocModal from "./UploadHouseDocModal";
-import { div } from "framer-motion/client";
+import { useQuery } from "react-query";
 
 const HouseDetails = () => {
   const { auth } = useAuth();
@@ -46,27 +46,32 @@ const HouseDetails = () => {
 
   const handleHouseDetails = async () => {
     try {
-      // Fetch the specific house details
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        setHouse(result.data);
-        console.log("House details:", result.data);
-      }
+      setHouse(result.data)
+      return result.data;
     } catch (error) {
       toast.error("Error fetching other details");
       console.log("Fetch error:", error);
     }
   };
 
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    handleHouseDetails();
-  }, [id]);
-  console.log(house);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["house"],
+     handleHouseDetails,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
+
   return (
     <div className="mt-2">
       <ToastContainer />
-      <div className=" max-md:pt-10 mt-0 mb-2">
+      <div className="py-5 mt-0 mb-2">
         <Link to="/admin/houses">
           <svg
             xmlns="http://www.w3.org/2000/svg"

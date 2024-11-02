@@ -166,7 +166,7 @@ const CreateLandModal = ({open, handleClose}) => {
                   <input
                     id="price"
                     // rows="4"
-                    type='text'
+                    type='number'
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Price here"
@@ -208,7 +208,7 @@ const CreateLandModal = ({open, handleClose}) => {
                   <input
                     id="plots"
                     name='plots'
-                    type='text'
+                    type='number'
                     {...register("plots", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter plots here"
@@ -222,14 +222,23 @@ const CreateLandModal = ({open, handleClose}) => {
                   >
                     Document Type:
                   </label>
-                  <input
+                  {/* <input
                     id="docType"
                     name='docType'
                     type='text'
                     {...register("docType", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter docType here"
-                  />
+                  /> */}
+                  <select name="docType" id="docType"
+                    {...register("docType", { required: true })}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                  >
+                    <option value="Select Document Type" selected disabled>Select Document Type</option>
+                    <option value="Certificate of OwnerShip (C of O)">Certificate of OwnerShip (C of O)</option>
+                    <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
+                    <option value="Deeds of Conveyance">Deeds of Conveyance</option>
+                  </select>
                 </div>
 
                 <div className="sm:col-span-2">
@@ -247,6 +256,14 @@ const CreateLandModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter ownershipType here"
                   />
+                  <select name="ownershipType" id="ownershipType"
+                    {...register("ownershipType", { required: true })}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                  >
+                    <option value="Select Ownership Type" selected disabled>Select Ownership Type</option>
+                    <option value="Virgin Land">Virgin Land</option>
+                    <option value="Resell">Resell</option>
+                  </select>
                 </div>
                 <div className="sm:col-span-2">
                   <label

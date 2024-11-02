@@ -167,7 +167,7 @@ const NewApartmentModal = ({open, handleClose}) => {
                   <input
                     id="price"
                     // rows="4"
-                    type='text'
+                    type='number'
                     {...register("price", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Apartment Price here"
@@ -208,7 +208,7 @@ const NewApartmentModal = ({open, handleClose}) => {
                   <input
                     id="bedrooms"
                     name='bedrooms'
-                    type='text'
+                    type='number'
                     {...register("bedrooms", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Number of bedrooms"
@@ -224,7 +224,7 @@ const NewApartmentModal = ({open, handleClose}) => {
                   <input
                     id="bathrooms"
                     name='bathrooms'
-                    type='text'
+                    type='number'
                     {...register("bathrooms", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Number of bathrooms here"
@@ -240,7 +240,7 @@ const NewApartmentModal = ({open, handleClose}) => {
                   <input
                     id="floorArea"
                     name='floorArea'
-                    type='text'
+                    type='number'
                     {...register("floorArea", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Floor Area here"

@@ -187,7 +187,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                     Price
                   </label>
                   <input
-                    id="price"
+                    id="number"
                     // rows="4"
                     type='text'
                     {...register("price", { required: true })}
@@ -222,7 +222,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
 
                 {
                   propertyType === 'House' && (
-                    <div className='gap-4 mb-4'>
+                    <div className='gap-4 mb-4 space-y-4'>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="bedrooms"
@@ -233,7 +233,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <input
                           id="bedrooms"
                           name='bedrooms'
-                          type='text'
+                          type='number'
                           {...register("bedrooms", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter Number of bedrooms"
@@ -249,7 +249,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <input
                           id="bathrooms"
                           name='bathrooms'
-                          type='text'
+                          type='number'
                           {...register("bathrooms", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter Number of bathrooms here"
@@ -265,7 +265,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <input
                           id="squareFootage"
                           name='squareFootage'
-                          type='text'
+                          type='number'
                           {...register("squareFootage", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter squareFootage here"
@@ -281,7 +281,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <input
                           id="yearBuilt"
                           name='yearBuilt'
-                          type='text'
+                          type='number'
                           {...register("yearBuilt", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter yearBuilt here"
@@ -297,7 +297,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <input
                           id="lotSize"
                           name='lotSize'
-                          type='text'
+                          type='number'
                           {...register("lotSize", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter lotSize here"
@@ -313,7 +313,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <input
                           id="stories"
                           name='stories'
-                          type='text'
+                          type='number'
                           {...register("stories", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter stories here"
@@ -326,14 +326,23 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         >
                           docType:
                         </label>
-                        <input
+                        {/* <input
                           id="docType"
                           name='docType'
                           type='text'
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter docType here"
-                        />
+                        /> */}
+                        <select name="docType" id="docType"
+                          {...register("docType", { required: true })}
+                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                        >
+                          <option value="Select Document Type" selected disabled>Select Document Type</option>
+                          <option value="Certificate of OwnerShip (C of O)">Certificate of OwnerShip (C of O)</option>
+                          <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
+                          <option value="Deeds of Conveyance">Deeds of Conveyance</option>
+                        </select>
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -404,7 +413,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                 }
                 {
                   propertyType === 'Apartment' && (
-                    <div className='gap-4 mb-4'>
+                    <div className='gap-4 mb-4 space-y-4'>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="shopType"
@@ -414,7 +423,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         </label>
                         <input
                           id="bedrooms"
-                          type="text"
+                          type="number"
                           {...register("bedrooms", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Number of bedrooms here"
@@ -429,7 +438,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         </label>
                         <input
                           id="bathrooms"
-                          type="text"
+                          type="number"
                           {...register("bathrooms", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Number Bathroom here"
@@ -444,7 +453,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         </label>
                         <input
                           id="floorArea"
-                          type="text"
+                          type="number"
                           {...register("floorArea", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Lease Duration here"
@@ -456,7 +465,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
 
                 {
                   propertyType === 'Land' && (
-                    <div className='gap-4 mb-4'>
+                    <div className='gap-4 mb-4 space-y-4'>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="plots"
@@ -467,7 +476,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <input
                           id="plots"
                           name='plots'
-                          type='text'
+                          type='number'
                           {...register("plots", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter plots here"
@@ -481,14 +490,23 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         >
                           Document Type:
                         </label>
-                        <input
+                        {/* <input
                           id="docType"
                           name='docType'
                           type='text'
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter docType here"
-                        />
+                        /> */}
+                        <select name="docType" id="docType"
+                          {...register("docType", { required: true })}
+                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                        >
+                          <option value="Select Document Type" selected disabled>Select Document Type</option>
+                          <option value="Certificate of OwnerShip (C of O)">Certificate of OwnerShip (C of O)</option>
+                          <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
+                          <option value="Deeds of Conveyance">Deeds of Conveyance</option>
+                        </select>
                       </div>
 
                       <div className="sm:col-span-2">
@@ -498,36 +516,29 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         >
                           Ownership Type
                         </label>
-                        <input
+                        {/* <input
                           id="ownershipType"
                           name='ownershipType'
                           type='text'
                           {...register("ownershipType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter ownershipType here"
-                        />
+                        /> */}
+                        <select name="ownershipType" id="ownershipType"
+                          {...register("ownershipType", { required: true })}
+                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                        >
+                          <option value="Select OWnership Type" selected disabled>Select OWnership Type</option>
+                          <option value="Virgin Land">Virgin Land</option>
+                          <option value="Resell">Resell</option>
+                        </select>
                       </div>
                     </div>
                   )
                 }
                 {
                   propertyType === 'Shop' && (
-                    <div className=' gap-4 mb-4'>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="shopType"
-                          className="block mb-2 text-sm font-medium text-gray-900"
-                        >
-                          Shop Type
-                        </label>
-                        <input
-                          id="shopType"
-                          type="text"
-                          {...register("shopType", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
-                          placeholder="Enter Shop Type here"
-                        />
-                      </div>
+                    <div className=' gap-4 mb-4 space-y-4'>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="shopCategory"
@@ -535,13 +546,26 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         >
                           Shop Category
                         </label>
-                        <input
+                        {/* <input
                           id="shopCategory"
                           type="text"
                           {...register("shopCategory", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Shop Category here"
-                        />
+                        /> */}
+                        <select name="shopCategory" id="shopCategory"
+                          {...register("shopCategory", { required: true })}
+                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                        >
+                          <option value="Select Shop Category" selected disabled>Select Shop Category</option>
+                          <option value="Warehouse">Warehouse</option>
+                          <option value="Retail Store">Retail Store</option>
+                          <option value="Office Space">Office Space</option>
+                          <option value="Showroom">Showroom</option>
+                          <option value="Pharmacy Store">Pharmacy Store</option>
+                          <option value="Boutique">Boutique</option>
+                          <option value="General Purpose">General Purpose</option>
+                        </select>
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -558,9 +582,39 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           placeholder="Enter Lease Duration here"
                         />
                       </div>
+
+                      <div className="sm:col-span-2">
+                        <label
+                          htmlFor="securityDeposit"
+                          className="block mb-2 text-sm font-medium text-gray-900"
+                        >
+                          Security Deposit
+                        </label>
+                        <input
+                          id="securityDeposit"
+                          type="number"
+                          {...register("securityDeposit", { required: true })}
+                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
+                          placeholder="Enter Security Deposit here"
+                        />
+                      </div>
                     </div>
                   )
                 }
+                <div className="mb-4">
+                  <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+                    Type:
+                  </label>
+                  <select
+                    id="propertyType"
+                    {...register("propertyType", { required: true })}
+                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  >
+                    <option value="Rent">Rent</option>
+                    <option value="Sell">Sell</option>
+                    <option value="Lease">Lease</option>
+                  </select>
+                </div>
               </div>
               <button
                 type="submit"

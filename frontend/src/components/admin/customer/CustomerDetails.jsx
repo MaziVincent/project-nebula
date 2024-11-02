@@ -9,6 +9,7 @@ import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import UpdateCustomerModal from './UpdateCustomerModal';
 import DeleteUserModal from '../users/DeleteUserModal';
+import { useQuery } from 'react-query';
 
 const CustomerDetails = () => {
   const { auth } = useAuth();
@@ -32,24 +33,14 @@ const CustomerDetails = () => {
   // State for apartment details and other shops
   const [customer, setCustomer] = useState(null);
 
-  //verify or unverify agent
-  const [openVerify, setOpenVerify] = useState(false);
-  const handleOpenverify = () => setOpenVerify(true);
-  const handleVerifyClose = () => setOpenVerify(false);
-  const [ownerId, setOwnerId] = useState("")
 
-  //verify or unverify agent
-  const [openUnverify, setOpenUnverify] = useState(false);
-  const handleOpenUnverify = () => setOpenUnverify(true);
-  const handleUnverifyClose = () => setOpenUnverify(false);
 
   const handleCustomerDetails = async () => {
     try {
       // Fetch the specific apartment details
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        setCustomer(result.data); 
-      }
+        setCustomer(result.data);
+        return result.data
     } catch (error) {
       toast.error("Error fetching Customer's details");
       console.log("Fetch error:", error);
@@ -57,15 +48,23 @@ const CustomerDetails = () => {
   };
   
   
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["customer"],
+     handleCustomerDetails,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
 
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    handleCustomerDetails();
-  }, [id]);
   return (
     <div className=' max-md:pt-24'>
       <ToastContainer />
-      <div className=' max-md:pt-10 pl-4'>
+      <div className='py-5 pl-4'>
         <Link to='/admin/customers' >
           <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -86,7 +85,7 @@ const CustomerDetails = () => {
                 <div className="md:w-full">
                   <h4 className=' text-xl mb-0 pb-2'>Profile Image:</h4>
                   <div className=' border'>
-                    <img src={`${imageUrl}${customer.profile}`} alt={customer.firstname} className="w-full h-auto" />
+                    <img src={customer.profile} alt={customer.firstname} className="w-full h-auto" />
                   </div>
                 </div>
                 </div>

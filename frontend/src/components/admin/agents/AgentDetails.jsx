@@ -10,9 +10,7 @@ import AgentVerifyModal from './AgentVerifyModal';
 import UnverifyAgentModal from './UnverifyAgentModal';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
-// import UpdateApartmentModal from './UpdateApartmentModal';
-// import DeletePropertyModal from '../property/DeletepropertyModal';
-
+import { useQuery } from 'react-query';
 
 function AgentDetails() {
   const { auth } = useAuth();
@@ -33,9 +31,7 @@ function AgentDetails() {
   const handleDeleteClose = () => setOpenDelete(false);
   const [userId, setUserId] = useState("")
 
-  // State for apartment details and other shops
   const [agent, setAgent] = useState(null);
-  const [otherAgents, setOtherAgents] = useState([]);
 
   //verify or unverify agent
   const [openVerify, setOpenVerify] = useState(false);
@@ -52,9 +48,8 @@ function AgentDetails() {
     try {
       // Fetch the specific apartment details
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        setAgent(result.data); 
-      }
+      setAgent(result.data);
+      return result.data
     } catch (error) {
       toast.error("Error fetching Agent's details");
       console.log("Fetch error:", error);
@@ -63,16 +58,22 @@ function AgentDetails() {
   
   
 
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    handleAgentDetails();
-  }, [id]);
-  //console.log(otherAgents);
-  //console.log(agent);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["agent"],
+     handleAgentDetails,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
   return (
     <div className=' max-md:pt-24'>
       <ToastContainer />
-      <div className=' max-md:pt-10 pl-4'>
+      <div className='py-5 pl-4'>
         <Link to='/admin/agents' >
           <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -93,13 +94,13 @@ function AgentDetails() {
                 <div className="w-1/3 max-sm:w-4/5">
                   <h4 className=' text-xl mb-0 pb-2'>Profile Image:</h4>
                   <div className=' border'>
-                    <img src={`${imageUrl}${agent.profile}`} alt={agent.firstname} className="w-full h-auto" />
+                    <img src={agent?.profile} alt={agent?.firstname} className="w-full h-auto" />
                   </div>
                 </div>
                 <div className="w-1/3 max-sm:w-4/5">
                   <h4 className=' text-xl mb-0 pb-2'>Identity Image:</h4>
                   <div className=' border'>
-                    <img src={`${imageUrl}${agent.identityImage}`} alt={agent.identityType} className="w-full h-auto" />
+                    <img src={agent?.identityImage} alt={agent?.identityType} className="w-full h-auto" />
 
                   </div>
                 </div>

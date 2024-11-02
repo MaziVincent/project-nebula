@@ -6,7 +6,8 @@ const {
     deleteAgent,
     agentExists,
     verifyAgent,
-    unVerifyAgent
+    unVerifyAgent,
+    uploadDocument
 } = require('../services/agentService');
 
 const handleAgents = async (req, res) => {
@@ -99,6 +100,18 @@ const handleUnVerifyAgent = async (req, res) => {
     if(result.error) return res.status(500).json(result);
     res.status(200).json({Success: "Agent unverified successfully", result});
 }
+
+const handleUploadDocument = async (req, res) => {
+    if(!req.files){
+        return res.status(400).json({ message: 'File is required' });
+    }
+    const file = req.files;
+    const _id = req.params.id;
+    const result = await uploadDocument(file, _id);
+    if(result.error) return res.status(500).json(result);
+    res.status(200).json({Success: "Document uploaded successfully", result});
+}
+
 module.exports = {
     handleAgents,
     handleCreateAgent,
@@ -106,5 +119,6 @@ module.exports = {
     handleAgentDelete,
     handleAgent,
     handleVerifyAgent,
-    handleUnVerifyAgent
+    handleUnVerifyAgent,
+    handleUploadDocument
 }

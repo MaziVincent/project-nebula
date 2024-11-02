@@ -140,8 +140,9 @@ const AdminHeader = ({ setAside }) => {
       )}
         </div>
         <div className="border h-16 w-16 rounded-full">
-
+          <Link to={`/admin/profile/${auth?.user?._id}`}>
             <img src={auth?.user?.profile ? auth.user.profile : Avatar} alt="" className="w-full h-full rounded-full" />
+          </Link>
           </div>
       </div>
     </nav>

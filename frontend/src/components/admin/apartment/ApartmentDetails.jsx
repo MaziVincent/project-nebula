@@ -7,8 +7,8 @@ import { Link, useParams } from 'react-router-dom';
 import baseURL from '../../../shared/baseURL';
 import UpdateApartmentModal from './UpdateApartmentModal';
 import DeletePropertyModal from '../property/DeletePropertyModal';
-import { Modal } from '@mui/material';
 import UploadPropertyImage from '../property/UploadPropertyImage';
+import { useQuery } from 'react-query';
 
 const ApartmentDetails = () => {
   const { auth } = useAuth();
@@ -38,30 +38,31 @@ const ApartmentDetails = () => {
   
   const handleApartmentDetail = async () => {
     try {
-      // Fetch the specific apartment details
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        setApartment(result.data); 
-        // console.log("Apartment details:", result.data);
-      } else {
-        toast.error("Error fetching Apartment details");
-      }
+      setApartment(result.data);
+      return result.data;
     } catch (error) {
       toast.error("Error fetching Apartment details");
       console.log("Fetch error:", error);
     }
   };
   
-  
-
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    handleApartmentDetail();
-  }, [id]);
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["apartment"],
+     handleApartmentDetail,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always",
+        onSuccess: () => {
+          setTimeout(() => {
+          }, 2000)
+        }
+    }
+  );
   return (
     <div className='mt-2 max-sm:h-screen max-sm:pt-12'>
         <ToastContainer />
-        <div className=' max-md:pt-10 mt-0 mb-2'>
+        <div className='py-5 mt-0 mb-2'>
         <Link to='/admin/apartments' >
           <svg 
           xmlns="http://www.w3.org/2000/svg" 
