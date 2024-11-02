@@ -183,7 +183,7 @@ const About = () => {
               look at our full range of services.
             </p>
           </div>
-          <div className="row row-cols-1 row-cols-lg-4 row-cols-sm-2 justify-content-center mb-5 xs-mb-8">
+          <div className="row row-cols-1 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-5 xs-mb-8">
             {/* start features box item   */}
             <div className="col icon-with-text-style-07 transition-inner-all md-mb-30px">
               <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
@@ -198,12 +198,11 @@ const About = () => {
                   <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
                     Our Technology
                   </span>
-                  <p className="p-0">
-                  We invest in the latest technology to keep you ahead. 
-                  We are fully integrated with tools that streamline our processes, 
-                  giving you unprecedented speed in decision making and accuracy based 
-                  on real time data. We also employ a paperless transaction system that 
-                  tracks every project and provides rapid, transparent access to our processes.
+                  <p className="p-0 ">
+                    We invest in the latest technology to keep you ahead. We are
+                    fully integrated with tools that streamline our processes,
+                    giving you unprecedented speed in decision making and
+                    accuracy based on real time data.
                   </p>
                 </div>
               </div>
@@ -211,7 +210,7 @@ const About = () => {
             {/*   end features box item  */}
             {/*   start features box item   */}
             <div className="col icon-with-text-style-07 transition-inner-all md-mb-30px">
-              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-16 lg-p-14 border-radius-10px last-paragraph-no-margin">
+              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
                 <div className="feature-box-icon mb-20px">
                   <img
                     src={FriendlyPic}
@@ -221,11 +220,15 @@ const About = () => {
                 </div>
                 <div className="feature-box-content">
                   <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
-                    User friendly
+                    Experts with unique access
                   </span>
                   <p>
-                    We put our clients' needs at the heart of everything we do,
-                    ensuring their satisfaction is our priority.
+                    We are founded on great people. The people we work with are
+                    property experts, with networks that have been built up over
+                    years of work in the property industry. Our relationships
+                    are the foundation of our success and form the basis of our
+                    operations- bringing you exclusive access, with a personal
+                    touch.
                   </p>
                 </div>
               </div>
@@ -233,7 +236,7 @@ const About = () => {
             {/* end features box item   */}
             {/* start features box item   */}
             <div className="col icon-with-text-style-07 transition-inner-all xs-mb-30px">
-              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-16 lg-p-14 border-radius-10px last-paragraph-no-margin">
+              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
                 <div className="feature-box-icon mb-20px">
                   <img
                     src={TrustPic}
@@ -243,18 +246,21 @@ const About = () => {
                 </div>
                 <div className="feature-box-content">
                   <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
-                    Trusted property
+                    Focus on growth
                   </span>
                   <p>
-                    We believe in being honest and upfront with our clients,
-                    ensuring trust is built from the first interaction.
+                    We are committed to growth: helping your property business
+                    expand and maximise its profits, assisting you as you grow
+                    your portfolio, and we’re there to help manage your
+                    properties effectively and profitably. we work as your real estate department, helping
+                    propel you on your journey of growth. 
                   </p>
                 </div>
               </div>
             </div>
             {/* end features box item   */}
             {/* start features box item   */}
-            <div className="col icon-with-text-style-07 transition-inner-all">
+            {/* <div className="col icon-with-text-style-07 transition-inner-all">
               <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-16 lg-p-14 border-radius-10px last-paragraph-no-margin">
                 <div className="feature-box-icon mb-20px">
                   <img
@@ -274,7 +280,7 @@ const About = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* end features box item   */}
           </div>
           <div className="row justify-content-center">
@@ -286,7 +292,7 @@ const About = () => {
                 <div className="feature-box-content alt-font text-dark-gray fs-22 fw-600">
                   We are growing fast! Today MegaTech RealEstate has{" "}
                   <span className="text-decoration-line-bottom">
-                    36k+ active residents.
+                    3k+ active residents.
                   </span>
                 </div>
               </div>
@@ -420,10 +426,10 @@ const About = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                          I've purchased several themes over the years and this
-                          theme, by far is absolutely amazing. It's built
-                          extremely well the back end was well thought out the
-                          design options are endless.
+                        "Mega Real Estate made my home buying experience so
+                          easy! They really listened to my needs and found the
+                          perfect home for my family. I couldn't be happier with
+                          their service."
                         </p>
                         <div className="mt-20px">
                           <img
@@ -433,7 +439,7 @@ const About = () => {
                           />
                           <div className="d-inline-block align-middle text-start">
                             <div className="text-dark-gray alt-font fs-20">
-                              <span className="fw-700">Shoko</span> mugikura
+                              <span className="fw-700">Victor</span> Obi
                             </div>
                             <div className="review-star-icon fs-18">
                               <i className="bi bi-star-fill"></i>
@@ -451,10 +457,10 @@ const About = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                          The theme is very valid and offers many possibilities
-                          of customization to adapt it to your needs, but the
-                          thing I got the most out of it was the relationship
-                          with the support team.
+                        "Mega Real Estate made my home buying experience so
+                          easy! They really listened to my needs and found the
+                          perfect home for my family. I couldn't be happier with
+                          their service."
                         </p>
                         <div className="mt-20px">
                           <img
@@ -464,7 +470,7 @@ const About = () => {
                           />
                           <div className="d-inline-block align-middle text-start">
                             <div className="text-dark-gray alt-font fs-20">
-                              <span className="fw-700">Leonel</span> mooney
+                              <span className="fw-700">Frank</span> Okoye
                             </div>
                             <div className="review-star-icon fs-18">
                               <i className="bi bi-star-fill"></i>
