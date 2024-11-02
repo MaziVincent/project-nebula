@@ -110,7 +110,7 @@ const Header = () => {
               <div className="d-none d-xl-flex me-25px">
                 <div className="d-flex align-items-center widget-text fw-600 alt-font">
                   <a
-                    href="tel:+2349161403450"
+                    href="tel:+2347046047536"
                     className="d-inline-block"
                   >
                     <span className="d-inline-block align-middle me-10px bg-base-color-transparent h-45px w-45px text-center rounded-circle fs-16 lh-46 text-base-color">

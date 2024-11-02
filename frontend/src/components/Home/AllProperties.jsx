@@ -309,7 +309,7 @@ const AllProperties = () => {
                                     </div>
                                     <div className="process-content ps-35px last-paragraph-no-margin mb-30px">
                                         <span className="text-dark-gray fs-19 alt-font mb-5px fw-600 d-block">Search for real estates</span>
-                                        <p className="w-80 lg-w-100">Lorem ipsum simply dummy printing typesetting industry's standard.</p>
+                                        <p className="w-80 lg-w-100">Navigate through our list of available properties to find the one you want to buy or rent.</p>
                                     </div>
                                 </div> 
                             </div>
@@ -326,7 +326,7 @@ const AllProperties = () => {
                                     </div>
                                     <div className="process-content ps-35px last-paragraph-no-margin mb-30px">
                                         <span className="text-dark-gray fs-19 alt-font mb-5px fw-600 d-block">Select your favorite</span>
-                                        <p className="w-80 lg-w-100">Lorem ipsum simply dummy printing typesetting industry's standard.</p>
+                                        <p className="w-80 lg-w-100">Navigate through our list of available properties to find the one you want to buy or rent.     </p>
                                     </div>
                                 </div> 
                             </div>
@@ -341,8 +341,8 @@ const AllProperties = () => {
                                         </div> 
                                     </div>
                                     <div className="process-content ps-35px last-paragraph-no-margin mb-30px">
-                                        <span className="text-dark-gray fs-19 alt-font mb-5px fw-600 d-block">Take your property key</span>
-                                        <p className="w-80 lg-w-100">Lorem ipsum simply dummy printing typesetting industry's standard.</p>
+                                        <span className="text-dark-gray fs-19 alt-font mb-5px fw-600 d-block">Proceed to get your property</span>
+                                        <p className="w-80 lg-w-100"> View property details to get in touch with the owner.</p>
                                     </div>
                                 </div> 
                             </div>
