@@ -99,18 +99,15 @@ const About = () => {
             </div>
             <div className="col-xl-5 offset-xl-1 col-lg-6 mb-8 order-1 order-lg-2 md-mb-40px">
               <span className="fs-20 d-inline-block mb-15px text-base-color">
-                MegaTech RealEstate
+                About
               </span>
               <h2
-                className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none"
+                className="alt-font text-gray-900 text-4xl fw-700"
                 data-shadow-animation="true"
                 data-animation-delay="700"
               >
-                About MegaTech{" "}
-                <span className="fw-700 text-highlight d-inline-block">
-                  RealEstate.
-                  <span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
-                </span>
+                MegaTech RealEstate.{" "}
+                <span className="fw-700 text-highlight d-inline-block"></span>
               </h2>
               <p className="w-100 lg-w-100">
                 MEGATECH REALESTATE is a leading real estate company in Nigeria
@@ -165,7 +162,6 @@ const About = () => {
         </div>
       </section>
       {/* end section */}
-      <section className="flex flex-col justify-center items-center bg-gray-100"></section>
       <section className="bg-gradient-very-light-gray">
         <div className="container">
           <h2
@@ -180,17 +176,17 @@ const About = () => {
           </h2>
 
           <div className="flex justify-center">
-          <p className="w-full md:w-4/6 bg-white rounded-lg p-5 ">
-            Whether you are selling, buying, renting, or leasing real estate in
-            Nigeria, we can offer an end-to-end service that guarantees a
-            stress-free and successful property acquisition journey. Take a look
-            at our full range of services.
-          </p>
+            <p className="w-full md:w-4/6 bg-white rounded-lg p-5 ">
+              Whether you are selling, buying, renting, or leasing real estate
+              in Nigeria, we can offer an end-to-end service that guarantees a
+              stress-free and successful property acquisition journey. Take a
+              look at our full range of services.
+            </p>
           </div>
           <div className="row row-cols-1 row-cols-lg-4 row-cols-sm-2 justify-content-center mb-5 xs-mb-8">
             {/* start features box item   */}
             <div className="col icon-with-text-style-07 transition-inner-all md-mb-30px">
-              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-16 lg-p-14 border-radius-10px last-paragraph-no-margin">
+              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
                 <div className="feature-box-icon mb-20px">
                   <img
                     src={ServiceImg}
@@ -200,11 +196,14 @@ const About = () => {
                 </div>
                 <div className="feature-box-content">
                   <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
-                    Best services
+                    Our Technology
                   </span>
-                  <p className="">
-                    We strive to exceed expectations in every transaction, from
-                    finding the perfect property to finalizing deals.
+                  <p className="p-0">
+                  We invest in the latest technology to keep you ahead. 
+                  We are fully integrated with tools that streamline our processes, 
+                  giving you unprecedented speed in decision making and accuracy based 
+                  on real time data. We also employ a paperless transaction system that 
+                  tracks every project and provides rapid, transparent access to our processes.
                   </p>
                 </div>
               </div>
@@ -285,7 +284,7 @@ const About = () => {
                   <i className="bi bi-patch-check icon-medium text-base-color"></i>
                 </div>
                 <div className="feature-box-content alt-font text-dark-gray fs-22 fw-600">
-                  We are growing fast! Today Mega Real Estate has{" "}
+                  We are growing fast! Today MegaTech RealEstate has{" "}
                   <span className="text-decoration-line-bottom">
                     36k+ active residents.
                   </span>
