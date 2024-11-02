@@ -680,8 +680,8 @@ const Page = () => {
             <div className="container">
                 <div className="row align-items-center">
                     <div className="col-xl-4 col-lg-5 md-mb-50px sm-mb-35px"> 
-                        <span className="fs-20 d-inline-block mb-15px text-base-color">On going projects</span>
-                        <h3 className="alt-font fw-500 text-dark-gray ls-minus-1px w-90 xl-w-100 shadow-none" data-shadow-animation="true" data-animation-delay="700">We are available in <span className="fw-700 text-highlight d-inline-block">many cities<span className="bg-base-color h-10px bottom-1px opacity-3 separator-animation"></span></span></h3>
+                        <span className="fs-20 d-inline-block mb-15px text-base-color">Find your dream house</span>
+                        <h3 className="alt-font fw-500 text-dark-gray ls-minus-1px w-90 xl-w-100 shadow-none" data-shadow-animation="true" data-animation-delay="700">Ongoing <span className="fw-700 text-highlight d-inline-block">Projects<span className="bg-base-color h-10px bottom-1px opacity-3 separator-animation"></span></span></h3>
                         <p className="mb-30px w-90 md-w-100">At this time, we are building a number of modern duplexes in various parts of Abakaliki city. We are dedicated to creating for our clients contemporary, reliable, and affordable structures.</p>
                         <div className="d-flex">
                              {/* start slider navigation  */}
@@ -696,13 +696,13 @@ const Page = () => {
                         
                                      <Swiper
                                         modules={[Autoplay]}
-                                        slidesPerView={1}
+                                        slidesPerView={2}
                                         loop={true}
                                         autoplay={{ delay: 3000, disableOnInteraction: false }}
                                         spaceBetween={30}
                                         breakpoints={{
                                         1200: { slidesPerView: 2 },
-                                        768: { slidesPerView: 1 },
+                                        768: { slidesPerView: 2 },
                                         320: { slidesPerView: 1 },
                                         }}
                                         pagination={{ clickable: true }}  
