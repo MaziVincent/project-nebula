@@ -131,7 +131,7 @@ const AdminApartments = () => {
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
-                  Owner
+                  Owner / Agent
                 </th>
                 <th
                 
@@ -160,10 +160,13 @@ const AdminApartments = () => {
                   </span>
                 </td>
                 <td className="px-6 py-4">{apartment.createdAt.substring(0,10)}</td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-2">
+                <td className="px-6 py-4 flex items-center">
+                  <div className="flex flex-col justify-center items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {apartment.owner.firstname}
+                      {apartment.owner.firstname} {apartment.owner.lastname}
+                    </span>
+                    <span className="text-gray-500 text-sm">
+                      {apartment.owner.type}
                     </span>
                   </div>
                 </td>

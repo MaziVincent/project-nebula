@@ -118,7 +118,7 @@ const AdminHouses = () => {
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
-                  Owner
+                  Owner / Agent
                 </th>
                 <th
                 
@@ -128,8 +128,8 @@ const AdminHouses = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              { Array.isArray(data?.houses) && data?.houses.length > 0 ?(
-                 data.houses.map((house) => (
+              { data?.houses?.length > 0 ?(
+                 data?.houses.map((house) => (
                   <tr key={house._id} className="hover:bg-gray-50">
                 
                 <th className=" gap-3 items-center px-6 py-4 font-normal text-gray-900">
@@ -147,10 +147,13 @@ const AdminHouses = () => {
                   </span>
                 </td>
                 <td className="px-6 py-4">{house.createdAt.substring(0,10)}</td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-2">
+                <td className="px-6 py-4 flex items-center">
+                  <div className="flex flex-col justify-center items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {house.owner.firstname}
+                      {house.owner.firstname} {house.owner.lastname}
+                    </span>
+                    <span className="text-gray-500 text-sm">
+                      {house.owner.type}
                     </span>
                   </div>
                 </td>

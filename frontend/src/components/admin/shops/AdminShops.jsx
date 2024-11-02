@@ -63,25 +63,9 @@ const Shops = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  // console.log(data);
-
-  // const handleDelete = async(_id) => {
-  //   try {
-  //     const result = await axios.delete(`${url}/${_id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${auth.accessToken}`,
-  //       },
-  //     })
-  //     if (result?.status === 200) {
-  //       toast.success("Shop deleted successfully");
-  //       QueryClient.invalidateQueries("shop");
-  //     }
-  //   } catch (err) {
-  //     toast.error(err.message);
-  //   }
-  // };
+  
   return (
-    <div className=' pt-10 max-sm:mt-10 h-screen'>
+    <div className=' pt-10 max-sm:mt-10 h-dvh'>
       <ToastContainer />
       <h3 className=' text-gray-700 font-semibold text-2xl text-center'>Shops</h3>
       <div className=' mb-4 max-md:w-full'>
@@ -117,7 +101,7 @@ const Shops = () => {
                   scope="col"
                   className="px-6 py-4 font-medium text-gray-900"
                 >
-                  Owner
+                 Owner / Agent
                 </th>
                 <th
                 
@@ -127,8 +111,8 @@ const Shops = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              { Array.isArray(data?.shops) && data?.shops.length > 0 ?(
-                 data.shops.map((shop) => (
+              { data?.shops?.length > 0 ?(
+                 data?.shops.map((shop) => (
                   <tr key={shop._id} className="hover:bg-gray-50">
                 
                 <th className=" gap-3 items-center px-6 py-4 font-normal text-gray-900">
@@ -146,10 +130,13 @@ const Shops = () => {
                   </span>
                 </td>
                 <td className="px-6 py-4">{shop.createdAt.substring(0,10)}</td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-2">
+                <td className="px-6 py-4 flex items-center">
+                  <div className="flex flex-col justify-center items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {shop.owner.firstname}
+                      {shop.owner.firstname} {shop.owner.lastname}
+                    </span>
+                    <span className="text-gray-500 text-sm">
+                      {shop.owner.type}
                     </span>
                   </div>
                 </td>
@@ -272,18 +259,17 @@ const Shops = () => {
           </table>
         </div>
       </div>
-      {/* <CreateShop open={openModal} handleClose={handleClose} /> */}
       <UpdateShopModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} shop={shop} />
       <ShopStatusUpdateModal openStatus={openStatus} handleCloseStatus={handleCloseStatus} shop={shop} />
       <DeletePropertyModal 
-        openDelete={openDelete} 
-        handleDeleteClose={handleDeleteClose} 
-        // shop={shop}
+        openDelete={openDelete}
+        handleDeleteClose={handleDeleteClose}
         propertyId={propertyId}
-        // propertyType="shop" 
-        url={`${url}`} />
+        url={`${url}`}
+      />
     </div>
   )
 }
+
 
 export default Shops
