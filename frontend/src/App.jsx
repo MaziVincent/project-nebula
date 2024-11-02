@@ -53,6 +53,7 @@ import AllProperties from './components/Home/AllProperties';
 import PropertyForRent from './components/client/customers/PropertyForRent';
 import PropertyForSell from './components/client/customers/PropertyForSell';
 import AdminProfile from './components/admin/AdminProfile';
+import TermsAndConditions from './components/Home/TermsAndConditions';
 
 function App() {
   const queryClient = new QueryClient();
@@ -71,6 +72,7 @@ function App() {
               <Route path='/allproperties' element={<AllProperties />} />
               <Route path='/sell' element={<Sell />} />
               <Route path='/property_details/:id' element={<PropertyDtls />} />
+              <Route path='/terms' element={<TermsAndConditions />} />
             </Route>
 
             {/* login route */}

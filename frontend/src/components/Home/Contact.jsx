@@ -43,28 +43,28 @@ const Contact = () => {
             <div className="container">
                 <div className="row justify-content-center align-items-center" > 
                     <div className="col-lg-6 pt-8 pb-8 text-center text-sm-start"> 
-                        <h6 className="alt-font fw-700 text-dark-gray mb-15px">London</h6>
+                        <h6 className="alt-font fw-700 text-dark-gray mb-15px">Abakaliki</h6>
                         <div className="row row-cols-1 row-cols-sm-2 mb-10">
                             <div className="col last-paragraph-no-margin xs-mb-20px">
-                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Mega - UK</span>
-                                <p className="w-80 lg-w-100">401 Broadway, 24th Floor,<br /> Orchard View, London, UK</p>
+                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Main Office</span>
+                                <p className="w-80 lg-w-100">First Floor, Ebonyi State Shopping Mall,<br /> Abakaliki, Ebonyi State</p>
                             </div>
                             <div className="col">
                                 <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Get in touch</span>
-                                <a href="tel:12345678910">+1 234 567 8910</a><br />
-                                <a href="mailto:info@domain.com" className="text-decoration-line-bottom text-dark-gray">info@domain.com</a>
+                                <a href="tel:12345678910">07046047536</a><br />
+                                <a href="mailto:info@domain.com" className="text-decoration-line-bottom text-dark-gray">info@megatechrealestate.ng</a>
                             </div>
                         </div>
-                        <h6 className="alt-font fw-700 text-dark-gray mb-15px">New york</h6>
+                        <h6 className="alt-font fw-700 text-dark-gray mb-15px">Enugu</h6>
                         <div className="row row-cols-1 row-cols-sm-2">
                             <div className="col last-paragraph-no-margin xs-mb-20px">
-                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Mega - USA</span>
-                                <p className="w-80 lg-w-100">27 Eden Walk Eden Centre,<br /> Orchard, New York, USA</p>
+                                <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px">Branch - Office</span>
+                                <p className="w-80 lg-w-100">No. 64 Rehab Road, Emene<br /> Enugu State</p>
                             </div>
                             <div className="col">
                                 <span className="fs-18 alt-font fw-600 d-block text-dark-gray mb-5px"> Get in touch</span>
-                                <a href="tel:12345678910">+1 234 567 8910</a><br />
-                                <a href="mailto:info@domain.com" className="text-decoration-line-bottom text-dark-gray">info@domain.com</a>
+                                <a href="tel:12345678910">07046047536</a><br />
+                                <a href="mailto:info@domain.com" className="text-decoration-line-bottom text-dark-gray">info@megatechrealestate.ng</a>
                             </div>
                         </div>
                     </div> 

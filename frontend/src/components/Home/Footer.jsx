@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="container position-relative pt-3 pb-3 overlap-section md-mb-15px">
           <div
             className="absolute left-0 top-0 bg-no-repeat bg-cover h-full w-full  animation-float "
-            style={{ backgroundImage: `url(${estateflier})` }}
+            style={{ backgroundImage: `url(${FooterImg})` }}
           ></div>
           <div className="row row-cols-1 row-cols-lg-2 justify-content-center align-items-center bg-base-color pt-4 pb-4 ps-6 pe-6 lg-p-5 border-radius-6px g-0">
             <div className="col-xl-6 col-lg-7 md-mb-25px sm-mb-15px position-relative text-center text-lg-start">
@@ -190,7 +190,7 @@ const Footer = () => {
               <span className="d-block lh-normal">Customer care</span>
               <a
                 href="tel:12345678910"
-                className="text-dark-gray text-decoration-line-bottom lh-22 d-inline-block"
+                className="text-dark-gray text-decoration-line-bottom lh-22 d-inline-block alt-font"
               >
                 07046047536
               </a>
