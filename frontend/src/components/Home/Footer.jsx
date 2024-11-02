@@ -3,6 +3,7 @@ import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
 import logo3 from "../../assets/images/megalogo5.svg"
 import FooterImg from "../../assets/images/photos/footerimg.jpg";
 import { Link } from "react-router-dom";
+import estateflier from "../../assets/images/estateflier.jpeg"
 
 const Footer = () => {
   return (
@@ -10,8 +11,8 @@ const Footer = () => {
       <footer className="footer-light bg-gradient-very-light-gray pb-0">
         <div className="container position-relative pt-3 pb-3 overlap-section md-mb-15px">
           <div
-            className="position-absolute left-0px top-0px background-no-repeat background-size-100 h-100 w-100 animation-float"
-            style={{ backgroundImage: `url(${FooterImg})` }}
+            className="absolute left-0 top-0 bg-no-repeat bg-cover h-full w-full  animation-float "
+            style={{ backgroundImage: `url(${estateflier})` }}
           ></div>
           <div className="row row-cols-1 row-cols-lg-2 justify-content-center align-items-center bg-base-color pt-4 pb-4 ps-6 pe-6 lg-p-5 border-radius-6px g-0">
             <div className="col-xl-6 col-lg-7 md-mb-25px sm-mb-15px position-relative text-center text-lg-start">
