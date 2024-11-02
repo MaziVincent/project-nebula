@@ -18,13 +18,13 @@ import Shop from "../../assets/images/demo-real-estate-icon-shop.svg";
 import Villa from "../../assets/images/photos/estate.jpg";
 import Bg1 from "../../assets/images/photos/bg1.jpg";
 import Bg4 from "../../assets/images/photos/bg4.jpg";
-import Bg5 from "../../assets/images/photos/bg5.jpg";
-import Swip1 from "../../assets/images/photos/pexe1.jpeg";
-import Swip2 from "../../assets/images/photos/pexel6.webp";
-import Swip4 from "../../assets/images/photos/pexel7.webp";
-import Swip3 from "../../assets/images/photos/pexel4.jpeg";
-import Swip5 from "../../assets/images/photos/pexel8.jpeg";
-import Swip6 from "../../assets/images/photos/pexel9.jpeg";
+// import Bg5 from "../../assets/images/photos/bg5.jpg";
+// import Swip1 from "../../assets/images/photos/pexe1.jpeg";
+// import Swip2 from "../../assets/images/photos/pexel6.webp";
+// import Swip4 from "../../assets/images/photos/pexel7.webp";
+// import Swip3 from "../../assets/images/photos/pexel4.jpeg";
+// import Swip5 from "../../assets/images/photos/pexel8.jpeg";
+// import Swip6 from "../../assets/images/photos/pexel9.jpeg";
 import InfoSec from "../../assets/images/photos/new-est.png";
 import House from "../../assets/images/photos/house.jpg";
 import Image from "../../assets/images/photos/image.jpg";
@@ -37,6 +37,8 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import PageSkeleton from "./skeletons/PageSkeleton";
 import { motion } from "framer-motion";
+import megalogo from "../../assets/images/megalogo.svg";
+import megaflier from "../../assets/images/megaflier.jpeg";
 
 const cardVariants = {
   hidden: {
@@ -442,22 +444,22 @@ const Page = () => {
             <div className="col-lg-6 md-mb-50px position-relative">
               <figure className="position-relative mb-0 overflow-hidden border-radius-6px">
                 <img
-                  src={InfoSec}
+                  src={megaflier}
                   alt=""
                   className="w-100"
                 />
-                <figcaption className="position-absolute border-radius-left-8px bg-base-color right-0px bottom-0px p-45px last-paragraph-no-margin">
+                {/* <figcaption className="position-absolute border-radius-left-8px bg-base-color right-0px bottom-0px p-45px last-paragraph-no-margin">
                   <i className="feather icon-feather-home icon-medium text-white mb-15px d-block"></i>
                   <h4 className="alt-font fw-700 text-white mb-0 d-block">
                     258,952+
                   </h4>
                   <p className="text-white">Properties listed for sell</p>
-                </figcaption>
+                </figcaption> */}
               </figure>
             </div>
             <div className="col-xl-5 offset-xl-1 col-lg-6">
               <span className="fs-20 d-inline-block mb-15px text-base-color">
-                Mega Real Estate Group{" "}
+                MegaTech RealEstate {" "}
               </span>
               <h2
                 className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none sm-w-85"
@@ -1075,7 +1077,7 @@ const Page = () => {
                             </a>
                             <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                               <img
-                                src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554467/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_2_bdg9ss.jpg"
+                                src={megalogo}
                                 className="mb-auto h-70px"
                                 alt=""
                               />
@@ -1126,11 +1128,11 @@ const Page = () => {
                             </a>
                             <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                               <img
-                                src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554467/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_yakulf.jpg"
+                                src={megalogo}
                                 className="mb-auto h-70px"
                                 alt=""
                               />
-                             <Link
+                              <Link
                                 to="/allproperties"
                                 className="text-white alt-font fw-600 fs-26"
                               >
@@ -1177,7 +1179,7 @@ const Page = () => {
                             </a>
                             <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                               <img
-                                src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_2_wcfnkc.jpg"
+                                src={megalogo}
                                 className="mb-auto h-70px"
                                 alt=""
                               />
@@ -1228,11 +1230,11 @@ const Page = () => {
                             </a>
                             <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                               <img
-                                src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_1_nrrc98.jpg"
+                                src={megalogo}
                                 className="mb-auto h-70px"
                                 alt=""
                               />
-                             <Link
+                              <Link
                                 to="/allproperties"
                                 className="text-white alt-font fw-600 fs-26"
                               >
@@ -1278,11 +1280,11 @@ const Page = () => {
                             </a>
                             <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                               <img
-                                src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_3_fihijm.jpg"
+                                src={megalogo}
                                 className="mb-auto h-70px"
                                 alt=""
                               />
-                             <Link
+                              <Link
                                 to="/allproperties"
                                 className="text-white alt-font fw-600 fs-26"
                               >
@@ -1329,11 +1331,11 @@ const Page = () => {
                             </a>
                             <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                               <img
-                                src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_1_zzdjx9.jpg"
+                                src={megalogo}
                                 className="mb-auto h-70px"
                                 alt=""
                               />
-                             <Link
+                              <Link
                                 to="/allproperties"
                                 className="text-white alt-font fw-600 fs-26"
                               >
@@ -1379,11 +1381,11 @@ const Page = () => {
                             </a>
                             <figcaption className="d-flex flex-column align-items-start justify-content-center position-absolute left-0px top-0px w-100 h-100 z-index-1 p-50px xl-p-40px sm-p-30px last-paragraph-no-margin">
                               <img
-                                src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_s3cyuk.jpg"
+                                src={megalogo}
                                 className="mb-auto h-70px"
                                 alt=""
                               />
-                            <Link
+                              <Link
                                 to="/allproperties"
                                 className="text-white alt-font fw-600 fs-26"
                               >
@@ -1508,7 +1510,7 @@ const Page = () => {
                   <i className="bi bi-patch-check icon-medium text-base-color"></i>
                 </div>
                 <div className="feature-box-content alt-font text-dark-gray fs-22 fw-600">
-                  We are growing fast! Today Mega Real Estate has{" "}
+                  We are growing fast! Today MegaTech RealEstate has{" "}
                   <span className="text-decoration-line-bottom">
                     36k+ active residents.
                   </span>
@@ -1644,10 +1646,10 @@ const Page = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                          I've purchased several themes over the years and this
-                          theme, by far is absolutely amazing. It's built
-                          extremely well the back end was well thought out the
-                          design options are endless.
+                        "Mega Real Estate made my home buying experience so
+                          easy! They really listened to my needs and found the
+                          perfect home for my family. I couldn't be happier with
+                          their service."
                         </p>
                         <div className="mt-20px">
                           <img
@@ -1657,7 +1659,7 @@ const Page = () => {
                           />
                           <div className="d-inline-block align-middle text-start">
                             <div className="text-dark-gray alt-font fs-20">
-                              <span className="fw-700">Shoko</span> mugikura
+                              <span className="fw-700">Victor</span> Obi
                             </div>
                             <div className="review-star-icon fs-18">
                               <i className="bi bi-star-fill"></i>
@@ -1675,10 +1677,10 @@ const Page = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                          The theme is very valid and offers many possibilities
-                          of customization to adapt it to your needs, but the
-                          thing I got the most out of it was the relationship
-                          with the support team.
+                        "Mega Real Estate made my home buying experience so
+                          easy! They really listened to my needs and found the
+                          perfect home for my family. I couldn't be happier with
+                          their service."
                         </p>
                         <div className="mt-20px">
                           <img
@@ -1688,7 +1690,7 @@ const Page = () => {
                           />
                           <div className="d-inline-block align-middle text-start">
                             <div className="text-dark-gray alt-font fs-20">
-                              <span className="fw-700">Leonel</span> mooney
+                              <span className="fw-700">Frank</span> Okoye
                             </div>
                             <div className="review-star-icon fs-18">
                               <i className="bi bi-star-fill"></i>

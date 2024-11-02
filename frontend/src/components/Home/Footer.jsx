@@ -71,8 +71,8 @@ const Footer = () => {
                 </span>
               </div>
               <div className="bg-white border-radius-50px d-flex align-items-center p-10px ps-35px ms-20px md-ps-20px md-ms-15px box-shadow-medium sm-m-20px">
-                <a
-                  href="demo-real-estate-contact.html"
+                <Link
+                  to="/contact"
                   className="text-dark-gray fs-22 alt-font fw-500 me-10px overflow-hidden"
                 >
                   Say,{" "}
@@ -80,7 +80,7 @@ const Footer = () => {
                     className="fw-700 w-65px text-start d-inline-block"
                     data-fancy-text='{ "effect": "rotate", "string": ["Hello!", "Salve!", "Hallå!"] }'
                   ></span>
-                </a>
+                </Link>
                 <span className="text-dark-gray h-45px w-45px text-center d-flex align-items-center justify-content-center border-radius-100 bg-base-color-transparent fs-20">
                   &#128075;
                 </span>
@@ -109,7 +109,7 @@ const Footer = () => {
                   <li>
                     <a
                       className="facebook"
-                      href="https://www.facebook.com/"
+                      href="https://www.facebook.com/MegatechBTC"
                       target="_blank"
                     >
                       <i className="fa-brands fa-facebook-f"></i>
