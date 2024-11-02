@@ -103,8 +103,8 @@ const AdminCustomers = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              { Array.isArray(data?.customers) && data?.customers.length > 0 ?(
-                 data.customers.map((customer) => (
+              { data?.customers?.length > 0 ?(
+                 data?.customers.map((customer) => (
                   <tr key={customer._id} className="hover:bg-gray-50">
                 
                 <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">

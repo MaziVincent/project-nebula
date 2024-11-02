@@ -35879,3 +35879,14 @@
 2024-11-01	15:41:53	1a403618-2082-49f9-92a1-b0778c79340a	GET	/apartment/671e78732518004d100e713b	http://localhost:5173
 2024-11-01	15:42:01	bb3cd829-2d60-4f4e-97b0-6bed1fb77e9c	OPTIONS	/apartment	http://localhost:5173
 2024-11-01	15:42:01	297ddf27-c3ad-4017-97e0-b3b5dfe94331	GET	/apartment	http://localhost:5173
+2024-11-01	21:16:49	674f08b5-02ca-45e6-b022-303c86b0aa1f	GET	/properties?limit=6&status=Available	http://localhost:5173
+2024-11-01	21:16:49	07a3ffb7-4ce9-4de8-bdfe-5081dbca5e54	GET	/ping	http://localhost:5173
+2024-11-01	21:16:49	3ab28c3c-0dd8-4440-a440-a27a7235999b	GET	/ping	http://localhost:5173
+2024-11-01	21:53:54	eed152ca-ae6d-4d41-bbfb-edc7d417e002	GET	/properties?limit=6&status=Available	http://localhost:5173
+2024-11-01	21:58:45	79c63bb0-1b5f-46a8-ba19-baeb5b196614	OPTIONS	/properties?limit=6&status=Available	https://www.megatechrealestate.ng
+2024-11-01	21:58:45	02309dc2-6737-4b1a-ac5b-3d33231560ef	OPTIONS	/ping	https://www.megatechrealestate.ng
+2024-11-01	21:58:45	6a635dd8-32bb-4bf3-bf9e-8a1a486ee45f	GET	/properties?limit=6&status=Available	https://www.megatechrealestate.ng
+2024-11-01	21:58:45	cd01b468-2bfc-4c4d-a6e1-977cfe61a93d	GET	/ping	https://www.megatechrealestate.ng
+2024-11-01	22:03:27	adff1c29-519e-444a-8f26-56c784849e75	OPTIONS	/properties?limit=6&status=Available	https://www.megatechrealestate.ng
+2024-11-01	22:03:27	79dff26d-ed96-4baa-ab88-8ea084ffe4d3	GET	/properties?limit=6&status=Available	https://www.megatechrealestate.ng
+2024-11-01	22:03:38	576479ef-0788-41d5-8265-6cdbc7aa791b	GET	/properties?limit=6&status=Available	http://localhost:5173

@@ -54,7 +54,7 @@ const AdminProfile = () => {
 
   console.log(data);
   return (
-    <div className="max-md:pt-24">
+    <div className="max-md:pt-24 h-dvh">
       <ToastContainer />
       <div className="sm:pt-10 pl-4">
         <Link to="/admin">
