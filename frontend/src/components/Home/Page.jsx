@@ -680,9 +680,9 @@ const Page = () => {
             <div className="container">
                 <div className="row align-items-center">
                     <div className="col-xl-4 col-lg-5 md-mb-50px sm-mb-35px"> 
-                        <span className="fs-20 d-inline-block mb-15px text-base-color">Find your dream house</span>
+                        <span className="fs-20 d-inline-block mb-15px text-base-color">On going projects</span>
                         <h3 className="alt-font fw-500 text-dark-gray ls-minus-1px w-90 xl-w-100 shadow-none" data-shadow-animation="true" data-animation-delay="700">We are available in <span className="fw-700 text-highlight d-inline-block">many cities<span className="bg-base-color h-10px bottom-1px opacity-3 separator-animation"></span></span></h3>
-                        <p className="mb-30px w-90 md-w-100">We provide a wide selection of home types for you and your family and are free to choose a home model.</p>
+                        <p className="mb-30px w-90 md-w-100">At this time, we are building a number of modern duplexes in various parts of Abakaliki city. We are dedicated to creating for our clients contemporary, reliable, and affordable structures.</p>
                         <div className="d-flex">
                              {/* start slider navigation  */}
                             <div className="slider-one-slide-prev-1 swiper-button-prev slider-navigation-style-04 bg-white box-shadow-large"><i className="fa-solid fa-arrow-left icon-small text-dark-gray"></i></div>
@@ -719,7 +719,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554542/RealEstate/WhatsApp_Image_2024-11-02_at_14.35.21_ba83i1.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554542/RealEstate/WhatsApp_Image_2024-11-02_at_14.35.21_ba83i1.jpg" className="w-100 h-[50rem] border-radius-6px " alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-orange border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-orange lh-18">
@@ -747,7 +747,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554467/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_yakulf.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554467/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_yakulf.jpg" className="w-100 h-[50rem] border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -775,7 +775,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_2_wcfnkc.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_2_wcfnkc.jpg" className="w-100 h-[50rem] border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -803,7 +803,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_1_nrrc98.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_1_nrrc98.jpg" className="w-100 h-[50rem] border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -830,7 +830,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_3_fihijm.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_3_fihijm.jpg" className="w-100 h-[50rem] border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -858,7 +858,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_1_zzdjx9.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.45_1_zzdjx9.jpg" className="w-100 h-[50rem] border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
@@ -885,7 +885,7 @@ const Page = () => {
                                         <div className="col interactive-banner-style-05">
                                             <figure className="m-0 hover-box overflow-hidden position-relative border-radius-6px">
                                                 <a href="#">
-                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_s3cyuk.jpg" className="w-100 border-radius-6px" alt="" />
+                                                    <img src="https://res.cloudinary.com/dbxapeqzu/image/upload/v1730554466/RealEstate/WhatsApp_Image_2024-10-30_at_17.16.46_s3cyuk.jpg" className="w-100 h-[50rem] border-radius-6px" alt="" />
                                                     <div className="position-absolute top-0px left-0px w-100 h-100 bg-gradient-gray-light-dark-transparent"></div>
                                                     <div className="position-absolute top-25px right-25px bg-base-color border-radius-50px ps-5px pe-15px lh-28">
                                                         <div className="w-20px h-20px text-center bg-white rounded-circle d-inline-block align-middle text-base-color lh-18">
