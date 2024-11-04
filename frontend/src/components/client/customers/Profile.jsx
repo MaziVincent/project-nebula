@@ -55,7 +55,7 @@ const Profile = () => {
   return (
     <div className="max-md:pt-24 px-4 pt-5">
       <ToastContainer />
-      <div className="pt-10 pl-4">
+      <div className="py-5 pl-4">
         <Link to="/dashboard">
           <svg
             xmlns="http://www.w3.org/2000/svg"
