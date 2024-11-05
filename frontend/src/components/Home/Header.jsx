@@ -130,15 +130,22 @@ const Header = () => {
               </div>
               <div className="header-button max-md:hidden">
               {!auth.user ? (
-                  <button
-                    onClick={() => dispatch({ type: "openLogin" })}
-                    className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch"
-                  >
-                    <span className="btn-text">Get Started</span>
-                    <span className="btn-icon">
-                      <i className="feather icon-feather-arrow-right icon-very-small"></i>
-                    </span>
-                  </button>
+                            <button
+                            onClick={() => {
+                              dispatch({ type: "openLogin" });
+                            }}
+                            className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch"
+                          >
+                            <span>
+                              <span className="btn-text">Get Started</span>
+                              <span className="btn-icon">
+                                <i className="feather icon-feather-arrow-right icon-very-small"></i>
+                              </span>
+                              <span className="btn-icon">
+                                <i className="feather icon-feather-arrow-right icon-very-small"></i>
+                              </span>
+                            </span>
+                          </button>
                 ) : (
                   <button onClick={() => navigate('/dashboard')} className="btn btn-base-color btn-small">Dashboard</button>
                 )}
