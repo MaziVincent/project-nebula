@@ -15,10 +15,10 @@ const createLandHandler = async (req, res) => {
     if (!title, !description, !price, !location, !owner, !docType, !ownershipType, !propertyType) {
         return res.status(400).json({ message: 'All fields are required' });
     }
-    const duplicate = await landExists(title);
-    if (duplicate) {
-        return res.status(409).json({ message: 'Land already exists' });
-    }
+    // const duplicate = await landExists(title);
+    // if (duplicate) {
+    //     return res.status(409).json({ message: 'Land already exists' });
+    // }
     const data = {
         title,
         description,

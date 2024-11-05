@@ -326,7 +326,7 @@ const AllProperties = () => {
                                     </div>
                                     <div className="process-content ps-35px last-paragraph-no-margin mb-30px">
                                         <span className="text-dark-gray fs-19 alt-font mb-5px fw-600 d-block">Select your favorite</span>
-                                        <p className="w-80 lg-w-100">Navigate through our list of available properties to find the one you want to buy or rent.     </p>
+                                        <p className="w-80 lg-w-100">Choose the property that best fits your budget from our extensive selection of appealing properties.</p>
                                     </div>
                                 </div> 
                             </div>

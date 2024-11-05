@@ -198,10 +198,28 @@ const CreateOwnersModal = ({open, handleClose}) => {
                 </div>
                 <div className="sm:col-span-2">
                   <label
+                    htmlFor="idType"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Identity Type:
+                  </label>
+                  <select name="idType" id="idType"
+                    {...register("identityType", { required: true })}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                  >
+                    <option value="Select Identity Type" selected disabled>Select Identity Type</option>
+                    <option value="National Identity Number">National Identity Number</option>
+                    <option value="Voters Card">Voters Card</option>
+                    <option value="Drivers Licence">Drivers Licence</option>
+                    <option value="International Passport">International Passport </option>
+                  </select>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
                     htmlFor="identityNumber"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    identityNumber:
+                    Identity Number:
                   </label>
                   <input
                     id="identityNumber"
@@ -212,28 +230,13 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     placeholder="Enter identityNumber here"
                   />
                 </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="identityType"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    identityType:
-                  </label>
-                  <input
-                    id="identityType"
-                    name='identityType'
-                    type='text'
-                    {...register("identityType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter identityType here"
-                  />
-                </div>
+                
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="contactAddress"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    contactAddress:
+                    Contact Address:
                   </label>
                   <input
                     id="contactAddress"

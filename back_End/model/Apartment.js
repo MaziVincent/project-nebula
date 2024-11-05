@@ -5,7 +5,6 @@ const Property = require('./Property');
 const ApartmentSchema = Property.discriminator('Apartment', new Schema({
   floorArea: {
     type: Number,
-    required: true
   },
   bedrooms: {
     type: Number,

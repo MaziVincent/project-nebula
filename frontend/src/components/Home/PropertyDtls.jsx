@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import Bedrooms from '../../assets/images/demo-real-estate-icon-bed.svg';
 import Bathrooms from '../../assets/images/demo-real-estate-icon-bath.svg'
 import PropertyDtl from '../../assets/images/demo-real-estate-property-details-09.svg'
+import GppMaybeIcon from '@mui/icons-material/GppMaybe';
+import VerifiedIcon from '@mui/icons-material/Verified';
 
 const PropertyDtls = () => {
     const { auth } = useAuth();
@@ -74,7 +76,7 @@ const PropertyDtls = () => {
                                     <h1 className="mb-0 d-flex"><i className="feather icon-feather-map-pin icon-extra-medium text-base-color me-5px"></i>{property.location}</h1>
                                 </div>
                                 <div className="col-lg-3 offset-xl-2 offset-lg-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-                                    <h4 className="text-dark-gray fw-700 alt-font mb-5px">&#8358;{property.price}</h4>
+                                    <h4 className="text-dark-gray fw-700 alt-font mb-5px">&#8358;{property.price.toLocaleString('en-US')}</h4>
                                     {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft. &#8358;{!isNaN(parseFloat(property.price.replace(/,/g, ""))) ? (parseFloat(property.price.replace(/,/g, "")) / 12).toFixed(2) : 'N/A'}</span> */}
                                 </div>
                             </div>
@@ -90,39 +92,14 @@ const PropertyDtls = () => {
                                     <div className="swiper slider-four-slide swiper-dark-pagination swiper-pagination-style-3" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 20, "loop": true, "pagination": { "el": ".slider-four-slide-pagination", "clickable": true }, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 3 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
                                         <div className="swiper-wrapper">
                                             {/*  start content carousal item  */}
-                                            <div className=" grid grid-cols-3 gap-4">
+                                            <div className=" grid grid-cols-3 gap-4 ">
                                             {
                                                 property.imageUrls.map((imageUrl, index) => (
                                                 <img key={index} src={imageUrl} alt={property.title} className=' w-[626px] h-[313px] max-md:h-[200px] duration-300 delay-300 ease-in-out  hover:scale-105' />
                                                 ))
                                             }
                                             </div>
-                                            {/*  end content carousal item  */}
-                                            {/*  start content carousal item  */}
-                                            {/* <div className="swiper-slide">
-                                                <img src="https://via.placeholder.com/626x600" alt="" className="w-100" /> 
-                                            </div> */}
-                                            {/*  end content carousal item  */}
-                                            {/*  start content carousal item  */}
-                                            {/* <div className="swiper-slide">
-                                                <img src="https://via.placeholder.com/626x600" alt="" className="w-100" />
-                                            </div> */}
-                                            {/*  end content carousal item  */}
-                                            {/*  start content carousal item  */}
-                                            {/* <div className="swiper-slide">
-                                                <img src="https://via.placeholder.com/626x600" alt="" className="w-100" />
-                                            </div> */}
-                                            {/*  end content carousal item   */}
-                                            {/*  start content carousal item  */}
-                                            {/* <div className="swiper-slide">
-                                                <img src="https://via.placeholder.com/626x600" alt="" className="w-100" />
-                                            </div> */}
-                                            {/*  end content carousal item  */}
-                                            {/*  start content carousal item  */}
-                                            {/* <div className="swiper-slide">
-                                                <img src="https://via.placeholder.com/626x600" alt="" className="w-100" /> 
-                                            </div> */}
-                                            {/*  end content carousal item  */}
+                                          
                                         </div>
                                         {/*  start slider navigation  */}
                                         <div className="slider-one-slide-prev-1 icon-very-small bg-white h-40px w-40px swiper-button-prev slider-navigation-style-01"><i className="feather icon-feather-arrow-left fs-20 text-light-gray"></i>
@@ -156,7 +133,7 @@ const PropertyDtls = () => {
                                     </div>
                                 )}
                                 <div className="col text-center alt-font border-end">
-                                    <span className="fs-19 text-dark-gray fw-600">Price:</span> &#8358;{property.price}
+                                    <span className="fs-19 text-dark-gray fw-600">Price:</span> &#8358;{property.price.toLocaleString('en-US')}
                                 </div>
                             </div>
                         </div>
@@ -282,7 +259,7 @@ const PropertyDtls = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col">&#8358;{property.price}</div>
+                                                <div className="col">&#8358;{property.price.toLocaleString('en-US')}</div>
                                             </div>
                                             {/* <div className="row g-0 align-items-center mb-15px pb-15px border-bottom border-color-extra-medium-gray">
                                                 <div className="col">
@@ -467,7 +444,7 @@ const PropertyDtls = () => {
                                             {/*  start list style  */}
                                             <ul className="list-style-02 ps-0 mb-0">
                                                 {property.exteriorFeatures.map((exterior, index) => (
-                                                    <li key={index}><i className="bi bi-check-circle icon-small me-10px"></i>{exterior}</li>
+                                                    <li key={index} className='capitalize'><i className="bi bi-check-circle icon-small me-10px "></i>{exterior}</li>
                                                 ))}
                                             </ul>
                                             {/*  end list style  */}
@@ -478,7 +455,7 @@ const PropertyDtls = () => {
                                             {/*  start list style  */}
                                             <ul className="list-style-02 ps-0 mb-0">
                                                 {property.interiorFeatures.map((interior, index) => (
-                                                    <li key={index}><i className="bi bi-check-circle icon-small me-10px"></i>{interior}</li>
+                                                    <li key={index} className='capitalize'><i className="bi bi-check-circle icon-small me-10px "></i>{interior}</li>
                                                 ))}
                                             </ul>
                                             {/*  end list style  */}
@@ -489,7 +466,7 @@ const PropertyDtls = () => {
                                             {/*  start list style  */}
                                             <ul className="list-style-02 ps-0 mb-0">
                                                 {property.livingRoomFeatures.map((livingRoom, index) => (
-                                                    <li key={index}><i className="bi bi-check-circle icon-small me-10px"></i>{livingRoom}</li>
+                                                    <li key={index} className='capitalize' ><i className="bi bi-check-circle icon-small me-10px "></i>{livingRoom}</li>
                                                 ))}
                                             </ul>
                                             {/*  end list style  */}
@@ -519,8 +496,8 @@ const PropertyDtls = () => {
                                     <div className="bg-base-color-light border-radius-6px position-sticky top-120px">
                                         <div className="bg-base-color border-radius-6px feature-box feature-box-left-icon-middle overflow-hidden icon-with-text-style-08 ps-35px pe-35px pt-25px pb-20px xs-p-25px">
                                             {/*  start features box item  */}
-                                            <div className="feature-box-icon feature-box-icon-rounded border w-90px h-90px overflow-visible me-20px position-relative">
-                                                <img src={property.owner.profile} className="rounded-circle" alt="148x148" />
+                                            <div className="feature-box-icon feature-box-icon-rounded border w-90px h-90px overflow me-20px position-relative">
+                                                <img src={property.owner.profile} className="" alt="148x148" />
                                                 <span className={`animation-zoom d-inline-block ${property?.owner?.status === 'Active' ? 'bg-green-400' : 'bg-orange'} border-2 border-color-white h-20px w-20px border-radius-100 position-absolute right-0px top-5px`}></span>
                                             </div>
                                             {/*  end features box item  */}
@@ -529,7 +506,7 @@ const PropertyDtls = () => {
                                                 <span className="text-white alt-font fw-600 fs-20 d-block">{property.owner.firstname} {property.owner.lastname}</span>
                                                 <div className="lh-24 d-block">
                                                     <span className="me-5px text-white opacity-8">{property?.owner?.properties.length} property</span>
-                                                    <div className="bg-white border-radius-2px text-uppercase alt-font fw-700 text-dark-gray fs-12 lh-24 ps-10px pe-10px d-inline-block align-middle">{property?.owner?.verified ? 'Verified' : 'N/A'}</div>
+                                                    <div className="bg-white border-radius-2px text-uppercase alt-font fw-700 text-dark-gray fs-12 lh-24 ps-10px pe-10px d-inline-block align-middle">{property?.owner?.verified ? <span className='text-green-400'> <VerifiedIcon /> Verified</span> : <span className='text-red-400'> <GppMaybeIcon /> Not Verfied</span>}</div>
                                                 </div>
                                             </div>
                                             {/*  end features box item  */}

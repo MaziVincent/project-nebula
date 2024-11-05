@@ -11,14 +11,14 @@ const {
 
 const createHouseHandler = async (req, res) => {
     const {title, description, price, location, owner, bedrooms, bathrooms, squareFootage, yearBuilt, lotSize, stories, docType, exteriorFeatures, interiorFeatures, livingRoomFeatures, kitchenFeatures, propertyType} = req.body;
-    if(!title, !description, !price, !location, !owner, !bedrooms, !bathrooms, !squareFootage, !yearBuilt, !lotSize, !docType, !exteriorFeatures, !interiorFeatures, !livingRoomFeatures, !kitchenFeatures, !propertyType) {
+    if(!title, !description, !price, !location, !owner, !bedrooms, !bathrooms, !docType, !exteriorFeatures, !interiorFeatures, !livingRoomFeatures, !kitchenFeatures, !propertyType) {
         return res.status(400).json({message: 'All fields are required'})
     }
     console.log(req.body)
-    const duplicate = await houseExists(title);
-    if(duplicate) {
-        return res.status(409).json({message: 'House already exists'})
-    }
+    // const duplicate = await houseExists(title);
+    // if(duplicate) {
+    //     return res.status(409).json({message: 'House already exists'})
+    // }
     const data = {
         title,
         description,

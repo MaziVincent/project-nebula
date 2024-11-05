@@ -101,7 +101,7 @@ const Contact = () => {
         </section>
         {/* end section   */}
         {/* start section  */}
-        <section className="bg-very-light-gray p-0">
+        {/* <section className="bg-very-light-gray p-0">
             <div className="container-fluid"> 
                 <div className="row">
                     <div className="col-12 p-0">
@@ -109,7 +109,7 @@ const Contact = () => {
                     </div>
                 </div> 
             </div>
-        </section>
+        </section> */}
         {/* end section    */}
         {/* start section  */}
         <section className="overlap-height half-section">

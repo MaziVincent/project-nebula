@@ -191,6 +191,17 @@ const handleFeaturedProperty =  async (data) => {
 
 }
 
+const getFeaturedProperties = async () => {
+  try {
+    const properties = await Property.find({ isFeaturedProperty: true })
+      .exec();
+      if (!properties) return { error: "Properties not found" };
+    return properties;
+  } catch (e) {
+    return { error: e.message };
+  }
+};
+
 // const getPropertyByType = async (propertyType) => {
 //     try {
 //         const properties = await Property.find({ propertyType: propertyType }).populate('owner').exec();
@@ -210,6 +221,7 @@ module.exports = {
   propertyStatus,
   uploadPropertyImage,
   getPropertiesByType,
-  handleFeaturedProperty
+  handleFeaturedProperty,
+  getFeaturedProperties
   //getPropertyByType
 };

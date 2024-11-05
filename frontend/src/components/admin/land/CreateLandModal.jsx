@@ -235,7 +235,7 @@ const CreateLandModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                   >
                     <option value="Select Document Type" selected disabled>Select Document Type</option>
-                    <option value="Certificate of OwnerShip (C of O)">Certificate of OwnerShip (C of O)</option>
+                    <option value="Power of Attorney">Power of Attorney</option>
                     <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                     <option value="Deeds of Conveyance">Deeds of Conveyance</option>
                   </select>
