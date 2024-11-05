@@ -1,20 +1,13 @@
 import React, { useState, useReducer } from "react";
-import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
 import logo5 from "../../assets/images/megalogo5.svg"
-import logo2 from "../../assets/images/megalogo2.svg"
-import logo3 from "../../assets/images/megalogo3.svg"
-import DRELBX2 from "../../assets/images/demo-real-estate-logo-black@2x.png";
-import Condomium from "../../assets/images/demo-real-estate-icon-condominium.svg";
-import Apartment from "../../assets/images/demo-real-estate-icon-apartment.svg";
-import Estate from "../../assets/images/demo-real-estate-icon-home.svg";
-import Office from "../../assets/images/demo-real-estate-icon-office.svg";
-import Shop from "../../assets/images/demo-real-estate-icon-shop.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import SignUp from "../auth/SignUp";
 import SignIn from "../auth/SignIn";
 import { useLocation } from "react-router-dom";
 import { ChevronRight, ExpandMore } from "@mui/icons-material";
-
+import AuthContext from "../../context/AuthProvider";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 const reducer = (state, action) => {
   switch (action.type) {
     case "openLogin":
@@ -27,7 +20,10 @@ const reducer = (state, action) => {
 };
 
 const Header = () => {
-  const location = useLocation()
+  const { auth } = useContext(AuthContext);  // Accessing auth state
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [state, dispatch] = useReducer(reducer, {
     login: false,
     register: false,
@@ -46,6 +42,7 @@ const Header = () => {
   };
   
   const isSmallScreen = window.innerWidth <= 1024;
+  console.log(auth)
   return (
     <div className="fixed z-50 w-full bg-white top-0">
       <header className="md:px-14 max-lg:px-10">
@@ -60,7 +57,7 @@ const Header = () => {
 
             </div>
             <div 
-              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute max-sm:top-28 md:top-16 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden'} gap-10 lg:gap-5 transition-all duration-500 ease-in-out transform opacity-100`}>
+              className={`lg:flex ${isSmallScreen && showNav ? 'flex flex-col absolute top-28 md:top-24 left-0 w-full bg-white pl-10 py-5 transition-all duration-500 ease-in-out transform translate-y-0 opacity-100' : 'hidden'} gap-10 lg:gap-5 transition-all duration-500 ease-in-out transform opacity-100`}>
               <Link
                 to='/'
                 onClick={handleShowNav}
@@ -97,14 +94,23 @@ const Header = () => {
               <Link to='/contact' onClick={handleShowNav} className={location.pathname === '/contact' ? 'text-gray-500 font-medium text-lg hover:text-gray-800' : 'font-medium text-lg text-gray-800 hover:text-gray-500'}>
                 Contact
               </Link>
-              <button 
-                onClick={() => {
-                  dispatch({ type: "openLogin" });
-                  handleShowNav();
-                }}
-                className="md:hidden text-start">
-                <span className=" font-medium text-gray-800 hover:text-gray-500">Get Started</span>
-              </button>
+              {
+                auth.user ? (
+                  <button onClick={() => navigate('/dashboard')} className="md:hidden text-start">
+                    <span className=" font-medium text-gray-800 hover:text-gray-500">Dashboard</span>
+                    
+                  </button>
+                ) : (
+                  <button 
+                    onClick={() => {
+                      dispatch({ type: "openLogin" });
+                      handleShowNav();
+                    }}
+                    className="md:hidden text-start">
+                    <span className=" font-medium text-gray-800 hover:text-gray-500">Get Started</span>
+                  </button>
+                )
+              }
             </div>
             <div className=" flex justify-between items-center gap-8">
               <div className="d-none d-xl-flex me-25px">
@@ -123,22 +129,26 @@ const Header = () => {
                 </div>
               </div>
               <div className="header-button max-md:hidden">
-                <button
-                  onClick={() => {
-                    dispatch({ type: "openLogin" });
-                  }}
-                  className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch"
-                >
-                  <span>
-                    <span className="btn-text">Get Started</span>
-                    <span className="btn-icon">
-                      <i className="feather icon-feather-arrow-right icon-very-small"></i>
-                    </span>
-                    <span className="btn-icon">
-                      <i className="feather icon-feather-arrow-right icon-very-small"></i>
-                    </span>
-                  </span>
-                </button>
+              {!auth.user ? (
+                            <button
+                            onClick={() => {
+                              dispatch({ type: "openLogin" });
+                            }}
+                            className="btn btn-base-color btn-small btn-round-edge btn-hover-animation-switch"
+                          >
+                            <span>
+                              <span className="btn-text">Get Started</span>
+                              <span className="btn-icon">
+                                <i className="feather icon-feather-arrow-right icon-very-small"></i>
+                              </span>
+                              <span className="btn-icon">
+                                <i className="feather icon-feather-arrow-right icon-very-small"></i>
+                              </span>
+                            </span>
+                          </button>
+                ) : (
+                  <button onClick={() => navigate('/dashboard')} className="btn btn-base-color btn-small">Dashboard</button>
+                )}
               </div>
               { !showNav ? 
               <button

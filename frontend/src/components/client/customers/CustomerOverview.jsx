@@ -49,14 +49,29 @@ const CustomerOverview = () => {
   const isSmallScreen = window.innerWidth <= 1024;
   return (
     <div className="flex overflow-y-auto max-md:pt-10">
-    {/* Main Content */}
     <div className="flex-1 bg-gray-50 px-4 py-4">
-      {/* Greeting Section */}
-
-      {/* Subheading before Search */}
-      <h2 className="text-2xl font-bold mb-4 pt-5">Find Your Best Property 🏠🌆</h2>
-
-      {/* Search Section */}
+      <div className=" mb-2">
+        <Link to='/' className="text-gray-600 hover:text-green-600">
+          <span title="Back to Home" className=" inline-flex items-center gap-2">
+            <span>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              height="34px" 
+              viewBox="0 -960 960 960" 
+              width="34px" 
+              fill="currentColor"
+              >
+              <path d="M360-240 120-480l240-240 56 56-144 144h568v80H272l144 144-56 56Z"
+              />
+            </svg>
+            </span>
+            <span className=" md:hidden max-sm:block">Back to Home</span>
+          </span>
+        </Link>
+      </div>
+ 
+      <h2 className="text-2xl font-bold mb-4 pt-2">Find Your Best Property 🏠🌆</h2>
+    
       <div className="flex items-center space-x-4 gap-2 mb-5 max-sm:flex-col">
         <div className=" w-1/3 relative m-0 max-sm:w-full">
         <h3 className=" text-base mb-0">Location</h3>
