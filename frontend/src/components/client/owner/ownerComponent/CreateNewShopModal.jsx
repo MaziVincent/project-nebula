@@ -59,7 +59,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
     
     onSuccess : ()=>{
       setIsLoading(false)
-      queryClient.invalidateQueries('shop')
+      queryClient.invalidateQueries('properties')
       toast.success('New Shop Created Successfully')
 
   
@@ -206,7 +206,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     htmlFor="description"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    shopCategory
+                    Shop Category
                   </label>
                   {/* <input
                     id="shopCategory"
@@ -235,7 +235,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     htmlFor="description"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    leaseDuration
+                    Lease Duration
                   </label>
                   <input
                     id="leaseDuration"
@@ -251,7 +251,7 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     htmlFor="loation"
                     className="block mb-2 text-sm font-medium text-gray-900"
                   >
-                    security Deposit
+                    Security Deposit
                   </label>
                   <input
                     id="securityDeposit"

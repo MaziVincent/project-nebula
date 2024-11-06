@@ -238,7 +238,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="squareFootage"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    squareFootage:
+                    Square Footage:
                   </label>
                   <input
                     id="squareFootage"
@@ -254,12 +254,12 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="yearBuilt"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    yearBuilt:
+                    Year Built:
                   </label>
                   <input
                     id="yearBuilt"
                     name='yearBuilt'
-                    type='number'
+                    type='date'
                     {...register("yearBuilt", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter yearBuilt here"
@@ -270,7 +270,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="lotSize"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    lotSize:
+                    Lot Size:
                   </label>
                   <input
                     id="lotSize"
