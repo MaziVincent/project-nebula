@@ -29,6 +29,7 @@ import PageSkeleton from "./skeletons/PageSkeleton";
 import { motion } from "framer-motion";
 import megalogo from "../../assets/images/megalogo.svg";
 import megaflier from "../../assets/images/megaflier.jpeg";
+import useFetch from "../../hooks/useFetch";
 
 const cardVariants = {
   hidden: {
@@ -80,18 +81,16 @@ const childVariants = {
 
 const Page = () => {
   const url = `${baseURL}properties`;
+  const fetch = useFetch();
 
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
     setPage(value);
   };
   const getProperties = async () => {
-    const response = await fetch(`${url}?limit=6&status=Available`);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    return data;
+    const response = await fetch(`${url}?limit=6&status=Available`, '');
+    
+    return response.data;
   };
 
   const { data, isError, isLoading, isSuccess } = useQuery(
@@ -109,7 +108,28 @@ const Page = () => {
     }
   );
 
-  console.log(data);
+  const getFeaturedProperties = async () => {
+    const response = await fetch(`${url}/featured`, '');
+    
+    return response.data;
+  };
+
+  const { data:featured, isError:featuredError, isLoading:featuredLoading, isSuccess:featuredSuccess } = useQuery(
+    ["FeaturedProperties"],
+    getFeaturedProperties,
+    {
+      keepPreviousData: true,
+      staleTime: 10000,
+      refetchOnMount: "always",
+      onSuccess: () => {
+        setTimeout(() => {
+          console.log("Fetch successful");
+        }, 2000);
+      },
+    }
+  );
+
+  console.log(featured);
 
   return (
     <div className=" mt-10">

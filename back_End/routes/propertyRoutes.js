@@ -14,6 +14,7 @@ router.route("/owner/:id").get(propertyController.getPropertiesByOwnerHandler);
 router.route("/type").get(propertyController.getPropertiesByTypeHandler);
 
 router.route("/status/:id").put(propertyController.propertyStatusHandler);
+
 router.route("/featured").get(propertyController.getFeaturedPropertiesHandler);
 
 router.route("/featured/:id").put(propertyController.setFeaturedPropertyHandler);
