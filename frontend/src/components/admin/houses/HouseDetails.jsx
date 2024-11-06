@@ -154,7 +154,7 @@ const HouseDetails = () => {
                   lotSize: <span>{house.lotSize}</span>
                 </p>
                 <p className="text-gray-600 p-2 m-0 pl-0 flex flex-col items-center">
-                  Stories: <span>{house.stories}</span>
+                  Building Type: <span>{house.buildingType}</span>
                 </p>
               </div>
               <p className=" my-4">

@@ -28,14 +28,14 @@ const createHouse = async (data) => {
             squareFootage: data.squareFootage,
             yearBuilt: data.yearBuilt,
             lotSize: data.lotSize,
-            stories: data.stories,
+            buildingType: data.buildingType,
             docType: data.docType,
             propertyType: data.propertyType,
             livingRoomFeatures: livingRoomFeaturesArray,
             exteriorFeatures: exteriorFeaturesArray,
             interiorFeatures: interiorFeaturesArray,
             kitchenFeatures: kitchenFeaturesArray,
-            "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.stories} ${data.lotSize}`
+            "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.buildingType} ${data.lotSize}`
         });
 
         const user = await User.findOne({ _id: ownerId }).exec();
@@ -85,7 +85,7 @@ const updateHouse = async (id, data) => {
         if(data.squareFootage) house.squareFootage = data.squareFootage
         if(data.yearBuilt) house.yearBuilt = data.yearBuilt
         if(data.lotSize) house.lotSize = data.lotSize
-        if(data.stories) house.stories = data.stories
+        if(data.buildingType) house.buildingType = data.buildingType
         if(data.propertyType) house.propertyType = data.propertyType
         if(data.exteriorFeatures) house.exteriorFeatures = data.exteriorFeatures
         if(data.interiorFeatures) house.interiorFeatures = data.interiorFeatures

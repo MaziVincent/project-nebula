@@ -257,12 +257,12 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                     htmlFor="yearBuilt"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    YearBuilt:
+                    Year Built:
                   </label>
                   <input
                     id="yearBuilt"
                     name='yearBuilt'
-                    type='number'
+                    type='date'
                     {...register("yearBuilt", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter yearBuilt here"
@@ -286,19 +286,24 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
                 </div>
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="stories"
+                    htmlFor="buildingType"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Stories:
+                    Select Building Type:
                   </label>
-                  <input
-                    id="stories"
-                    name='stories'
-                    type='text'
-                    {...register("stories", { required: true })}
+                  <select name="buildingType" id="buildingType"
+                    {...register("buildingType", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter stories here"
-                  />
+                  >
+                    <option value="Select" selected disabled>-- Select Type --</option>
+                    <option value="Bungalow">Bungalow</option>
+                    <option value="Duplex">Duplex</option>
+                    <option value="One Story">One Story</option>
+                    <option value="Two Stories">Two Stories</option>
+                    <option value="Three Stories">Three Stories</option>
+                    <option value="Four Stories">Four Stories</option>
+                    <option value="Five Stories">Five Stories</option>
+                  </select>
                 </div>
                 <div className="sm:col-span-2">
                   <label

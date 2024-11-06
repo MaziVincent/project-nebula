@@ -41,6 +41,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
   }, [property, setValue]);
 
   const updateProperty = async (data) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;
@@ -59,16 +60,18 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
       const response = await update(url, data, auth?.accessToken);
       console.log(response);
       setTimeout(() => {
-        // handleCloseUpdate();
+        handleCloseUpdate();
       }, 3000);
       toast.success('Property updated successfully');
     } catch (err) {
+      setIsLoading(false)
       setError(err.response?.data?.error || err.message);
     }
   };
 
   const { mutate } = useMutation(updateProperty, {
     onSuccess: () => {
+      setIsLoading(false)
       queryClient.invalidateQueries('properties');
     }
   });
@@ -79,9 +82,6 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
     
   };
 
-  if (isLoading) {
-    return <p>{CircularProgress}</p>;
-  }
   return (
     <Modal
       open={openUpdate}
@@ -249,7 +249,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           htmlFor="squareFootage"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          squareFootage:
+                          Square Footage:
                         </label>
                         <input
                           id="squareFootage"
@@ -265,12 +265,12 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           htmlFor="yearBuilt"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          yearBuilt:
+                          Year Built:
                         </label>
                         <input
                           id="yearBuilt"
                           name='yearBuilt'
-                          type='number'
+                          type='date'
                           {...register("yearBuilt", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter yearBuilt here"
@@ -281,7 +281,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           htmlFor="lotSize"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          lotSize:
+                          Lot Size:
                         </label>
                         <input
                           id="lotSize"
@@ -293,36 +293,33 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                         />
                       </div>
                       <div className="sm:col-span-2">
-                        <label
-                          htmlFor="stories"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Stories:
-                        </label>
-                        <input
-                          id="stories"
-                          name='stories'
-                          type='number'
-                          {...register("stories", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter stories here"
-                        />
+                      <label
+                        htmlFor="buildingType"
+                        className="block mb-2 text-sm font-medium text-gray-900 "
+                      >
+                        Select Building Type:
+                      </label>
+                      <select name="buildingType" id="buildingType"
+                        {...register("buildingType", { required: true })}
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      >
+                        <option value="Select" selected disabled>-- Select Type --</option>
+                        <option value="Bungalow">Bungalow</option>
+                        <option value="Duplex">Duplex</option>
+                        <option value="One Story">One Story</option>
+                        <option value="Two Stories">Two Stories</option>
+                        <option value="Three Stories">Three Stories</option>
+                        <option value="Four Stories">Four Stories</option>
+                        <option value="Five Stories">Five Stories</option>
+                      </select>
                       </div>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="docType"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          docType:
+                          Document Type:
                         </label>
-                        {/* <input
-                          id="docType"
-                          name='docType'
-                          type='text'
-                          {...register("docType", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter docType here"
-                        /> */}
                         <select name="docType" id="docType"
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -338,7 +335,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           htmlFor="exteriorFeatures"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          exteriorFeatures:
+                          Exterior Features:
                         </label>
                         <input
                           id="exteriorFeatures"
@@ -354,7 +351,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           htmlFor="interiorFeatures"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          interiorFeatures:
+                          Interior Features:
                         </label>
                         <input
                           id="interiorFeatures"
@@ -370,7 +367,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           htmlFor="livingRoomFeatures"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          livingRoomFeatures:
+                          Living Room Features:
                         </label>
                         <input
                           id="livingRoomFeatures"
@@ -386,7 +383,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           htmlFor="kitchenFeatures"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
-                          kitchenFeatures:
+                          Kitchen Features:
                         </label>
                         <input
                           id="kitchenFeatures"
@@ -474,19 +471,11 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
 
                       <div className="sm:col-span-2">
                         <label
-                          htmlFor="Document Type"
+                          htmlFor="docType"
                           className="block mb-2 text-sm font-medium text-gray-900 "
                         >
                           Document Type:
                         </label>
-                        {/* <input
-                          id="docType"
-                          name='docType'
-                          type='text'
-                          {...register("docType", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter docType here"
-                        /> */}
                         <select name="docType" id="docType"
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -535,13 +524,6 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                         >
                           Shop Category
                         </label>
-                        {/* <input
-                          id="shopCategory"
-                          type="text"
-                          {...register("shopCategory", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
-                          placeholder="Enter Shop Category here"
-                        /> */}
                         <select name="shopCategory" id="shopCategory"
                           {...register("shopCategory", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -609,7 +591,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                Update
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Update'}
               </button>
             </form>
             </div>

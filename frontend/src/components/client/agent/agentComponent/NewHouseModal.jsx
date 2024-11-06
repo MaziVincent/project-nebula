@@ -237,7 +237,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="squareFootage"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    squareFootage:
+                    Square Footage:
                   </label>
                   <input
                     id="squareFootage"
@@ -253,12 +253,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="yearBuilt"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    yearBuilt:
+                    Year Built:
                   </label>
                   <input
                     id="yearBuilt"
                     name='yearBuilt'
-                    type='number'
+                    type='date'
                     {...register("yearBuilt", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter yearBuilt here"
@@ -269,7 +269,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="lotSize"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    lotSize:
+                    Lot Size:
                   </label>
                   <input
                     id="lotSize"
@@ -281,20 +281,25 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="stories"
+                <label
+                    htmlFor="buildingType"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Stories:
+                    Select Building Type:
                   </label>
-                  <input
-                    id="stories"
-                    name='stories'
-                    type='number'
-                    {...register("stories", { required: true })}
+                  <select name="buildingType" id="buildingType"
+                    {...register("buildingType", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter stories here"
-                  />
+                  >
+                    <option value="Select" selected disabled>-- Select Type --</option>
+                    <option value="Bungalow">Bungalow</option>
+                    <option value="Duplex">Duplex</option>
+                    <option value="One Story">One Story</option>
+                    <option value="Two Stories">Two Stories</option>
+                    <option value="Three Stories">Three Stories</option>
+                    <option value="Four Stories">Four Stories</option>
+                    <option value="Five Stories">Five Stories</option>
+                  </select>
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -303,14 +308,6 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                   >
                     docType:
                   </label>
-                  {/* <input
-                    id="docType"
-                    name='docType'
-                    type='text'
-                    {...register("docType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter docType here"
-                  /> */}
                   <select name="docType" id="docType"
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -326,7 +323,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="exteriorFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    exteriorFeatures:
+                    Exterior Features:
                   </label>
                   <input
                     id="exteriorFeatures"
@@ -342,7 +339,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="interiorFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    interiorFeatures:
+                    Interior Features:
                   </label>
                   <input
                     id="interiorFeatures"
@@ -358,7 +355,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="livingRoomFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    livingRoomFeatures:
+                    Living Room Features:
                   </label>
                   <input
                     id="livingRoomFeatures"
@@ -374,7 +371,7 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="kitchenFeatures"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    kitchenFeatures:
+                    Kitchen Features:
                   </label>
                   <input
                     id="kitchenFeatures"
