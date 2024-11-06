@@ -12,6 +12,10 @@ import Bathrooms from '../../assets/images/demo-real-estate-icon-bath.svg'
 import PropertyDtl from '../../assets/images/demo-real-estate-property-details-09.svg'
 import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import { Swiper, SwiperSlide } from "../../shared/Swiper";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 const PropertyDtls = () => {
     const { auth } = useAuth();
@@ -568,184 +572,219 @@ const PropertyDtls = () => {
                             </div>
                             <div className="row">
                                 <div className="col-md-12 p-0 review-style-09">
-                                    <div className="swiper slider-shadow-left-right lg-slider-shadow-none lg-ps-15px lg-pe-15px" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 30, "loop": true, "autoplay": { "delay": 2000, "disableOnInteraction": false },  "pagination": { "el": ".slider-three-slide-pagination", "clickable": true, "dynamicBullets": true }, "navigation": { "nextEl": ".slider-three-slide-next", "prevEl": ".slider-three-slide-prev" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1400": { "slidesPerView": 4 }, "1200": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
-                                        <div className="swiper-wrapper pt-30px pb-30px">
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star-half-stroke"></i>
+                                    <div className="swiper slider-shadow-left-right lg-slider-shadow-none lg-ps-15px lg-pe-15px" data-slider-options='{"slidesPerView": 1, "spaceBetween": 30, "loop": true,  "autoplay": { "delay": 2000, "disableOnInteraction": false },  "pagination": { "el": ".slider-three-slide-pagination", "clickable": true, "dynamicBullets": true }, "navigation": { "nextEl": ".slider-three-slide-next", "prevEl": ".slider-three-slide-prev" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1400": { "slidesPerView": 4 }, "1200": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'>
+                                        <div >
+                                            <Swiper 
+                                                className="swiper-wrapper pt-30px pb-30px"
+                                                modules={[Autoplay]}
+                                                slidesPerView={1}
+                                                loop={true}
+                                                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                                spaceBetween={30}
+                                                breakpoints={{
+                                                1200: { slidesPerView: 3 },
+                                                768: { slidesPerView: 2 },
+                                                320: { slidesPerView: 1 },
+                                                }}
+                                                pagination={{ clickable: true }}
+                                                navigation={{
+                                                nextEl: ".swiper-button-next",
+                                                prevEl: ".swiper-button-prev",
+                                                }}
+                                            >
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">The team went above and beyond, making the home-buying process stress-free and enjoyable. Highly recommend them!</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star-half-stroke"></i>
+                                                                </div>
+                                                                <span className="fw-600 alt-font text-dark-gray d-inline-block">Matthew taylor</span>
                                                             </div>
-                                                            <span className="fw-600 alt-font text-dark-gray d-inline-block">Matthew taylor</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                </div>
+                                                                <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Herman miller</span>
                                                             </div>
-                                                            <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Herman miller</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star-half-stroke"></i>
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star-half-stroke"></i>
+                                                                </div>
+                                                                <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Jacob kalling</span>
                                                             </div>
-                                                            <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Jacob kalling</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/200x200" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/200x200" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                </div>
+                                                                <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Alexa harvard</span>
                                                             </div>
-                                                            <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Alexa harvard</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/200x200" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/200x200" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                </div>
+                                                                <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Jhon smith</span>
                                                             </div>
-                                                            <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Jhon smith</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star-half-stroke"></i>
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star-half-stroke"></i>
+                                                                </div>
+                                                                <span className="fw-600 alt-font text-dark-gray d-inline-block">Matthew taylor</span>
                                                             </div>
-                                                            <span className="fw-600 alt-font text-dark-gray d-inline-block">Matthew taylor</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                </div>
+                                                                <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Herman miller</span>
                                                             </div>
-                                                            <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Herman miller</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
-                                            {/*  start slider item   */}
-                                            <div className="swiper-slide"> 
-                                                {/*  start review item  */}
-                                                <div className="border-radius-10px bg-white box-shadow-double-large">
-                                                    <div className="d-flex align-items-center p-40px md-p-25px">
-                                                        <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
-                                                        <div>
-                                                            <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
-                                                            <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star"></i>
-                                                                <i className="fa-solid fa-star-half-stroke"></i>
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                                {/*  start slider item   */}
+                                                <SwiperSlide>
+                                                <div className="swiper-slide"> 
+                                                    {/*  start review item  */}
+                                                    <div className="border-radius-10px bg-white box-shadow-double-large">
+                                                        <div className="d-flex align-items-center p-40px md-p-25px">
+                                                            <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
+                                                            <div>
+                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star"></i>
+                                                                    <i className="fa-solid fa-star-half-stroke"></i>
+                                                                </div>
+                                                                <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Jacob kalling</span>
                                                             </div>
-                                                            <span className="fs-18 fw-600 alt-font text-dark-gray d-inline-block">Jacob kalling</span>
                                                         </div>
                                                     </div>
+                                                    {/*  end review item   */}
                                                 </div>
-                                                {/*  end review item   */}
-                                            </div>
-                                            {/*  end slider item  */}
+                                                </SwiperSlide>
+                                                {/*  end slider item  */}
+                                            </Swiper>
                                         </div>
                                     </div>
                                 </div>
