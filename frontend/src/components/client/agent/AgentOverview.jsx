@@ -122,21 +122,21 @@ const AgentOverview = () => {
               <div className=" flex justify-between items-center mb-4">
               <h2 className=" text-3xl font-normal text-start text-green-900 mb-0">Properties</h2>
               <div className=" relative">
-                <button onClick={handlePropertyType} className=" bg-green-600 rounded-lg text-emerald-50 px-2 py-2 inline-flex items-center">
+                <button onClick={handlePropertyType} className=" bg-green-600 rounded-lg text-xl font-semibold text-emerald-50 px-2 py-2 inline-flex items-center">
                   <span><Add /></span>
                   Add New Property
                 </button>
                 {
                   propertyType && (
-                    <div className=" absolute bg-green-500 w-full px-2 rounded-lg py-2">
-                      <h4 className=" text-sm mb-1 text-center text-green-700 tracking-widest">select property type</h4>
-                      <div className=" flex flex-col gap-2 w-full items-start overflow-auto h-20">
+                    <div className=" absolute bg-green-50 w-full px-2 rounded-lg py-2 z-50 shadow-lg">
+                      <h4 className=" text-lg mb-1 text-center text-green-700 tracking-widest">select property type</h4>
+                      <div className=" flex flex-col gap-2 w-full items-start overflow-auto h-40">
                         <button 
                           onClick={() => {
                             handleOpenHouse()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>House
                         </button>
                         <button 
@@ -144,7 +144,7 @@ const AgentOverview = () => {
                             handleOpen()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>Apartment
                         </button>
                         <button 
@@ -152,7 +152,7 @@ const AgentOverview = () => {
                             handleOpenLand()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>Land
                         </button>
                         <button 
@@ -160,7 +160,7 @@ const AgentOverview = () => {
                             handleOpenShop()
                             handlePropertyType()
                           }}
-                          className=" text-emerald-50 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
+                          className=" text-gray-800 font-medium hover:bg-green-400 rounded-lg px-2 block w-full text-start shadow-2xl">
                           <span><Add fontSize="small" /></span>Shop
                         </button>
                       </div>

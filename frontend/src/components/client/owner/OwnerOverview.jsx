@@ -71,15 +71,15 @@ const OwnerOverview = () => {
   const handleCloseStatus = () => setOpenStatus(false);
   const [propertyStatus, setPropertyStatus] = useState(null);
 
-  const agentId = auth?.user?._id
+  const ownerId = auth?.user?._id
   // console.log(agentId)
   const getProperties = async () => {
-    const response = await fetch(`${url}/${agentId}`, auth.accessToken);
+    const response = await fetch(`${url}/${ownerId}`, auth.accessToken);
     return response.data;
   };
 
   const {data, isLoading, isError, error, isSuccess} = useQuery(
-    ['properties', agentId],
+    ['properties', ownerId],
     getProperties,
     {
       keepPreviousData: true,

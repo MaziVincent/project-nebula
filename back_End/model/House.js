@@ -22,13 +22,13 @@ const HouseSchema = Property.discriminator('House', new Schema({
     type: [String]
   },
   yearBuilt: {
-    type: Number
+    type: Date
   },
   lotSize: {
     type: Number
   },
-  stories: {
-    type: Number,
+  buildingType: {
+    type: String,
   },
   exteriorFeatures: {
     type: [String]
