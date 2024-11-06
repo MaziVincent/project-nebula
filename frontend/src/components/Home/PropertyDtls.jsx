@@ -600,7 +600,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">The team went above and beyond, making the home-buying process stress-free and enjoyable. Highly recommend them!</p>
+                                                                <span className=' font-bold text-nowrap'>Outstanding Service</span>
+                                                                <p className="mb-10px lh-32">Incredible service, very professional, and found my dream home quickly!</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
@@ -624,7 +625,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <span className=' font-bold text-nowrap'>Highly professional team</span>
+                                                                <p className="mb-10px lh-32">Smooth process from start to finish—couldn’t have asked for more.</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
@@ -648,7 +650,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <span className=' font-bold text-nowrap'>Efficient and Transparent</span>
+                                                                <p className="mb-10px lh-32">Knowledgeable agents, honest advice, and always available for my questions.</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
@@ -672,7 +675,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/200x200" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <span className=' font-bold text-nowrap'>Highly Responsive</span>
+                                                                <p className="mb-10px lh-32">Exceptional experience! They handled everything, making it stress-free.</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
@@ -696,7 +700,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/200x200" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <span className=' font-bold text-nowrap'>Seamless Process</span>
+                                                                <p className="mb-10px lh-32">Responsive team with great attention to detail. Highly recommend them!</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
@@ -720,7 +725,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <span className=' font-bold text-nowrap'>Trusted Advisors</span>
+                                                                <p className="mb-10px lh-32">Found exactly what I wanted. Professional and easy to work with.</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
@@ -744,7 +750,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <span className="font-bold text-nowrap">Smooth Transaction</span>
+                                                                <p className="mb-10px lh-32">Trustworthy and reliable. They made the buying process super simple</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
@@ -768,7 +775,8 @@ const PropertyDtls = () => {
                                                         <div className="d-flex align-items-center p-40px md-p-25px">
                                                             <img className="rounded-circle w-110px h-110px md-w-80px md-h-80px me-25px md-me-20px" src="https://via.placeholder.com/148x148" alt="" />
                                                             <div>
-                                                                <p className="mb-10px lh-32">Lorem ipsum amet tempor incididunt nostrud dolore.</p>
+                                                                <span className=' font-bold text-nowrap'>Friendly and Professional</span>
+                                                                <p className="mb-10px lh-32">Great communication, professional insights, and an enjoyable buying process!</p>
                                                                 <div className="d-inline-block bg-orange text-white border-radius-3px ps-10px pe-10px fs-13 ls-minus-2px lh-28 me-10px md-me-5px sm-me-10px align-middle">
                                                                     <i className="fa-solid fa-star"></i>
                                                                     <i className="fa-solid fa-star"></i>
