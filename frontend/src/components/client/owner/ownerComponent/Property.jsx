@@ -52,7 +52,7 @@ const Property = () => {
         }
     }
   );
-
+  console.log(property)
   return (
     <div>
       <div className="pt-10 pl-4">

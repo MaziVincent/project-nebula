@@ -8,7 +8,8 @@ const {
   uploadPropertyImage,
   getPropertiesByType,
   handleFeaturedProperty,
-  getFeaturedProperties
+  getFeaturedProperties,
+  searchProperties
   //getPropertyByType
 } = require("../services/propertyService");
 
@@ -132,6 +133,17 @@ const getFeaturedPropertiesHandler = async (req, res) => {
   }
 };
 
+const searchPropertiesHandler = async (req, res) => {
+  const data = {
+    page: req.query.page,
+    limit: req.query.limit,
+    search: req.query.search,
+  };
+  const properties = await searchProperties(data);
+if (!properties)
+    return res.status(404).json({ message: "Properties not found" });
+  return res.status(200).json(properties);
+};
 // const getPropertyByTypeHandler = async (req, res) => {
 //   const propertyType = req.body
 //   const properties = await getPropertyByType(propertyType)
@@ -149,6 +161,7 @@ module.exports = {
   uploadPropertyImageHandler,
   getPropertiesByTypeHandler,
   setFeaturedPropertyHandler,
-  getFeaturedPropertiesHandler
+  getFeaturedPropertiesHandler,
+  searchPropertiesHandler,
   // getPropertyByTypeHandler
 };

@@ -202,6 +202,30 @@ const getFeaturedProperties = async () => {
   }
 };
 
+const searchProperties = async (data) => {
+  let page = parseInt(data.page) || 1;
+  let limit = parseInt(data.limit) || 6;
+  let skip = (page - 1) * limit;
+  let search = data.search || "";
+  try {
+    const properties = await Property.find({
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
+        { propertyType: { $regex: search, $options: "i" } },
+      ],
+    })
+      .populate("owner")
+      .skip(skip)
+      .limit(limit)
+      .exec();
+    const totalCount = await Property.countDocuments();
+    return { properties, page, totalPage: Math.ceil(totalCount / limit) };
+  } catch (e) {
+    return { error: e.message };
+  }
+};
 // const getPropertyByType = async (propertyType) => {
 //     try {
 //         const properties = await Property.find({ propertyType: propertyType }).populate('owner').exec();
@@ -222,6 +246,7 @@ module.exports = {
   uploadPropertyImage,
   getPropertiesByType,
   handleFeaturedProperty,
-  getFeaturedProperties
+  getFeaturedProperties,
+  searchProperties,
   //getPropertyByType
 };

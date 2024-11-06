@@ -37,6 +37,7 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
 
 
   const updateApartment = async (data) => {
+    setIsLoading(true)
     if (!auth || !auth?.accessToken) {
       navigate('/login');
       return;

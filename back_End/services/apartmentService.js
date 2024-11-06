@@ -18,7 +18,8 @@ const createApartment = async (data) => {
             "bedrooms": data.bedrooms,
             "bathrooms": data.bathrooms,
             "floorArea": data.floorArea,
-            "propertyType": data.propertyType
+            "propertyType": data.propertyType,
+            "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.floorArea}`
         })
         const user = await User.findOne({_id: ownerId }).exec();
         user.properties.push(newApartment._id);
