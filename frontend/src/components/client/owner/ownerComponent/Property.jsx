@@ -97,7 +97,7 @@ const Property = () => {
             </p>
             <p className=" mb-5">
               <span>Price: </span>
-              {property.price}
+              {parseFloat(property.price.$numberDecimal).toLocaleString('en-US')}
             </p>
             <span className=" grid grid-cols-3 gap- w-[350px]">
               <span className=" flex flex-col leading-5 items-center border-r border-gray-600">

@@ -85,6 +85,7 @@ const updateHouse = async (id, data) => {
         if(data.squareFootage) house.squareFootage = data.squareFootage
         if(data.yearBuilt) house.yearBuilt = data.yearBuilt
         if(data.lotSize) house.lotSize = data.lotSize
+        if(data.docType) house.docType = data.docType
         if(data.buildingType) house.buildingType = data.buildingType
         if(data.propertyType) house.propertyType = data.propertyType
         if(data.exteriorFeatures) house.exteriorFeatures = data.exteriorFeatures

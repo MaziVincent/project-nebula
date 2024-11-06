@@ -80,7 +80,7 @@ const PropertyDtls = () => {
                                     <h1 className="mb-0 d-flex"><i className="feather icon-feather-map-pin icon-extra-medium text-base-color me-5px"></i>{property.location}</h1>
                                 </div>
                                 <div className="col-lg-3 offset-xl-2 offset-lg-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-                                    <h4 className="text-dark-gray fw-700 alt-font mb-5px">&#8358;{property.price.toLocaleString('en-US')}</h4>
+                                    <h4 className="text-dark-gray fw-700 alt-font mb-5px">&#8358;{parseFloat(property.price.$numberDecimal).toLocaleString('en-US')}</h4>
                                     {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft. &#8358;{!isNaN(parseFloat(property.price.replace(/,/g, ""))) ? (parseFloat(property.price.replace(/,/g, "")) / 12).toFixed(2) : 'N/A'}</span> */}
                                 </div>
                             </div>
@@ -137,7 +137,7 @@ const PropertyDtls = () => {
                                     </div>
                                 )}
                                 <div className="col text-center alt-font border-end">
-                                    <span className="fs-19 text-dark-gray fw-600">Price:</span> &#8358;{property.price.toLocaleString('en-US')}
+                                    <span className="fs-19 text-dark-gray fw-600">Price:</span> &#8358;{parseFloat(property.price.$numberDecimal).toLocaleString('en-US')}
                                 </div>
                             </div>
                         </div>
@@ -263,7 +263,7 @@ const PropertyDtls = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col">&#8358;{property.price.toLocaleString('en-US')}</div>
+                                                <div className="col">&#8358;{parseFloat(property.price.$numberDecimal).toLocaleString('en-US')}</div>
                                             </div>
                                             {/* <div className="row g-0 align-items-center mb-15px pb-15px border-bottom border-color-extra-medium-gray">
                                                 <div className="col">
