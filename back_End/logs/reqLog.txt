@@ -35892,3 +35892,9 @@
 2024-11-01	22:03:38	576479ef-0788-41d5-8265-6cdbc7aa791b	GET	/properties?limit=6&status=Available	http://localhost:5173
 2024-11-05	18:01:21	b9db37d6-3249-4323-823d-a6200a98a53b	GET	/property/featured	undefined
 2024-11-05	18:01:32	43283c69-0ce7-4e9f-8dc6-f22ddc8ff0ae	GET	/properties/featured	undefined
+2024-11-06	12:49:35	f3d2c1a7-109f-4f88-a4b6-4c6cd2d5bb95	GET	/properties/search/Abakaliki	undefined
+2024-11-06	12:49:43	1d39a914-3925-45d7-8a67-10576c72cd0c	GET	/properties/search/	undefined
+2024-11-06	12:50:58	7a6a25fc-393e-4de5-b3ed-6941f868c775	GET	/properties/search/?location=NewYork	undefined
+2024-11-06	12:51:27	159effc5-60c4-47c5-8481-51c5392fb3f5	GET	/properties/search/?location=Abakaliki	undefined
+2024-11-06	12:52:07	417fbd91-d72c-4528-a1b4-fa84e3cbc7b0	GET	/properties/search/?title=%201%20bedroom	undefined
+2024-11-06	12:54:45	23adeea1-c147-4dba-863d-dc6c7d6312f5	GET	/properties/search/?propertyType=%20sell	undefined

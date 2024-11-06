@@ -35,6 +35,7 @@ const createHouse = async (data) => {
             exteriorFeatures: exteriorFeaturesArray,
             interiorFeatures: interiorFeaturesArray,
             kitchenFeatures: kitchenFeaturesArray,
+            "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.stories} ${data.lotSize}`
         });
 
         const user = await User.findOne({ _id: ownerId }).exec();

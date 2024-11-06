@@ -22,7 +22,8 @@ const createLand = async (data) => {
             "plots": data.plots,
             "docType": data.docType,
             "ownershipType": data.ownershipType,
-            "propertyType": data.propertyType
+            "propertyType": data.propertyType,
+            "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.plots}`
         })
         const user = await User.findOne({_id : ownerId }).exec();
         user.properties.push(newLand._id);

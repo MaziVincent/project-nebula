@@ -15,7 +15,8 @@ const createShop = async (data) => {
             "propertyType": data.propertyType,
             "shopCategory": data.shopCategory,
             "leaseDuration": data.leaseDuration,
-            "securityDeposit": data.securityDeposit
+            "securityDeposit": data.securityDeposit,
+            "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.shopCategory}`
         })
         const user = await User.findOne({_id: ownerId}).exec();
         user.properties.push(newShop._id);

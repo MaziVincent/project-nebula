@@ -18,6 +18,7 @@ router.route("/featured").get(propertyController.getFeaturedPropertiesHandler);
 
 router.route("/featured/:id").put(propertyController.setFeaturedPropertyHandler);
 
+router.route('/search').get(propertyController.searchPropertiesHandler)
 router
   .route("/upload/:id")
   .put(
