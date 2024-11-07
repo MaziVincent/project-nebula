@@ -31,7 +31,8 @@ const HouseSchema = Property.discriminator('House', new Schema({
     type: String,
   },
   exteriorFeatures: {
-    type: [String]
+    type: [String],
+    required: true
   },
   interiorFeatures: {
     type: [String]

@@ -94,7 +94,7 @@ const ShopDetails = () => {
               }
             </div>
             <p className=' pt-2 mb-1'>Status: <span className={`${shop.status === "Available" ? 'text-green-600' : shop.status === "Pending" ? 'text-yellow-600' : 'text-red-600'}`}>{shop.status}</span></p>
-            <p className=' clear-start mb-1'>Price: <span className=' text-gray-600'>&#8358;{shop.price}</span></p>
+            <p className=' clear-start mb-1'>Price: <span className=' text-gray-600'>&#8358;{parseFloat(shop.price.$numberDecimal).toLocaleString('en-US')}</span></p>
             <p className=''>Location: <span className=' text-gray-700'>{shop.location}</span></p>
             <div className=' grid grid-cols-4 gap-y-8 max-sm:grid-cols-2 w-11/12'>
               <p className=' border-r-2 border-gray-500 text-gray-600 p-2 m-0 pl-0 flex flex-col items-center'>ShopType: <span>{shop.shopType}</span></p>

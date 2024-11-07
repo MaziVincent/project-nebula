@@ -102,7 +102,7 @@ const LandDetails = () => {
               }
             </div>
             <p>Status: <span>{land.status}</span></p>
-            <p className=' mb-1'>Price: <span>{land.price}</span></p>
+            <p className=' mb-1'>Price: <span>{parseFloat(land.price.$numberDecimal).toLocaleString('en-US')}</span></p>
             <p className=' mb-1'>Location: <span>{land.location}</span></p>
             <div>
               <p>plots: <span>{land.plots}</span></p>

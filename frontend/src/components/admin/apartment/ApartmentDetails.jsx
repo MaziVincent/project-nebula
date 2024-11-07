@@ -89,7 +89,7 @@ const ApartmentDetails = () => {
               }
             </div>
               <p className=' mb-1'>Status: <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${apartment.status === "Available" ? 'text-green-600' : apartment.status === "Pending" ? 'text-yellow-600' : 'text-red-600'}`}>{apartment.status}</span></p>
-              <p className=' mb-1'>Price: <span className=' text-gray-600 font-medium'>{apartment.price}</span></p>
+              <p className=' mb-1'>Price: <span className=' text-gray-600 font-medium'>{parseFloat(apartment.price.$numberDecimal).toLocaleString('en-US')}</span></p>
               <p className=' mb-1'>Location: <span className=' text-gray-600 font-medium'>{apartment.location}</span></p>
             <div className='grid grid-cols-3  gap-y-8 max-sm:grid-cols-2 w-3/4 max-sm:w-full'>
               <p className='border-r-2 border-gray-500 text-gray-600  m-0 pl-0 flex flex-col items-center max-sm:justify-start'>Bedrooms: <span>{apartment.bedrooms}</span></p>

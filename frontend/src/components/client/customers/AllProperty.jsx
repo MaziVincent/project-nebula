@@ -111,7 +111,7 @@ const AllProperty = () => {
               className="w-full h-40 object-cover rounded-lg mb-3"
             />
             <h4 className="text-gray-500 text-base uppercase font-semibold mb-2">{props.title}</h4>
-            <h3 className="text-xl font-bold mb-3">&#8358;{props.price}</h3>
+            <h3 className="text-xl font-bold mb-3">&#8358;{parseFloat(props.price.$numberDecimal).toLocaleString('en-US')}</h3>
               <span className=" flex justify-between mb-3">
                 <span className=" flex flex-col leading-5 items-center">
                   {props?.bedrooms ? props.bedrooms.toString().padStart(2, '0') : '00'}

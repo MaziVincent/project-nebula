@@ -15,9 +15,6 @@ const createHouseHandler = async (req, res) => {
         return res.status(400).json({message: 'All fields are required'})
     }
     console.log(req.body)
-    // const duplicate = await houseExists(title);
-    // if(duplicate) {
-    //     return res.status(409).json({message: 'House already exists'})
     // }
     const data = {
         title,
@@ -37,9 +34,7 @@ const createHouseHandler = async (req, res) => {
         livingRoomFeatures,
         kitchenFeatures,
         propertyType,
-        files: req.files,
     };
-    console.log(req.files)
     const result = await createHouse(data);
     if(result.error) {
         return res.status(400).json({message: result})

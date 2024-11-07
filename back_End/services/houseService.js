@@ -11,7 +11,7 @@ cloudinary.config({
 
 const createHouse = async (data) => {
     const ownerId = new mongoose.Types.ObjectId(data.owner);
-    const exteriorFeaturesArray = data.exteriorFeatures ? data.exteriorFeatures.split(', ') : [];
+    // const exteriorFeaturesArray = data.exteriorFeatures ? data.exteriorFeatures.split(', ') : [];
     const interiorFeaturesArray = data.interiorFeatures ? data.interiorFeatures.split(', ') : [];
     const livingRoomFeaturesArray = data.livingRoomFeatures ? data.livingRoomFeatures.split(', ') : [];
     const kitchenFeaturesArray = data.kitchenFeatures ? data.kitchenFeatures.split(', ') : [];
@@ -31,11 +31,11 @@ const createHouse = async (data) => {
             buildingType: data.buildingType,
             docType: data.docType,
             propertyType: data.propertyType,
-            livingRoomFeatures: livingRoomFeaturesArray,
-            exteriorFeatures: exteriorFeaturesArray,
-            interiorFeatures: interiorFeaturesArray,
-            kitchenFeatures: kitchenFeaturesArray,
-            "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.buildingType} ${data.lotSize}`
+            livingRoomFeatures: data.livingRoomFeatures,
+            exteriorFeatures: data.exteriorFeatures,
+            interiorFeatures: data.interiorFeatures,
+            kitchenFeatures: data.kitchenFeatures,
+            searchString: `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.buildingType} ${data.lotSize}`
         });
 
         const user = await User.findOne({ _id: ownerId }).exec();

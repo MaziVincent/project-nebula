@@ -131,7 +131,7 @@ const HouseDetails = () => {
               </p>
               <p className=" clear-start mb-1">
                 Price:{" "}
-                <span className=" text-gray-600">&#8358;{house.price}</span>
+                <span className=" text-gray-600">&#8358;{parseFloat(house.price.$numberDecimal).toLocaleString('en-US')}</span>
               </p>
               <p className="">
                 Location:{" "}

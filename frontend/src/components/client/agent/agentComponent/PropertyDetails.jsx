@@ -84,7 +84,7 @@ const PropertyDetails = () => {
         }
       </div>
       <p className=' mb-1'><span>Status: </span>{property.status}</p>
-      <p className=' mb-1'>Price: <span>&#8358;{property.price}</span></p>
+      <p className=' mb-1'>Price: <span>&#8358;{parseFloat(property.price.$numberDecimal).toLocaleString('en-US')}</span></p>
       <p className="text-gray-600">Location: <span>{property.location}</span></p>
       <h4 className=' text-2xl text-gray-600 text-center'>Features:</h4>
         <span className=" grid grid-cols-3 mb-12 w-1/2 max-md:w-4/5 max-sm:w-full">

@@ -15,6 +15,7 @@ import CreateNewShopModal from "./ownerComponent/CreateNewShopModal";
 import UpdatePropertiesModal from "./ownerComponent/UpdatePropertiesModal";
 import PropertiesStatusModal from "./ownerComponent/PropertiesStatusModal";
 import CreateNewApartmentModal from "./ownerComponent/CreateNewApartmentModal";
+import { CircularProgress, ClickAwayListener } from "@mui/material";
 
 const OwnerOverview = () => {
   const { auth } = useAuth();
@@ -100,13 +101,14 @@ const OwnerOverview = () => {
   // console.log(data);
   return (
     <div className=" h-dvh">
-      {
-        isLoading ? (
-          <div>Loading...</div>
-        ) : isError ? (
-          <div>Error: {error.message}</div>
-        ) : (
-          <div>
+          {isLoading && (
+            <div className=" flex flex-col justify-center items-center m-52">
+              <CircularProgress />
+              Loading...
+            </div>
+          )}
+          {isSuccess && 
+            <div>
             <h1 className=" text-2xl font-semibold mt-4 text-green-900 text-center"> Overview</h1>
             <div>
               <div className=" flex justify-between items-center mb-4">
@@ -343,8 +345,8 @@ const OwnerOverview = () => {
               </div>
             </div>
           </div>
-        )
-      }
+          }
+          {isError && <div className="text-red-500 text-3xl text-center m-52">{error.message}</div>}
       <div>
       <UpdatePropertiesModal openUpdate={openUpdate} handleCloseUpdate={handleCloseUpdate} property={selectedProperty} url={`${baseURL}${selectedPropertyType}`} />
       <CreateNewApartmentModal open={openModal} handleClose={handleClose} />

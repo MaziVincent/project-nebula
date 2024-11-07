@@ -81,7 +81,7 @@ const Property = () => {
           <div className="mt-5">
             <h4 className="text-xl font-bold">{property.title}</h4>
             <div className=" grid grid-cols-3 gap-2 shadow-md duration-200 delay-100 ease-in-out overflow-hidden">
-              {property.imageUrls.map((imageUrl, index) => (
+              {property?.imageUrls?.map((imageUrl, index) => (
                 <img
                   key={index}
                   src={imageUrl}
@@ -125,10 +125,11 @@ const Property = () => {
                     {property.exteriorFeatures.map((feature, index) => (
                       <li
                         key={index}
-                        className=" inline-flex items-center gap-1"
+                        className=" inline-flex items-center gap-1 text-gray-800"
                       >
-                        <span className="block w-2 h-2 rounded-full bg-gray-500"></span>
-                        {feature}
+                        <span className="block text-gray-800">
+                          <span dangerouslySetInnerHTML={{ __html: feature }} />
+                        </span>
                       </li>
                     ))}
                   </ul>

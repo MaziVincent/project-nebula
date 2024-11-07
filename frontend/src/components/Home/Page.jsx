@@ -847,7 +847,7 @@ const Page = () => {
                           </div>
                           <div className="col text-end">
                             <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">
-                              &#8358;{parseFloat(prop.price.$numberDecimal).toLocaleString('en-US')}
+                              &#8358;{parseFloat(prop?.price?.$numberDecimal).toLocaleString('en-US')}
                             </span>
                           </div>
                         </div>

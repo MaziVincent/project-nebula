@@ -264,7 +264,7 @@ const AllProperties = () => {
                                             <Link to={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
                                         </div>
                                         <div className="col text-end">
-                                            <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{prop.price}</span>
+                                            <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{parseFloat(prop.price.$numberDecimal).toLocaleString('en-US')}</span>
                                         </div> 
                                     </div> 
                                 </div>
