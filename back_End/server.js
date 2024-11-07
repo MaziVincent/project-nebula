@@ -20,9 +20,9 @@ app.use('/ping', require('./routes/ping'));
 app.use(credentials);
 app.use(cors(corsOptions));
 
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false, limit:'50mb'}));
 
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
 
 app.use(cookieParser())
 
