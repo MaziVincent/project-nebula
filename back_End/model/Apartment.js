@@ -13,6 +13,19 @@ const ApartmentSchema = Property.discriminator('Apartment', new Schema({
   bathrooms: {
     type: Number,
     required: true
+  },
+  exteriorFeatures: {
+    type: [String],
+    required: true
+  },
+  interiorFeatures: {
+    type: [String]
+  },
+  livingRoomFeatures: {
+    type: [String]
+  },
+  kitchenFeatures: {
+    type: [String]
   }
 }));
 

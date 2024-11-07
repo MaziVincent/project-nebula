@@ -11,10 +11,6 @@ cloudinary.config({
 
 const createHouse = async (data) => {
     const ownerId = new mongoose.Types.ObjectId(data.owner);
-    // const exteriorFeaturesArray = data.exteriorFeatures ? data.exteriorFeatures.split(', ') : [];
-    const interiorFeaturesArray = data.interiorFeatures ? data.interiorFeatures.split(', ') : [];
-    const livingRoomFeaturesArray = data.livingRoomFeatures ? data.livingRoomFeatures.split(', ') : [];
-    const kitchenFeaturesArray = data.kitchenFeatures ? data.kitchenFeatures.split(', ') : [];
 
     try {
         const newHouse = await House.create({

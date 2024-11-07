@@ -144,8 +144,9 @@ const Property = () => {
                         key={index}
                         className=" inline-flex items-center gap-1"
                       >
-                        <span className="block w-2 h-2 rounded-full bg-gray-500"></span>
-                        {interior}
+                        <span className="block text-gray-800">
+                          <span dangerouslySetInnerHTML={{ __html: interior }} />
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -160,8 +161,9 @@ const Property = () => {
                         key={index}
                         className=" inline-flex items-center gap-1"
                       >
-                        <span className="block w-2 h-2 rounded-full bg-gray-500"></span>
-                        {kitchen}
+                        <span className="block text-gray-800">
+                          <span dangerouslySetInnerHTML={{ __html: kitchen }} />
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -178,8 +180,9 @@ const Property = () => {
                         key={index}
                         className=" inline-flex items-center gap-1"
                       >
-                        <span className="block w-2 h-2 rounded-full bg-gray-500"></span>
-                        {livingRoom}
+                        <span className="block text-gray-800">
+                          <span dangerouslySetInnerHTML={{ __html: livingRoom }} />
+                        </span>
                       </li>
                     ))}
                   </ul>
