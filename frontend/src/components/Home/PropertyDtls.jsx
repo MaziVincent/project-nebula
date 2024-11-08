@@ -427,15 +427,7 @@ const PropertyDtls = () => {
                                             )}
                                         </div>
                                     </div> 
-                                    <div className="row mt-7">
-                                        <div className="col-12">
-                                            <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block">Location</span>
-                                        </div>
-                                        <div className="col-12"> 
-                                            <iframe src="https://www.google.com/maps/embed" className=' w-[682px] max-md:w-full h-[400px]' frameborder="0"></iframe>
-                                            {/* <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
-                                        </div>
-                                    </div>
+                                   
                                     <div>
                                         <div className=" grid grid-cols-1">
                                         {property?.exteriorFeatures && (
@@ -516,6 +508,15 @@ const PropertyDtls = () => {
                                             <img src={property.imageUrls[2]} className="border-radius-6px w-[682px]" alt="" />
                                         </div>
                                     </div>
+                                    <div className="row mt-7">
+                                        <div className="col-12">
+                                            <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block">Location</span>
+                                        </div>
+                                        <div className="col-12"> 
+                                            <iframe src="https://www.google.com/maps/embed" className=' w-[682px] max-md:w-full h-[400px]' frameborder="0"></iframe>
+                                            {/* <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
+                                        </div>
+                                    </div>
                                 </div>
                                 {/*  start sticky  */}
                                 <div className="col-xl-4 offset-xl-1 col-lg-5">
@@ -537,21 +538,21 @@ const PropertyDtls = () => {
                                             </div>
                                             {/*  end features box item  */}
                                             {/*  start social icon  */}
-                                            <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center">
+                                            {/* <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center">
                                                 <ul className="medium-icon">
                                                     <li className="m-0"><a className="facebook text-white" href="https://www.facebook.com/" target="_blank"><i className="fa-brands fa-facebook-f"></i></a></li>
                                                     <li className="m-0"><Link className="dribbble text-white" to={property?.owner?.whatsappLink} ><i className="fa-brands fa-whatsapp"></i></Link></li> 
                                                     <li className="m-0"><a className="twitter text-white" href="http://www.twitter.com" target="_blank"><i className="fa-brands fa-twitter"></i></a></li> 
                                                     <li className="m-0"><a className="instagram text-white" href="http://www.instagram.com" target="_blank"><i className="fa-brands fa-instagram"></i></a></li> 
                                                 </ul>
-                                            </div>
+                                            </div> */}
                                             {/*  end social icon  */}
                                         </div>
                                         <div className="ps-45px pe-45px pt-35px pb-45px xs-p-25px contact-form-style-01 mt-0">
                                             <div className="mb-20px last-paragraph-no-margin">
-                                                <p className="mb-0 alt-font fw-500 text-dark-gray"><i className="feather icon-feather-phone-call icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block">Phone:</span><a href={property?.owner?.phone} className="text-dark-gray text-base-color-hover"> {property?.owner?.phone}</a></p>
-                                                <p className="alt-font fw-500 text-dark-gray mb-0"><i className="feather icon-feather-mail icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block">Email:</span><a href={property?.owner?.email} className="text-dark-gray text-decoration-line-bottom"> {property?.owner?.email}</a></p>
-                                                <p className="alt-font fw-500 text-dark-gray"><i className="fa-brands fa-whatsapp icon-small text-base-color me-10px"></i><span className="fw-600 w-[21] sm-w-15 xs-w-20 d-inline-block">Whatsapp:</span><a href={property?.owner?.whatsappLink} className="text-dark-gray text-decoration-line-bottom"> Message {property?.owner?.type}</a></p>
+                                                <p className="mb-0 alt-font fw-500 text-dark-gray"><i className="feather icon-feather-phone-call icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block"></span><a href={property?.owner?.phone} className="text-dark-gray text-base-color-hover"> {property?.owner?.phone}</a></p>
+                                                <p className="alt-font fw-500 text-dark-gray mb-0"><i className="feather icon-feather-mail icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block"></span><a href={property?.owner?.email} className="text-dark-gray text-decoration-line-bottom"> {property?.owner?.email}</a></p>
+                                                <p className="alt-font fw-500 text-dark-gray"><i className="fa-brands fa-whatsapp icon-small text-base-color me-10px"></i><span className="fw-600 w-[21] sm-w-15 xs-w-20 d-inline-block"></span><a href={property?.owner?.whatsappLink} className="text-dark-gray text-decoration-line-bottom"> Message {property?.owner?.type}</a></p>
                                             </div>
                                             <span className="alt-font fs-20 fw-600 text-dark-gray d-block mb-25px">Leave your message here</span>
                                             {/*  start contact form  */}

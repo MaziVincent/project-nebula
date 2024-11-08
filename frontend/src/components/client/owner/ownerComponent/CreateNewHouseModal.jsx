@@ -585,7 +585,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                       {...register("propertyType", { required: true })}
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     >
-                      <option value="select house type" disabled selected>Select House Type</option>
+                      <option value="select house type" disabled selected>Select Property Type</option>
                         <option value="Rent">Rent</option>
                         <option value="Sell">Sell</option>
                     </select>

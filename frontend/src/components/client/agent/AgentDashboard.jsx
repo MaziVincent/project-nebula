@@ -14,7 +14,7 @@ const AgentDashboard = () => {
         <Outlet />
       </main>
       <footer className=' p-4 md:ml-48  mt-10 mb-0 text-green-900'>
-        All rights reserved &copy;2024 Real Estate Management System
+        All rights reserved &copy;2024 MegaTech Group
       </footer>
     </div>
   )

@@ -122,7 +122,7 @@ const Property = () => {
               {property?.exteriorFeatures && (
                 
                 <div className=" my-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">Exterior Features</h4>
                   <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                   {property.exteriorFeatures
                     .map((feature, index) => (
@@ -138,7 +138,7 @@ const Property = () => {
               )}
               {property?.interiorFeatures && (
                 <div className=" mb-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">Interior Features</h4>
                   <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.interiorFeatures.map((interior, index) => (
                       <li
@@ -153,7 +153,7 @@ const Property = () => {
               )}
               {property?.kitchenFeatures && (
                 <div className=" mb-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">Kitchen Features</h4>
                   <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.kitchenFeatures.map((kitchen, index) => (
                       <li
@@ -168,8 +168,8 @@ const Property = () => {
               )}
               {property?.livingRoomFeatures && (
                 <div className=" mb-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
-                    LivingRooom Features
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">
+                    LivingRoom Features
                   </h4>
                   <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.livingRoomFeatures.map((livingRoom, index) => (
