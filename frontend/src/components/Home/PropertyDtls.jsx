@@ -515,7 +515,7 @@ const PropertyDtls = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/*  start sticky  */}
+                                {/*  start sticky  something */}
                                 <div className="col-xl-4 offset-xl-1 col-lg-5">
                                     <div className="bg-base-color-light border-radius-6px position-sticky top-120px">
                                         <div className="bg-base-color border-radius-6px feature-box feature-box-left-icon-middle overflow-hidden icon-with-text-style-08 ps-35px pe-35px pt-25px pb-20px xs-p-25px">
