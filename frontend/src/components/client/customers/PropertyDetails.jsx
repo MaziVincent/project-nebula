@@ -88,55 +88,75 @@ const PropertyDetails = ({property, closeModal}) => {
         </span>
         <p><span>Status: </span>{property.status}</p>
         <p><span>{property?.stories ? 'Stories:' : ''} </span>{property.stories}</p>
-        {
-          property?.exteriorFeatures && (
-            <div>
-              <h4 className="text-xl font-bold mb-2">Exterior Features</h4>
-              <ul className=' pl-2 flex flex-col leading-6'>
-                {property.exteriorFeatures.map((feature, index) => (
-                  <li key={index} className=' inline-flex items-center gap-1'><span className='block w-2 h-2 rounded-full bg-gray-500'></span>{feature}</li>
+        <div>
+          <div className=" grid grid-cols-1">
+          {property?.exteriorFeatures && (
+            
+            <div className=" my-5">
+              <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+              <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+              {property.exteriorFeatures
+                .map((feature, index) => (
+                  <li key={index} className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0 mx-">
+                    <div 
+                      className="ext-ft text-gray-800 flex "
+                      dangerouslySetInnerHTML={{ __html: feature }} 
+                      />
+                  </li>
                 ))}
               </ul>
             </div>
-          )
-        }
-        {
-          property?.interiorFeatures && (
-            <div>
-              <h4 className="text-xl font-bold mb-2">Interior Features</h4>
-              <ul className=' pl-2 flex flex-col leading-6'>
+          )}
+          {property?.interiorFeatures && (
+            <div className=" mb-5">
+              <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+              <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                 {property.interiorFeatures.map((interior, index) => (
-                  <li key={index} className=' inline-flex items-center gap-1'><span className='block w-2 h-2 rounded-full bg-gray-500'></span>{interior}</li>
+                  <li
+                    key={index}
+                    className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                  >
+                    <div className="ext-ft text-gray-800" dangerouslySetInnerHTML={{ __html: interior }} />
+                  </li>
                 ))}
               </ul>
             </div>
-          )
-        }
-        {
-          property?.kitchenFeatures && (
-            <div>
-              <h4 className="text-xl font-bold mb-2">Kitchen Features</h4>
-              <ul className=' pl-2 flex flex-col leading-6'>
+          )}
+          {property?.kitchenFeatures && (
+            <div className=" mb-5">
+              <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+              <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                 {property.kitchenFeatures.map((kitchen, index) => (
-                  <li key={index} className=' inline-flex items-center gap-1'><span className='block w-2 h-2 rounded-full bg-gray-500'></span>{kitchen}</li>
+                  <li
+                    key={index}
+                    className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                  >
+                      <div className="ext-ft" dangerouslySetInnerHTML={{ __html: kitchen }} />
+                  </li>
                 ))}
               </ul>
             </div>
-          )
-        }
-        {
-          property?.livingRoomFeatures && (
-            <div>
-              <h4 className="text-xl font-bold mb-2">LivingRooom Features</h4>
-              <ul className=' pl-2 flex flex-col leading-6'>
+          )}
+          {property?.livingRoomFeatures && (
+            <div className=" mb-5">
+              <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
+                LivingRooom Features
+              </h4>
+              <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                 {property.livingRoomFeatures.map((livingRoom, index) => (
-                  <li key={index} className=' inline-flex items-center gap-1'><span className='block w-2 h-2 rounded-full bg-gray-500'></span>{livingRoom}</li>
+                  <li
+                    key={index}
+                    className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                  >
+                      <div className="ext-ft" dangerouslySetInnerHTML={{ __html: livingRoom }} />
+                  </li>
                 ))}
               </ul>
             </div>
-          )
-        }
-        <button className="mt-5 bg-green-500 text-white px-6 py-2 rounded-lg">Buy Now</button>
+          )}
+          </div>
+        </div>
+        <Link to={property?.owner?.whatsappLink} className="mt-5 bg-green-500 text-white px-6 py-2 rounded-lg">Buy Now</Link>
       </div>
     </div>
     )}

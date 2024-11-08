@@ -62,7 +62,7 @@ const AdminCustomers = () => {
         refetchOnMount:"always" }
   );
   return (
-    <div className=' pt-5 max-sm:mt-10 h-screen'>
+    <div className=' pt-5 max-sm:mt-10 h-auto min-h-max'>
       <ToastContainer />
       <div className=' mb-4 max-md:w-full'>
         <button onClick={handleOpen} className=' block bg-cyan-500 w-20 min-w-max p-1 rounded-xl'>

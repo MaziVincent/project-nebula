@@ -114,81 +114,77 @@ const Property = () => {
               </span>
             </span>
             <p className="text-gray-600 mt-4">
-              <span className=" block">Description:</span>
+              <span className=" block text-xl text-gray-600 font-bold">Description:</span>
               {property.description}
             </p>
-            <div className=" grid lg:grid-cols-4 mt-5 md:grid-cols-2 max-md:gap-y-4 max-sm:grid-cols-1">
+            <div>
+              <div className=" grid grid-cols-1">
               {property?.exteriorFeatures && (
-                <div className="">
-                  <h4 className="text-xl font-bold mb-2">Exterior Features</h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
-                    {property.exteriorFeatures.map((feature, index) => (
-                      <li
-                        key={index}
-                        className=" inline-flex items-center gap-1 text-gray-800"
-                      >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: feature }} />
-                        </span>
+                
+                <div className=" my-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+                  <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                  {property.exteriorFeatures
+                    .map((feature, index) => (
+                      <li key={index} className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0 mx-">
+                        <div 
+                          className="ext-ft text-gray-800 flex "
+                          dangerouslySetInnerHTML={{ __html: feature }} 
+                          />
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
               {property?.interiorFeatures && (
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Interior Features</h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.interiorFeatures.map((interior, index) => (
                       <li
                         key={index}
-                        className=" inline-flex items-center gap-1"
+                        className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
                       >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: interior }} />
-                        </span>
+                        <div className="ext-ft text-gray-800" dangerouslySetInnerHTML={{ __html: interior }} />
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
               {property?.kitchenFeatures && (
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Kitchen Features</h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.kitchenFeatures.map((kitchen, index) => (
                       <li
                         key={index}
-                        className=" inline-flex items-center gap-1"
+                        className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
                       >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: kitchen }} />
-                        </span>
+                          <div className="ext-ft" dangerouslySetInnerHTML={{ __html: kitchen }} />
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
               {property?.livingRoomFeatures && (
-                <div>
-                  <h4 className="text-xl font-bold mb-2">
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
                     LivingRooom Features
                   </h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.livingRoomFeatures.map((livingRoom, index) => (
                       <li
                         key={index}
-                        className=" inline-flex items-center gap-1"
+                        className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
                       >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: livingRoom }} />
-                        </span>
+                          <div className="ext-ft" dangerouslySetInnerHTML={{ __html: livingRoom }} />
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
             </div>
+              </div>
             <div className="relative flex gap-5 items-center ">
               <button
                 onClick={() => {

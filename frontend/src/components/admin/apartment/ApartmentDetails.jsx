@@ -96,6 +96,74 @@ const ApartmentDetails = () => {
               <p className='border-r-2 border-gray-500 text-gray-600  m-0 pl-0 flex flex-col items-center'>Bathrooms: <span>{apartment.bathrooms}</span></p>
               <p className=' text-gray-600  m-0 pl-0 flex flex-col items-center'>Floor Area: <span>{apartment.floorArea}</span></p>
             </div>
+            <div>
+              <div className=" grid grid-cols-1">
+              {apartment?.exteriorFeatures && (
+                
+                <div className=" my-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+                  <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                  {apartment.exteriorFeatures
+                    .map((feature, index) => (
+                      <li key={index} className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0 mx-">
+                        <div 
+                          className="ext-ft text-gray-800 flex "
+                          dangerouslySetInnerHTML={{ __html: feature }} 
+                          />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {apartment?.interiorFeatures && (
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                    {apartment.interiorFeatures.map((interior, index) => (
+                      <li
+                        key={index}
+                        className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                      >
+                        <div className="ext-ft text-gray-800" dangerouslySetInnerHTML={{ __html: interior }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {apartment?.kitchenFeatures && (
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                    {apartment.kitchenFeatures.map((kitchen, index) => (
+                      <li
+                        key={index}
+                        className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                      >
+                          <div className="ext-ft" dangerouslySetInnerHTML={{ __html: kitchen }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {apartment?.livingRoomFeatures && (
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
+                    LivingRooom Features
+                  </h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                    {apartment.livingRoomFeatures.map((livingRoom, index) => (
+                      <li
+                        key={index}
+                        className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                      >
+                          <div className="ext-ft" dangerouslySetInnerHTML={{ __html: livingRoom }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+              </div>
               <p className=' flex flex-col justify-start gap-2'>
                 <span>Description:</span>
                 <span>{apartment.description}</span>

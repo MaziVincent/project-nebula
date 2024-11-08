@@ -3,3 +3,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.ext-ft span{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

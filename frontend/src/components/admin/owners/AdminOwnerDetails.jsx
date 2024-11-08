@@ -71,7 +71,7 @@ const AdminOwnerDetails = () => {
     }
   );
   return (
-    <div className=' max-md:pt-24 max-sm:h-screen'>
+    <div className=' max-md:pt-24 h-auto min-h-max'>
       <ToastContainer />
       <div className=' py-5 pl-4'>
         <Link to='/admin/owners' >

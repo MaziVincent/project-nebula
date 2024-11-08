@@ -36,7 +36,7 @@ const UserSchema = new Schema({
   searchString: {
     type: String
   },
-  whatappLink:String,
+  whatsappLink:String,
   refreshToken: {
     type: String,
   }

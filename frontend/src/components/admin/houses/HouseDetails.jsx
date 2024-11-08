@@ -161,67 +161,76 @@ const HouseDetails = () => {
                 Document Type: <span>{house.docType}</span>
               </p>
               <div>
-                <h3 className=" text-3xl text-center text-gray-600">
-                  Features:
-                </h3>
-                <div className=" grid grid-cols-4 gap-2 max-md:grid-cols-3 max-sm:grid-cols-2     ">
-                  <div>
-                    <p className=" mb-0">Exterior Features:</p>
-                    <ul className=" pl-0 flex flex-col leading-">
-                      {house.exteriorFeatures.map((feature, index) => (
-                        <li
-                          key={index}
-                          className=" inline-flex items-center gap-1 text-gray-700"
-                        >
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="mb-0">interiorFeatures:</p>
-                    <ul className=" flex flex-col leading- ml-0 pl-0">
-                      {house.interiorFeatures.map((interior, index) => (
-                        <li
-                          key={index}
-                          className=" inline-flex text-gray-700 items-center gap-1"
-                        >
-                          {interior}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="mb-0">Living Room Features:</p>
-                    <ul className=" flex flex-col leading- ml-0 pl-0">
-                      {house.livingRoomFeatures.map((living, index) => (
-                        <li
-                          key={index}
-                          className=" inline-flex text-gray-700 items-center gap-1"
-                        >
-                          {living}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="mb-0">Kitchen Features:</p>
-                    <ul className=" flex flex-col leading- ml-0 pl-0">
-                      {house.kitchenFeatures.map((kitchen, index) => (
-                        <li
-                          key={index}
-                          className=" inline-flex text-gray-700 items-center gap-1"
-                        >
-                          {kitchen}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className=" grid grid-cols-1">
+              {house?.exteriorFeatures && (
+                
+                <div className=" my-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+                  <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                  {house.exteriorFeatures
+                    .map((feature, index) => (
+                      <li key={index} className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0 mx-">
+                        <div 
+                          className="ext-ft text-gray-800 flex "
+                          dangerouslySetInnerHTML={{ __html: feature }} 
+                          />
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              )}
+              {house?.interiorFeatures && (
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                    {house.interiorFeatures.map((interior, index) => (
+                      <li
+                        key={index}
+                        className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                      >
+                        <div className="ext-ft text-gray-800" dangerouslySetInnerHTML={{ __html: interior }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {house?.kitchenFeatures && (
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                    {house.kitchenFeatures.map((kitchen, index) => (
+                      <li
+                        key={index}
+                        className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                      >
+                          <div className="ext-ft" dangerouslySetInnerHTML={{ __html: kitchen }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {house?.livingRoomFeatures && (
+                <div className=" mb-5">
+                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
+                    LivingRooom Features
+                  </h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                    {house.livingRoomFeatures.map((livingRoom, index) => (
+                      <li
+                        key={index}
+                        className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                      >
+                          <div className="ext-ft" dangerouslySetInnerHTML={{ __html: livingRoom }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
               </div>
               <p className=" flex flex-col justify-start gap-2">
-                <span>Description:</span>
-                <span>{house.description}</span>
+                <span className=" text-xl text-gray-600 font-bold">Description:</span>
+                <span className=" text-gray-500">{house.description}</span>
               </p>
             </div>
           </div>

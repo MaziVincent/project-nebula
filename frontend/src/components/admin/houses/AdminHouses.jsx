@@ -73,7 +73,7 @@ const AdminHouses = () => {
   );
   //console.log(data);
   return (
-    <div className=' pt-10 max-sm:mt-10 h-screen'>
+    <div className=' pt-10 max-sm:mt-10 h-auto min-h-max'>
       <ToastContainer />
       <h3 className=' text-gray-700 font-semibold text-3xl text-center'>Houses</h3>
       <div className=' mb-4 max-md:w-full'>

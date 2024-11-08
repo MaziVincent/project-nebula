@@ -9,6 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from "../../../../hooks/useFetch"; 
 import useUpdate from "../../../../hooks/useUpdate" // Custom hook for fetching data
 import { CircularProgress } from '@mui/material';
+import exteriorFeatures from '../../../subcomponents/ExteriorFeatures';
+import interiorFeatures from '../../../subcomponents/InteriorFeatures';
+import livingRoomFeatures from '../../../subcomponents/LivingRoomFeatures';
+import kitchenFeatures from '../../../subcomponents/KitchenFeatures';
 
 const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) => {
   const queryClient = useQueryClient();
@@ -18,10 +22,40 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
-  //const url = `${baseURL}property`;
-  console.log(url)
-
   const [selectedProperty, setSelectedProperty] = useState(null)
+  const [selectedExteriorFeatures, setExteriorFeatures] = useState([]);
+  const [selectedInteriorFeatures, setInteriorFeatures] = useState([]);
+  const [selectedKitchenFeatures, setKitchenFeatures] = useState([]);
+  const [selectedLivingRoomFeatures, setLivingRoomFeatures] = useState([]);
+ 
+  const handleExteriorFeatures = (e) => {
+   e.preventDefault()
+     setExteriorFeatures((prevFeatures) =>
+       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
+     );
+   };
+ 
+  const handleInteriorFeatures = (e) => {
+   e.preventDefault()
+     setInteriorFeatures((prevFeatures) =>
+       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
+     );
+   };
+ 
+   const handleKitchenFeatures = (e) => {
+     e.preventDefault()
+     setKitchenFeatures((prevFeatures) =>
+       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
+     );
+   };
+ 
+ 
+   const handleLivingRoomFeatures = (e) => {
+     e.preventDefault()
+     setLivingRoomFeatures((prevFeatures) =>
+       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
+     );
+   };
 
   const {
     register,
@@ -50,9 +84,32 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
 
     //Append form fields
     for (const key in data) {
-      if (data[key]) {
+
+      if(key === 'exteriorFeatures'){
+        data.exteriorFeatures.forEach((exterior) => {
+          formData.append('exteriorFeatures[]', exterior);
+        })
+      }else if(key === 'interiorFeatures' ){
+        data.interiorFeatures.forEach((interior) => {
+          formData.append('interiorFeatures[]', interior);
+        })
+        
+      }else if(key === 'kitchenFeatures'){
+        data.kitchenFeatures.forEach((kitchen) => {
+          formData.append('kitchenFeatures[]', kitchen);
+        })
+        
+      }else if(key === 'livingRoomFeatures'){
+        data.livingRoomFeatures.forEach((living) => {
+          formData.append('livingRoomFeatures[]', living);
+        })
+        
+      }else{
         formData.append(key, data[key]);
       }
+    
+        
+      
     }
     console.log(formData)
 
@@ -77,6 +134,10 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
   });
 
   const handlePropertyUpdate = (data) => {
+    data.exteriorFeatures = selectedExteriorFeatures
+    data.interiorFeatures = selectedInteriorFeatures
+    data.kitchenFeatures = selectedKitchenFeatures
+    data.livingRoomFeatures = selectedLivingRoomFeatures
     mutate(data);
     console.log(data)
     
@@ -334,70 +395,114 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                         </select>
                       </div>
                       <div className="sm:col-span-2">
-                        <label
-                          htmlFor="exteriorFeatures"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Exterior Features:
-                        </label>
-                        <input
-                          id="exteriorFeatures"
-                          name='exteriorFeatures'
-                          type='text'
-                          {...register("exteriorFeatures", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter exteriorFeatures here"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="interiorFeatures"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Interior Features:
-                        </label>
-                        <input
-                          id="interiorFeatures"
-                          name='interiorFeatures'
-                          type='text'
-                          {...register("interiorFeatures", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter interiorFeatures here"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="livingRoomFeatures"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Living Room Features:
-                        </label>
-                        <input
-                          id="livingRoomFeatures"
-                          name='livingRoomFeatures'
-                          type='text'
-                          {...register("livingRoomFeatures", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter livingRoomFeatures here"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="kitchenFeatures"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Kitchen Features:
-                        </label>
-                        <input
-                          id="kitchenFeatures"
-                          name='kitchenFeatures'
-                          type='text'
-                          {...register("kitchenFeatures", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter kitchenFeatures here"
-                        />
-                      </div>
+                  <label
+                    htmlFor="exteriorFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Exterior Features:
+                  </label>
+                 <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
+                 {exteriorFeatures.map((exterior, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`exfeature-${index}`}
+                        name="exteriorFeatures"
+                        value={`${exterior.value}`}
+                        onChange={(e) => handleExteriorFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`exfeature-${index}`} className=' text-sm'>{exterior.name}</label>
+                     
                     </div>
+                  ))}
+                 </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="interiorFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Interior Features:
+                  </label>
+                  <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
+                 {interiorFeatures.map((interior, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`infeature-${index}`}
+                        name="interiorFeatures"
+                        value={`${interior.value}`}
+                        onChange={(e) => handleInteriorFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`infeature-${index}`} className=' text-sm'>{interior.name}</label>
+                     
+                    </div>
+                  ))}
+                 </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="livingRoomFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Living Room Features:
+                  </label>
+                  <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
+                 {livingRoomFeatures.map((livingRoom, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`lifeature-${index}`}
+                        name="livingRoomFeatures"
+                        value={`${livingRoom.value}`}
+                        onChange={(e) => handleLivingRoomFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`lifeature-${index}`} className=' text-sm'>{livingRoom.name}</label>
+                     
+                    </div>
+                  ))}
+                 </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="kitchenFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Kitchen Features:
+                  </label>
+                  <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
+                 {kitchenFeatures.map((kitchen, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`ktfeature-${index}`}
+                        name="kitchenFeatures"
+                        value={`${kitchen.value}`}
+                        onChange={(e) => handleKitchenFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`ktfeature-${index}`} className=' text-sm'>{kitchen.name}</label>
+                     
+                    </div>
+                  ))}
+                 </div>
+                </div>
+                  </div>
                   )
                 }
                 {
@@ -448,6 +553,114 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                           placeholder="Enter Lease Duration here"
                         />
                       </div>
+                      <div className="sm:col-span-2">
+                  <label
+                    htmlFor="exteriorFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Exterior Features:
+                  </label>
+                 <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
+                 {exteriorFeatures.map((exterior, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`exfeature-${index}`}
+                        name="exteriorFeatures"
+                        value={`${exterior.value}`}
+                        onChange={(e) => handleExteriorFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`exfeature-${index}`} className=' text-sm'>{exterior.name}</label>
+                     
+                    </div>
+                  ))}
+                 </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="interiorFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Interior Features:
+                  </label>
+                  <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
+                 {interiorFeatures.map((interior, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`infeature-${index}`}
+                        name="interiorFeatures"
+                        value={`${interior.value}`}
+                        onChange={(e) => handleInteriorFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`infeature-${index}`} className=' text-sm'>{interior.name}</label>
+                     
+                    </div>
+                  ))}
+                 </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="livingRoomFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Living Room Features:
+                  </label>
+                  <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
+                 {livingRoomFeatures.map((livingRoom, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`lifeature-${index}`}
+                        name="livingRoomFeatures"
+                        value={`${livingRoom.value}`}
+                        onChange={(e) => handleLivingRoomFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`lifeature-${index}`} className=' text-sm'>{livingRoom.name}</label>
+                     
+                    </div>
+                  ))}
+                 </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="kitchenFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Kitchen Features:
+                  </label>
+                  <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
+                 {kitchenFeatures.map((kitchen, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`ktfeature-${index}`}
+                        name="kitchenFeatures"
+                        value={`${kitchen.value}`}
+                        onChange={(e) => handleKitchenFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`ktfeature-${index}`} className=' text-sm'>{kitchen.name}</label>
+                     
+                    </div>
+                  ))}
+                 </div>
+                </div>
                     </div>
                   )
                 }
