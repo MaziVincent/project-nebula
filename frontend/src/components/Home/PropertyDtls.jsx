@@ -547,9 +547,18 @@ const PropertyDtls = () => {
                                         </div>
                                         <div className="ps-45px pe-45px pt-35px pb-45px xs-p-25px contact-form-style-01 mt-0">
                                             <div className="mb-20px last-paragraph-no-margin">
-                                                <p className="mb-0 alt-font fw-500 text-dark-gray"><i className="feather icon-feather-phone-call icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block"></span><a href={property?.owner?.phone} className="text-dark-gray text-base-color-hover"> {property?.owner?.phone}</a></p>
-                                                <p className="alt-font fw-500 text-dark-gray mb-0"><i className="feather icon-feather-mail icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block"></span><a href={property?.owner?.email} className="text-dark-gray text-decoration-line-bottom"> {property?.owner?.email}</a></p>
-                                                <p className="alt-font fw-500 text-dark-gray"><i className="fa-brands fa-whatsapp icon-small text-base-color me-10px"></i><span className="fw-600 w-[21] sm-w-15 xs-w-20 d-inline-block"></span><a href={property?.owner?.whatsappLink} className="text-dark-gray text-decoration-line-bottom"> Message {property?.owner?.type}</a></p>
+                                                <p className="mb-0 alt-font fw-500 text-dark-gray">
+                                                    <i className="feather icon-feather-phone-call icon-small text-base-color me-10px"></i>
+                                                    <a href={property?.owner?.phone} className="text-dark-gray text-base-color-hover"> {property?.owner?.phone}</a>
+                                                    </p>
+                                                <p className="alt-font fw-500 text-dark-gray mb-0">
+                                                <i className="feather icon-feather-mail icon-small text-base-color me-10px"></i>
+                                                <a href={property?.owner?.email} className="text-dark-gray text-decoration-line-bottom"> {property?.owner?.email}</a>
+                                                </p>
+                                                <p className="alt-font fw-500 text-dark-gray">
+                                                <i className="fa-brands fa-whatsapp icon-small text-base-color me-10px"></i>
+                                                <a href={property?.owner?.whatsappLink} className="text-dark-gray text-decoration-line-bottom">  {`Message ${property?.owner?.type}`}</a>
+                                                </p>
                                             </div>
                                             <span className="alt-font fs-20 fw-600 text-dark-gray d-block mb-25px">Leave your message here</span>
                                             {/*  start contact form  */}
