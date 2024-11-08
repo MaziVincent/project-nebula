@@ -22,7 +22,7 @@ const handleOwners = async (req, res) => {
 }
 
 const handleCreate = async (req, res) => {
-   const {firstname, lastname, email, password, identityType, identityNumber} = req.body;
+   const {firstname, lastname, email, password, identityType, identityNumber, whatsappLink} = req.body;
    if (!firstname, !lastname, !email, !password, !identityType, !identityNumber) {
        return res.status(400).json({ message: 'Please enter all fields' });
    }

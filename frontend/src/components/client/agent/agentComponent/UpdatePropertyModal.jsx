@@ -13,6 +13,7 @@ import exteriorFeatures from '../../../subcomponents/ExteriorFeatures';
 import interiorFeatures from '../../../subcomponents/InteriorFeatures';
 import livingRoomFeatures from '../../../subcomponents/LivingRoomFeatures';
 import kitchenFeatures from '../../../subcomponents/KitchenFeatures';
+import landFeatures from '../../../subcomponents/LandFeatures'
 
 const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
   const queryClient = useQueryClient();
@@ -55,6 +56,15 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
        e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
      );
    };
+
+   const [selectedLandFeatures, setSelectedLandFeatures] = useState([]);
+
+   const handleLandFeatures = (e) => {
+    e.preventDefault()
+      setSelectedLandFeatures((prevFeatures) =>
+        e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
+      );
+    };
 
   const [propertyType, setPropertyType] = useState(null)
   const {
@@ -101,6 +111,12 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
       }else if(key === 'livingRoomFeatures'){
         data.livingRoomFeatures.forEach((living) => {
           formData.append('livingRoomFeatures[]', living);
+        })
+        
+      }
+      else if(key === 'features'){
+        data.features.forEach((feature) => {
+          formData.append('features[]', feature);
         })
         
       }else{
@@ -151,6 +167,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
     data.interiorFeatures = selectedInteriorFeatures
     data.kitchenFeatures = selectedKitchenFeatures
     data.livingRoomFeatures = selectedLivingRoomFeatures
+    data.features = selectedLandFeatures
     mutate(data);
     
   };
@@ -221,6 +238,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                     placeholder="Type House name"
                     required=""
                   />
+                  {errors.title && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -240,6 +262,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                     required=""
                     >
                   </textarea>
+                  {errors.description && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -257,6 +284,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Price here"
                   />
+                  {errors.price && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -273,6 +305,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Location here"
                   />
+                  {errors.location && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <input 
@@ -301,6 +338,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter Number of bedrooms"
                         />
+                        {errors.bedrooms && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -317,6 +359,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter Number of bathrooms here"
                         />
+                        {errors.bathrooms && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -333,6 +380,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter squareFootage here"
                         />
+                        {errors.squareFootage && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -349,6 +401,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter yearBuilt here"
                         />
+                        {errors.yearBuilt && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -365,6 +422,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter lotSize here"
                         />
+                        {errors.lotSize && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                       <label
@@ -386,6 +448,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         <option value="Four Stories">Four Stories</option>
                         <option value="Five Stories">Five Stories</option>
                       </select>
+                      {errors.buildingType && (
+                        <span className="text-red-500 text-sm">
+                          This field is required
+                        </span>
+                      )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -403,6 +470,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                           <option value="Deeds of Conveyance">Deeds of Conveyance</option>
                         </select>
+                        {errors.docType && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                   <label
@@ -429,6 +501,12 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                      
                     </div>
                   ))}
+                  {errors.exteriorFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -456,6 +534,12 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                      
                     </div>
                   ))}
+                  {errors.interiorFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -483,6 +567,12 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                      
                     </div>
                   ))}
+                  {errors.livingRoomFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -510,9 +600,15 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                      
                     </div>
                   ))}
+                  {errors.kitchenFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
-                    </div>
+                </div>
                   )
                 }
                 {
@@ -532,6 +628,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Number of bedrooms here"
                         />
+                        {errors.bedrooms && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -547,6 +648,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Number Bathroom here"
                         />
+                        {errors.bathrooms && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -562,32 +668,43 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Lease Duration here"
                         />
+                        {errors.floorArea && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
-                  <label
-                    htmlFor="exteriorFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Exterior Features:
-                  </label>
-                 <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
-                 {exteriorFeatures.map((exterior, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
+                      <label
+                        htmlFor="exteriorFeatures"
+                        className="block mb-2 text-sm font-medium text-gray-900 "
+                      >
+                        Exterior Features:
+                    </label>
+                    <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
+                    {exteriorFeatures.map((exterior, index) => (
+                      <div key={index}
                       
-                      <input
-                        type="checkbox"
-                        id={`exfeature-${index}`}
-                        name="exteriorFeatures"
-                        value={`${exterior.value}`}
-                        onChange={(e) => handleExteriorFeatures(e)}
-                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                      />
-                      <label htmlFor={`exfeature-${index}`} className=' text-sm'>{exterior.name}</label>
-                     
-                    </div>
-                  ))}
+                      className='flex items-center space-x-2'>
+                        
+                        <input
+                          type="checkbox"
+                          id={`exfeature-${index}`}
+                          name="exteriorFeatures"
+                          value={`${exterior.value}`}
+                          onChange={(e) => handleExteriorFeatures(e)}
+                          className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                        />
+                        <label htmlFor={`exfeature-${index}`} className=' text-sm'>{exterior.name}</label>
+                        
+                      </div>
+                    ))}
+                    {errors.exteriorFeatures && (
+                      <span className="text-red-500 text-sm">
+
+                        This field is required
+                      </span>
+                    )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -615,6 +732,12 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                      
                     </div>
                   ))}
+                  {errors.interiorFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -642,6 +765,12 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                      
                     </div>
                   ))}
+                  {errors.livingRoomFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -669,9 +798,15 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                      
                     </div>
                   ))}
+                  {errors.kitchenFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
-                    </div>
+                </div>
                   )
                 }
 
@@ -693,6 +828,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                           placeholder="Enter plots here"
                         />
+                        {errors.plots && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
 
                       <div className="sm:col-span-2">
@@ -702,14 +842,6 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         >
                           Document Type:
                         </label>
-                        {/* <input
-                          id="docType"
-                          name='docType'
-                          type='text'
-                          {...register("docType", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter docType here"
-                        /> */}
                         <select name="docType" id="docType"
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -719,8 +851,44 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                           <option value="Deeds of Conveyance">Deeds of Conveyance</option>
                         </select>
+                        {errors.docType && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
-
+                      <div className="sm:col-span-2">
+                        <label
+                          htmlFor="landFeatures"
+                          className="block mb-2 text-sm font-medium text-gray-900 "
+                        >
+                          Features:
+                        </label>
+                        <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
+                        {landFeatures.map((feature, index) => (
+                          <div key={index}
+                          
+                          className='flex items-center space-x-2'>
+                            
+                            <input
+                              type="checkbox"
+                              id={`feature-${index}`}
+                              name="features"
+                              value={`${feature.value}`}
+                              onChange={(e) => handleLandFeatures(e)}
+                              className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                            />
+                            <label htmlFor={`feature-${index}`} className=' text-sm'>{feature.name}</label>
+                          
+                          </div>
+                        ))}
+                        {errors.landFeatures && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
+                      </div>
+                      </div>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="ownershipType"
@@ -728,14 +896,6 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         >
                           Ownership Type
                         </label>
-                        {/* <input
-                          id="ownershipType"
-                          name='ownershipType'
-                          type='text'
-                          {...register("ownershipType", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter ownershipType here"
-                        /> */}
                         <select name="ownershipType" id="ownershipType"
                           {...register("ownershipType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -744,6 +904,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           <option value="Virgin Land">Virgin Land</option>
                           <option value="Resell">Resell</option>
                         </select>
+                        {errors.ownershipType && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                     </div>
                   )
@@ -758,13 +923,6 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         >
                           Shop Category
                         </label>
-                        {/* <input
-                          id="shopCategory"
-                          type="text"
-                          {...register("shopCategory", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
-                          placeholder="Enter Shop Category here"
-                        /> */}
                         <select name="shopCategory" id="shopCategory"
                           {...register("shopCategory", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -778,6 +936,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           <option value="Boutique">Boutique</option>
                           <option value="General Purpose">General Purpose</option>
                         </select>
+                        {errors.shopCategory && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                       <div className="sm:col-span-2">
                         <label
@@ -793,6 +956,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Lease Duration here"
                         />
+                        {errors.leaseDuration && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
 
                       <div className="sm:col-span-2">
@@ -809,6 +977,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                           placeholder="Enter Security Deposit here"
                         />
+                        {errors.securityDeposit && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
                       </div>
                     </div>
                   )
@@ -826,6 +999,11 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                     <option value="Sell">Sell</option>
                     <option value="Lease">Lease</option>
                   </select>
+                  {errors.propertyType && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
               </div>
               <button

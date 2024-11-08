@@ -23,7 +23,7 @@ const handleAgents = async (req, res) => {
 }
 
 const handleCreateAgent = async (req, res) => {
-    const {firstname, lastname, email, phone,password, contactAddress, identityNumber, identityType, officeAddress, agencyName} = req.body;
+    const {firstname, lastname, email, phone,password, contactAddress, identityNumber, identityType, officeAddress, agencyName, whatsappLink} = req.body;
     // console.log(req.body);
     
     if(!firstname || !lastname || !email || !phone || !contactAddress || !identityNumber || !identityType || !officeAddress || !agencyName) {
@@ -41,7 +41,8 @@ const handleCreateAgent = async (req, res) => {
         identityNumber,
         identityType,
         officeAddress,
-        agencyName
+        agencyName,
+        whatsappLink
     }
     const result = await createAgent(data);
     if(result.error) return res.status(500).json(result);

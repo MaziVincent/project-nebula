@@ -128,6 +128,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     placeholder="Type First name"
 
                   />
+                  {errors.firstname && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -144,6 +150,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Lastname here"
                   />
+                  {errors.lastname && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -160,6 +172,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Email here"
                   />
+                  {errors.email && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -177,6 +195,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Phone Number"
                   />
+                  {errors.phone && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -193,6 +217,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="********"
                   />
+                  {errors.password && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -209,6 +239,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter identityNumber here"
                   />
+                  {errors.identityNumber && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -225,6 +261,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter identityType here"
                   />
+                  {errors.identityType && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -241,6 +283,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter contactAddress here"
                   />
+                  {errors.contactAddress && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -257,6 +305,12 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Agency Name here"
                   />
+                  {errors.agencyName && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -273,6 +327,35 @@ const CreateAgentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Office Adress here"
                   />
+                  {errors.officeAddress && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="whatsappLink"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Whatsapp Link
+                  </label>
+                  <input
+                    id="whatsappLink"
+                    name='whatsappLink'
+                    type='text'
+                    {...register("whatsappLink", {required: true})}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    placeholder="Enter Office Adress here"
+                  />
+                  {errors.whatsappLink && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Field can't be empty
+                    </span>
+                  )}
                 </div>
               </div>
               <button

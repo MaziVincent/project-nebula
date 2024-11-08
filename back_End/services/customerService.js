@@ -51,10 +51,6 @@ const updateCustomer = async (id, data) => {
         if(data.lastname) customer.lastname = data.lastname
         if(data.email) customer.email = data.email
         if(data.phone) customer.phonr = data.phone
-        if(data.password)  {
-            const hashedPassword = await bcrypt.hash(data.password, 10);
-                customer.password = hashedPassword;
-        }
         const result = await customer.save();
         return result;
     } catch (e) {

@@ -197,6 +197,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     placeholder="Type Apartment name"
                     required
                   />
+                  {errors.title && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Title is required
+                    </span>
+                  )}
                 </div>
 
                 <div>
@@ -215,6 +221,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     required
                     rows='8'
                   />
+                  {errors.description && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Description is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -231,6 +243,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Apartment Price here"
                   />
+                  {errors.price && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Price is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -246,6 +264,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Apartment Location here"
                   />
+                  {errors.location && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Location is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -270,6 +294,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Number of bedrooms here"
                   />
+                  {errors.bedrooms && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Bedrooms is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -285,6 +315,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Number Bathroom here"
                   />
+                  {errors.bathrooms && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Bathrooms is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -300,6 +336,13 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
                     placeholder="Enter Lease Duration here"
                   />
+                  {errors.floorArea && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Floor Area is required
+                    </span>
+                  )}
+                
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -322,10 +365,17 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                         onChange={(e) => handleExteriorFeatures(e)}
                         className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
                       />
+
                       <label htmlFor={`exfeature-${index}`} className=' text-sm'>{exterior.name}</label>
                      
                     </div>
                   ))}
+                  {errors.exteriorFeatures && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Exterior Features is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -353,6 +403,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                      
                     </div>
                   ))}
+                  {errors.interiorFeatures && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Interior Features is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -380,6 +436,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                      
                     </div>
                   ))}
+                  {errors.livingRoomFeatures && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Living Room Features is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -407,6 +469,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                      
                     </div>
                   ))}
+                  {errors.kitchenFeatures && (
+                    <span className="text-red-500 text-sm">
+                      
+                      Kitchen Features is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -424,6 +492,12 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
                           <option value="Rent">Rent</option>
                           <option value="Sell">Sell</option>
                       </select>
+                      {errors.propertyType && (
+                        <span className="text-red-500 text-sm">
+                          
+                          Property Type is required
+                        </span>
+                      )}
                   </div>
               </div>
 

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from "../../../hooks/useFetch"; 
 import useUpdate from "../../../hooks/useUpdate" // Custom hook for fetching data
 import { CircularProgress } from '@mui/material';
+import landFeatures from '../../subcomponents/LandFeatures'
 
 const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   const queryClient = useQueryClient();
@@ -20,6 +21,14 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   const [isLoading, setIsLoading] = useState(false);
   const url = `${baseURL}land`; 
 
+  const [selectedLandFeatures, setSelectedLandFeatures] = useState([]);
+
+  const handleLandFeatures = (e) => {
+   e.preventDefault()
+     setSelectedLandFeatures((prevFeatures) =>
+       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
+     );
+   };
   const {
     register,
     handleSubmit,
@@ -47,9 +56,17 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
 
    // Append form fields
    for (const key in data) {
-    if (data[key]) {
+
+    if(key === 'features'){
+      data.features.forEach((exterior) => {
+        formData.append('features[]', exterior);
+      })
+    }
+      else{
       formData.append(key, data[key]);
     }
+  
+    
   }
     //console.log(data)
 
@@ -74,6 +91,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   });
 
   const handleLandUpdate = (data) => {
+    data.features = selectedLandFeatures
     mutate(data)
     
   };
@@ -142,6 +160,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     placeholder="Type Land name"
                     required=""
                   />
+                  {errors.title && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -161,6 +185,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     required=""
                     >
                   </textarea>
+                  {errors.description && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -178,6 +208,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Price here"
                   />
+                  {errors.price && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -194,6 +230,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Location here"
                   />
+                  {errors.location && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -220,6 +262,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter plots here"
                   />
+                  {errors.plots && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -229,14 +277,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                   >
                     Document Type:
                   </label>
-                  {/* <input
-                    id="docType"
-                    name='docType'
-                    type='text'
-                    {...register("docType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter docType here"
-                  /> */}
+                 
                   <select name="docType" id="docType"
                     {...register("docType", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -246,8 +287,45 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                     <option value="Deeds of Conveyance">Deeds of Conveyance</option>
                   </select>
+                  {errors.docType && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
-
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="landFeatures"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Features:
+                  </label>
+                  <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
+                 {landFeatures.map((feature, index) => (
+                    <div key={index}
+                    
+                    className='flex items-center space-x-2'>
+                      
+                      <input
+                        type="checkbox"
+                        id={`feature-${index}`}
+                        name="features"
+                        value={`${feature.value}`}
+                        onChange={(e) => handleLandFeatures(e)}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      <label htmlFor={`feature-${index}`} className=' text-sm'>{feature.name}</label>
+                     
+                    </div>
+                  ))}
+                  {errors.landFeatures && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
+                 </div>
+                </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="ownershipType"
@@ -255,14 +333,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                   >
                     Ownership Type
                   </label>
-                  {/* <input
-                    id="ownershipType"
-                    name='ownershipType'
-                    type='text'
-                    {...register("ownershipType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter ownershipType here"
-                  /> */}
+         
                   <select name="ownershipType" id="ownershipType"
                     {...register("ownershipType", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -271,6 +342,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                     <option value="Virgin Land">Virgin Land</option>
                     <option value="Resell">Resell</option>
                   </select>
+                  {errors.ownershipType && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -287,6 +364,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                         <option value="Lease">Lease</option>
                         <option value="Sell">Sell</option>
                     </select>
+                    {errors.propertyType && (
+                      <span className="text-red-500 text-sm">
+                        
+                        This field is required
+                      </span>
+                    )}
                 </div>
               </div>
               <button

@@ -139,6 +139,12 @@ const Login = () => {
                           //{pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/} // Regular expression for password validation
                         )}
                       />
+                      {/* {errors.password && errors.password.type === "minLength" && (
+                        <p className="text-sm text-red-500">
+                          {" "}
+                          password must be at least 8 characters{" "}
+                        </p>
+                      )} */}
                     </div>
 
                     {errors.password && (

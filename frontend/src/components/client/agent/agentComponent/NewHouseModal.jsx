@@ -201,6 +201,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     placeholder="Type House name"
                     required=""
                   />
+                  {errors.title && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -220,6 +226,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     required=""
                     >
                   </textarea>
+                  {errors.description && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -237,6 +249,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Price here"
                   />
+                  {errors.price && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -253,6 +271,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Location here"
                   />
+                  {errors.location && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -278,6 +302,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Number of bedrooms"
                   />
+                  {errors.bedrooms && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -294,6 +324,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Number of bathrooms here"
                   />
+                  {errors.bathrooms && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -310,6 +346,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter squareFootage here"
                   />
+                  {errors.squareFootage && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -326,6 +368,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter yearBuilt here"
                   />
+                  {errors.yearBuilt && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -342,6 +390,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter lotSize here"
                   />
+                  {errors.lotSize && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                 <label
@@ -363,6 +417,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                     <option value="Four Stories">Four Stories</option>
                     <option value="Five Stories">Five Stories</option>
                   </select>
+                  {errors.buildingType && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -380,6 +440,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                           <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                           <option value="Deeds of Conveyance">Deeds of Conveyance</option>
                         </select>
+                        {errors.docType && (
+                          <span className="text-red-500 text-sm">
+                            
+                            This field is required
+                          </span>
+                        )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -406,6 +472,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                      
                     </div>
                   ))}
+                  {errors.exteriorFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -433,6 +505,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                      
                     </div>
                   ))}
+                  {errors.interiorFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -460,6 +538,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                      
                     </div>
                   ))}
+                  {errors.livingRoomFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -487,6 +571,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                      
                     </div>
                   ))}
+                  {errors.kitchenFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 
@@ -505,6 +595,12 @@ const NewHouseModal = ({open, handleCloseHouseModal}) => {
                         <option value="Rent">Rent</option>
                         <option value="Sell">Sell</option>
                     </select>
+                    {errors.propertyType && (
+                      <span className="text-red-500 text-sm">
+
+                        This field is required
+                      </span>
+                    )}
                 </div>
               </div>
               <button

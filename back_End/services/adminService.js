@@ -47,10 +47,7 @@ const updateAdmin = async (id, data) => {
     try {
         const admin = await Admin.findOne({_id : id}).exec();
         if(!admin) return {error: "Admin not found"};
-        if(data.password){
-            const hashedPassword = await bcrypt.hash(data.password, 10);
-            admin.password = hashedPassword;
-        }
+        
         if(data.firstname) admin.firstname = data.firstname
         if(data.lastname) admin.lastname = data.lastname
         if(data.username) admin.username = data.username

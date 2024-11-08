@@ -28,6 +28,7 @@ const createAgent = async (data) => {
             "contactAddress": data.contactAddress,
             "agencyName": data.agencyName,
             "officeAddress": data.officeAddress,
+            "whatsappLink": data.whatsappLink,
             "searchString": `${data.firstname} ${data.lastname} ${data.username} ${data.email} ${data.phone}`
         })
         return newAgent;
@@ -67,14 +68,11 @@ const updateAgent = async (id, data) => {
         if(data.lastname) agent.lastname = data.lastname
         if(data.email) agent.email = data.email
         if(data.phone) agent.phonr = data.phone
-        if(data.password)  {
-            const hashedPassword = await bcrypt.hash(data.password, 10);
-                agent.password = hashedPassword;
-        }
         if(data.identityImage) agent.identityImage = data.identityImage
         if(data.identityNumber) agent.identityNumber = data.identityNumber
         if(data.identityType) agent.identityType = data.identityType
         if(data.contactAddress) agent.contactAddress = data.contactAddress
+        if(data.whatsappLink) agent.whatsappLink = data.whatsappLink
 
         const result = await agent.save();
         return result;

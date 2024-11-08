@@ -198,6 +198,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                     placeholder="Type Apartment name"
                     required=""
                   />
+                  {errors.title && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -217,6 +223,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                     required=""
                     >
                   </textarea>
+                  {errors.description && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -234,6 +246,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Apartment Price here"
                   />
+                  {errors.price && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -250,6 +268,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Apartment Location here"
                   />
+                  {errors.location && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -275,6 +299,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Number of bedrooms"
                   />
+                  {errors.bedrooms && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -291,6 +321,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Number of bathrooms here"
                   />
+                  {errors.bathrooms && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -307,6 +343,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Floor Area here"
                   />
+                  {errors.floorArea && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -333,6 +375,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                      
                     </div>
                   ))}
+                  {errors.exteriorFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -360,6 +408,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                      
                     </div>
                   ))}
+                  {errors.interiorFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -387,6 +441,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                      
                     </div>
                   ))}
+                  {errors.livingRoomFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -414,6 +474,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                      
                     </div>
                   ))}
+                  {errors.kitchenFeatures && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                  </div>
                 </div>
                 
@@ -432,6 +498,12 @@ const NewApartmentModal = ({open, handleClose}) => {
                         <option value="Rent">Rent</option>
                         <option value="Sell">Sell</option>
                     </select>
+                    {errors.propertyType && (
+                    <span className="text-red-500 text-sm">
+
+                      This field is required
+                    </span>
+                  )}
                 </div>
               </div>
               <button

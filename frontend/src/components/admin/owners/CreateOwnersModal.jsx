@@ -130,6 +130,12 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     placeholder="Type First name"
 
                   />
+                  {errors.firstname && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -146,6 +152,12 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Lastname here"
                   />
+                  {errors.lastname && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -162,6 +174,12 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Email here"
                   />
+                  {errors.email && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -179,6 +197,12 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Phone Number"
                   />
+                  {errors.phone && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -195,6 +219,12 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="********"
                   />
+                  {errors.password && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -213,6 +243,12 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     <option value="Drivers Licence">Drivers Licence</option>
                     <option value="International Passport">International Passport </option>
                   </select>
+                  {errors.identityType && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -229,6 +265,12 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter identityNumber here"
                   />
+                  {errors.identityNumber && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 
                 <div className="sm:col-span-2">
@@ -246,6 +288,35 @@ const CreateOwnersModal = ({open, handleClose}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter contactAddress here"
                   />
+                  {errors.contactAddress && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="whatsappLink"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Whatsapp Link:
+                  </label>
+                  <input
+                    id="whatsappLink"
+                    name='whatsappLink'
+                    type='text'
+                    {...register("whatsappLink", { required: true })}
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    placeholder="Enter whatsappLink here"
+                  />
+                  {errors.whatsappLink && (
+                    <span className="text-red-500 text-sm">
+                      
+                      This field is required
+                    </span>
+                  )}
                 </div>
               </div>
               <button

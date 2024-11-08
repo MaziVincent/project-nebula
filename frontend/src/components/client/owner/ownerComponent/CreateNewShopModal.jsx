@@ -139,6 +139,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     placeholder="Type Shop name"
                     required=""
                   />
+                  {errors.title && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -158,6 +163,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     rows='8'
                     >
                   </textarea>
+                  {errors.description && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -175,6 +185,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop Price here"
                   />
+                  {errors.price && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -191,6 +206,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop Location here"
                   />
+                  {errors.location && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -208,14 +228,6 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                   >
                     Shop Category
                   </label>
-                  {/* <input
-                    id="shopCategory"
-                    name='shopCategory'
-                    type='text'
-                    {...register("shopCategory", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Shop Category here"
-                  /> */}
                   <select name="shopCategory" id="shopCategory"
                     {...register("shopCategory", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -229,6 +241,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     <option value="Boutique">Boutique</option>
                     <option value="General Purpose">General Purpose</option>
                   </select>
+                  {errors.shopCategory && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -245,10 +262,15 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop leaseDuration here"
                   />
+                  {errors.leaseDuration && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="loation"
+                    htmlFor="securityDeposit"
                     className="block mb-2 text-sm font-medium text-gray-900"
                   >
                     Security Deposit
@@ -261,6 +283,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     placeholder="Enter Shop security Deposit here"
                   />
+                  {errors.securityDeposit && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -277,6 +304,11 @@ const CreateNewShopModal = ({open, handleCloseShopModal}) => {
                         <option value="Rent">Rent</option>
                         <option value="Sell">Sell</option>
                     </select>
+                    {errors.propertyType && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
                 </div>
               </div>
               <button

@@ -23,6 +23,7 @@ const createOwner = async (data) => {
             "identityNumber": data.identityNumber,
             "identityType": data.identityType,
             "contactAddress": data.contactAddress,
+            "whatsappLink": data.whatsappLink,
             "searchString": `${data.firstname} ${data.lastname} ${data.email} ${data.phone}`
         })
         return newOwner;
@@ -62,14 +63,12 @@ const updateOwner = async (id, data) => {
         if(data.lastname) owner.lastname = data.lastname
         if(data.email) owner.email = data.email
         if(data.phone) owner.phonr = data.phone
-        if(data.password)  {
-            const hashedPassword = await bcrypt.hash(data.password, 10);
-                owner.password = hashedPassword;
-        }
         if(data.identityImage) owner.identityImage = data.identityImage
         if(data.identityNumber) owner.identityNumber = data.identityNumber
         if(data.identityType) owner.identityType = data.identityType
         if(data.contactAddress) owner.contactAddress = data.contactAddress
+        if(data.whatsappLink) owner.whatsappLink = data.whatsappLink
+        
         const result = await owner.save();
         return result;
     } catch (e) {
