@@ -44,9 +44,9 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
     // Append form fields
     for (const key in data) {
 
-      if(key === 'features'){
-        data.features.forEach((feature) => {
-          formData.append('features[]', feature);
+      if(key === 'landFeatures'){
+        data.landFeatures.forEach((feature) => {
+          formData.append('landFeatures[]', feature);
         })
       }
         else{
@@ -79,7 +79,7 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
     })
 
     const handleCreateLand = (data) => {
-      data.features = selectedLandFeatures
+      data.landFeatures = selectedLandFeatures
     mutate(data); 
     setTimeout(() => {
       handleCloseLandModal();
@@ -315,7 +315,7 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
                       <input
                         type="checkbox"
                         id={`feature-${index}`}
-                        name="features"
+                        name="landFeatures"
                         value={`${feature.value}`}
                         onChange={(e) => handleLandFeatures(e)}
                         className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"

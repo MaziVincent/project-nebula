@@ -11,7 +11,7 @@ const {
 } = require('../services/landService')
 
 const createLandHandler = async (req, res) => {
-    const { title, description, price, location, owner, plots, docType, ownershipType, propertyType, features} = req.body;
+    const { title, description, price, location, owner, plots, docType, ownershipType, propertyType, landFeatures} = req.body;
     if (!title, !description, !price, !location, !owner, !docType, !ownershipType, !propertyType) {
         return res.status(400).json({ message: 'All fields are required' });
     }
@@ -28,7 +28,8 @@ const createLandHandler = async (req, res) => {
         plots,
         docType,
         ownershipType,
-        propertyType,      
+        propertyType, 
+        landFeatures  
     };
     const result = await createLand(data);
     if (result.error) {

@@ -114,9 +114,9 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
         })
         
       }
-      else if(key === 'features'){
-        data.features.forEach((feature) => {
-          formData.append('features[]', feature);
+      else if(key === 'landFeatures'){
+        data.landFeatures.forEach((feature) => {
+          formData.append('landFeatures[]', feature);
         })
         
       }else{
@@ -167,7 +167,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
     data.interiorFeatures = selectedInteriorFeatures
     data.kitchenFeatures = selectedKitchenFeatures
     data.livingRoomFeatures = selectedLivingRoomFeatures
-    data.features = selectedLandFeatures
+    data.landFeatures = selectedLandFeatures
     mutate(data);
     
   };
@@ -873,7 +873,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                             <input
                               type="checkbox"
                               id={`feature-${index}`}
-                              name="features"
+                              name="landFeatures"
                               value={`${feature.value}`}
                               onChange={(e) => handleLandFeatures(e)}
                               className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
@@ -1010,7 +1010,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                {isLoading ? <CircularProgress /> : 'Update'}
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Update'}
               </button>
             </form>
             </div>

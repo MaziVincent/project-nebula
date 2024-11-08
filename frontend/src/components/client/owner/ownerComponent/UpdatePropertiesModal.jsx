@@ -114,9 +114,9 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
           formData.append('livingRoomFeatures[]', living);
         })
         
-      }else if(key === 'features'){
-        data.features.forEach((feature) => {
-          formData.append('features[]', feature);
+      }else if(key === 'landFeatures'){
+        data.landFeatures.forEach((feature) => {
+          formData.append('landFeatures[]', feature);
         })
         
       }
@@ -154,7 +154,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
     data.interiorFeatures = selectedInteriorFeatures
     data.kitchenFeatures = selectedKitchenFeatures
     data.livingRoomFeatures = selectedLivingRoomFeatures
-    data.features = selectedLandFeatures
+    data.landFeatures = selectedLandFeatures
     mutate(data);
     console.log(data)
     
@@ -855,7 +855,7 @@ const UpdatePropertiesModal = ({property, openUpdate, handleCloseUpdate, url}) =
                               <input
                                 type="checkbox"
                                 id={`feature-${index}`}
-                                name="features"
+                                name="landFeatures"
                                 value={`${feature.value}`}
                                 onChange={(e) => handleLandFeatures(e)}
                                 className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"

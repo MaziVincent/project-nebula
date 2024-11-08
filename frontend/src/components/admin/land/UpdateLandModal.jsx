@@ -57,9 +57,9 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
    // Append form fields
    for (const key in data) {
 
-    if(key === 'features'){
-      data.features.forEach((exterior) => {
-        formData.append('features[]', exterior);
+    if(key === 'landFeatures'){
+      data.landFeatures.forEach((exterior) => {
+        formData.append('landFeatures[]', exterior);
       })
     }
       else{
@@ -91,7 +91,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   });
 
   const handleLandUpdate = (data) => {
-    data.features = selectedLandFeatures
+    data.landFeatures = selectedLandFeatures
     mutate(data)
     
   };
@@ -310,7 +310,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                       <input
                         type="checkbox"
                         id={`feature-${index}`}
-                        name="features"
+                        name="landFeatures"
                         value={`${feature.value}`}
                         onChange={(e) => handleLandFeatures(e)}
                         className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
@@ -376,7 +376,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                {isLoading ? <CircularProgress /> : 'Update Land'}
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Update Land'}
               </button>
             </form>
             </div>

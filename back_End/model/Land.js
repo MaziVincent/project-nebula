@@ -18,7 +18,7 @@ const LandSchema = Property.discriminator('Land', new Schema({
     type: String,
     required: true
   },
-  features: {
+  landFeatures: {
     type: [String]
   }
 }));
