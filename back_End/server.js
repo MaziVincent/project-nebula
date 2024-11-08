@@ -15,7 +15,9 @@ const PORT = process.env.PORT || 3500;
 
 //connect to mongo db
 connectDB();
+//logger
 app.use(logger);
+//ping
 app.use('/ping', require('./routes/ping'));
 app.use(credentials);
 app.use(cors(corsOptions));
