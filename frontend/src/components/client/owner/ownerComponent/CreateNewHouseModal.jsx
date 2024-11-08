@@ -379,7 +379,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     htmlFor="lotSize"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Lot Size:
+                    NO. Plots:
                   </label>
                   <input
                     id="lotSize"
@@ -387,7 +387,7 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     type='number'
                     {...register("lotSize", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter lotSize here"
+                    placeholder="Enter Number of plots here"
                   />
                   {errors.lotSize && (
                     <span className="text-red-500 text-sm">

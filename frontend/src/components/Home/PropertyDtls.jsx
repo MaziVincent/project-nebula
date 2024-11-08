@@ -154,7 +154,7 @@ const PropertyDtls = () => {
                                             <p>{property.description}</p>
                                         </div>
                                     </div>
-                                    {property?.type === "property" || property?.type === "Apartment" ? (
+                                    {property?.type === "House" || property?.type === "Apartment" && (
                                         <div className="row g-0">
                                         <div className="col bg-very-light-gray p-35px lg-ps-15px lg-pe-15px border-radius-6px fs-16">
                                             <div className="row row-cols-2 row-cols-md-4 row-cols-sm-2">
@@ -181,9 +181,7 @@ const PropertyDtls = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    ) : (
-                                        <p className=' bg-neutral-200 px-2 py-5 blur-[1.5px]'>This feature is not availablefor the selected property!!!</p>
-                                    )
+                                    ) 
                                 }
                                     <div className="row mt-7">
                                         <div className="col-12">
@@ -214,7 +212,7 @@ const PropertyDtls = () => {
                                                                 <img src='' className="w-25px" alt="" />
                                                             </div>
                                                             <div className="feature-box-content">
-                                                                <span className="text-dark-gray">Lot size:</span>
+                                                                <span className="text-dark-gray">Number of Plots:</span>
                                                             </div>
                                                         </div>
                                                     {/*  end features box item  */}
@@ -418,7 +416,7 @@ const PropertyDtls = () => {
                                                             <img src="images/demo-real-estate-property-details-13.svg" className="w-25px" alt="" />
                                                         </div>
                                                         <div className="feature-box-content">
-                                                            <span className="text-dark-gray">LeaseDuration:</span>
+                                                            <span className="text-dark-gray">Lease Duration:</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -513,8 +511,7 @@ const PropertyDtls = () => {
                                             <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block">Location</span>
                                         </div>
                                         <div className="col-12"> 
-                                            <iframe src="https://www.google.com/maps/embed" className=' w-[682px] max-md:w-full h-[400px]' frameborder="0"></iframe>
-                                            {/* <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15862.294791942271!2d8.089956184736167!3d6.319590648716132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1svanco%20junction%20Abakaliki!5e0!3m2!1sen!2sng!4v1731096112866!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                                            {/* <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
                                         </div>
                                     </div>
                                 </div>
