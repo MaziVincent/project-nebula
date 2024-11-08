@@ -154,7 +154,7 @@ const PropertyDtls = () => {
                                             <p>{property.description}</p>
                                         </div>
                                     </div>
-                                    {property?.type === "House" || property?.type === "Apartment" ? (
+                                    {property?.type === "property" || property?.type === "Apartment" ? (
                                         <div className="row g-0">
                                         <div className="col bg-very-light-gray p-35px lg-ps-15px lg-pe-15px border-radius-6px fs-16">
                                             <div className="row row-cols-2 row-cols-md-4 row-cols-sm-2">
@@ -436,78 +436,74 @@ const PropertyDtls = () => {
                                             {/* <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
                                         </div>
                                     </div>
-                                    <div className=" grid lg:grid-cols-4 mt-5 md:grid-cols-2 max-md:gap-y-4 max-sm:grid-cols-1">
-              {property?.exteriorFeatures && (
-                <div className="">
-                  <h4 className="text-xl font-bold mb-2">Exterior Features</h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
-                    {property.exteriorFeatures.map((feature, index) => (
-                      <li
-                        key={index}
-                        className=" inline-flex items-center gap-1 text-gray-800"
-                      >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: feature }} />
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {property?.interiorFeatures && (
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Interior Features</h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
-                    {property.interiorFeatures.map((interior, index) => (
-                      <li
-                        key={index}
-                        className=" inline-flex items-center gap-1"
-                      >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: interior }} />
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {property?.kitchenFeatures && (
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Kitchen Features</h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
-                    {property.kitchenFeatures.map((kitchen, index) => (
-                      <li
-                        key={index}
-                        className=" inline-flex items-center gap-1"
-                      >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: kitchen }} />
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {property?.livingRoomFeatures && (
-                <div>
-                  <h4 className="text-xl font-bold mb-2">
-                    LivingRooom Features
-                  </h4>
-                  <ul className=" pl-2 flex flex-col leading-6">
-                    {property.livingRoomFeatures.map((livingRoom, index) => (
-                      <li
-                        key={index}
-                        className=" inline-flex items-center gap-1"
-                      >
-                        <span className="block text-gray-800">
-                          <span dangerouslySetInnerHTML={{ __html: livingRoom }} />
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+                                    <div>
+                                        <div className=" grid grid-cols-1">
+                                        {property?.exteriorFeatures && (
+                                            
+                                            <div className=" my-5">
+                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+                                            <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                                            {property.exteriorFeatures
+                                                .map((feature, index) => (
+                                                <li key={index} className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0 mx-">
+                                                    <div 
+                                                    className="ext-ft text-gray-800 flex "
+                                                    dangerouslySetInnerHTML={{ __html: feature }} 
+                                                    />
+                                                </li>
+                                                ))}
+                                            </ul>
+                                            </div>
+                                        )}
+                                        {property?.interiorFeatures && (
+                                            <div className=" mb-5">
+                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+                                            <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                                                {property.interiorFeatures.map((interior, index) => (
+                                                <li
+                                                    key={index}
+                                                    className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                                                >
+                                                    <div className="ext-ft text-gray-800" dangerouslySetInnerHTML={{ __html: interior }} />
+                                                </li>
+                                                ))}
+                                            </ul>
+                                            </div>
+                                        )}
+                                        {property?.kitchenFeatures && (
+                                            <div className=" mb-5">
+                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+                                            <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                                                {property.kitchenFeatures.map((kitchen, index) => (
+                                                <li
+                                                    key={index}
+                                                    className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                                                >
+                                                    <div className="ext-ft" dangerouslySetInnerHTML={{ __html: kitchen }} />
+                                                </li>
+                                                ))}
+                                            </ul>
+                                            </div>
+                                        )}
+                                        {property?.livingRoomFeatures && (
+                                            <div className=" mb-5">
+                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
+                                                LivingRooom Features
+                                            </h4>
+                                            <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                                                {property.livingRoomFeatures.map((livingRoom, index) => (
+                                                <li
+                                                    key={index}
+                                                    className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                                                >
+                                                    <div className="ext-ft" dangerouslySetInnerHTML={{ __html: livingRoom }} />
+                                                </li>
+                                                ))}
+                                            </ul>
+                                            </div>
+                                        )}
+                                        </div>
+                                    </div>
                                     <div className="row mt-7">
                                         <div className="col-12">
                                             <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block"></span>
@@ -526,9 +522,9 @@ const PropertyDtls = () => {
                                     <div className="bg-base-color-light border-radius-6px position-sticky top-120px">
                                         <div className="bg-base-color border-radius-6px feature-box feature-box-left-icon-middle overflow-hidden icon-with-text-style-08 ps-35px pe-35px pt-25px pb-20px xs-p-25px">
                                             {/*  start features box item  */}
-                                            <div className="feature-box-icon feature-box-icon-rounded border w-90px h-90px overflow me-20px position-relative">
-                                                <img src={property.owner.profile} className="" alt="148x148" />
-                                                <span className={`animation-zoom d-inline-block ${property?.owner?.status === 'Active' ? 'bg-green-400' : 'bg-orange'} border-2 border-color-white h-20px w-20px border-radius-100 position-absolute right-0px top-5px`}></span>
+                                            <div className="feature-box-icon feature-box-icon-rounded w-90px h-90px overflow-visible me-20px position-relative">
+                                                <img src={property.owner.profile} className="w-full h-full rounded-circle" alt="148x148" />
+                                                <span className={`animation-zoom d-inline-block ${property?.owner?.status === 'Active' ? 'bg-base-color' : 'bg-orange'} border-2 border-color-white h-20px w-20px border-radius-100 position-absolute right-0px top-5px`}></span>
                                             </div>
                                             {/*  end features box item  */}
                                             {/*  start features box item  */}
@@ -544,7 +540,7 @@ const PropertyDtls = () => {
                                             <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center">
                                                 <ul className="medium-icon">
                                                     <li className="m-0"><a className="facebook text-white" href="https://www.facebook.com/" target="_blank"><i className="fa-brands fa-facebook-f"></i></a></li>
-                                                    <li className="m-0"><a className="dribbble text-white" href="http://www.dribbble.com" target="_blank"><i className="fa-brands fa-dribbble"></i></a></li> 
+                                                    <li className="m-0"><a className="dribbble text-white" href={property?.owner?.whatsappLink} target="_blank"><i className="fa-brands fa-whatsapp"></i></a></li> 
                                                     <li className="m-0"><a className="twitter text-white" href="http://www.twitter.com" target="_blank"><i className="fa-brands fa-twitter"></i></a></li> 
                                                     <li className="m-0"><a className="instagram text-white" href="http://www.instagram.com" target="_blank"><i className="fa-brands fa-instagram"></i></a></li> 
                                                 </ul>
@@ -554,8 +550,8 @@ const PropertyDtls = () => {
                                         <div className="ps-45px pe-45px pt-35px pb-45px xs-p-25px contact-form-style-01 mt-0">
                                             <div className="mb-20px last-paragraph-no-margin">
                                                 <p className="mb-0 alt-font fw-500 text-dark-gray"><i className="feather icon-feather-phone-call icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block">Phone:</span><a href={property?.owner?.phone} className="text-dark-gray text-base-color-hover"> {property?.owner?.phone}</a></p>
-                                                <p className="alt-font fw-500 text-dark-gray"><i className="feather icon-feather-mail icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block">Email:</span><a href={property?.owner?.email} className="text-dark-gray text-decoration-line-bottom"> {property?.owner?.email}</a></p>
-                                                <p className="alt-font fw-500 text-dark-gray"><i className="fa-brands fa-whatsapp icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block">Msg:</span><a href={property?.owner?.whatsappLink} className="text-dark-gray text-decoration-line-bottom"> {property?.owner?.address}</a></p>
+                                                <p className="alt-font fw-500 text-dark-gray mb-0"><i className="feather icon-feather-mail icon-small text-base-color me-10px"></i><span className="fw-600 w-20 sm-w-15 xs-w-20 d-inline-block">Email:</span><a href={property?.owner?.email} className="text-dark-gray text-decoration-line-bottom"> {property?.owner?.email}</a></p>
+                                                <p className="alt-font fw-500 text-dark-gray"><i className="fa-brands fa-whatsapp icon-small text-base-color me-10px"></i><span className="fw-600 w-[21] sm-w-15 xs-w-20 d-inline-block">Whatsapp:</span><a href={property?.owner?.whatsappLink} className="text-dark-gray text-decoration-line-bottom"> Message {property?.owner?.type}</a></p>
                                             </div>
                                             <span className="alt-font fs-20 fw-600 text-dark-gray d-block mb-25px">Leave your message here</span>
                                             {/*  start contact form  */}
