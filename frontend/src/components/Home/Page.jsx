@@ -88,8 +88,8 @@ const Page = () => {
     setPage(value);
   };
   const getProperties = async () => {
-    const response = await fetch(`${url}?limit=6&status=Available`, '');
-    
+    const response = await fetch(`${url}?limit=6&status=Available`, "");
+
     return response.data;
   };
 
@@ -109,25 +109,26 @@ const Page = () => {
   );
 
   const getFeaturedProperties = async () => {
-    const response = await fetch(`${url}/featured`, '');
-    
+    const response = await fetch(`${url}/featured`, "");
+
     return response.data;
   };
 
-  const { data:featured, isError:featuredError, isLoading:featuredLoading, isSuccess:featuredSuccess } = useQuery(
-    ["FeaturedProperties"],
-    getFeaturedProperties,
-    {
-      keepPreviousData: true,
-      staleTime: 10000,
-      refetchOnMount: "always",
-      onSuccess: () => {
-        setTimeout(() => {
-          console.log("Fetch successful");
-        }, 2000);
-      },
-    }
-  );
+  const {
+    data: featured,
+    isError: featuredError,
+    isLoading: featuredLoading,
+    isSuccess: featuredSuccess,
+  } = useQuery(["FeaturedProperties"], getFeaturedProperties, {
+    keepPreviousData: true,
+    staleTime: 10000,
+    refetchOnMount: "always",
+    onSuccess: () => {
+      setTimeout(() => {
+        console.log("Fetch successful");
+      }, 2000);
+    },
+  });
 
   console.log(featured);
 
@@ -137,305 +138,430 @@ const Page = () => {
         <div
           className="swiper full-screen md-h-600px sm-h-500px swiper-number-pagination-style-01" //</section>data-slider-options='{ "slidesPerView": 1, "loop": true, "pagination": { "el": ".swiper-number", "clickable": true }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "autoplay": { "delay": 4000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }' data-number-pagination="1"//
         >
-          <Swiper
-            modules={[Autoplay]}
-            slidesPerView={1}
-            loop={true}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            spaceBetween={30}
-            breakpoints={{
-              1200: { slidesPerView: 1 },
-              768: { slidesPerView: 1 },
-              320: { slidesPerView: 1 },
-            }}
-            className="swiper-wrapper"
-          >
-            <SwiperSlide>
-              <div
-                className="swiper-slide cover-background"
-                style={{ backgroundImage: `url(${Bg1})` }}
-              >
-                <motion.div
-                  className="container h-100"
-                  k
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <div className="row align-items-center h-100">
-                    <div className="col-md-8 position-relative text-white">
-                      <span className="fs-20 d-block mb-15px">
-                        Mile 50 road, Abakaliki, EB, 480301
-                      </span>
-                      <motion.div
-                        className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
-                        variants={childVariants}
-                      >
-                        Luxurious <span className="fw-700">mansion</span>
-                      </motion.div>
-                      <motion.div variants={childVariants}>
-                        <a
-                          href="#"
-                          className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px"
-                        >
-                          Schedule visit
-                        </a>
-                        <a
-                          href="#"
-                          className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
-                        >
-                          View details
-                        </a>
-                      </motion.div>
-                    </div>
-                  </div>
-                  {}
-                </motion.div>
-                <motion.div
-                  className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
-                  variants={nextVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <div className="row justify-content-center">
-                    <div className="col-xl-7 lg-mb-25px">
-                      <div className="row">
-                        <div className="col text-center border-end border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={bed}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            4 Beds
+          {featuredSuccess ? (
+            <Swiper
+              modules={[Autoplay]}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              spaceBetween={30}
+              breakpoints={{
+                1200: { slidesPerView: 1 },
+                768: { slidesPerView: 1 },
+                320: { slidesPerView: 1 },
+              }}
+              className="swiper-wrapper"
+            >
+              {featured?.map((featured) => (
+                <SwiperSlide>
+                  <div
+                    className="swiper-slide cover-background"
+                    style={{ backgroundImage: `url(${featured.imageUrls[0]})` }}
+                  >
+                    <motion.div
+                      className="container h-100"
+                      k
+                      variants={cardVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <div className="row align-items-center h-100">
+                        <div className="col-md-8 position-relative text-white">
+                          <span className="fs-20 d-block mb-15px">
+                           {featured.location}
                           </span>
-                        </div>
-                        <div className="col text-center border-end border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={bath}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            3 Baths
-                          </span>
-                        </div>
-                        <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={car}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            4 Parking
-                          </span>
+                          <motion.div
+                            className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                            variants={childVariants}
+                          >
+                            {featured.title.trim().split(" ").slice(0, -1).join(" ") } <span className="fw-700">{featured.title.trim().split(' ').pop()}</span>
+                          </motion.div>
+                          <motion.div variants={childVariants}>
+                            <a
+                              href="#"
+                              className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px"
+                            >
+                              Schedule visit
+                            </a>
+                            <Link
+                              to={`/property_details/${featured._id}`}
+                              className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
+                            >
+                              View details
+                            </Link>
+                          </motion.div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
-                      <span className="fw-500 mb-5px d-block alt-font">
-                        For sell price
-                      </span>
-                      <h4 className="text-gray-900 text-3xl font-bold">
-                        {" "}
-                        &#8358; 30,99,000
-                      </h4>
-                    </div>
+                      {}
+                    </motion.div>
+                    <motion.div
+                      className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
+                      variants={nextVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <div className="row justify-content-center">
+                        <div className="col-xl-7 lg-mb-25px">
+                          <div className="row">
+                            <div className="col text-center border-end border-color-extra-medium-gray">
+                              <img
+                                className="mb-5px h-50px"
+                                src={bed}
+                                alt=""
+                              />
+                              <span className="alt-font fs-16 fw-500 d-block">
+                              {parseInt(featured.bedrooms) > 1 ? (
+                                  <span>{featured.bedrooms} Beds</span>
+                                ) : (
+                                  <span>{featured.bedrooms} Bed</span>
+                                )}
+                              </span>
+                            </div>
+                            <div className="col text-center border-end border-color-extra-medium-gray">
+                              <img
+                                className="mb-5px h-50px"
+                                src={bath}
+                                alt=""
+                              />
+                              <span className="alt-font fs-16 fw-500 d-block">
+                                {parseInt(featured.bathrooms) > 1 ? (
+                                  <span>{featured.bathrooms} Baths</span>
+                                ) : (
+                                  <span>{featured.bathrooms} Bath</span>
+                                )}
+                              </span>
+                            </div>
+                            <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
+                              <img
+                                className="mb-5px h-50px"
+                                src={car}
+                                alt=""
+                              />
+                              <span className="alt-font fs-16 fw-500 d-block">
+                                Parking Space
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
+                          <span className="fw-500 mb-5px d-block alt-font">
+                            For {featured.propertyType} price
+                          </span>
+                          <h4 className="alt-font text-gray-900 text-3xl font-bold">
+                            {" "}
+                            &#8358;{" "}
+                            {parseFloat(
+                              featured?.price.$numberDecimal
+                            ).toLocaleString("en-US")}
+                          </h4>
+                        </div>
+                      </div>
+                    </motion.div>
                   </div>
-                </motion.div>
-              </div>
-            </SwiperSlide>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <Swiper
+              modules={[Autoplay]}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              spaceBetween={30}
+              breakpoints={{
+                1200: { slidesPerView: 1 },
+                768: { slidesPerView: 1 },
+                320: { slidesPerView: 1 },
+              }}
+              className="swiper-wrapper"
+            >
+              <SwiperSlide>
+                <div
+                  className="swiper-slide cover-background"
+                  style={{ backgroundImage: `url(${Bg1})` }}
+                >
+                  <motion.div
+                    className="container h-100"
+                    k
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <div className="row align-items-center h-100">
+                      <div className="col-md-8 position-relative text-white">
+                        <span className="fs-20 d-block mb-15px">
+                          Mile 50 road, Abakaliki, EB, 480301
+                        </span>
+                        <motion.div
+                          className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                          variants={childVariants}
+                        >
+                          Luxurious <span className="fw-700">mansion</span>
+                        </motion.div>
+                        <motion.div variants={childVariants}>
+                          <a
+                            href="#"
+                            className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px"
+                          >
+                            Schedule visit
+                          </a>
+                          <a
+                            href="#"
+                            className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
+                          >
+                            View details
+                          </a>
+                        </motion.div>
+                      </div>
+                    </div>
+                    {}
+                  </motion.div>
+                  <motion.div
+                    className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
+                    variants={nextVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <div className="row justify-content-center">
+                      <div className="col-xl-7 lg-mb-25px">
+                        <div className="row">
+                          <div className="col text-center border-end border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={bed}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              4 Beds
+                            </span>
+                          </div>
+                          <div className="col text-center border-end border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={bath}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              3 Baths
+                            </span>
+                          </div>
+                          <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={car}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              4 Parking
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
+                        <span className="fw-500 mb-5px d-block alt-font">
+                          For sell price
+                        </span>
+                        <h4 className="text-gray-900 text-3xl font-bold">
+                          {" "}
+                          &#8358; 30,99,000
+                        </h4>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </SwiperSlide>
 
-            <SwiperSlide>
-              <div
-                className="swiper-slide cover-background"
-                style={{ backgroundImage: `url(${Villa})` }}
-              >
-                <motion.div
-                  className="container h-100"
-                  k
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
+              <SwiperSlide>
+                <div
+                  className="swiper-slide cover-background"
+                  style={{ backgroundImage: `url(${Villa})` }}
                 >
-                  <div className="row align-items-center h-100">
-                    <div className="col-md-8 position-relative text-white">
-                      <span className="fs-20 d-block mb-15px">
-                        Mile 50 road, Abakaliki, EB, 480301
-                      </span>
-                      <motion.div
-                        className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
-                        variants={childVariants}
-                      >
-                        Luxurious <span className="fw-700">mansion</span>
-                      </motion.div>
-                      <div variants={childVariants}>
-                        <a
-                          href="#"
-                          className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px"
+                  <motion.div
+                    className="container h-100"
+                    k
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <div className="row align-items-center h-100">
+                      <div className="col-md-8 position-relative text-white">
+                        <span className="fs-20 d-block mb-15px">
+                          Mile 50 road, Abakaliki, EB, 480301
+                        </span>
+                        <motion.div
+                          className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                          variants={childVariants}
                         >
-                          Schedule visit
-                        </a>
-                        <a
-                          href="#"
-                          className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
-                        >
-                          View details
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-                <motion.div
-                  className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
-                  variants={nextVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <div className="row justify-content-center">
-                    <div className="col-xl-7 lg-mb-25px">
-                      <div className="row">
-                        <div className="col text-center border-end border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={bed}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            4 Beds
-                          </span>
-                        </div>
-                        <div className="col text-center border-end border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={bath}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            3 Baths
-                          </span>
-                        </div>
-                        <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={car}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            4 Parking
-                          </span>
+                          Luxurious <span className="fw-700">mansion</span>
+                        </motion.div>
+                        <div variants={childVariants}>
+                          <a
+                            href="#"
+                            className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px"
+                          >
+                            Schedule visit
+                          </a>
+                          <a
+                            href="#"
+                            className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
+                          >
+                            View details
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
-                      <span className="fw-500 mb-5px d-block alt-font">
-                        For sell price
-                      </span>
-                      <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px">
-                        {" "}
-                        &#8358; 30,99,000
-                      </h4>
+                  </motion.div>
+                  <motion.div
+                    className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
+                    variants={nextVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <div className="row justify-content-center">
+                      <div className="col-xl-7 lg-mb-25px">
+                        <div className="row">
+                          <div className="col text-center border-end border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={bed}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              4 Beds
+                            </span>
+                          </div>
+                          <div className="col text-center border-end border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={bath}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              3 Baths
+                            </span>
+                          </div>
+                          <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={car}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              4 Parking
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
+                        <span className="fw-500 mb-5px d-block alt-font">
+                          For sell price
+                        </span>
+                        <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px">
+                          {" "}
+                          &#8358; 30,99,000
+                        </h4>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              </div>
-            </SwiperSlide>
+                  </motion.div>
+                </div>
+              </SwiperSlide>
 
-            <SwiperSlide>
-              <div
-                className="swiper-slide cover-background"
-                style={{ backgroundImage: `url(${Bg4})` }}
-              >
-                <motion.div
-                  className="container h-100"
-                  k
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
+              <SwiperSlide>
+                <div
+                  className="swiper-slide cover-background"
+                  style={{ backgroundImage: `url(${Bg4})` }}
                 >
-                  <div className="row align-items-center h-100">
-                    <div className="col-md-8 position-relative text-white">
-                      <span className="fs-20 d-block mb-15px">
-                        Mile 50 road, Abakaliki, EB, 480301
-                      </span>
-                      <motion.div
-                        className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
-                        variants={childVariants}
-                      >
-                        Luxurious <span className="fw-700">mansion</span>
-                      </motion.div>
-                      <motion.div variants={childVariants}>
-                        <a
-                          href="#"
-                          className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px"
+                  <motion.div
+                    className="container h-100"
+                    k
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <div className="row align-items-center h-100">
+                      <div className="col-md-8 position-relative text-white">
+                        <span className="fs-20 d-block mb-15px">
+                          Mile 50 road, Abakaliki, EB, 480301
+                        </span>
+                        <motion.div
+                          className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                          variants={childVariants}
                         >
-                          Schedule visit
-                        </a>
-                        <a
-                          href="#"
-                          className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
-                        >
-                          View details
-                        </a>
-                      </motion.div>
-                    </div>
-                  </div>
-                </motion.div>
-                <motion.div
-                  className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
-                  variants={nextVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <div className="row justify-content-center">
-                    <div className="col-xl-7 lg-mb-25px">
-                      <div className="row">
-                        <div className="col text-center border-end border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={bed}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            4 Beds
-                          </span>
-                        </div>
-                        <div className="col text-center border-end border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={bath}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            3 Baths
-                          </span>
-                        </div>
-                        <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
-                          <img
-                            className="mb-5px h-50px"
-                            src={car}
-                            alt=""
-                          />
-                          <span className="alt-font fs-16 fw-500 d-block">
-                            4 Parking
-                          </span>
-                        </div>
+                          Luxurious <span className="fw-700">mansion</span>
+                        </motion.div>
+                        <motion.div variants={childVariants}>
+                          <a
+                            href="#"
+                            className="btn btn-white btn-large border-1 btn-round-edge btn-box-shadow me-15px xs-mt-10px xs-mb-10px"
+                          >
+                            Schedule visit
+                          </a>
+                          <a
+                            href="#"
+                            className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
+                          >
+                            View details
+                          </a>
+                        </motion.div>
                       </div>
                     </div>
-                    <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
-                      <span className="fw-500 mb-5px d-block alt-font">
-                        For sell price
-                      </span>
-                      <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px">
-                        {" "}
-                        &#8358; 30,99,000
-                      </h4>
+                  </motion.div>
+                  <motion.div
+                    className="position-absolute col-xxl-5 col-lg-6 right-0px bottom-0px pt-50px pb-40px ps-40px pe-40px lg-p-35px d-none d-lg-inline-block bg-white border-radius-left-8px"
+                    variants={nextVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <div className="row justify-content-center">
+                      <div className="col-xl-7 lg-mb-25px">
+                        <div className="row">
+                          <div className="col text-center border-end border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={bed}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              4 Beds
+                            </span>
+                          </div>
+                          <div className="col text-center border-end border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={bath}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              3 Baths
+                            </span>
+                          </div>
+                          <div className="col text-center border-end lg-border-end-0 border-color-extra-medium-gray">
+                            <img
+                              className="mb-5px h-50px"
+                              src={car}
+                              alt=""
+                            />
+                            <span className="alt-font fs-16 fw-500 d-block">
+                              4 Parking
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-xl-5 ps-35px lg-ps-15px text-center text-xl-start">
+                        <span className="fw-500 mb-5px d-block alt-font">
+                          For sell price
+                        </span>
+                        <h4 className="text-dark-gray fw-700 alt-font mb-0 ls-minus-1px">
+                          {" "}
+                          &#8358; 30,99,000
+                        </h4>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
+                  </motion.div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          )}
 
           <div className="container">
             <div className="row g-0">
@@ -469,7 +595,7 @@ const Page = () => {
             </div>
             <div className="col-xl-5 offset-xl-1 col-lg-6">
               <span className="fs-20 d-inline-block mb-15px text-base-color">
-                MegaTech RealEstate {" "}
+                MegaTech RealEstate{" "}
               </span>
               <h2
                 className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none sm-w-85"
@@ -847,7 +973,10 @@ const Page = () => {
                           </div>
                           <div className="col text-end">
                             <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">
-                              &#8358;{parseFloat(prop?.price?.$numberDecimal).toLocaleString('en-US')}
+                              &#8358;
+                              {parseFloat(
+                                prop?.price?.$numberDecimal
+                              ).toLocaleString("en-US")}
                             </span>
                           </div>
                         </div>
@@ -1656,7 +1785,7 @@ const Page = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                        "Mega Real Estate made my home buying experience so
+                          "Mega Real Estate made my home buying experience so
                           easy! They really listened to my needs and found the
                           perfect home for my family. I couldn't be happier with
                           their service."
@@ -1687,7 +1816,7 @@ const Page = () => {
                     <SwiperSlide>
                       <div className="swiper-slide review-style-08">
                         <p className="w-80 xl-w-90 lg-w-100">
-                        "Mega Real Estate made my home buying experience so
+                          "Mega Real Estate made my home buying experience so
                           easy! They really listened to my needs and found the
                           perfect home for my family. I couldn't be happier with
                           their service."
