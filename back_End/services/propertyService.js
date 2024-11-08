@@ -49,7 +49,7 @@ const getProperties = async (data) => {
 
 const getPropertiesByOwner = async (data) => {
   let page = parseInt(data.page) || 1;
-  let limit = parseInt(data.limit) || 6;
+  let limit = parseInt(data.limit) || 10;
   let skip = (page - 1) * limit;
   const userId = data.userId;
   try {
