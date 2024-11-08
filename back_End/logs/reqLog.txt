@@ -37851,3 +37851,9 @@
 2024-11-07	18:16:36	093cd7f3-565c-4d28-a3d0-4c23de52d78c	GET	/properties/owner/66d1b843db9b213d97e485ab	http://localhost:5173
 2024-11-07	18:16:58	88017e16-702b-4653-a705-72aff1568ecc	OPTIONS	/properties/owner/66d1b843db9b213d97e485ab	http://localhost:5173
 2024-11-07	18:16:58	c9a0a3e3-94f1-4896-860e-559ed551f538	GET	/properties/owner/66d1b843db9b213d97e485ab	http://localhost:5173
+2024-11-08	09:41:54	545653a6-4e38-49f8-a229-e436eaf79a20	OPTIONS	/properties/owner/66f15e26307810c26d5452d8	https://www.megatechrealestate.ng
+2024-11-08	09:41:54	05efc7bf-d711-4ff0-86b1-bac5427d390d	GET	/properties/owner/66f15e26307810c26d5452d8	https://www.megatechrealestate.ng
+2024-11-08	09:43:40	fe45cb73-d956-4a7e-8e7c-4070b2982860	OPTIONS	/house	https://www.megatechrealestate.ng
+2024-11-08	09:43:40	bb644623-7efe-4b7d-86e1-39ff563a4248	POST	/house	https://www.megatechrealestate.ng
+2024-11-08	09:43:41	da847d84-69be-410c-b629-eada7675cee8	OPTIONS	/properties/owner/66f15e26307810c26d5452d8	https://www.megatechrealestate.ng
+2024-11-08	09:43:41	31848054-1fd5-4b52-be3e-25bd2a1535ee	GET	/properties/owner/66f15e26307810c26d5452d8	https://www.megatechrealestate.ng
