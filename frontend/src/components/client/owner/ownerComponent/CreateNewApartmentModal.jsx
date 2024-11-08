@@ -60,6 +60,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({ mode: "all" });
 
   const createApartment = async (data) => {
@@ -94,20 +95,25 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
       }else{
         formData.append(key, data[key]);
       }
+
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
     
         
     }
-    try{
-      const response = await post(url, formData, auth?.accessToken);
-      console.log(response.data);
-      setTimeout(() => {
-        handleClose();
-      }, 3000);
-    } catch (err) {
-      setIsLoading(false)
-      setError(err.response?.data?.error || err.message)
-    }
-    console.log(formData)
+    // try{
+    //   const response = await post(url, formData, auth?.accessToken);
+    //   console.log(response.data);
+    //   setTimeout(() => {
+    //     handleClose();
+    //     reset();
+    //   }, 2000);
+    // } catch (err) {
+    //   setIsLoading(false)
+    //   setError(err.response?.data?.error || err.message)
+    // }
+    //console.log(formData)
   };
 
   const {mutate} = useMutation(createApartment, {
@@ -125,6 +131,7 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
     data.interiorFeatures = selectedInteriorFeatures
     data.kitchenFeatures = selectedKitchenFeatures
     data.livingRoomFeatures = selectedLivingRoomFeatures
+    console.log(data)
   mutate(data);  
   
 };

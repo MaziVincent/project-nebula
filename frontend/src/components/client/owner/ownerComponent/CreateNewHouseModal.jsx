@@ -409,11 +409,11 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     <option value="Select" selected disabled>-- Select Type --</option>
                     <option value="Bungalow">Bungalow</option>
                     <option value="Duplex">Duplex</option>
-                    <option value="One Story">One Story</option>
-                    <option value="Two Stories">Two Stories</option>
-                    <option value="Three Stories">Three Stories</option>
-                    <option value="Four Stories">Four Stories</option>
-                    <option value="Five Stories">Five Stories</option>
+                    <option value="One Story">One Storie</option>
+                    <option value="Two Stories">Two Storie</option>
+                    <option value="Three Stories">Three Storie</option>
+                    <option value="Four Stories">Four Storie</option>
+                    <option value="Five Stories">SkyScraper</option>
                   </select>
                   {errors.buildingType && (
                     <span className="text-red-500 text-sm">
