@@ -431,7 +431,7 @@ const PropertyDtls = () => {
                                         {property?.exteriorFeatures && (
                                             
                                             <div className=" my-5">
-                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Exterior Features</h4>
                                             <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                             {property.exteriorFeatures
                                                 .map((feature, index) => (
@@ -447,7 +447,7 @@ const PropertyDtls = () => {
                                         )}
                                         {property?.interiorFeatures && (
                                             <div className=" mb-5">
-                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Interior Features</h4>
                                             <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                                 {property.interiorFeatures.map((interior, index) => (
                                                 <li
@@ -462,7 +462,7 @@ const PropertyDtls = () => {
                                         )}
                                         {property?.kitchenFeatures && (
                                             <div className=" mb-5">
-                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Kitchen Features</h4>
                                             <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                                 {property.kitchenFeatures.map((kitchen, index) => (
                                                 <li
@@ -477,8 +477,8 @@ const PropertyDtls = () => {
                                         )}
                                         {property?.livingRoomFeatures && (
                                             <div className=" mb-5">
-                                            <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
-                                                LivingRooom Features
+                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">
+                                                LivingRoom Features
                                             </h4>
                                             <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                                 {property.livingRoomFeatures.map((livingRoom, index) => (
@@ -511,7 +511,7 @@ const PropertyDtls = () => {
                                             <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block">Location</span>
                                         </div>
                                         <div className="col-12"> 
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15862.294791942271!2d8.089956184736167!3d6.319590648716132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1svanco%20junction%20Abakaliki!5e0!3m2!1sen!2sng!4v1731096112866!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                                            {/* <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
+                                        {/* <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15862.294791942271!2d8.089956184736167!3d6.319590648716132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1svanco%20junction%20Abakaliki!5e0!3m2!1sen!2sng!4v1731096112866!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                                            <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
                                         </div>
                                     </div>
                                 </div>
