@@ -431,7 +431,7 @@ const PropertyDtls = () => {
                                         {property?.exteriorFeatures && (
                                             
                                             <div className=" my-5">
-                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Exterior Features</h4>
+                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Exterior&nbsp;&nbsp;&nbsp;Features</h4>
                                             <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                             {property.exteriorFeatures
                                                 .map((feature, index) => (
@@ -447,7 +447,7 @@ const PropertyDtls = () => {
                                         )}
                                         {property?.interiorFeatures && (
                                             <div className=" mb-5">
-                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Interior Features</h4>
+                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Interior&nbsp;&nbsp;&nbsp;Features</h4>
                                             <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                                 {property.interiorFeatures.map((interior, index) => (
                                                 <li
@@ -462,7 +462,7 @@ const PropertyDtls = () => {
                                         )}
                                         {property?.kitchenFeatures && (
                                             <div className=" mb-5">
-                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Kitchen Features</h4>
+                                            <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">Kitchen&nbsp;&nbsp;&nbsp;Features</h4>
                                             <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                                 {property.kitchenFeatures.map((kitchen, index) => (
                                                 <li
@@ -478,7 +478,7 @@ const PropertyDtls = () => {
                                         {property?.livingRoomFeatures && (
                                             <div className=" mb-5">
                                             <h4 className="alt-font text-xl uppercase text-gray-900 font-bold mb-2">
-                                                LivingRoom Features
+                                                LivingRoom&nbsp;&nbsp;&nbsp;Features
                                             </h4>
                                             <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                                                 {property.livingRoomFeatures.map((livingRoom, index) => (
