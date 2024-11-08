@@ -540,7 +540,7 @@ const PropertyDtls = () => {
                                             <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center">
                                                 <ul className="medium-icon">
                                                     <li className="m-0"><a className="facebook text-white" href="https://www.facebook.com/" target="_blank"><i className="fa-brands fa-facebook-f"></i></a></li>
-                                                    <li className="m-0"><a className="dribbble text-white" href={property?.owner?.whatsappLink} target="_blank"><i className="fa-brands fa-whatsapp"></i></a></li> 
+                                                    <li className="m-0"><Link className="dribbble text-white" to={property?.owner?.whatsappLink} ><i className="fa-brands fa-whatsapp"></i></Link></li> 
                                                     <li className="m-0"><a className="twitter text-white" href="http://www.twitter.com" target="_blank"><i className="fa-brands fa-twitter"></i></a></li> 
                                                     <li className="m-0"><a className="instagram text-white" href="http://www.instagram.com" target="_blank"><i className="fa-brands fa-instagram"></i></a></li> 
                                                 </ul>

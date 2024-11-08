@@ -337,7 +337,7 @@ const ProfileUpdateModal = ({openUpdate, handleUpdateClose, agent}) => {
                     type='text'
                     {...register("whatsappLink", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Office Adress here"
+                    placeholder="Enter whatsapp Link"
                   />
                   {errors.whatsappLink && (
                     <span className="text-red-500 text-sm">
@@ -351,7 +351,7 @@ const ProfileUpdateModal = ({openUpdate, handleUpdateClose, agent}) => {
                 type="submit"
                 className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                {isLoading ? <CircularProgress /> : 'Update Profile'}
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Update Profile'}
               </button>
             </form>
             </div>
