@@ -138,7 +138,7 @@ const Page = () => {
         <div
           className="swiper full-screen md-h-600px sm-h-500px swiper-number-pagination-style-01" //</section>data-slider-options='{ "slidesPerView": 1, "loop": true, "pagination": { "el": ".swiper-number", "clickable": true }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "autoplay": { "delay": 4000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }' data-number-pagination="1"//
         >
-          {featuredSuccess ? (
+          {featuredSuccess && featured.length > 0 ? (
             <Swiper
               modules={[Autoplay]}
               slidesPerView={1}
