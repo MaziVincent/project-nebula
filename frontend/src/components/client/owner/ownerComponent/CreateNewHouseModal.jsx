@@ -409,10 +409,10 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     <option value="Select" selected disabled>-- Select Type --</option>
                     <option value="Bungalow">Bungalow</option>
                     <option value="Duplex">Duplex</option>
-                    <option value="One Story">One Storie</option>
-                    <option value="Two Stories">Two Storie</option>
-                    <option value="Three Stories">Three Storie</option>
-                    <option value="Four Stories">Four Storie</option>
+                    <option value="One Story">One Story</option>
+                    <option value="Two Stories">Two Story</option>
+                    <option value="Three Stories">Three Story</option>
+                    <option value="Four Stories">Four Story</option>
                     <option value="Five Stories">SkyScraper</option>
                   </select>
                   {errors.buildingType && (
@@ -434,9 +434,11 @@ const CreateNewHouseModal = ({open, handleCloseHouseModal}) => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                   >
                     <option value="Select Document Type" selected disabled>Select Document Type</option>
-                    <option value="Certificate of OwnerShip (C of O)">Certificate of OwnerShip (C of O)</option>
+                    <option value="Power of Attorney">Power of Attorney </option>
                     <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                     <option value="Deeds of Conveyance">Deeds of Conveyance</option>
+                    <option value="Deeds of Sub-Lease">Deeds of Sub-Lease</option>
+                    <option value="Deeds of Lease">Deeds of Lease</option>
                   </select>
                   {errors.docType && (
                     <span className="text-red-500 text-sm">
