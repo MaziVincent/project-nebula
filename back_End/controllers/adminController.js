@@ -9,7 +9,7 @@ const {
 
 const handleAdminCreate = async (req, res) => {
   const {firstname, lastname, username, email, phone} = req.body;
-  if(!firstname, !lastname, !username, !email, !phone){
+  if(!firstname, !lastname, !email, !phone){
     return res.status(400).json({message: "All fields are required"})
   }
   const duplicate = await adminExists(email);
