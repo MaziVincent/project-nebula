@@ -11,7 +11,7 @@ import { FacebookOutlined, Google } from '@mui/icons-material'
 import { CircularProgress } from '@mui/material'
 
 const Login = () => {
-  const {auth, setAuth, persist, setPersist} = useContext(AuthContext)
+  const {auth, setAuth, persist, setPersist,} = useContext(AuthContext)
   const url = `${baseURL}login`
   const navigate = useNavigate()
   const location = useLocation()
@@ -175,7 +175,7 @@ const Login = () => {
                     </div>
 
                     <div className=" text-base">
-                      <Link className=" font-medium text-gray-600 underline">
+                      <Link to='/forgotpassword' className=" font-medium text-gray-600 underline">
                         Forgot your password{" "}
                       </Link>
                     </div>
@@ -198,9 +198,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <table>
-        
-      </table>
     </div>
   )
 }

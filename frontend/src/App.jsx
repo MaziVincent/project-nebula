@@ -54,6 +54,7 @@ import PropertyForRent from './components/client/customers/PropertyForRent';
 import PropertyForSell from './components/client/customers/PropertyForSell';
 import AdminProfile from './components/admin/AdminProfile';
 import TermsAndConditions from './components/Home/TermsAndConditions';
+import ForgotPassword from './components/auth/ForgotPassword';
 
 function App() {
   const queryClient = new QueryClient();
@@ -77,6 +78,7 @@ function App() {
 
             {/* login route */}
               <Route path='/login' element={<Login />} />
+              <Route path='/forgotpassword' element={<ForgotPassword />} />
               
             {/*  admin route */}
             <Route element={<PersistLogin />}>

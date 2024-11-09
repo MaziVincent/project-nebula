@@ -116,11 +116,28 @@ const uploadProfilePicture = async (files, id) => {
   return Promise.all(uploadPromises);
 };
 
+
+const userExists = async (email) => {
+
+  try {
+      const user = await User.findOne({email: email}).exec();
+      if(!user) return false;
+      return user;
+
+  } catch (e) {
+    
+      return {error: e.message}
+  }
+};
+
+
+
 module.exports = {
     getAllUsers,
     getUser,
     updateUser,
     deleteUser,
     activateUser,
-    uploadProfilePicture
+    uploadProfilePicture,
+    userExists
 }

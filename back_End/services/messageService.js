@@ -23,5 +23,7 @@ const createMessage = async (data) => {
             message: data.message,
         })
         const user = await newMessage.save()
+    }catch(error){
+        console.log(error)
     }
 }
