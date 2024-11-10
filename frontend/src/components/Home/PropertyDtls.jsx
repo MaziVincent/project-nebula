@@ -37,8 +37,8 @@ const PropertyDtls = () => {
     }
   };
 
-  const [showPhone, setShowPhone] = useState(false)
-  const [showEmail, setShowEmail] = useState(false)
+  const [showPhone, setShowPhone] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
 
   // Use useEffect to trigger the data fetching on component mount or when 'id' changes
   useEffect(() => {
@@ -47,18 +47,33 @@ const PropertyDtls = () => {
   console.log(property);
 
   const toggleShow = (value) => {
-    if(value == 'phone'){
-        setShowPhone(!showPhone)
-        setShowEmail(false)
-    }else if(value == 'email'){
-        setShowPhone(false)
-        setShowEmail(!showEmail)
+    if (value == "phone") {
+      setShowPhone(!showPhone);
+      setShowEmail(false);
+    } else if (value == "email") {
+      setShowPhone(false);
+      setShowEmail(!showEmail);
     }
-  }
+  };
 
   function isWhatsAppLink(url) {
     const whatsappRegex = /https:\/\/wa\.me\/[0-9]+/;
     return whatsappRegex.test(url);
+  }
+
+  function formatPhoneNumber(phoneNumber) {
+    // Ensure the phone number starts with 09
+    if (!phoneNumber.startsWith("0")) {
+      return phoneNumber; // Return the original number if it doesn't start with 09
+    }
+
+    // Remove the leading 0
+    const cleanedPhoneNumber = phoneNumber.slice(1);
+
+    // Add the country code +234
+    const formattedPhoneNumber = "+234" + cleanedPhoneNumber;
+
+    return formattedPhoneNumber;
   }
   //   console.log(property.leaseDuration)
   return (
@@ -98,8 +113,8 @@ const PropertyDtls = () => {
                     &#8358;
                     {parseFloat(property.price.$numberDecimal).toLocaleString(
                       "en-US"
-                    )} / 
-                    {property.paymentType ? property.paymentType : ""}
+                    )}{" "}
+                    /{property.paymentType ? property.paymentType : ""}
                   </h4>
                   {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft. &#8358;{!isNaN(parseFloat(property.price.replace(/,/g, ""))) ? (parseFloat(property.price.replace(/,/g, "")) / 12).toFixed(2) : 'N/A'}</span> */}
                 </div>
@@ -173,8 +188,8 @@ const PropertyDtls = () => {
                   &#8358;
                   {parseFloat(property.price.$numberDecimal).toLocaleString(
                     "en-US"
-                  )} /
-                  {property.paymentType ? property.paymentType : ""}
+                  )}{" "}
+                  /{property.paymentType ? property.paymentType : ""}
                 </div>
               </div>
             </div>
@@ -352,8 +367,8 @@ const PropertyDtls = () => {
                           &#8358;
                           {parseFloat(
                             property.price.$numberDecimal
-                          ).toLocaleString("en-US")} / 
-                          {property.paymentType ? property.paymentType : ""}
+                          ).toLocaleString("en-US")}{" "}
+                          /{property.paymentType ? property.paymentType : ""}
                         </div>
                       </div>
                       {/* <div className="row g-0 align-items-center mb-15px pb-15px border-bottom border-color-extra-medium-gray">
@@ -664,21 +679,19 @@ const PropertyDtls = () => {
                             Land&nbsp;&nbsp;&nbsp;Features
                           </h4>
                           <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
-                            {property.landFeatures.map(
-                              (land, index) => (
-                                <li
-                                  key={index}
-                                  className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
-                                >
-                                  <div
-                                    className="ext-ft"
-                                    dangerouslySetInnerHTML={{
-                                      __html: land,
-                                    }}
-                                  />
-                                </li>
-                              )
-                            )}
+                            {property.landFeatures.map((land, index) => (
+                              <li
+                                key={index}
+                                className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                              >
+                                <div
+                                  className="ext-ft"
+                                  dangerouslySetInnerHTML={{
+                                    __html: land,
+                                  }}
+                                />
+                              </li>
+                            ))}
                           </ul>
                         </div>
                       )}
@@ -761,30 +774,53 @@ const PropertyDtls = () => {
                       </div>
                       {/*  end features box item  */}
                       {/*  start social icon  */}
-                      <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center gap-3">
-                                                <ul className="medium-icon">
-                                                    <li className="cursor-pointer" onClick={() => toggleShow('phone')} ><span className="phone text-white" target="_blank"><i className="feather icon-feather-phone-call icon-medium text-white me-10px"></i></span></li> 
-                                                    
-                                                    
-                                                    <li className="cursor-pointer" onClick={() => toggleShow('email')} ><span className="email text-white" > <i className="feather icon-feather-mail icon-medium text-white me-10px"></i></span></li> 
-                                                    {
-                                                        isWhatsAppLink(property?.owner?.whatsappLink) && (
-                                                            <li className="cursor-pointer"  ><a className="whatsapp text-white" href={property?.owner?.whatsappLink} ><i className="fa-brands fa-whatsapp icon-medium"></i></a></li>  
+                      <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center gap-3 bg-gray-50 rounded-xl flex justify-center items-center p-1 shadow-md">
+                        <ul className="medium-icon">
+                          <li
+                            className="cursor-pointer"
+                           // onClick={() => toggleShow("phone")}
+                          >
+                            <a
+                              className="phone text-base-color"
+                              href={`tel:${property?.owner?.phone}`}
+                              target="_blank"
+                            >
+                              <i className="feather icon-feather-phone-call icon-medium text-base-color me-10px"></i>
+                            </a>
+                          </li>
 
-                                                        )
-                                                    }
-                                                </ul>
-                                            </div> 
+                          <li
+                            className="cursor-pointer"
+                           // onClick={() => toggleShow("email")}
+                          >
+                            <a className="email text-white"
+                            href={`mailto:${property?.owner?.email}`} >
+                              {" "}
+                              <i className="feather icon-feather-mail icon-medium text-base-color me-10px"></i>
+                            </a>
+                          </li>
+                          {isWhatsAppLink(property?.owner?.whatsappLink) && (
+                            <li className="cursor-pointer">
+                              <a
+                                className="whatsapp text-white"
+                                href={property?.owner?.whatsappLink}
+                              >
+                                <i className="fa-brands fa-whatsapp icon-medium text-base-color"></i>
+                              </a>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
                       {/*  end social icon */}
                     </div>
                     <div className="ps-45px pe-45px pt-35px pb-45px xs-p-25px contact-form-style-01 mt-0">
                       <div className="mb-20px last-paragraph-no-margin">
-                        {
+                        {/* {
                             showPhone && (
                                 <p className="mb-0 alt-font fw-500 text-dark-gray">
                                 <i className="feather icon-feather-phone-call icon-small text-base-color me-10px"></i>
                                 <a
-                                  href={property?.owner?.phone}
+                                  href={`tel:${property?.owner?.phone}`}
                                   className="text-dark-gray text-base-color-hover"
                                 >
                                   {" "}
@@ -792,13 +828,13 @@ const PropertyDtls = () => {
                                 </a>
                               </p>
                             )
-                        }
-                      {
+                        } */}
+                        {/* {
                         showEmail && (
                             <p className="alt-font fw-500 text-dark-gray mb-0">
                           <i className="feather icon-feather-mail icon-small text-base-color me-10px"></i>
                           <a
-                            href={property?.owner?.email}
+                            href={`mailto:${property?.owner?.email}`}
                             className="text-dark-gray text-decoration-line-bottom"
                           >
                             {" "}
@@ -806,8 +842,8 @@ const PropertyDtls = () => {
                           </a>
                         </p>
                         )
-                      }
-                        
+                      } */}
+
                         {/* <p className="alt-font fw-500 text-dark-gray">
                           <i className="fa-brands fa-whatsapp icon-small text-base-color me-10px"></i>
                           <a
