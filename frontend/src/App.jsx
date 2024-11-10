@@ -66,6 +66,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
         <>
           <Routes>
+            <Route element={<PersistLogin />}>
             <Route path='/' element={<Home />} >
               <Route index element={<Page />} />
               <Route path='/about' element={<About />} />
@@ -75,6 +76,7 @@ function App() {
               <Route path='/sell' element={<Sell />} />
               <Route path='/property_details/:id' element={<PropertyDtls />} />
               <Route path='/terms' element={<TermsAndConditions />} />
+            </Route>
             </Route>
 
             {/* login route */}
