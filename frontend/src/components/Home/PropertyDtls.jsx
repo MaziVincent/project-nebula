@@ -58,12 +58,8 @@ const PropertyDtls = () => {
   };
 
   function isWhatsAppLink(url) {
-    const whatsappRegex = /https:\/\/wa\.me\/[0-9]+/;
-    const whatsappRegexLink = /https:\/\/wa\.link\/[0-9]+/;
-    if (whatsappRegex.test(url) || url.startsWith("https:\\wa.link")) {
-      return true;
-    }
-    return false;
+    const regex = /^(https?:\/\/)?(www\.)?(wa\.me\/|api\.whatsapp\.com\/send\?phone=|wa\.link\/)\S+$/;
+    return regex.test(url);
   }
 
   function formatPhoneNumber(phoneNumber) {
@@ -86,7 +82,7 @@ const PropertyDtls = () => {
       try {
         await navigator.share({
           title: document.title,
-          text: "Check this out!",
+          text: "Check out this property ",
           url: window.location.href,
         });
         console.log("Content shared successfully");
