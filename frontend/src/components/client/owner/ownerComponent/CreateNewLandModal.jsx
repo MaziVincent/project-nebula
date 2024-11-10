@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import  { useState, useEffect } from 'react'
 import usePost from "../../../../hooks/usePost";
 import useAuth from "../../../../hooks/useAuth";
 import baseURL from '../../../../shared/baseURL';
 import Modal from '@mui/material/Modal';
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
@@ -19,18 +19,12 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false)
   
-  const [selectedLandFeatures, setSelectedLandFeatures] = useState([]);
-
- const handleLandFeatures = (e) => {
-  e.preventDefault()
-    setSelectedLandFeatures((prevFeatures) =>
-      e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-    );
-  };
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
+    watch
   } = useForm({ mode: "all" });
 
     const createLand = async (data) => {
@@ -79,12 +73,26 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
     })
 
     const handleCreateLand = (data) => {
-      data.landFeatures = selectedLandFeatures
+      
     mutate(data); 
     setTimeout(() => {
       handleCloseLandModal();
     }, 3000);
   };
+
+  const[payType, setPayType] = useState(false)
+
+const propType = watch('propertyType')
+
+useEffect(() => {
+  if(propType == 'Lease'){
+    setPayType(true)
+  }else{
+    setPayType(false)
+  }
+}, [propType])
+
+
   return (
     <Modal
       open={open}
@@ -302,29 +310,42 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
                   )}
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="landFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  <fieldset
                   >
-                    Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> Land Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
-                 {landFeatures.map((feature, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
-                      <input
+                 {landFeatures.map((land, index) => (
+                   <label htmlFor={`ldfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                      <Controller 
+                      name='landFeatures'
+                      control={control}
+                      render={({field:{onChange, value}}) => (
+                        <input
                         type="checkbox"
-                        id={`feature-${index}`}
+                        id={`ldfeature-${index}`}
                         name="landFeatures"
-                        value={`${feature.value}`}
-                        onChange={(e) => handleLandFeatures(e)}
+                        value={`${land.value}`}
+                        checked={value?.includes(land.value) || false}
+                        onChange={(e) =>{
+                           const isChecked = e.target.checked;
+                          onChange(
+                            isChecked
+                              ? [...(value || []), land.value]
+                              : value.filter((item) => item !== land.value)
+                          );
+                        }}
                         className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
                       />
-                      <label htmlFor={`feature-${index}`} className=' text-sm'>{feature.name}</label>
+                      )}
+
+                      />
                      
-                    </div>
+                      {land.name}
+                      
+                      </label>
+                     
+                    
                   ))}
                   {errors.landFeatures && (
                     <span className="text-red-500 text-sm">
@@ -332,6 +353,7 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -354,6 +376,33 @@ const CreateNewLandModal = ({open, handleCloseLandModal}) => {
                       </span>
                     )}
                 </div>
+                {
+                  payType &&  <div className="sm:col-span-2">
+                  <label
+                    htmlFor="payment"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                   Payment Type
+                  </label>
+                    <select name="paymentType" id="payment"
+                      {...register("paymentType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select payment type" disabled selected>Select Payment Type</option>
+                        <option value="Day">Daily</option>
+                        <option value="Week">Weekly</option>
+                        <option value="Month">Monthly</option>
+                        <option value="6 Months">6 Months</option>
+                        <option value="Year">Yearly</option>
+                        <option value="2 Years">2 Years</option>
+                    </select>
+                    {errors.paymentType && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                </div>
+                }
               </div>
               <button
                 type="submit"

@@ -18,6 +18,7 @@ const LandSchema = Property.discriminator('Land', new Schema({
     type: String,
     required: true
   },
+  paymentType:String,
   landFeatures: {
     type: [String]
   }

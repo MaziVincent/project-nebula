@@ -19,6 +19,7 @@ const createApartment = async (data) => {
             "bathrooms": data.bathrooms,
             "floorArea": data.floorArea,
             "propertyType": data.propertyType,
+            "paymentType" : data.paymentType,
             "livingRoomFeatures": data.livingRoomFeatures,
             "exteriorFeatures": data.exteriorFeatures,
             "interiorFeatures": data.interiorFeatures,
@@ -58,6 +59,7 @@ const getApartment = async (id) => {
 };
 
 const updateApartment = async (id, data) => {
+    
     try {
         const apartment = await Apartment.findOne({_id : id}).exec();
         if(!apartment) return {error: "Apartment not found"};
@@ -70,8 +72,15 @@ const updateApartment = async (id, data) => {
         if(data.bathrooms) apartment.bathrooms = data.bathrooms
         if(data.floorArea) apartment.floorArea = data.floorArea
         if(data.propertyType) apartment.propertyType = data.propertyType
+        if(data.paymentType) apartment.paymentType = data.paymentType 
+        if(data.interiorFeatures) apartment.interiorFeatures = data.interiorFeatures 
+        if(data.exteriorFeatures) apartment.exteriorFeatures = data.exteriorFeatures 
+        if(data.livingRoomFeatures) apartment.livingRoomFeatures = data.livingRoomFeatures 
+        if(data.kitchenFeatures) apartment.kitchenFeatures = data.kitchenFeatures 
+
         const result = await apartment.save();
         return result;
+
     } catch (e) {
         return {error: e.message}
     }

@@ -27,6 +27,9 @@ const HouseSchema = Property.discriminator('House', new Schema({
   lotSize: {
     type: Number
   },
+  paymentType:{
+    type:String
+  },
   buildingType: {
     type: String,
   },

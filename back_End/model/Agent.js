@@ -7,6 +7,10 @@ const AgentSchema = User.discriminator('Agent', new Schema({
     type: Boolean,
     default: false
   },
+  isSuperAgent:{
+    type:Boolean,
+    default:false
+  },
   identityImage: {
     type: String,
   },

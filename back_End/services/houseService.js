@@ -27,6 +27,7 @@ const createHouse = async (data) => {
             buildingType: data.buildingType,
             docType: data.docType,
             propertyType: data.propertyType,
+            paymentType:data.paymentType,
             livingRoomFeatures: data.livingRoomFeatures,
             exteriorFeatures: data.exteriorFeatures,
             interiorFeatures: data.interiorFeatures,
@@ -85,6 +86,7 @@ const updateHouse = async (id, data) => {
         if(data.docType) house.docType = data.docType
         if(data.buildingType) house.buildingType = data.buildingType
         if(data.propertyType) house.propertyType = data.propertyType
+        if(data.paymentType) house.paymentType = data.paymentType
         if(data.exteriorFeatures) house.exteriorFeatures = data.exteriorFeatures
         if(data.interiorFeatures) house.interiorFeatures = data.interiorFeatures
         if(data.livingRoomFeatures) house.livingRoomFeatures = data.livingRoomFeatures
