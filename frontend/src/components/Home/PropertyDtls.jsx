@@ -12,6 +12,7 @@ import Bathrooms from "../../assets/images/demo-real-estate-icon-bath.svg";
 import PropertyDtl from "../../assets/images/demo-real-estate-property-details-09.svg";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import ShareIcon from "@mui/icons-material/Share";
 import { Swiper, SwiperSlide } from "../../shared/Swiper";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -58,7 +59,11 @@ const PropertyDtls = () => {
 
   function isWhatsAppLink(url) {
     const whatsappRegex = /https:\/\/wa\.me\/[0-9]+/;
-    return whatsappRegex.test(url);
+    const whatsappRegexLink = /https:\/\/wa\.link\/[0-9]+/;
+    if (whatsappRegex.test(url) || url.startsWith("https:\\wa.link")) {
+      return true;
+    }
+    return false;
   }
 
   function formatPhoneNumber(phoneNumber) {
@@ -75,6 +80,24 @@ const PropertyDtls = () => {
 
     return formattedPhoneNumber;
   }
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: document.title,
+          text: "Check this out!",
+          url: window.location.href,
+        });
+        console.log("Content shared successfully");
+      } catch (error) {
+        console.error("Error sharing", error);
+      }
+    } else {
+      console.log("Web Share API is not supported in this browser");
+    }
+  };
+
   //   console.log(property.leaseDuration)
   return (
     <div className="">
@@ -117,6 +140,11 @@ const PropertyDtls = () => {
                     /{property.paymentType ? property.paymentType : ""}
                   </h4>
                   {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft. &#8358;{!isNaN(parseFloat(property.price.replace(/,/g, ""))) ? (parseFloat(property.price.replace(/,/g, "")) / 12).toFixed(2) : 'N/A'}</span> */}
+                </div>
+                <div>
+                    <span className="text-green-600 cursor-pointer" onClick={handleShare} >
+                       <ShareIcon fontSize="medium" />
+                    </span>
                 </div>
               </div>
             </div>
@@ -774,11 +802,11 @@ const PropertyDtls = () => {
                       </div>
                       {/*  end features box item  */}
                       {/*  start social icon  */}
-                      <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center gap-3 rounded-xl flex justify-center items-center p-1">
+                      <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center gap-3 rounded-xl flex justify-center items-center p-1 ">
                         <ul className="medium-icon">
                           <li
                             className="cursor-pointer bg-gray-50 flex justify-center items-center rounded-xl shadow-lg"
-                           // onClick={() => toggleShow("phone")}
+                            // onClick={() => toggleShow("phone")}
                           >
                             <a
                               className="phone text-base-color"
@@ -791,14 +819,17 @@ const PropertyDtls = () => {
 
                           <li
                             className="cursor-pointer bg-gray-50 flex justify-center items-center rounded-xl shadow-lg"
-                           // onClick={() => toggleShow("email")}
+                            // onClick={() => toggleShow("email")}
                           >
-                            <a className="email text-white"
-                            href={`mailto:${property?.owner?.email}`} >
+                            <a
+                              className="email text-white"
+                              href={`mailto:${property?.owner?.email}`}
+                            >
                               {" "}
                               <i className="feather icon-feather-mail icon-medium text-base-color "></i>
                             </a>
                           </li>
+
                           {isWhatsAppLink(property?.owner?.whatsappLink) && (
                             <li className="cursor-pointer bg-gray-50 flex justify-center items-center rounded-xl shadow-lg">
                               <a
@@ -809,6 +840,7 @@ const PropertyDtls = () => {
                               </a>
                             </li>
                           )}
+
                         </ul>
                       </div>
                       {/*  end social icon */}
