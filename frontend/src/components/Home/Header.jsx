@@ -96,7 +96,7 @@ const Header = () => {
               </Link>
               {
                 auth.user ? (
-                  <button onClick={() => navigate('/dashboard')} className="md:hidden text-start">
+                  <button onClick={() => navigate( auth.user.type === 'Customer' ? '/dashboard': auth.user.type === 'Agent' ? '/agent' : auth.user.type === 'Owner' ? '/owner' : '/')} className="md:hidden text-start">
                     <span className=" font-medium text-gray-800 hover:text-gray-500">Dashboard</span>
                     
                   </button>
