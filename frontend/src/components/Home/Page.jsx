@@ -900,7 +900,7 @@ const Page = () => {
                           <div className="d-flex align-items-center">
                             <a
                               href="/property_details"
-                              className="alt-font text-dark-gray fw-700 fs-22 me-10px"
+                              className="alt-font text-dark-gray fw-800 fs-22 me-10px uppercase"
                             >
                               {prop.title}
                             </a>

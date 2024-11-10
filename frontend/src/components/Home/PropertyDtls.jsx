@@ -100,9 +100,9 @@ const PropertyDtls = () => {
                   </Link>
                 </div>
                 <div className="col-xl-7 col-lg-8 position-relative page-title-extra-small md-mb-30px md-mt-auto">
-                  <h3 className="alt-font fw-600 text-dark-gray mb-15px ls-minus-1px uppercase">
+                  <h4 className="alt-font fw-700 text-dark-gray mb-15px ls-minus-1px uppercase">
                     {property.title}
-                  </h3>
+                  </h4>
                   <h1 className="mb-0 d-flex">
                     <i className="feather icon-feather-map-pin icon-extra-medium text-base-color me-5px"></i>
                     {property.location}
@@ -774,10 +774,10 @@ const PropertyDtls = () => {
                       </div>
                       {/*  end features box item  */}
                       {/*  start social icon  */}
-                      <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center gap-3 bg-gray-50 rounded-xl flex justify-center items-center p-1 shadow-md">
+                      <div className="elements-social social-icon-style-02 mt-5px w-100 text-start text-lg-center gap-3 rounded-xl flex justify-center items-center p-1">
                         <ul className="medium-icon">
                           <li
-                            className="cursor-pointer"
+                            className="cursor-pointer bg-gray-50 flex justify-center items-center rounded-xl shadow-lg"
                            // onClick={() => toggleShow("phone")}
                           >
                             <a
@@ -785,22 +785,22 @@ const PropertyDtls = () => {
                               href={`tel:${property?.owner?.phone}`}
                               target="_blank"
                             >
-                              <i className="feather icon-feather-phone-call icon-medium text-base-color me-10px"></i>
+                              <i className="feather icon-feather-phone-call icon-medium text-base-color "></i>
                             </a>
                           </li>
 
                           <li
-                            className="cursor-pointer"
+                            className="cursor-pointer bg-gray-50 flex justify-center items-center rounded-xl shadow-lg"
                            // onClick={() => toggleShow("email")}
                           >
                             <a className="email text-white"
                             href={`mailto:${property?.owner?.email}`} >
                               {" "}
-                              <i className="feather icon-feather-mail icon-medium text-base-color me-10px"></i>
+                              <i className="feather icon-feather-mail icon-medium text-base-color "></i>
                             </a>
                           </li>
                           {isWhatsAppLink(property?.owner?.whatsappLink) && (
-                            <li className="cursor-pointer">
+                            <li className="cursor-pointer bg-gray-50 flex justify-center items-center rounded-xl shadow-lg">
                               <a
                                 className="whatsapp text-white"
                                 href={property?.owner?.whatsappLink}
