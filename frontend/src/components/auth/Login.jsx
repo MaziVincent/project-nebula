@@ -38,20 +38,23 @@ const Login = () => {
         setIsLoading(false)
         throw new Error('Network response was not ok')
       }
-      setAuth(response.data)
-      console.log(response.data)
-      toast.success('Login successful. Redirecting...')
-
+     
       setTimeout(() => {
         if(response.data?.user?.type === 'Admin') {
           navigate('/admin')
+          setAuth(response.data)
+         // console.log(response.data)
+          toast.success('Login successful. Redirecting...')
+    
         } else if(response.data?.user?.type === 'Agent'){
-          navigate('/agent')
+          navigate('/unauthorized')
         } else if(response.data?.user?.type === 'Owner'){
-          navigate('/owner')
+          navigate('/unauthorized')
+        }else{
+          navigate('/unauthorized')
         }
         setIsLoading(false)
-      }, 5000);
+      }, 2000);
     } catch (error) {
       setIsLoading(false)
       switch (error.response.status) {
@@ -74,7 +77,7 @@ const Login = () => {
   useEffect(() => {
   localStorage.setItem('persist', persist)
   }, [persist])
-  console.log(auth)
+  //console.log(auth)
   return (
     <div className=" bg-gray-100 min-h-screen">
       <ToastContainer />
