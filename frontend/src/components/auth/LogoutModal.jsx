@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import useLogout from '../../hooks/useLogout';
 import { Modal, CircularProgress } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const LogoutModal = ({ open, handleClose }) => {
   const logout = useLogout();
+  const navigate = useNavigate();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
     toast.info('Logging out...');
+    
     setTimeout( async () => {
         await logout()
         setIsLoggingOut(false);
+        //navigate('/');
       }, 2000);
   };
 

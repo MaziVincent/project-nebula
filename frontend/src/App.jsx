@@ -141,7 +141,7 @@ function App() {
 
             {/*  agent route */}
             <Route element={<PersistLogin />}>
-              <Route element={<RequireAuthAdmin allowedRoles={[roles.agent]} />}>
+              <Route element={<RequireAuth allowedRoles={[roles.agent]} />}>
                 <Route path='/agent' element={<AgentDashboard />} >
                   <Route index element={<AgentOverview />} />
                   <Route path='/agent/property/:id' element={<PropertyDetails />} />
@@ -152,7 +152,7 @@ function App() {
 
             {/*  owner route */}
             <Route element={<PersistLogin />}>
-              <Route element={<RequireAuthAdmin allowedRoles={[roles.owner]} />}>
+              <Route element={<RequireAuth allowedRoles={[roles.owner]} />}>
                 <Route path='/owner' element={<OwnerDashboard />} >
                   <Route index element={<OwnerOverview />} />
                   <Route path='/owner/property/:id' element={<Property />} />
