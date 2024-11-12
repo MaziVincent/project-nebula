@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import useRefreshToken from "../hooks/useRefreshtoken";
 import CircularProgress from '@mui/material/CircularProgress';
+import megalogo5 from '../assets/images/megalogo5.svg'
 
 
 
@@ -44,7 +45,7 @@ const PersistLogin = () => {
         {
             !persist 
             ? <Outlet /> :  
-            isLoading ? <p className="flex items-center justify-center p-20"> <CircularProgress color="success" /> </p>
+            isLoading ? <p className="flex items-center justify-center p-20"> <img src={megalogo5} alt="logo" className="animate-pulse" /> </p>
             : <Outlet />
         }
     

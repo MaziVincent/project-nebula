@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from "../../../../hooks/useFetch";  
 import useUpdate from "../../../../hooks/useUpdate";
 import { CircularProgress } from '@mui/material';
+import 'react-toastify/dist/ReactToastify.css'
+
 
 const PropertiesStatusModal = ({openStatus, handleCloseStatus, property}) => {
   const { auth } = useAuth();
@@ -21,7 +23,7 @@ const PropertiesStatusModal = ({openStatus, handleCloseStatus, property}) => {
     register,
     setValue,
     handleSubmit, 
-    formState: { errors } 
+    formState: { errors , isSubmitting } 
   } = useForm();
 
   useEffect(() => {
@@ -77,7 +79,9 @@ const PropertiesStatusModal = ({openStatus, handleCloseStatus, property}) => {
       aria-describedby="modal-modal-description"
       className='flex justify-center items-center'
     >
+      
       <div className=' w-64 py-4 px-4 bg-white relative '>
+      <ToastContainer/>
         Update Status
       <form onSubmit={handleSubmit(handleStatusUpdate)}
         className=' mx-auto'
@@ -101,7 +105,12 @@ const PropertiesStatusModal = ({openStatus, handleCloseStatus, property}) => {
           type="submit"
           className="bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-600"
         >
-          Update Status
+          {
+            isSubmitting ? (
+              <CircularProgress color="inherit" />
+            ) : "Update Status"
+          }
+          
         </button>
       </form>
       {/* Update Shop Status */}

@@ -8,12 +8,12 @@ router.route('/')
     .get(apartmentController.getApartmentsHandler)
     .post(verifyRoles('Admin', 'Agent', 'Owner'),
         apartmentController.createApartmentHandler)
-    .put(verifyRoles('Admin'), apartmentController.updateApartmentHandler)
+    .put(verifyRoles('Admin', 'Agent', 'Owner'), apartmentController.updateApartmentHandler)
 router.route('/:id')
     .get(apartmentController.getApartmentHandler)
-    .delete(verifyRoles('Admin', 'Agent'), apartmentController.deleteApartmentHandler);
+    .delete(verifyRoles('Admin', 'Agent', 'Owner'), apartmentController.deleteApartmentHandler);
 
 router.route('/status/:id')
-    .put(verifyRoles('Admin'), apartmentController.apartmentStatusHandler);
+    .put(verifyRoles('Admin', 'Agent', 'Owner'), apartmentController.apartmentStatusHandler);
 
 module.exports = router;

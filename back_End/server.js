@@ -10,13 +10,19 @@ const corsOptions = require('./config/corsOptions');
 const connectDB = require('./config/db');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
+//const prerender = require('prerender-node')
+const reverseProxy = require('./middleware/reverseproxy')
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3500;
 
+//set up prerender
+//prerender.set('prerenderToken', process.env.PRERENDER_TOKEN);
 //connect to mongo db
 connectDB();
 //logger
 app.use(logger);
+//
+app.use(reverseProxy);
 //ping
 app.use('/ping', require('./routes/ping'));
 app.use(credentials);
@@ -38,6 +44,7 @@ app.use('/logout', require('./routes/logout'));
 app.use('/recentProps', require('./routes/recentProps'));
 app.use('/customer', require('./routes/customer'));
 app.use('/properties', require('./routes/propertyRoutes'));
+app.use('/email', require('./routes/email'));
 //app.use('/property', require('./routes/property'));
 app.use(verifyJWT);
 app.use('/owner', require('./routes/owner'));

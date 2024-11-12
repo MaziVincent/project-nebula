@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import useFetch from '../../../hooks/useFetch';
 import useAuth from '../../../hooks/useAuth';
+import { useQuery } from 'react-query';
 import {ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import baseURL from '../../../shared/baseURL';
 import { CircularProgress, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const PropertyDetails = ({property, closeModal}) => {
+const CustomerPropertyDetails = () => {
   const { auth } = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}properties`;
@@ -16,23 +17,20 @@ const PropertyDetails = ({property, closeModal}) => {
   const imageUrl = `${baseURL}`;
 
   const getProperty = async () => {
-    try {
+    
       const result = await fetch(`${url}/${id}`, auth.accessToken);
-      if (result.data) {
-        // setProperty(result.data); 
-      }
-    } catch (error) {
-      toast.error("Error fetching Agent's details");
-      console.log("Fetch error:", error);
-    }
+      return result.data;
+    
   };
-  
-  
 
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
-  useEffect(() => {
-    getProperty();
-  }, [id]);
+  const { data:property, isError, isLoading, isSuccess } = useQuery(
+    ["property", id],
+    getProperty,
+    { keepPreviousData: true,
+        staleTime: 10000,
+        refetchOnMount:"always" }
+  );
+  
   console.log(property);
 
   return (
@@ -43,27 +41,7 @@ const PropertyDetails = ({property, closeModal}) => {
       </div>
     ) : (
       <div className="">
-        <button
-          type="button"
-          onClick={closeModal}
-          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-400 rounded-full text-sm p-1.5 ml-auto inline-flex items-center lg:hidden"
-          data-modal-toggle="defaultModal"
-        >
-        <svg
-          aria-hidden="true"
-          className="w-5 h-5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-        <path
-          fillRule="evenodd"
-          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-          clipRule="evenodd"
-        ></path>
-        </svg>
-        <span className="sr-only">Close modal</span>
-      </button>
+       
       <h3 className="text-2xl font-bold">Property Details</h3>
       <div className="mt-5">
         <img
@@ -164,4 +142,4 @@ const PropertyDetails = ({property, closeModal}) => {
   )
 }
 
-export default PropertyDetails
+export default CustomerPropertyDetails

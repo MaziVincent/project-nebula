@@ -22,6 +22,7 @@ const createLand = async (data) => {
             "plots": data.plots,
             "docType": data.docType,
             "ownershipType": data.ownershipType,
+            "paymentType": data.paymentType,
             "propertyType": data.propertyType,
             "landFeatures": data.landFeatures,
             "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.plots}`
@@ -72,6 +73,7 @@ const updateLand = async (id, data) => {
         if(data.docImage) land.docImage = data.docImage
         if(data.ownershipType) land.ownershipType = data.ownershipType
         if(data.propertyType) land.propertyType = data.propertyType
+        if(data.paymentType) land.paymentType = data.paymentType
         if(data.landFeatures) land.landFeatures = data.landFeatures
         const result = await land.save();
         return result;

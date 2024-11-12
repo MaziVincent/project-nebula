@@ -204,7 +204,7 @@ const Footer = () => {
                   to="/"
                   className="hover:underline"
                 >
-                  Listacc Ltd™
+                  MegaTech Group™
                 </Link>
                 . All Rights Reserved.
               </span>

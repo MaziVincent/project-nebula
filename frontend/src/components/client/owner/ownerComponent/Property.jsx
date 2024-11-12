@@ -99,6 +99,10 @@ const Property = () => {
               <span>Price: </span>
               {parseFloat(property.price.$numberDecimal).toLocaleString('en-US')}
             </p>
+            <p className=" mb-5">
+              <span>Payment Type: </span>
+              {parseFloat(property.price.$numberDecimal).toLocaleString('en-US') } / {property.paymentType}
+            </p>
             <span className=" grid grid-cols-3 gap- w-[350px]">
               <span className=" flex flex-col leading-5 items-center border-r border-gray-600">
                 {property.bedrooms}
@@ -122,7 +126,7 @@ const Property = () => {
               {property?.exteriorFeatures && (
                 
                 <div className=" my-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Exterior Features</h4>
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">Exterior Features</h4>
                   <ul className="grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                   {property.exteriorFeatures
                     .map((feature, index) => (
@@ -138,7 +142,7 @@ const Property = () => {
               )}
               {property?.interiorFeatures && (
                 <div className=" mb-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Interior Features</h4>
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">Interior Features</h4>
                   <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.interiorFeatures.map((interior, index) => (
                       <li
@@ -153,7 +157,7 @@ const Property = () => {
               )}
               {property?.kitchenFeatures && (
                 <div className=" mb-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Kitchen Features</h4>
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">Kitchen Features</h4>
                   <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.kitchenFeatures.map((kitchen, index) => (
                       <li
@@ -168,8 +172,8 @@ const Property = () => {
               )}
               {property?.livingRoomFeatures && (
                 <div className=" mb-5">
-                  <h4 className="text-xl text-center text-gray-600 font-bold mb-2">
-                    LivingRooom Features
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">
+                    LivingRoom Features
                   </h4>
                   <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
                     {property.livingRoomFeatures.map((livingRoom, index) => (
@@ -178,6 +182,22 @@ const Property = () => {
                         className="w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
                       >
                           <div className="ext-ft" dangerouslySetInnerHTML={{ __html: livingRoom }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+{property?.landFeatures && (
+                <div className=" mb-5">
+                  <h4 className="text-xl uppercase text-gray-600 font-bold mb-2">Land Features</h4>
+                  <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                    {property.landFeatures.map((land, index) => (
+                      <li
+                        key={index}
+                        className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                      >
+                          <div className="ext-ft" dangerouslySetInnerHTML={{ __html: land }} />
                       </li>
                     ))}
                   </ul>

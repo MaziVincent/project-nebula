@@ -54,6 +54,7 @@ const getPropertiesByOwner = async (data) => {
   const userId = data.userId;
   try {
     const properties = await Property.find({ owner: userId })
+      .sort({ createdAt: -1 })
       .populate("owner")
       .skip(skip)
       .limit(limit)
@@ -88,7 +89,7 @@ const deleteProperty = async (id) => {
 };
 
 const propertyStatus = async (id, status) => {
-  console.log(status);
+  //console.log(status);
   try {
     const property = await Property.findOne({ _id: id }).exec();
     if (!property) return { error: "Property not found" };

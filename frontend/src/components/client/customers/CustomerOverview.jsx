@@ -6,9 +6,8 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
-import PropertyDetails from "./PropertyDetails";
 import { useState } from "react";
-import { Modal } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import PageSkeleton from "../../Home/skeletons/PageSkeleton";
 import { div } from "framer-motion/m";
 
@@ -16,21 +15,22 @@ const CustomerOverview = () => {
   const {auth} = useAuth();
   const fetch = useFetch();
   const url = `${baseUrl}recentProps`
+  const navigate = useNavigate();
 
   const [page, setPage] = useState(1)
     const handleChange = (event, value) =>{
         setPage(value)
     }
-  const [openModal, setOpenModal] = useState(false)
-  const [selectedProperty, setSelectedProperty] = useState(null)
-  const handleProperty = (property) => {
-    setSelectedProperty(property); // Set the entire property object
-    setOpenModal(true)
-  };
+  // const [openModal, setOpenModal] = useState(false)
+  // const [selectedProperty, setSelectedProperty] = useState(null)
+  // const handleProperty = (property) => {
+  //   setSelectedProperty(property); // Set the entire property object
+  //   setOpenModal(true)
+  // };
   
-  const closeModal = () => {
-    setOpenModal(false); // Close modal
-  };
+  // const closeModal = () => {
+  //   setOpenModal(false); // Close modal
+  // };
   const getProperties = async () => {
     const result = await fetch(`${url}?page=${page}&limit=12`, auth.accessToken);
 
@@ -46,7 +46,7 @@ const CustomerOverview = () => {
         refetchOnMount:"always" }
   );
 
-  const isSmallScreen = window.innerWidth <= 1024;
+  // const isSmallScreen = window.innerWidth <= 1024;
   return (
     <div className="flex overflow-y-auto max-md:pt-10">
     <div className="flex-1 bg-gray-50 px-4 py-4">
@@ -125,7 +125,7 @@ const CustomerOverview = () => {
               className="w-full h-40 object-cover rounded-lg mb-3"
             />
             <h4 className="text-gray-500 text-base uppercase font-semibold mb-2">{props.title}</h4>
-            <h3 className="text-xl font-bold mb-3">&#8358;{props.price}</h3>
+            <h3 className="text-xl font-bold mb-3">&#8358;{parseFloat(props.price.$numberDecimal).toLocaleString('en-US')}</h3>
               <span className=" flex justify-between mb-3">
                 <span className=" flex flex-col leading-5 items-center">
                   {props?.bedrooms ? props.bedrooms.toString().padStart(2, '0') : '00'}
@@ -148,7 +148,7 @@ const CustomerOverview = () => {
                 </svg>
               </span>
               {props.location}</p>
-            <button onClick={() => handleProperty(props)} className="mt-4 w-full bg-emerald-500 text-white px-4 py-1 rounded-lg">View</button>
+            <button onClick={() => navigate(`/dashboard/details/${props._id}`)} className="mt-4 w-full bg-emerald-500 text-white px-4 py-1 rounded-lg">View</button>
           </div>
          ))
         ): (
@@ -162,28 +162,8 @@ const CustomerOverview = () => {
       )}
     </div>
       
-    {selectedProperty && ( 
-        <div className="hidden lg:block lg:w-1/4 bg-white shadow-lg">
-          <div className="p-5">
-            <PropertyDetails property={selectedProperty} closeModal={closeModal} />
-          </div>
-        </div>
-      )}
 
-      {
-        isSmallScreen && (
-          <Modal
-        open={openModal}
-        onClose={closeModal}
-        aria-labelledby="property-details-modal"
-        className="sm:block lg:hidden" 
-      >
-        <div className="fixed inset-0 z-50 bg-white p-5 overflow-auto">
-          <PropertyDetails property={selectedProperty} closeModal={closeModal} />
-        </div>
-      </Modal>
-        )
-      }
+    
   </div>
   )
 }

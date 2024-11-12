@@ -14,6 +14,9 @@ const ApartmentSchema = Property.discriminator('Apartment', new Schema({
     type: Number,
     required: true
   },
+  paymentType:{
+    type:String
+  },
   exteriorFeatures: {
     type: [String],
     required: true
