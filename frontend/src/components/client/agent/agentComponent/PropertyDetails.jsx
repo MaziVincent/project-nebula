@@ -101,6 +101,21 @@ const PropertyDetails = () => {
         <p className=' text-2xl text-center text-gray-600 font-medium'>Other Features:</p>
         <div>
           <div className=" grid grid-cols-1">
+          {property?.landFeatures && (
+            <div className=" mb-5">
+              <h4 className="text-xl text-center text-gray-600 font-bold mb-2">Land Features</h4>
+              <ul className=" grid grid-cols-1 md:gridcols2 lg:grid-cols-4 gap-4 max-md:space-x-0 max-md:space-y-8">
+                {property.landFeatures.map((landFt, index) => (
+                  <li
+                    key={index}
+                    className=" w-full text-gray-800 border-b-2 border-gray-400 py-2 px-0"
+                  >
+                    <div className="ext-ft text-gray-800" dangerouslySetInnerHTML={{ __html: landFt }} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {property?.exteriorFeatures && (
             
             <div className=" my-5">

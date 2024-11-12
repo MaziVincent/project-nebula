@@ -370,7 +370,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                {isLoading ? <CircularProgress /> : 'Add New Land'}
+                {isLoading ? <CircularProgress size={20} color='white' /> : 'Add New Land'}
               </button>
             </form>
             </div>
