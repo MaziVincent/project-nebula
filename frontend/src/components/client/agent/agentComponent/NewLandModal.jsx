@@ -3,7 +3,7 @@ import usePost from "../../../../hooks/usePost";
 import useAuth from "../../../../hooks/useAuth";
 import baseURL from '../../../../shared/baseURL';
 import Modal from '@mui/material/Modal';
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
@@ -18,14 +18,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
   const navigate = useNavigate()
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
-  const [selectedLandFeatures, setSelectedLandFeatures] = useState([]);
-
-  const handleLandFeatures = (e) => {
-   e.preventDefault()
-     setSelectedLandFeatures((prevFeatures) =>
-       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-     );
-   };
+ 
   const {
     register,
     handleSubmit,
@@ -78,7 +71,6 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
     })
 
     const handleCreateLand = (data) => {
-      data.landFeatures = selectedLandFeatures
     mutate(data);  
     setTimeout(() => {
       handleCloseLandModal();
@@ -303,29 +295,42 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
                   )}
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="landFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  <fieldset
                   >
-                    Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> Land Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
-                 {landFeatures.map((feature, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
-                      <input
+                 {landFeatures.map((land, index) => (
+                   <label htmlFor={`ldfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                      <Controller 
+                      name='landFeatures'
+                      control={control}
+                      render={({field:{onChange, value}}) => (
+                        <input
                         type="checkbox"
-                        id={`feature-${index}`}
+                        id={`ldfeature-${index}`}
                         name="landFeatures"
-                        value={`${feature.value}`}
-                        onChange={(e) => handleLandFeatures(e)}
+                        value={`${land.value}`}
+                        checked={value?.includes(land.value) || false}
+                        onChange={(e) =>{
+                           const isChecked = e.target.checked;
+                          onChange(
+                            isChecked
+                              ? [...(value || []), land.value]
+                              : value.filter((item) => item !== land.value)
+                          );
+                        }}
                         className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
                       />
-                      <label htmlFor={`feature-${index}`} className=' text-sm'>{feature.name}</label>
+                      )}
+
+                      />
                      
-                    </div>
+                      {land.name}
+                      
+                      </label>
+                     
+                    
                   ))}
                   {errors.landFeatures && (
                     <span className="text-red-500 text-sm">
@@ -333,6 +338,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
                   <label
