@@ -1,15 +1,12 @@
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "react-query";
-import { blue, brown, green, grey, purple, yellow } from "@mui/material/colors";
 import baseURL from "../../../shared/baseURL";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { Add } from "@mui/icons-material";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import DeletePropertyModal from "../../admin/property/DeletePropertyModal";
 import CreateNewHouseModal from "./ownerComponent/CreateNewHouseModal";
-import CreateApartmentModal from "../../admin/apartment/CreateApartmentModal";
 import CreateNewLandModal from "./ownerComponent/CreateNewLandModal";
 import CreateNewShopModal from "./ownerComponent/CreateNewShopModal";
 import UpdatePropertiesModal from "./ownerComponent/UpdatePropertiesModal";
@@ -31,7 +28,7 @@ const OwnerOverview = () => {
   const handlePropertyType = () => {
     setPropertyType(!propertyType);
   };
-
+ 
   //create property Modal
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => setOpenModal(true);
