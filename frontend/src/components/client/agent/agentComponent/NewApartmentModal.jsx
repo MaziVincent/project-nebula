@@ -26,6 +26,9 @@ const NewApartmentModal = ({open, handleClose}) => {
 
   const {
     register,
+    control,
+    reset,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
@@ -72,6 +75,7 @@ const NewApartmentModal = ({open, handleClose}) => {
       const response = await post(url, formData, auth?.accessToken);
       console.log(response.data);
       setTimeout(() => {
+        reset()
         handleClose();
       }, 3000);
     } catch (err) {
@@ -92,12 +96,24 @@ const NewApartmentModal = ({open, handleClose}) => {
   })
 
   const handleCreateApartment = (data) => {
-    mutate(data);  // Pass both form data and image
+    mutate(data); 
     setTimeout(() => {
       handleClose();
     }, 3000);
 };
-  // console.log(auth)
+
+const[payType, setPayType] = useState(false)
+
+const propType = watch('propertyType')
+
+useEffect(() => {
+  if(propType == 'Rent'){
+    setPayType(true)
+  }else{
+    setPayType(false)
+  }
+}, [propType])
+
   return (
     <Modal
       open={open}
@@ -515,6 +531,34 @@ const NewApartmentModal = ({open, handleClose}) => {
                     </span>
                   )}
                 </div>
+                {
+                  payType &&  <div className="sm:col-span-2">
+                  <label
+                    htmlFor="payment"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                   Payment Type
+                  </label>
+                    <select name="paymentType" id="payment"
+                      {...register("paymentType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select payment type" disabled selected>Select Payment Type</option>
+                        <option value="Day">Daily</option>
+                        <option value="Week">Weekly</option>
+                        <option value="Month">Monthly</option>
+                        <option value="6 Months">6 Months</option>
+                        <option value="Year">Yearly</option>
+                        <option value="2 Years">2 Years</option>
+                    </select>
+                    {errors.paymentType && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                </div>
+                }
+               
               </div>
               <button
                 type="submit"

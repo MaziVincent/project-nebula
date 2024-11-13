@@ -3,7 +3,7 @@ import usePost from "../../../hooks/usePost";
 import useAuth from "../../../hooks/useAuth";
 import baseURL from '../../../shared/baseURL';
 import Modal from '@mui/material/Modal';
-import { useForm } from "react-hook-form";
+import {Controller, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +20,8 @@ const CreateLandModal = ({open, handleClose}) => {
   
   const {
     register,
+    control,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
@@ -222,14 +224,6 @@ const CreateLandModal = ({open, handleClose}) => {
                   >
                     Document Type:
                   </label>
-                  {/* <input
-                    id="docType"
-                    name='docType'
-                    type='text'
-                    {...register("docType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter docType here"
-                  /> */}
                   <select name="docType" id="docType"
                     {...register("docType", { required: true })}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
@@ -281,6 +275,34 @@ const CreateLandModal = ({open, handleClose}) => {
                         <option value="Sell">Sell</option>
                     </select>
                 </div>
+                {
+                  payType &&  <div className="sm:col-span-2">
+                  <label
+                    htmlFor="payment"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                   Payment Type
+                  </label>
+                    <select name="paymentType" id="payment"
+                      {...register("paymentType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option value="select payment type" disabled selected>Select Payment Type</option>
+                        <option value="Day">Daily</option>
+                        <option value="Week">Weekly</option>
+                        <option value="Month">Monthly</option>
+                        <option value="6 Months">6 Months</option>
+                        <option value="Year">Yearly</option>
+                        <option value="2 Years">2 Years</option>
+                    </select>
+                    {errors.paymentType && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                </div>
+                }
+               
               </div>
               <button
                 type="submit"

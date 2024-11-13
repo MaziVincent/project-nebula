@@ -70,8 +70,8 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
       const response = await post(url, formData, auth?.accessToken);
       console.log(response.data);
       setTimeout(() => {
-        handleClose();
         reset();
+        handleClose();
       }, 2000);
     } catch (err) {
       setIsLoading(false)

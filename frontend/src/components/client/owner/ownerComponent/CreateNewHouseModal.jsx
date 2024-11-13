@@ -29,6 +29,7 @@ const CreateNewHouseModal = ({ open, handleCloseHouseModal }) => {
     handleSubmit,
     formState: { errors },
     control,
+    reset,
     watch
   } = useForm({ mode: "all" });
 

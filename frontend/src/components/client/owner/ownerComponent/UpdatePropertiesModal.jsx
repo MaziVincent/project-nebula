@@ -27,19 +27,7 @@ const UpdatePropertiesModal = ({
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState(null);
- 
-
-  const [selectedLandFeatures, setSelectedLandFeatures] = useState([]);
-
-  const handleLandFeatures = (e) => {
-    e.preventDefault();
-    setSelectedLandFeatures((prevFeatures) =>
-      e.target.checked
-        ? [...prevFeatures, e.target.value]
-        : prevFeatures.filter((f) => f !== e.target.value)
-    );
-  };
+  co
 
   const {
     register,
@@ -122,11 +110,27 @@ const UpdatePropertiesModal = ({
   });
 
   const handlePropertyUpdate = (data) => {
-   
+    if (data.propertyType === 'Sell') {
+      data.paymentType = "";
+    }
     mutate(data);
     //console.log(data);
   };
   //console.log(property)
+
+  const[payType, setPayType] = useState(false)
+
+const propType = watch('propertyType')
+
+useEffect(() => {
+  if(propType == 'Rent'){
+    setPayType(true)
+  }else if(propType == 'Lease') {
+    setPayType(true)
+  }else{
+    setPayType(false)
+  }
+}, [propType])
   return (
     <Modal
       open={openUpdate}
@@ -1252,37 +1256,43 @@ const UpdatePropertiesModal = ({
                         </span>
                       )}
                     </div>
-                    {property.paymentType && (
-                      <div className="sm:col-span-2">
-                        <label
-                          htmlFor="payment"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Payment Type
-                        </label>
-                        <select
-                          name="paymentType"
-                          id="payment"
-                          defaultValue={property.paymentType}
-                          {...register("paymentType", { required: true })}
-                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                        >
-                          <option
-                            value="select payment type"
-                            disabled
-                            selected
-                          >
-                            Select Payment Type
-                          </option>
-                          <option value="Day">Daily</option>
-                          <option value="Week">Weekly</option>
-                          <option value="Month">Monthly</option>
-                          <option value="6 Months">6 Months</option>
-                          <option value="Year">Yearly</option>
-                          <option value="2 Years">2 Years</option>
-                        </select>
-                      </div>
-                    )}
+                    {
+                      payType && (
+                        <div>
+                          {property.paymentType && (
+                            <div className="sm:col-span-2">
+                              <label
+                                htmlFor="payment"
+                                className="block mb-2 text-sm font-medium text-gray-900 "
+                              >
+                                Payment Type
+                              </label>
+                              <select
+                                name="paymentType"
+                                id="payment"
+                                defaultValue={property.paymentType}
+                                {...register("paymentType", { required: true })}
+                                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                              >
+                                <option
+                                  value="select payment type"
+                                  disabled
+                                  selected
+                                >
+                                  Select Payment Type
+                                </option>
+                                <option value="Day">Daily</option>
+                                <option value="Week">Weekly</option>
+                                <option value="Month">Monthly</option>
+                                <option value="6 Months">6 Months</option>
+                                <option value="Year">Yearly</option>
+                                <option value="2 Years">2 Years</option>
+                              </select>
+                            </div>
+                          )}
+                        </div>
+                      )
+                    }
                   </div>
                   <button
                     type="submit"
