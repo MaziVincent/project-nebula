@@ -22,11 +22,12 @@ connectDB();
 //logger
 app.use(logger);
 //
-//app.use(reverseProxy);
+
 //ping
 app.use('/ping', require('./routes/ping'));
 app.use(credentials);
 app.use(cors(corsOptions));
+app.use(reverseProxy);
 
 app.use(express.urlencoded({extended: false, limit:'50mb'}));
 
