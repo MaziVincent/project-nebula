@@ -166,6 +166,38 @@ const uploadDocument = async (files, id) => {
   
     return Promise.all(uploadPromises);
   };
+
+
+  const makeSuperAgent = async (id) => {
+
+    try{
+        const agent = await Agent.findOne({_id: id}).exec();
+        if(!agent) return {error: "Agent not found"};
+        agent.superAgent = true;
+        await agent.save();
+        return agent;
+
+    } catch (e) {
+        return {error: e.message}
+    }
+}
+
+const removeSuperAgent = async (id) => {
+
+    try{
+        const agent = await Agent.findOne({_id: id}).exec();
+        if(!agent) return {error: "Agent not found"};
+        agent.superAgent = false;
+        await agent.save();
+
+        return agent;
+
+    } catch (e) {
+        return {error: e.message}
+    }
+}
+
+
 module.exports = {
     createAgent, 
     getAllAgents, 
@@ -175,5 +207,7 @@ module.exports = {
     agentExists,
     verifyAgent,
     unVerifyAgent,
-    uploadDocument
+    uploadDocument,
+    makeSuperAgent,
+    removeSuperAgent
 }

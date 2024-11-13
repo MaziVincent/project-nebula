@@ -113,6 +113,26 @@ const handleUploadDocument = async (req, res) => {
     res.status(200).json({Success: "Document uploaded successfully", result});
 }
 
+const handleMakeSuperAgent = async (req, res) => {
+    if(!req.params.id){
+        return res.status(400).json({ message: 'ID is required' });
+    }
+    const _id = req.params.id;
+    const result = await makeSuperAgent(_id);
+    if(result.error) return res.status(500).json(result);
+    res.status(200).json({Success: "Agent made super agent successfully", result});
+}
+
+const handleRemoveSuperAgent = async (req, res) => {
+    if(!req.params.id){
+        return res.status(400).json({ message: 'ID is required' });
+    }
+    const _id = req.params.id;
+    const result = await removeSuperAgent(_id);
+    if(result.error) return res.status(500).json(result);
+    res.status(200).json({Success: "Agent removed super agent successfully", result});
+}
+
 module.exports = {
     handleAgents,
     handleCreateAgent,
@@ -121,5 +141,7 @@ module.exports = {
     handleAgent,
     handleVerifyAgent,
     handleUnVerifyAgent,
-    handleUploadDocument
+    handleUploadDocument,
+    handleMakeSuperAgent,
+    handleRemoveSuperAgent  
 }
