@@ -36,13 +36,19 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
     formState: { errors },
   } = useForm({ mode: "all" });
 
-  // Set the form fields with the fetched data
+
   useEffect(() => {
     if (property) {
       Object.entries(property).forEach(([key, value]) => {
+
+        if(key === 'price'){
+          setValue(key, parseInt(value.$numberDecimal))
+        }else{
+
         setValue(key, value);
+        }
       });
-      setPropertyType(property.type);
+      setSelectedProperty(property.type);
     }
   }, [property, setValue]);
 
@@ -1085,31 +1091,41 @@ useEffect(() => {
                   )}
                 </div>
                 {
-                  payType &&  <div className="sm:col-span-2">
-                  <label
-                    htmlFor="payment"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                   Payment Type
-                  </label>
-                    <select name="paymentType" id="payment"
-                      {...register("paymentType", { required: true })}
-                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    >
-                      <option value="select payment type" disabled selected>Select Payment Type</option>
-                        <option value="Day">Daily</option>
-                        <option value="Week">Weekly</option>
-                        <option value="Month">Monthly</option>
-                        <option value="6 Months">6 Months</option>
-                        <option value="Year">Yearly</option>
-                        <option value="2 Years">2 Years</option>
-                    </select>
-                    {errors.paymentType && (
-                      <span className="text-red-500 text-sm">
-                        This field is required
-                      </span>
-                    )}
-                </div>
+                  payType && (
+                    <div>
+                      {property.paymentType && (
+                        <div className="sm:col-span-2">
+                          <label
+                            htmlFor="payment"
+                            className="block mb-2 text-sm font-medium text-gray-900 "
+                          >
+                            Payment Type
+                          </label>
+                          <select
+                            name="paymentType"
+                            id="payment"
+                            defaultValue={property.paymentType}
+                            {...register("paymentType", { required: true })}
+                            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                          >
+                            <option
+                              value="select payment type"
+                              disabled
+                              selected
+                            >
+                              Select Payment Type
+                            </option>
+                            <option value="Day">Daily</option>
+                            <option value="Week">Weekly</option>
+                            <option value="Month">Monthly</option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="Year">Yearly</option>
+                            <option value="2 Years">2 Years</option>
+                          </select>
+                        </div>
+                      )}
+                    </div>
+                  )
                 }
                
               </div>

@@ -36,11 +36,17 @@ const UpdateApartmentModal = ({ openUpdate, handleUpdateClose, apartment }) => {
   useEffect(() => {
     if (apartment) {
       Object.entries(apartment).forEach(([key, value]) => {
+        if(key === 'price'){
+          setValue(key, parseInt(value.$numberDecimal))
+        }else{
+
         setValue(key, value);
+        }
       });
     }
   }, [apartment, setValue]);
 
+ 
 
   const updateApartment = async (data) => {
     setIsLoading(true)

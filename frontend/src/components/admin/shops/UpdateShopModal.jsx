@@ -32,7 +32,12 @@ const UpdateShopModal = ({ openUpdate, handleUpdateClose, shop }) => {
   useEffect(() => {
     if (shop) {
       Object.entries(shop).forEach(([key, value]) => {
+        if(key === 'price'){
+          setValue(key, parseInt(value.$numberDecimal))
+        }else{
+
         setValue(key, value);
+        }
       });
     }
   }, [shop, setValue]);

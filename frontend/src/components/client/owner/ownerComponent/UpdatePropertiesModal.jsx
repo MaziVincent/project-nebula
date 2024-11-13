@@ -27,13 +27,14 @@ const UpdatePropertiesModal = ({
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
-  co
-
+  const [selectedProperty, setSelectedProperty] = useState("");
+  
   const {
     register,
     handleSubmit,
     setValue,
     control,
+    watch,
     formState: { errors },
   } = useForm({ mode: "all" });
 

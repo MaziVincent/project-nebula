@@ -37,7 +37,12 @@ const UpdateHouseModal = ({ openUpdate, handleUpdateClose, house }) => {
   useEffect(() => {
     if (house) {
       Object.entries(house).forEach(([key, value]) => {
+        if(key === 'price'){
+          setValue(key, parseInt(value.$numberDecimal))
+        }else{
+
         setValue(key, value);
+        }
       });
     }
   }, [house, setValue]);

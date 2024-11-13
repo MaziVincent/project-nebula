@@ -21,14 +21,7 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   const [isLoading, setIsLoading] = useState(false);
   const url = `${baseURL}land`; 
 
-  const [selectedLandFeatures, setSelectedLandFeatures] = useState([]);
-
-  const handleLandFeatures = (e) => {
-   e.preventDefault()
-     setSelectedLandFeatures((prevFeatures) =>
-       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-     );
-   };
+  
   const {
     register,
     reset,
@@ -43,7 +36,12 @@ const UpdateLandModal = ({ openUpdate, handleUpdateClose, land }) => {
   useEffect(() => {
     if (land) {
       Object.entries(land).forEach(([key, value]) => {
+        if(key === 'price'){
+          setValue(key, parseInt(value.$numberDecimal))
+        }else{
+
         setValue(key, value);
+        }
       });
     }
   }, [land, setValue]);
