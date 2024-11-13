@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import logo5 from '../../assets/images/megalogo5.svg'
 
 
 const usePageSEO = ({
@@ -18,7 +19,7 @@ const usePageSEO = ({
         setMetaTag('name', 'keywords', keywords)
         setMetaTag('property', 'og:title', ogTitle || title)
         setMetaTag('property', 'og:description', ogDescription || description)
-        setMetaTag('property', 'og:image', ogImage)
+        setMetaTag('property', 'og:image', ogImage || logo5)
         setMetaTag('property', 'og:url', ogUrl || window.location.href)
 
     }, [
