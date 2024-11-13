@@ -23,20 +23,18 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
+  const [propertyType, setPropertyType] = useState("");
   
-
-  const [propertyType, setPropertyType] = useState(null)
   const {
     register,
-    reset,
-    watch,
-    control,
     handleSubmit,
     setValue,
+    control,
+    watch,
     formState: { errors },
   } = useForm({ mode: "all" });
 
-
+  // Set the form fields with the fetched data
   useEffect(() => {
     if (property) {
       Object.entries(property).forEach(([key, value]) => {
@@ -48,95 +46,74 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
         setValue(key, value);
         }
       });
-      setSelectedProperty(property.type);
+      setPropertyType(property.type);
     }
   }, [property, setValue]);
 
   const updateProperty = async (data) => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (!auth || !auth?.accessToken) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
     const formData = new FormData();
 
+    //Append form fields
     for (const key in data) {
-
-      if(key === 'exteriorFeatures'){
+      if (key === "exteriorFeatures") {
         data.exteriorFeatures.forEach((exterior) => {
-          formData.append('exteriorFeatures[]', exterior);
-        })
-      }else if(key === 'interiorFeatures' ){
+          formData.append("exteriorFeatures[]", exterior);
+        });
+      } else if (key === "interiorFeatures") {
         data.interiorFeatures.forEach((interior) => {
-          formData.append('interiorFeatures[]', interior);
-        })
-        
-      }else if(key === 'kitchenFeatures'){
+          formData.append("interiorFeatures[]", interior);
+        });
+      } else if (key === "kitchenFeatures") {
         data.kitchenFeatures.forEach((kitchen) => {
-          formData.append('kitchenFeatures[]', kitchen);
-        })
-        
-      }else if(key === 'livingRoomFeatures'){
+          formData.append("kitchenFeatures[]", kitchen);
+        });
+      } else if (key === "livingRoomFeatures") {
         data.livingRoomFeatures.forEach((living) => {
-          formData.append('livingRoomFeatures[]', living);
-        })
-        
-      }
-      else if(key === 'landFeatures'){
+          formData.append("livingRoomFeatures[]", living);
+        });
+      } else if (key === "landFeatures") {
         data.landFeatures.forEach((feature) => {
-          formData.append('landFeatures[]', feature);
-        })
-        
-      }else{
+          formData.append("landFeatures[]", feature);
+        });
+      } else {
         formData.append(key, data[key]);
       }
-    
-        
-      
     }
-    //console.log(data)
-    let url;
-    switch (propertyType) {
-      case "house":
-        url = `${baseURL}houses`;
-        break;
-      case "apartment":
-        url = `${baseURL}apartments`;
-        break;
-      case "land":
-        url = `${baseURL}lands`;
-        break;
-      default:
-        setError("Unsupported property type");
-        return;
-    }
+    console.log(formData);
+
     try {
-      const response = await update(`${url}`, data, auth?.accessToken);
+      const response = await update(url, data, auth?.accessToken);
       console.log(response);
       setTimeout(() => {
-        reset()
         handleCloseUpdate();
       }, 3000);
-      toast.success('Property updated successfully');
+      toast.success("Property updated successfully");
     } catch (err) {
-      setIsLoading(false)
+      setIsLoading(false);
       setError(err.response?.data?.error || err.message);
     }
   };
 
   const { mutate } = useMutation(updateProperty, {
     onSuccess: () => {
-      setIsLoading(false)
-      queryClient.invalidateQueries('properties');
-    }
+      setIsLoading(false);
+      queryClient.invalidateQueries("properties");
+    },
   });
 
   const handlePropertyUpdate = (data) => {
+    if (data.propertyType === 'Sell') {
+      data.paymentType = "";
+    }
     mutate(data);
-    
+    //console.log(data);
   };
-
-  // console.log(propertyType)
+  //console.log(property)
 
   const[payType, setPayType] = useState(false)
 
@@ -145,7 +122,7 @@ const propType = watch('propertyType')
 useEffect(() => {
   if(propType == 'Rent'){
     setPayType(true)
-  }else if(propType == 'Lease'){
+  }else if(propType == 'Lease') {
     setPayType(true)
   }else{
     setPayType(false)
@@ -374,11 +351,14 @@ useEffect(() => {
                         </label>
                         <input
                           id="yearBuilt"
-                          name='yearBuilt'
-                          type='number'
+                          name="yearBuilt"
+                          type="number"
+                          min="1900"
+                          max="2100"
+                          step="1"
                           {...register("yearBuilt", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                          placeholder="Enter yearBuilt here"
+                          placeholder="Enter year Built here"
                         />
                         {errors.yearBuilt && (
                           <span className="text-red-500 text-sm">
@@ -418,7 +398,7 @@ useEffect(() => {
                         {...register("buildingType", { required: true })}
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                       >
-                        <option value="Select" selected disabled>-- Select Type --</option>
+                        <option value="Select"  disabled>-- Select Type --</option>
                         <option value="Bungalow">Bungalow</option>
                         <option value="Duplex">Duplex</option>
                         <option value="One Story">One Story</option>
@@ -444,7 +424,7 @@ useEffect(() => {
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                         >
-                          <option value="Select Document Type" selected disabled>Select Document Type</option>
+                          <option value="Select Document Type" disabled>Select Document Type</option>
                           <option value="Certificate of OwnerShip (C of O)">Certificate of OwnerShip (C of O)</option>
                           <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                           <option value="Deeds of Conveyance">Deeds of Conveyance</option>
@@ -917,7 +897,7 @@ useEffect(() => {
                           {...register("docType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                         >
-                          <option value="Select Document Type" selected disabled>Select Document Type</option>
+                          <option value="Select Document Type" disabled>Select Document Type</option>
                           <option value="Certificate of OwnerShip (C of O)">Certificate of OwnerShip (C of O)</option>
                           <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
                           <option value="Deeds of Conveyance">Deeds of Conveyance</option>
@@ -985,7 +965,7 @@ useEffect(() => {
                           {...register("ownershipType", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                         >
-                          <option value="Select OWnership Type" selected disabled>Select OWnership Type</option>
+                          <option value="Select OWnership Type"  disabled>Select OWnership Type</option>
                           <option value="Virgin Land">Virgin Land</option>
                           <option value="Resell">Resell</option>
                         </select>
@@ -1012,7 +992,7 @@ useEffect(() => {
                           {...register("shopCategory", { required: true })}
                           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                         >
-                          <option value="Select Shop Category" selected disabled>Select Shop Category</option>
+                          <option value="Select Shop Category"  disabled>Select Shop Category</option>
                           <option value="Warehouse">Warehouse</option>
                           <option value="Retail Store">Retail Store</option>
                           <option value="Office Space">Office Space</option>
@@ -1111,7 +1091,7 @@ useEffect(() => {
                             <option
                               value="select payment type"
                               disabled
-                              selected
+                              
                             >
                               Select Payment Type
                             </option>
