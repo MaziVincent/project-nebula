@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import useAuth from "../../../hooks/useAuth";
 import { QueryClient, useQuery } from "react-query";
 import { useState } from 'react';
@@ -12,6 +12,9 @@ import CreateAgentModal from './CreateAgentModal';
 import UpdateAgentModal from './UpdateAgentModal';
 import UsersStatusModal from '../users/UsersStatusModal';
 import DeleteUserModal from '../users/DeleteUserModal';
+import MakeSuperAgent from './MakeSuperAgent';
+import RemoveSuperAgent from './RemoveSuperAgent';
+
 
 const AdminAgents = () => {
   const queryClient = new QueryClient();
@@ -19,7 +22,6 @@ const AdminAgents = () => {
   const fetch = useFetch();
   const url = `${baseURL}agent`
   const [openModal, setOpenModal] = useState(false)
-  const [loading, setLoading] = useState(false)
 
   const handleOpen = () => setOpenModal(true)
   const handleClose = () => setOpenModal(false)
@@ -38,6 +40,20 @@ const AdminAgents = () => {
   const handleOpenDelete = () => setOpenDelete(true);
   const handleDeleteClose = () => setOpenDelete(false);
   const [userId, setUserId] = useState("")
+  const [agentId, setAgentId] = useState(null)
+
+  //super agent
+  const [openSuper, setOpenSuper] = useState(false);
+  const handleOpenSuper = () => {
+    setOpenSuper(true)
+  };
+  const handleSuperClose = () => setOpenSuper(false);
+  //remove super
+  const [openRemove, setOpenRemove] = useState(false);
+  const handleOpenRemove = () => {
+    setOpenSuper(true)
+  };
+  const handleRemoveClose = () => setOpenRemove(false);
 
 
   const [tools, setTools] = useState(false)
@@ -50,7 +66,7 @@ const AdminAgents = () => {
   }
   const getAgents = async () => {
     const result = await fetch(url, auth.accessToken);
-
+    
     return result.data;
   };
   
@@ -114,6 +130,9 @@ const AdminAgents = () => {
                 >
                   Verification Status
                 </th>
+                <th className=' text-center space-x-4 font-semibold text-gray-700 text-xl'>
+                  . . .
+                </th>
                 <th
                 
                   scope="col"
@@ -153,6 +172,33 @@ const AdminAgents = () => {
                       {agent.verified ? 'Verified' : 'Not Verified'}
                     </span>
                   </div>
+                </td>
+                <td>
+                {agent.isSuperAgent ? (
+                  <button
+                    onClick={() => {
+                      // dispatch({ type: "openSuper" });
+                      // dispatch({ type: "super", payload: false });
+                      // setPropertyId(props._id);
+                      handleOpenRemove()
+                      setAgentId(agent._id)
+                    }}
+                    className="bg-orange-700 cursor-pointer p-2 text-nowrap rounded-lg  text-white hover:bg-orange-500"
+                  >
+                    Remove Super Agent
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      handleOpenSuper()
+                      // setUserId(agent._id)
+                      setAgentId(agent._id)
+                    }}
+                    className="bg-teal-700 cursor-pointer p-2 text-nowrap rounded-lg text-white hover:bg-teal-500"
+                  >
+                    Make Super agent
+                  </button>
+                )}
                 </td>
                 <td className="px-6 py-4">
                   <div className="">
@@ -271,18 +317,37 @@ const AdminAgents = () => {
           </table>
         </div>
       </div>
-      <CreateAgentModal open={openModal} handleClose={handleClose} />
-      <UpdateAgentModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} agent={agent} />
-      <UsersStatusModal openStatus={openStatus} handleCloseStatus={handleCloseStatus}
+      <MakeSuperAgent
+        open={openSuper}
+        handleClose={handleSuperClose}
+        agentId={agentId}
+      />
+      
+      <RemoveSuperAgent
+        open={openRemove}
+        handleClose={handleRemoveClose}
+        agentId={agentId}
+      />
+
+      <CreateAgentModal 
+        open={openModal} 
+        handleClose={handleClose} />
+      <UpdateAgentModal 
+        openUpdate={openUpdate} 
+        handleUpdateClose={handleUpdateClose} 
+        agent={agent} 
+      />
+      <UsersStatusModal 
+        openStatus={openStatus} 
+        handleCloseStatus={handleCloseStatus}
         userId={userId}
       />
       <DeleteUserModal 
         openDelete={openDelete} 
         handleDeleteClose={handleDeleteClose} 
-        // shop={shop}
         userId={userId}
-        // propertyType="shop" 
-        url={`${url}`} />
+        url={`${url}`} 
+      />
     </div>
   )
 }
