@@ -22,7 +22,7 @@ connectDB();
 //logger
 app.use(logger);
 //
-app.use(reverseProxy);
+//app.use(reverseProxy);
 //ping
 app.use('/ping', require('./routes/ping'));
 app.use(credentials);
@@ -38,24 +38,24 @@ app.use('/uploads', express.static('uploads'));
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/', require('./routes/root'));
-app.use('/login', require('./routes/auth'));
-app.use('/refresh', require('./routes/refresh'));
-app.use('/logout', require('./routes/logout'));
-app.use('/recentProps', require('./routes/recentProps'));
-app.use('/customer', require('./routes/customer'));
-app.use('/properties', require('./routes/propertyRoutes'));
-app.use('/email', require('./routes/email'));
+app.use('/api/login', require('./routes/auth'));
+app.use('/api/refresh', require('./routes/refresh'));
+app.use('/api/logout', require('./routes/logout'));
+app.use('/api/recentProps', require('./routes/recentProps'));
+app.use('/api/customer', require('./routes/customer'));
+app.use('/api/properties', require('./routes/propertyRoutes'));
+app.use('/api/email', require('./routes/email'));
 //app.use('/property', require('./routes/property'));
 app.use(verifyJWT);
-app.use('/owner', require('./routes/owner'));
-app.use('/admin', require('./routes/admin'));
-app.use('/agent', require('./routes/agent'));
-app.use('/shop', require('./routes/shop'));
-app.use('/apartment', require('./routes/apartment'));
-app.use('/land', require('./routes/land'));
-app.use('/house', require('./routes/house'));
-app.use('/user', require('./routes/api/user'));
-app.use('/listings', require('./routes/listingRoutes'));
+app.use('/api/owner', require('./routes/owner'));
+app.use('/api/admin', require('./routes/admin'));
+app.use('/api/agent', require('./routes/agent'));
+app.use('/api/shop', require('./routes/shop'));
+app.use('/api/apartment', require('./routes/apartment'));
+app.use('/api/land', require('./routes/land'));
+app.use('/api/house', require('./routes/house'));
+app.use('/api/user', require('./routes/api/user'));
+app.use('/api/listings', require('./routes/listingRoutes'));
 
 
 
