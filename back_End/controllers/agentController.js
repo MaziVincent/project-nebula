@@ -10,6 +10,10 @@ const {
     uploadDocument
 } = require('../services/agentService');
 
+const {
+    userExists
+} = require('../services/userService');
+
 const handleAgents = async (req, res) => {
     const data = {
         page: req.query.page,
@@ -29,7 +33,7 @@ const handleCreateAgent = async (req, res) => {
     if(!firstname || !lastname || !email || !phone || !contactAddress || !identityNumber || !identityType || !officeAddress || !agencyName) {
         return res.status(400).json({ message: 'All fields are required' });
     }
-    const duplicate = await agentExists(email);
+    const duplicate = await userExists(email);
     if(duplicate) return res.status(409).json({ message: 'Agent already exists' });
     const data = {
         firstname,

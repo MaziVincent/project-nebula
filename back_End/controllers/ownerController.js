@@ -10,6 +10,9 @@ const {
     uploadDocument
 } = require('../services/ownerService');
 
+const {
+    userExists
+} = require('../services/userService');
 
 const handleOwners = async (req, res) => {
     const data = {
@@ -26,7 +29,7 @@ const handleCreate = async (req, res) => {
    if (!firstname, !lastname, !email, !password, !identityType, !identityNumber) {
        return res.status(400).json({ message: 'Please enter all fields' });
    }
-    const duplicate = await ownerExists(email);
+    const duplicate = await userExists(email);
     console.log(duplicate);
     if(duplicate){
       return res.sendStatus(409); //conflict

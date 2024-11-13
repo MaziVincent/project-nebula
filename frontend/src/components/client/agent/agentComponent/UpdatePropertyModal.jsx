@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useAuth from "../../../../hooks/useAuth";
 import baseURL from '../../../../shared/baseURL';
 import Modal from '@mui/material/Modal';
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from 'react-router-dom';
@@ -23,48 +23,7 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
   const fetch = useFetch();
   const update = useUpdate();
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedExteriorFeatures, setExteriorFeatures] = useState([]);
-  const [selectedInteriorFeatures, setInteriorFeatures] = useState([]);
-  const [selectedKitchenFeatures, setKitchenFeatures] = useState([]);
-  const [selectedLivingRoomFeatures, setLivingRoomFeatures] = useState([]);
- 
-  const handleExteriorFeatures = (e) => {
-   e.preventDefault()
-     setExteriorFeatures((prevFeatures) =>
-       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-     );
-   };
- 
-  const handleInteriorFeatures = (e) => {
-   e.preventDefault()
-     setInteriorFeatures((prevFeatures) =>
-       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-     );
-   };
- 
-   const handleKitchenFeatures = (e) => {
-     e.preventDefault()
-     setKitchenFeatures((prevFeatures) =>
-       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-     );
-   };
- 
- 
-   const handleLivingRoomFeatures = (e) => {
-     e.preventDefault()
-     setLivingRoomFeatures((prevFeatures) =>
-       e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-     );
-   };
-
-   const [selectedLandFeatures, setSelectedLandFeatures] = useState([]);
-
-   const handleLandFeatures = (e) => {
-    e.preventDefault()
-      setSelectedLandFeatures((prevFeatures) =>
-        e.target.checked ? [...prevFeatures, e.target.value] : prevFeatures.filter((f) => f !== e.target.value)
-      );
-    };
+  
 
   const [propertyType, setPropertyType] = useState(null)
   const {
@@ -163,11 +122,6 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
   });
 
   const handlePropertyUpdate = (data) => {
-    data.exteriorFeatures = selectedExteriorFeatures
-    data.interiorFeatures = selectedInteriorFeatures
-    data.kitchenFeatures = selectedKitchenFeatures
-    data.livingRoomFeatures = selectedLivingRoomFeatures
-    data.landFeatures = selectedLandFeatures
     mutate(data);
     
   };
@@ -477,136 +431,182 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         )}
                       </div>
                       <div className="sm:col-span-2">
-                  <label
-                    htmlFor="exteriorFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                <fieldset
                   >
-                    Exterior Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> Exterior Features : </legend>
+                 
                  <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
                  {exteriorFeatures.map((exterior, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
-                      <input
-                        type="checkbox"
-                        id={`exfeature-${index}`}
-                        name="exteriorFeatures"
-                        value={`${exterior.value}`}
-                        onChange={(e) => handleExteriorFeatures(e)}
-                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                      />
-                      <label htmlFor={`exfeature-${index}`} className=' text-sm'>{exterior.name}</label>
-                     
-                    </div>
+                   <label htmlFor={`extfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                   <Controller 
+                   name='exteriorFeatures'
+                   control={control}
+                   render={({field:{onChange, value}}) => (
+                     <input
+                     type="checkbox"
+                     id={`extfeature-${index}`}
+                     name="exteriorFeatures"
+                     value={`${exterior.value}`}
+                     checked={value?.includes(exterior.value) || false}
+                     onChange={(e) =>{
+                        const isChecked = e.target.checked;
+                       onChange(
+                         isChecked
+                           ? [...(value || []), exterior.value]
+                           : value.filter((item) => item !== exterior.value)
+                       );
+                     }}
+                     className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                   />
+                   )}
+
+                   />
+                  
+                   {exterior.name}
+                   
+                   </label>
                   ))}
                   {errors.exteriorFeatures && (
                     <span className="text-red-500 text-sm">
-
                       This field is required
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="interiorFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                <fieldset
                   >
-                    Interior Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> Interior Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
                  {interiorFeatures.map((interior, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
+                    <label htmlFor={`intfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                    <Controller 
+                    name='interiorFeatures'
+                    control={control}
+                    render={({field:{onChange, value}}) => (
                       <input
-                        type="checkbox"
-                        id={`infeature-${index}`}
-                        name="interiorFeatures"
-                        value={`${interior.value}`}
-                        onChange={(e) => handleInteriorFeatures(e)}
-                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                      />
-                      <label htmlFor={`infeature-${index}`} className=' text-sm'>{interior.name}</label>
-                     
-                    </div>
+                      type="checkbox"
+                      id={`intfeature-${index}`}
+                      name="interiorFeatures"
+                      value={`${interior.value}`}
+                      checked={value?.includes(interior.value) || false}
+                      onChange={(e) =>{
+                         const isChecked = e.target.checked;
+                        onChange(
+                          isChecked
+                            ? [...(value || []), interior.value]
+                            : value.filter((item) => item !== interior.value)
+                        );
+                      }}
+                      className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                    />
+                    )}
+ 
+                    />
+                   
+                    {interior.name}
+                    
+                    </label>
                   ))}
                   {errors.interiorFeatures && (
                     <span className="text-red-500 text-sm">
-
                       This field is required
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="livingRoomFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                <fieldset
                   >
-                    Living Room Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> LivingRoom Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
                  {livingRoomFeatures.map((livingRoom, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
-                      <input
-                        type="checkbox"
-                        id={`lifeature-${index}`}
-                        name="livingRoomFeatures"
-                        value={`${livingRoom.value}`}
-                        onChange={(e) => handleLivingRoomFeatures(e)}
-                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                      />
-                      <label htmlFor={`lifeature-${index}`} className=' text-sm'>{livingRoom.name}</label>
-                     
-                    </div>
+                   <label htmlFor={`lvfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                   <Controller 
+                   name='livingRoomFeatures'
+                   control={control}
+                   render={({field:{onChange, value}}) => (
+                     <input
+                     type="checkbox"
+                     id={`lvfeature-${index}`}
+                     name="livingRoomFeatures"
+                     value={`${livingRoom.value}`}
+                     checked={value?.includes(livingRoom.value) || false}
+                     onChange={(e) =>{
+                        const isChecked = e.target.checked;
+                       onChange(
+                         isChecked
+                           ? [...(value || []), livingRoom.value]
+                           : value.filter((item) => item !== livingRoom.value)
+                       );
+                     }}
+                     className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                   />
+                   )}
+
+                   />
+                  
+                   {livingRoom.name}
+                   
+                   </label>
                   ))}
                   {errors.livingRoomFeatures && (
                     <span className="text-red-500 text-sm">
-
                       This field is required
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="kitchenFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  <fieldset
                   >
-                    Kitchen Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> Kitchen Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
                  {kitchenFeatures.map((kitchen, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
-                      <input
+                   <label htmlFor={`ktfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                      <Controller 
+                      name='kitchenFeatures'
+                      control={control}
+                      render={({field:{onChange, value}}) => (
+                        <input
                         type="checkbox"
                         id={`ktfeature-${index}`}
                         name="kitchenFeatures"
                         value={`${kitchen.value}`}
-                        onChange={(e) => handleKitchenFeatures(e)}
+                        checked={value?.includes(kitchen.value) || false}
+                        onChange={(e) =>{
+                           const isChecked = e.target.checked;
+                          onChange(
+                            isChecked
+                              ? [...(value || []), kitchen.value]
+                              : value.filter((item) => item !== kitchen.value)
+                          );
+                        }}
                         className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
                       />
-                      <label htmlFor={`ktfeature-${index}`} className=' text-sm'>{kitchen.name}</label>
+                      )}
+
+                      />
                      
-                    </div>
+                      {kitchen.name}
+                      
+                      </label>
+                     
+                    
                   ))}
                   {errors.kitchenFeatures && (
                     <span className="text-red-500 text-sm">
-
                       This field is required
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 </div>
                   )
@@ -675,136 +675,182 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         )}
                       </div>
                       <div className="sm:col-span-2">
-                      <label
-                        htmlFor="exteriorFeatures"
-                        className="block mb-2 text-sm font-medium text-gray-900 "
-                      >
-                        Exterior Features:
-                    </label>
-                    <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
-                    {exteriorFeatures.map((exterior, index) => (
-                      <div key={index}
-                      
-                      className='flex items-center space-x-2'>
-                        
-                        <input
-                          type="checkbox"
-                          id={`exfeature-${index}`}
-                          name="exteriorFeatures"
-                          value={`${exterior.value}`}
-                          onChange={(e) => handleExteriorFeatures(e)}
-                          className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                        />
-                        <label htmlFor={`exfeature-${index}`} className=' text-sm'>{exterior.name}</label>
-                        
-                      </div>
-                    ))}
-                    {errors.exteriorFeatures && (
-                      <span className="text-red-500 text-sm">
+                <fieldset
+                  >
+                   <legend className='text-base text-gray-900'> Exterior Features : </legend>
+                 
+                 <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
+                 {exteriorFeatures.map((exterior, index) => (
+                   <label htmlFor={`extfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                   <Controller 
+                   name='exteriorFeatures'
+                   control={control}
+                   render={({field:{onChange, value}}) => (
+                     <input
+                     type="checkbox"
+                     id={`extfeature-${index}`}
+                     name="exteriorFeatures"
+                     value={`${exterior.value}`}
+                     checked={value?.includes(exterior.value) || false}
+                     onChange={(e) =>{
+                        const isChecked = e.target.checked;
+                       onChange(
+                         isChecked
+                           ? [...(value || []), exterior.value]
+                           : value.filter((item) => item !== exterior.value)
+                       );
+                     }}
+                     className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                   />
+                   )}
 
-                        This field is required
-                      </span>
-                    )}
+                   />
+                  
+                   {exterior.name}
+                   
+                   </label>
+                  ))}
+                  {errors.exteriorFeatures && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="interiorFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                <fieldset
                   >
-                    Interior Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> Interior Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-3 border p-2 rounded-lg'>
                  {interiorFeatures.map((interior, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
+                    <label htmlFor={`intfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                    <Controller 
+                    name='interiorFeatures'
+                    control={control}
+                    render={({field:{onChange, value}}) => (
                       <input
-                        type="checkbox"
-                        id={`infeature-${index}`}
-                        name="interiorFeatures"
-                        value={`${interior.value}`}
-                        onChange={(e) => handleInteriorFeatures(e)}
-                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                      />
-                      <label htmlFor={`infeature-${index}`} className=' text-sm'>{interior.name}</label>
-                     
-                    </div>
+                      type="checkbox"
+                      id={`intfeature-${index}`}
+                      name="interiorFeatures"
+                      value={`${interior.value}`}
+                      checked={value?.includes(interior.value) || false}
+                      onChange={(e) =>{
+                         const isChecked = e.target.checked;
+                        onChange(
+                          isChecked
+                            ? [...(value || []), interior.value]
+                            : value.filter((item) => item !== interior.value)
+                        );
+                      }}
+                      className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                    />
+                    )}
+ 
+                    />
+                   
+                    {interior.name}
+                    
+                    </label>
                   ))}
                   {errors.interiorFeatures && (
                     <span className="text-red-500 text-sm">
-
                       This field is required
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="livingRoomFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                <fieldset
                   >
-                    Living Room Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> LivingRoom Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
                  {livingRoomFeatures.map((livingRoom, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
-                      <input
-                        type="checkbox"
-                        id={`lifeature-${index}`}
-                        name="livingRoomFeatures"
-                        value={`${livingRoom.value}`}
-                        onChange={(e) => handleLivingRoomFeatures(e)}
-                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                      />
-                      <label htmlFor={`lifeature-${index}`} className=' text-sm'>{livingRoom.name}</label>
-                     
-                    </div>
+                   <label htmlFor={`lvfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                   <Controller 
+                   name='livingRoomFeatures'
+                   control={control}
+                   render={({field:{onChange, value}}) => (
+                     <input
+                     type="checkbox"
+                     id={`lvfeature-${index}`}
+                     name="livingRoomFeatures"
+                     value={`${livingRoom.value}`}
+                     checked={value?.includes(livingRoom.value) || false}
+                     onChange={(e) =>{
+                        const isChecked = e.target.checked;
+                       onChange(
+                         isChecked
+                           ? [...(value || []), livingRoom.value]
+                           : value.filter((item) => item !== livingRoom.value)
+                       );
+                     }}
+                     className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                   />
+                   )}
+
+                   />
+                  
+                   {livingRoom.name}
+                   
+                   </label>
                   ))}
                   {errors.livingRoomFeatures && (
                     <span className="text-red-500 text-sm">
-
                       This field is required
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="kitchenFeatures"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  <fieldset
                   >
-                    Kitchen Features:
-                  </label>
+                   <legend className='text-base text-gray-900'> Kitchen Features : </legend>
+                 
                   <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
                  {kitchenFeatures.map((kitchen, index) => (
-                    <div key={index}
-                    
-                    className='flex items-center space-x-2'>
-                      
-                      <input
+                   <label htmlFor={`ktfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                      <Controller 
+                      name='kitchenFeatures'
+                      control={control}
+                      render={({field:{onChange, value}}) => (
+                        <input
                         type="checkbox"
                         id={`ktfeature-${index}`}
                         name="kitchenFeatures"
                         value={`${kitchen.value}`}
-                        onChange={(e) => handleKitchenFeatures(e)}
+                        checked={value?.includes(kitchen.value) || false}
+                        onChange={(e) =>{
+                           const isChecked = e.target.checked;
+                          onChange(
+                            isChecked
+                              ? [...(value || []), kitchen.value]
+                              : value.filter((item) => item !== kitchen.value)
+                          );
+                        }}
                         className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
                       />
-                      <label htmlFor={`ktfeature-${index}`} className=' text-sm'>{kitchen.name}</label>
+                      )}
+
+                      />
                      
-                    </div>
+                      {kitchen.name}
+                      
+                      </label>
+                     
+                    
                   ))}
                   {errors.kitchenFeatures && (
                     <span className="text-red-500 text-sm">
-
                       This field is required
                     </span>
                   )}
                  </div>
+                 </fieldset>
                 </div>
                 </div>
                   )
@@ -858,37 +904,51 @@ const UpdatePropertyModal = ({property, openUpdate, handleCloseUpdate}) => {
                         )}
                       </div>
                       <div className="sm:col-span-2">
-                        <label
-                          htmlFor="landFeatures"
-                          className="block mb-2 text-sm font-medium text-gray-900 "
-                        >
-                          Features:
-                        </label>
-                        <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
-                        {landFeatures.map((feature, index) => (
-                          <div key={index}
-                          
-                          className='flex items-center space-x-2'>
-                            
-                            <input
-                              type="checkbox"
-                              id={`feature-${index}`}
-                              name="landFeatures"
-                              value={`${feature.value}`}
-                              onChange={(e) => handleLandFeatures(e)}
-                              className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                            />
-                            <label htmlFor={`feature-${index}`} className=' text-sm'>{feature.name}</label>
-                          
-                          </div>
-                        ))}
-                        {errors.landFeatures && (
-                          <span className="text-red-500 text-sm">
-                            This field is required
-                          </span>
-                        )}
-                      </div>
-                      </div>
+                  <fieldset
+                  >
+                   <legend className='text-base text-gray-900'> Land Features : </legend>
+                 
+                  <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
+                 {landFeatures.map((land, index) => (
+                   <label htmlFor={`ldfeature-${index}`} className=' text-sm flex items-center gap-1'>
+                      <Controller 
+                      name='landFeatures'
+                      control={control}
+                      render={({field:{onChange, value}}) => (
+                        <input
+                        type="checkbox"
+                        id={`ldfeature-${index}`}
+                        name="landFeatures"
+                        value={`${land.value}`}
+                        checked={value?.includes(land.value) || false}
+                        onChange={(e) =>{
+                           const isChecked = e.target.checked;
+                          onChange(
+                            isChecked
+                              ? [...(value || []), land.value]
+                              : value.filter((item) => item !== land.value)
+                          );
+                        }}
+                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                      />
+                      )}
+
+                      />
+                     
+                      {land.name}
+                      
+                      </label>
+                     
+                    
+                  ))}
+                  {errors.landFeatures && (
+                    <span className="text-red-500 text-sm">
+                      This field is required
+                    </span>
+                  )}
+                 </div>
+                 </fieldset>
+                </div>
                       <div className="sm:col-span-2">
                         <label
                           htmlFor="ownershipType"

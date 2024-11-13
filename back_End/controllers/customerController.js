@@ -7,6 +7,10 @@ const {
     customerExists
 } = require('../services/customerService');
 
+const {
+    userExists
+} = require('../services/userService');
+
 const handleCustomers = async (req, res) => {
     const data = {
         page: req.query.page,
@@ -24,7 +28,7 @@ const handleCreateCustomer = async (req, res) => {
     if(!firstname, !lastname, !email, !phone) {
         return res.status(400).json({ message: 'All fields are required' });
     }
-    const duplicate = await customerExists(email);
+    const duplicate = await userExists(email);
     console.log(duplicate);
     if(duplicate){
       return res.sendStatus(409); //conflict

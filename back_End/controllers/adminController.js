@@ -7,12 +7,16 @@ const {
   adminExists
 } = require("../services/adminService");
 
+const {
+  userExists
+} = require('../services/userService');
+
 const handleAdminCreate = async (req, res) => {
   const {firstname, lastname, username, email, phone} = req.body;
   if(!firstname, !lastname, !email, !phone){
     return res.status(400).json({message: "All fields are required"})
   }
-  const duplicate = await adminExists(email);
+  const duplicate = await userExists(email);
   console.log(duplicate);
   if(duplicate){
     return res.sendStatus(409); //conflict
