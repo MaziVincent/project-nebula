@@ -11,7 +11,7 @@ const connectDB = require('./config/db');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 //const prerender = require('prerender-node')
-const reverseProxy = require('./middleware/reverseproxy')
+//const reverseProxy = require('./middleware/reverseproxy')
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3500;
 
@@ -27,7 +27,7 @@ app.use(logger);
 app.use('/ping', require('./routes/ping'));
 app.use(credentials);
 app.use(cors(corsOptions));
-app.use(reverseProxy);
+//app.use(reverseProxy);
 
 app.use(express.urlencoded({extended: false, limit:'50mb'}));
 

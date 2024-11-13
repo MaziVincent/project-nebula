@@ -17,13 +17,14 @@ import { Swiper, SwiperSlide } from "../../shared/Swiper";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+import usePageSEO from "../../hooks/usePageSEO";
 
 const PropertyDtls = () => {
-  const { auth } = useAuth();
+  //const { auth } = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}properties`;
   const { id } = useParams();
-  const imageUrl = `${baseURL}`;
+  //const imageUrl = `${baseURL}`;
 
   const [property, setProperty] = useState(null);
   const getProperty = async () => {
@@ -47,35 +48,35 @@ const PropertyDtls = () => {
   }, [id]);
   console.log(property);
 
-  const toggleShow = (value) => {
-    if (value == "phone") {
-      setShowPhone(!showPhone);
-      setShowEmail(false);
-    } else if (value == "email") {
-      setShowPhone(false);
-      setShowEmail(!showEmail);
-    }
-  };
+  // const toggleShow = (value) => {
+  //   if (value == "phone") {
+  //     setShowPhone(!showPhone);
+  //     setShowEmail(false);
+  //   } else if (value == "email") {
+  //     setShowPhone(false);
+  //     setShowEmail(!showEmail);
+  //   }
+  // };
 
   function isWhatsAppLink(url) {
     const regex = /^(https?:\/\/)?(www\.)?(wa\.me\/|api\.whatsapp\.com\/send\?phone=|wa\.link\/)\S+$/;
     return regex.test(url);
   }
 
-  function formatPhoneNumber(phoneNumber) {
-    // Ensure the phone number starts with 09
-    if (!phoneNumber.startsWith("0")) {
-      return phoneNumber; // Return the original number if it doesn't start with 09
-    }
+  // function formatPhoneNumber(phoneNumber) {
+  //   // Ensure the phone number starts with 09
+  //   if (!phoneNumber.startsWith("0")) {
+  //     return phoneNumber; // Return the original number if it doesn't start with 09
+  //   }
 
     // Remove the leading 0
-    const cleanedPhoneNumber = phoneNumber.slice(1);
+  //   const cleanedPhoneNumber = phoneNumber.slice(1);
 
-    // Add the country code +234
-    const formattedPhoneNumber = "+234" + cleanedPhoneNumber;
+  //   // Add the country code +234
+  //   const formattedPhoneNumber = "+234" + cleanedPhoneNumber;
 
-    return formattedPhoneNumber;
-  }
+  //   return formattedPhoneNumber;
+  // }
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -93,6 +94,16 @@ const PropertyDtls = () => {
       console.log("Web Share API is not supported in this browser");
     }
   };
+
+  usePageSEO({
+    title:property?.title,
+    description : property?.description,
+    keywords:['property, real estate, megatech, abakaliki, house, apartment, land, sale, rent'],
+    ogTitle : property?.title,
+    ogDescription : property?.description,
+    ogImage : property?.imageUrls[0],
+    ogUrl : window.location.href
+  })
 
   //   console.log(property.leaseDuration)
   return (
