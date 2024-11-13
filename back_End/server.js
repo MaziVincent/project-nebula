@@ -22,7 +22,7 @@ connectDB();
 //logger
 app.use(logger);
 //
-//app.use(reverseProxy);
+app.use(reverseProxy);
 //ping
 app.use('/ping', require('./routes/ping'));
 app.use(credentials);
