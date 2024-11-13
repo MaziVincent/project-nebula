@@ -173,7 +173,7 @@ const uploadDocument = async (files, id) => {
     try{
         const agent = await Agent.findOne({_id: id}).exec();
         if(!agent) return {error: "Agent not found"};
-        agent.superAgent = true;
+        agent.isSuperAgent = true;
         await agent.save();
         return agent;
 
@@ -187,7 +187,7 @@ const removeSuperAgent = async (id) => {
     try{
         const agent = await Agent.findOne({_id: id}).exec();
         if(!agent) return {error: "Agent not found"};
-        agent.superAgent = false;
+        agent.isSuperAgent = false;
         await agent.save();
 
         return agent;

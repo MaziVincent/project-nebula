@@ -7,7 +7,9 @@ const {
     agentExists,
     verifyAgent,
     unVerifyAgent,
-    uploadDocument
+    uploadDocument,
+    makeSuperAgent,
+    removeSuperAgent
 } = require('../services/agentService');
 
 const {
