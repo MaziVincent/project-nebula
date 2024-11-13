@@ -24,7 +24,7 @@ const usePageSEO = ({
     }, [
         title,
         description,
-        keywords=[],
+        keywords,
         ogTitle,
         ogDescription,
         ogImage,
