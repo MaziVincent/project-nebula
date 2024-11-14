@@ -46,6 +46,7 @@ app.use('/api/recentProps', require('./routes/recentProps'));
 app.use('/api/customer', require('./routes/customer'));
 app.use('/api/properties', require('./routes/propertyRoutes'));
 app.use('/api/email', require('./routes/email'));
+app.use('/api/render', require('./routes/api/bot'));
 //app.use('/property', require('./routes/property'));
 app.use(verifyJWT);
 app.use('/api/owner', require('./routes/owner'));

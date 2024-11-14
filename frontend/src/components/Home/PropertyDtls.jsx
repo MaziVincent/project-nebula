@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import useFetch from "../../hooks/useFetch";
-import useAuth from "../../hooks/useAuth";
-import { ToastContainer, toast } from "react-toastify";
+// import useAuth from "../../hooks/useAuth";
+// import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import baseURL from "../../shared/baseURL";
 import { CircularProgress, Modal } from "@mui/material";
@@ -95,6 +95,9 @@ const PropertyDtls = () => {
     }
   };
 
+  const isBot = /bot|crawler|spider|crawling/i.test(navigator.userAgent); // Simple client-side check
+const ogUrl = isBot ? `${baseURL}render?propertyId=${id}&url=${encodeURIComponent(window.location.href)}` : window.location.href;
+
   usePageSEO({
     title:property?.title,
     description : property?.description,
@@ -102,7 +105,7 @@ const PropertyDtls = () => {
     ogTitle : property?.title,
     ogDescription : property?.description,
     ogImage : property?.imageUrls[0],
-    ogUrl : window.location.href
+    ogUrl : ogUrl
   })
 
   //   console.log(property.leaseDuration)
