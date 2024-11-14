@@ -95,8 +95,7 @@ const PropertyDtls = () => {
     }
   };
 
-  const isBot = /bot|crawler|spider|crawling/i.test(navigator.userAgent); // Simple client-side check
-const ogUrl = isBot ? `${baseURL}render?propertyId=${id}&url=${encodeURIComponent(window.location.href)}` : window.location.href;
+const ogUrl = `${baseURL}render?url=${encodeURIComponent(window.location.href)}`;
 
   usePageSEO({
     title:property?.title,
