@@ -130,6 +130,7 @@ const handleMakeSuperAgent = async (req, res) => {
 }
 
 const handleRemoveSuperAgent = async (req, res) => {
+    console.log(req.params.id);
     if(!req.params.id){
         return res.status(400).json({ message: 'ID is required' });
     }

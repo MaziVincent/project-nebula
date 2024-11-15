@@ -24,14 +24,14 @@ router
   .route("/verify/:id")
   .put(verifyRoles("Admin"), agentController.handleVerifyAgent);
 router
+  .route("/unverify/:id")
+  .put(verifyRoles("Admin"), agentController.handleUnVerifyAgent);
+router
   .route("/makesuperagent/:id")
   .put(verifyRoles("Admin"), agentController.handleMakeSuperAgent);
 router
   .route("/removesuperagent/:id")
   .put(verifyRoles("Admin"), agentController.handleRemoveSuperAgent);
-router
-  .route("/unverify/:id")
-  .put(verifyRoles("Admin"), agentController.handleUnVerifyAgent);
 router
   .route("/idupload/:id")
   .put(

@@ -183,6 +183,8 @@ const uploadDocument = async (files, id) => {
 }
 
 const removeSuperAgent = async (id) => {
+    console.log(id);
+    
 
     try{
         const agent = await Agent.findOne({_id: id}).exec();
