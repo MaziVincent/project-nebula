@@ -18,7 +18,7 @@ const RemoveSuperAgent = ({ open, handleClose, agentId }) => {
   const url = `${baseURL}agent/removesuperagent`;
   const [isLoading, setIsLoading] = useState(false)
 
-  // console.log(agentId)
+  console.log(agentId)
   const removeSuperAgent = async () => {
     setIsLoading(true)
     if (!auth || !auth?.accessToken) {
@@ -31,7 +31,7 @@ const RemoveSuperAgent = ({ open, handleClose, agentId }) => {
       console.log(response); 
     } catch (error) {
       setIsLoading(false)
-      throw new Error(error.response?.data?.message || 'Error verifying agent');
+      throw new Error(error.response?.data?.message || 'Error removing usper agent');
     }
   };
 
@@ -39,13 +39,8 @@ const RemoveSuperAgent = ({ open, handleClose, agentId }) => {
     onSuccess: () => {
       queryClient.invalidateQueries('agents');
       handleClose();
-      // toast.success('');
       setIsLoading(false)
     },
-    onError: (error) => {
-        setIsLoading(false)
-      toast.error(`Failed to remove super agent: ${error.message}`);
-    }
   });
 
   const handleRemoveSuperAgent = () => {
