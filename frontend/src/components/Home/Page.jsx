@@ -184,7 +184,7 @@ const Page = () => {
                               Schedule visit
                             </a>
                             <Link
-                              to={`/property_details/${featured._id}`}
+                              to={`/property/${featured._id}`}
                               className="btn btn-transparent-white-light border-1 btn-large btn-round-edge fw-500 xs-mt-10px xs-mb-10px"
                             >
                               View details
@@ -898,12 +898,11 @@ const Page = () => {
                       <div className="bg-white">
                         <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
                           <div className="d-flex align-items-center">
-                            <a
-                              href="/property_details"
+                            <span
                               className="alt-font text-dark-gray fw-800 fs-22 me-10px uppercase"
                             >
                               {prop.title}
-                            </a>
+                            </span>
                           </div>
                           <p className="mb-20px">{prop.location}</p>
                           <div className="row g-0">
@@ -965,7 +964,7 @@ const Page = () => {
                         <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
                           <div className="col">
                             <Link
-                              to={`/property_details/${prop._id}`}
+                              to={`/property/${prop._id}`}
                               className="btn btn-dark-gray btn-very-small btn-round-edge fw-600"
                             >
                               View details

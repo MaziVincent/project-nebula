@@ -56,6 +56,7 @@ import AdminProfile from './components/admin/AdminProfile';
 import TermsAndConditions from './components/Home/TermsAndConditions';
 import ForgotPassword from './components/auth/ForgotPassword';
 import CustomerPropertyDetails from './components/client/customers/PropertyDetails';
+import PropertyPage from './components/Home/PropertyPage';
 
 function App() {
   const queryClient = new QueryClient();
@@ -74,7 +75,7 @@ function App() {
               <Route path='/contact' element={<Contact />} />
               <Route path='/allproperties' element={<AllProperties />} />
               <Route path='/sell' element={<Sell />} />
-              <Route path='/property_details/:id' element={<PropertyDtls />} />
+              <Route path='/property/:id' element={<PropertyPage />} />
               <Route path='/terms' element={<TermsAndConditions />} />
             </Route>
             </Route>

@@ -26,6 +26,8 @@ const PropertyDtls = () => {
   const { id } = useParams();
   //const imageUrl = `${baseURL}`;
 
+  const serverlessUrl = `https://www.megatechrealestate.ng/api/property/${id}`
+
   const [property, setProperty] = useState(null);
   const getProperty = async () => {
     try {
@@ -39,8 +41,8 @@ const PropertyDtls = () => {
     }
   };
 
-  const [showPhone, setShowPhone] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
+  // const [showPhone, setShowPhone] = useState(false);
+  // const [showEmail, setShowEmail] = useState(false);
 
   // Use useEffect to trigger the data fetching on component mount or when 'id' changes
   useEffect(() => {
