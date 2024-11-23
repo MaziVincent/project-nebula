@@ -11,7 +11,7 @@ console.log(id)
   // Fetch property details from your backend API on Render
   const response = await fetch(`${baseURL}/properties/${id}`);
   const propertyData = await response.json();
-
+    console.log(propertyData)
   // Render the PropertyDetails component to HTML
   const appString = ReactDOMServer.renderToString(
     React.createElement(PropertyDetails, { data: propertyData })
