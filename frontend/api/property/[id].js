@@ -26,8 +26,8 @@ console.log(id)
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="description" content="${propertyData?.description}">
             <meta property="og:title" content="${propertyData?.title}" />
-<meta property="og:url" content="${window.location.href}" />
-<meta property="og:image" content="${propertyData?.imageUrls[0]}" />
+            <meta property="og:url" content="${window.location.href}" />
+            <meta property="og:image" content="${propertyData?.imageUrls[0]}" />
             <title>${propertyData.title}</title>
         </head>
         <body>
