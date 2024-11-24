@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     // Fetch property details from your backend API on Render
-    const response = await fetch(`${baseURL}/properties/${id}`);
+    const response = await fetch(`${baseURL}properties/${id}`);
     const propertyData = await response.json();
 
     //console.log(propertyData);
