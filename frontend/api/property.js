@@ -1,10 +1,10 @@
 
 //const baseURL = require("../src/shared/baseURL")
 
-const React = require("react");
-const ReactDOMServer = require("react-dom/server");
-//const PropertyDetails = require("../src/components/Home/PropertyDtls").default;
-const fetch = require("node-fetch");
+// const React = require("react");
+// const ReactDOMServer = require("react-dom/server");
+// //const PropertyDetails = require("../src/components/Home/PropertyDtls").default;
+// const fetch = require("node-fetch");
 
 export default async function handler(req, res) {
   const { id } = req.query;
