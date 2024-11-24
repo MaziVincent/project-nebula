@@ -1,4 +1,4 @@
-import baseURL from "../../src/shared/baseURL";
+import baseURL from "../src/shared/baseURL";
 
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
