@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 
 // Adjust the paths as needed for your project structure
 import baseURL from "../src/shared/baseURL.js";
-import PropertyDetails from "./PropertyDetails.js";
+//import PropertyDetails from "./PropertyDetails.js";
 
 export default async function handler(req, res) {
   const { id } = req.query;
@@ -17,9 +17,9 @@ export default async function handler(req, res) {
     //console.log(propertyData);
 
     // Render the PropertyDetails component to HTML
-    const appString = ReactDOMServer.renderToString(
-      React.createElement(PropertyDetails, { data: propertyData })
-    );
+    // const appString = ReactDOMServer.renderToString(
+    //   React.createElement(PropertyDetails, { data: propertyData })
+    // );
 
     // Inject into an HTML template
     const html = `
@@ -35,7 +35,12 @@ export default async function handler(req, res) {
               <title>${propertyData.title}</title>
           </head>
           <body>
-              <div id="root">${appString}</div>
+              <div id="root">
+              <main>
+                <h1> ${propertyData?.title} </h1>
+                <p> ${propertyData?.description} </p>
+              </main>
+              </div>
           </body>
           </html>
       `;
