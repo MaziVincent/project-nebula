@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 
 // Adjust the paths as needed for your project structure
 import baseURL from "../src/shared/baseURL.js";
-import PropertyDetails from "../src/components/Home/PropertyDtls.js";
+import PropertyDetails from "../src/components/Home/PropertyDetails.js";
 
 export default async function handler(req, res) {
   const { id } = req.query;
@@ -26,9 +26,9 @@ export default async function handler(req, res) {
           <!DOCTYPE html>
           <html lang="en">
           <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta name="description" content="${propertyData?.description}">
+              <meta charset="UTF-8"/>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+              <meta name="description" content="${propertyData?.description}"/>
               <meta property="og:title" content="${propertyData?.title}" />
               <meta property="og:url" content="${req.headers.host}${req.url}" />
               <meta property="og:image" content="${propertyData?.imageUrls?.[0]}" />
