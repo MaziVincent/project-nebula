@@ -5,11 +5,11 @@ import useFetch from "../../hooks/useFetch";
 // import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import baseURL from "../../shared/baseURL";
-import { CircularProgress, Modal } from "@mui/material";
+//import { CircularProgress, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import Bedrooms from "../../assets/images/demo-real-estate-icon-bed.svg";
 import Bathrooms from "../../assets/images/demo-real-estate-icon-bath.svg";
-import PropertyDtl from "../../assets/images/demo-real-estate-property-details-09.svg";
+//import PropertyDtl from "../../assets/images/demo-real-estate-property-details-09.svg";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import ShareIcon from "@mui/icons-material/Share";
@@ -17,7 +17,7 @@ import { Swiper, SwiperSlide } from "../../shared/Swiper";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
-import usePageSEO from "../../hooks/usePageSEO";
+//import usePageSEO from "../../hooks/usePageSEO";
 const PropertyDtls = () => {
   //const { auth } = useAuth();
   const fetch = useFetch();
@@ -27,7 +27,7 @@ const PropertyDtls = () => {
   } = useParams();
   //const imageUrl = `${baseURL}`;
 
-  const serverlessUrl = `https://www.megatechrealestate.ng/api/property/${id}`;
+  //const serverlessUrl = `https://www.megatechrealestate.ng/api/property/${id}`;
   const [property, setProperty] = useState(null);
   const getProperty = async () => {
     try {
@@ -96,16 +96,16 @@ const PropertyDtls = () => {
       console.log("Web Share API is not supported in this browser");
     }
   };
-  const ogUrl = `${baseURL}render?url=${encodeURIComponent(window.location.href)}`;
-  usePageSEO({
-    title: property?.title,
-    description: property?.description,
-    keywords: ['property, real estate, megatech, abakaliki, house, apartment, land, sale, rent'],
-    ogTitle: property?.title,
-    ogDescription: property?.description,
-    ogImage: property?.imageUrls[0],
-    ogUrl: ogUrl
-  });
+  // const ogUrl = `${baseURL}render?url=${encodeURIComponent(window.location.href)}`;
+  // usePageSEO({
+  //   title: property?.title,
+  //   description: property?.description,
+  //   keywords: ['property, real estate, megatech, abakaliki, house, apartment, land, sale, rent'],
+  //   ogTitle: property?.title,
+  //   ogDescription: property?.description,
+  //   ogImage: property?.imageUrls[0],
+  //   ogUrl: ogUrl
+  // });
 
   //   console.log(property.leaseDuration)
   return /*#__PURE__*/React.createElement("div", {
