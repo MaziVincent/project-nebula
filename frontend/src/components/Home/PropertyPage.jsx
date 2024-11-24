@@ -4,7 +4,7 @@ const PropertyPage = () => {
     const { id } = useParams();
 
     // Redirect to the serverless function
-    const serverlessUrl = `https://www.megatechrealestate.ng/api/property/${id}`
+    const serverlessUrl = `https://www.megatechrealestate.ng/api/property?id=${id}`
 
     // Use `window.location` to navigate to the serverless-rendered page
     useEffect(() => {
