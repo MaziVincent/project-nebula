@@ -3,7 +3,7 @@
 
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
-const PropertyDetails = require("../src/components/Home/PropertyDtls").default;
+//const PropertyDetails = require("../src/components/Home/PropertyDtls").default;
 const fetch = require("node-fetch");
 
 export default async function handler(req, res) {
