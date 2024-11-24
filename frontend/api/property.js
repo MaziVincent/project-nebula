@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const response = await fetch(`${baseURL}/properties/${id}`);
     const propertyData = await response.json();
 
-    console.log(propertyData);
+    //console.log(propertyData);
 
     // Render the PropertyDetails component to HTML
     const appString = ReactDOMServer.renderToString(
