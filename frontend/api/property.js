@@ -36,7 +36,7 @@ console.log(id)
 //         </html>
 //     `;
 
-  res.setHeader("Content-Type", "text/html");
+ // res.setHeader("Content-Type", "text/html");
 //   res.status(200).send(html);
   res.status(200).json({id:id});
 }
