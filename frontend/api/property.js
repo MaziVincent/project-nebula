@@ -9,9 +9,9 @@ export default async function handler(req, res) {
   const { id } = req.query;
 console.log(id)
   // Fetch property details from your backend API on Render
-  const response = await fetch(`${baseURL}/properties/${id}`);
-  const propertyData = await response.json();
-    console.log(propertyData)
+//   const response = await fetch(`${baseURL}/properties/${id}`);
+//   const propertyData = await response.json();
+//     console.log(propertyData)
 //   // Render the PropertyDetails component to HTML
 //   const appString = ReactDOMServer.renderToString(
 //     React.createElement(PropertyDetails, { data: propertyData })
@@ -38,5 +38,5 @@ console.log(id)
 
   res.setHeader("Content-Type", "text/html");
 //   res.status(200).send(html);
-  res.status(200).json(propertyData);
+  res.status(200).json({id:id});
 }
