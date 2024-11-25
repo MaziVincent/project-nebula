@@ -40,9 +40,10 @@ export default async function handler(req, res) {
               <meta charset="UTF-8"/>
               <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
               <meta name="description" content="${propertyData?.description}"/>
+              <meta property="og:description" content="${propertyData?.description}"/>
               <meta property="og:title" content="${propertyData?.title}" />
               <meta property="og:url" content="https://www.megatechrealestate.ng/property/${id}" />
-              <meta property="og:image" content="${propertyData?.imageUrls?.[0]}" />
+              <meta property="og:image" content="https://res.cloudinary.com/dbxapeqzu/image/upload/v1732557918/download_lb0ns7.jpg" />
               <title>${propertyData.title}</title>
           </head>
           <body>
