@@ -9,16 +9,16 @@ import baseURL from "../src/shared/baseURL.js";
 export default async function handler(req, res) {
   const { id } = req.query;
 
-   // Check if the request is from a social media crawler
-  //  const userAgent = req.headers["user-agent"] || "";
-  //  const isCrawler = /facebookexternalhit|Twitterbot|Pinterest|Slackbot|Facebot/i.test(userAgent);
+   //Check if the request is from a social media crawler
+   const userAgent = req.headers["user-agent"] || "";
+   const isCrawler = /facebookexternalhit|Twitterbot|Pinterest|Slackbot|Facebot/i.test(userAgent);
  
-  //  if (!isCrawler) {
-  //    // Redirect users to the main React property page
-  //    res.writeHead(302, { Location: `https://www.megatechrealestate.ng/property/${id}` });
-  //    res.end();
-  //    return;
-  //  }
+   if (!isCrawler) {
+     // Redirect users to the main React property page
+     res.writeHead(302, { Location: `https://www.megatechrealestate.ng/property/${id}` });
+     res.end();
+     return;
+   }
 
   try {
     // Fetch property details from your backend API on Render
