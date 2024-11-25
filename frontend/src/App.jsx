@@ -47,7 +47,7 @@ import Property from './components/client/owner/ownerComponent/Property';
 import AgentProfile from './components/client/agent/AgentProfile';
 import OwnerProfile from './components/client/owner/OwnerProfile';
 //import SignUp from './components/auth/SignUp';
-//import PropertyDtls from './components/Home/PropertyDtls';
+import PropertyDetails from './components/Home/PropertyDetails';
 import RequireAuthAdmin from './components/auth/RequireAuthAdmin';
 import AllProperties from './components/Home/AllProperties';
 import PropertyForRent from './components/client/customers/PropertyForRent';
@@ -75,7 +75,7 @@ function App() {
               <Route path='/contact' element={<Contact />} />
               <Route path='/allproperties' element={<AllProperties />} />
               <Route path='/sell' element={<Sell />} />
-              <Route path='/property/:id' element={<PropertyPage />} />
+              <Route path='/property/:id' element={<PropertyDetails />} />
               <Route path='/terms' element={<TermsAndConditions />} />
             </Route>
             </Route>

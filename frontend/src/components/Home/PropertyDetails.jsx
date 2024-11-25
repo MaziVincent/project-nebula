@@ -19,7 +19,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import usePageSEO from "../../hooks/usePageSEO";
 
-const PropertyDtls = () => {
+const PropertyDetails = () => {
   //const { auth } = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}properties`;
@@ -86,7 +86,7 @@ const PropertyDtls = () => {
         await navigator.share({
           title: document.title,
           text: "Check out this property ",
-          url: window.location.href,
+          url: `https://www.megatechrealestate.ng/api/property?id=${id}`,
         });
         console.log("Content shared successfully");
       } catch (error) {
@@ -97,17 +97,17 @@ const PropertyDtls = () => {
     }
   };
 
-const ogUrl = `${baseURL}render?url=${encodeURIComponent(window.location.href)}`;
+// const ogUrl = `${baseURL}render?url=${encodeURIComponent(window.location.href)}`;
 
-  usePageSEO({
-    title:property?.title,
-    description : property?.description,
-    keywords:['property, real estate, megatech, abakaliki, house, apartment, land, sale, rent'],
-    ogTitle : property?.title,
-    ogDescription : property?.description,
-    ogImage : property?.imageUrls[0],
-    ogUrl : ogUrl
-  })
+//   usePageSEO({
+//     title:property?.title,
+//     description : property?.description,
+//     keywords:['property, real estate, megatech, abakaliki, house, apartment, land, sale, rent'],
+//     ogTitle : property?.title,
+//     ogDescription : property?.description,
+//     ogImage : property?.imageUrls[0],
+//     ogUrl : ogUrl
+//   })
 
   //   console.log(property.leaseDuration)
   return (
@@ -1319,4 +1319,4 @@ const ogUrl = `${baseURL}render?url=${encodeURIComponent(window.location.href)}`
   );
 };
 
-export default PropertyDtls;
+export default PropertyDetails;

@@ -30,7 +30,7 @@ export default async function handler(req, res) {
               <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
               <meta name="description" content="${propertyData?.description}"/>
               <meta property="og:title" content="${propertyData?.title}" />
-              <meta property="og:url" content="${req.headers.host}${req.url}" />
+              <meta property="og:url" content="https://www.megatechrealestate.ng/property/${id}" />
               <meta property="og:image" content="${propertyData?.imageUrls?.[0]}" />
               <title>${propertyData.title}</title>
           </head>
@@ -39,6 +39,9 @@ export default async function handler(req, res) {
               <main>
                 <h1> ${propertyData?.title} </h1>
                 <p> ${propertyData?.description} </p>
+                <div>
+                <img src=${propertyData.imageUrls?.[0]} />
+                </div>
               </main>
               </div>
           </body>
