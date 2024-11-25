@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
    // Check if the request is from a social media crawler
    const userAgent = req.headers["user-agent"] || "";
-   const isCrawler = /facebookexternalhit|Twitterbot|Pinterest|Slackbot/i.test(userAgent);
+   const isCrawler = /facebookexternalhit|Twitterbot|Pinterest|Slackbot|Facebot/i.test(userAgent);
  
    if (!isCrawler) {
      // Redirect users to the main React property page
