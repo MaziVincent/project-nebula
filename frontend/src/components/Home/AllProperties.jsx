@@ -222,7 +222,7 @@ const AllProperties = () => {
                                 <div className="bg-white">
                                     <div className="content ps-40px pe-40px pt-35px pb-35px md-p-25px border-bottom border-color-transparent-dark-very-light">
                                         <div className="d-flex align-items-center">
-                                            <a href="/property_details" className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</a>
+                                            <Link to={`/property/${prop._id}`} className="alt-font text-dark-gray fw-700 fs-22 me-10px">{prop.title}</Link>
                                         </div>
                                         <p className="mb-20px">{prop.location}</p>
                                         <div className="row g-0">
@@ -261,7 +261,7 @@ const AllProperties = () => {
                                     </div> 
                                     <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
                                         <div className="col">
-                                            <Link to={`/property_details/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
+                                            <Link to={`/property/${prop._id}`} className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
                                         </div>
                                         <div className="col text-end">
                                             <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{parseFloat(prop.price.$numberDecimal).toLocaleString('en-US')}</span>

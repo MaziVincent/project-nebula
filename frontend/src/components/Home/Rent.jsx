@@ -289,7 +289,7 @@ const Rent = () => {
                                                 </div> 
                                                 <div className="row ps-35px pe-35px pt-20px pb-20px md-ps-25px md-pe-25px align-items-center">
                                                     <div className="col">
-                                                        <a href={`/property_details/${prop._id}`}className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</a>
+                                                        <Link to={`/property/${prop._id}`}className="btn btn-dark-gray btn-very-small btn-round-edge fw-600">View details</Link>
                                                     </div>
                                                     <div className="col text-end">
                                                         <span className="text-[19px] blur-[2.5px] alt-font text-dark-gray fw-700 mb-0">&#8358;{parseFloat(prop.price.$numberDecimal).toLocaleString('en-US')}</span>
