@@ -19,7 +19,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import usePageSEO from "../../hooks/usePageSEO";
 
-const PropertyDetails = () => {
+const PropertyDtls = () => {
   //const { auth } = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}properties`;
@@ -1319,4 +1319,4 @@ const PropertyDetails = () => {
   );
 };
 
-export default PropertyDetails;
+export default PropertyDtls;
