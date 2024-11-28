@@ -91,7 +91,10 @@ const AdminHouses = () => {
           {data?.houses.length ? data.houses.length.toString().padStart(2, '0') : '00'}
         </span>
       </div>
-      <div className=" border-dashed border rounded-md border-red-900 h-auto">
+
+      {
+        isSuccess && (
+<div className=" border-dashed border rounded-md border-red-900 h-auto">
         <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
           <table className="w-full min-w-max border-collapse bg-white text-left text-sm text-gray-500 max-lg:w-full">
             <thead className="bg-gray-50">
@@ -150,10 +153,10 @@ const AdminHouses = () => {
                 <td className="px-6 py-4 flex items-center">
                   <div className="flex flex-col justify-center items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {house.owner.firstname} {house.owner.lastname}
+                      {house.owner?.firstname} {house.owner?.lastname}
                     </span>
                     <span className="text-gray-500 text-sm">
-                      {house.owner.type}
+                      {house.owner?.type}
                     </span>
                   </div>
                 </td>
@@ -275,6 +278,9 @@ const AdminHouses = () => {
           </table>
         </div>
       </div>
+        )
+      }
+      
       {/* <CreateHouseModal open={openModal} handleClose={handleClose} /> */}
       <UpdateHouseModal openUpdate={openUpdate} handleUpdateClose={handleUpdateClose} house={house} />
       <HouseStatusModal openStatus={openStatus} handleCloseStatus={handleCloseStatus} house={house} />

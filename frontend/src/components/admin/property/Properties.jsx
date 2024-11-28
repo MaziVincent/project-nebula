@@ -111,7 +111,10 @@ const Properties = () => {
             <CircularProgress />
           </div>
         )}
-        <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
+
+        {
+          isSuccess && (
+            <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
           <table className="w-full min-w-max border-collapse bg-white text-left text-sm text-gray-500 max-lg:w-full">
             <thead className="bg-gray-50">
               <tr>
@@ -199,10 +202,10 @@ const Properties = () => {
                     <td className="px-6 py-4">
                       <div className="flex flex-col justify-end items-center gap-2">
                         <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                          {props.owner.firstname} {props.owner.lastname}
+                          {props.owner?.firstname} {props.owner?.lastname}
                         </span>
                         <span className="text-gray-500">
-                          {props.owner.type}
+                          {props.owner?.type}
                         </span>
                       </div>
                     </td>
@@ -280,6 +283,9 @@ const Properties = () => {
             />
           </div>
         </div>
+          )
+        }
+        
       </div>
       <DeletePropertyModal
         openDelete={openDelete}
