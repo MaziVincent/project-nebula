@@ -172,7 +172,10 @@ const Overview = () => {
       <div className=" pt-4 pb-2 ">
         <h2 className=" text-2xl text-center text-gradient">Recent Properties</h2>
       </div>
-      <div className=" border-dashed border rounded-md border-red-900 h-auto">
+
+    {
+      isSuccess && (
+        <div className=" border-dashed border rounded-md border-red-900 h-auto">
         <div className="overflow-auto w-full rounded-lg border border-gray-200 shadow-md p-2">
           <table className="w-full min-w-max border-collapse bg-white text-left text-sm text-gray-500 max-lg:w-full">
             <thead className="bg-gray-50">
@@ -239,7 +242,7 @@ const Overview = () => {
                       {props.owner?.firstname} {props.owner?.lastname}
                     </span>
                     <span className="text-gray-500 text-sm">
-                      {props.owner.type}
+                      {props.owner?.type}
                     </span>
                   </div>
                 </td>
@@ -283,6 +286,10 @@ const Overview = () => {
           </table>
         </div>
       </div>
+      )
+    }
+
+     
       <div className=" flex justify-center mt-4">
         <Link to='/admin/properties' className=" block  text-gradient">
             <span className=" inline-flex gap-2">View All Properties
