@@ -236,7 +236,7 @@ const Overview = () => {
                 <td className="px-6 py-4 flex items-center">
                   <div className="flex flex-col justify-center items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {props.owner.firstname} {props.owner.lastname}
+                      {props.owner?.firstname} {props.owner?.lastname}
                     </span>
                     <span className="text-gray-500 text-sm">
                       {props.owner.type}

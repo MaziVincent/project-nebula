@@ -33,7 +33,7 @@ const CustomerPropertyDetails = () => {
     refetchOnMount: "always",
   });
 
-  console.log(property);
+ // console.log(property);
 
   return (
     <div className="px-3 lg:px-6 h-svh">
@@ -63,6 +63,7 @@ const CustomerPropertyDetails = () => {
           </div>
           <div>
             <h4 className="text-2xl font-bold capitalize">{property.title}</h4>
+            
             <p className="text-gray-600 capitalize">{property.location}</p>
             <p className="text-gray-600 mt-4">{property.description}</p>
             <span className=" flex gap-4 mb-3">
