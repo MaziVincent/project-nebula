@@ -72,7 +72,7 @@ const CustomerOverview = () => {
  
       <h2 className="text-2xl font-bold mb-4 pt-2">Find Your Best Property 🏠🌆</h2>
     
-      <div className="flex items-center space-x-4 gap-2 mb-5 max-sm:flex-col">
+      {/* <div className="flex items-center space-x-4 gap-2 mb-5 max-sm:flex-col">
         <div className=" w-1/3 relative m-0 max-sm:w-full">
         <h3 className=" text-base mb-0">Location</h3>
           <select className="border px-3 py-2 rounded-lg relative">
@@ -110,7 +110,16 @@ const CustomerOverview = () => {
           </span>
         </div>
         <button className="bg-green-500 text-white px-6 py-1 rounded-lg mt-3">Search</button>
-      </div>
+      </div> */}
+{/* 
+<div className="flex bg-gray-200 rounded-3xl border-[1px] border-gray-100">
+          <Link to='/dashboard/sell' className="rounded-l-xl pl-1 py-1  text-gray-800 hover:text-gray-600">
+            <span className={` ${location.pathname === '/dashboard/sell' ? 'bg-gray-100 text-gray-700' : ''} px-2 py-1 rounded-l-3xl border-r border-gray-100`}>Buy</span>
+          </Link>
+          <Link to='/dashboard/rentals' className=" rounded-r-xl pr-1 py-1 text-gray-800 hover:text-gray-600">
+            <span className={` ${location.pathname === '/dashboard/rentals' ? 'bg-gray-50 text-gray-700' : ''} px-2 py-1 rounded-r-3xl`}>Rent</span>
+          </Link>
+        </div> */}
 
       {/* Property Listings */}
       {isLoading && <div><PageSkeleton /></div> }
@@ -124,15 +133,15 @@ const CustomerOverview = () => {
               alt="House 2"
               className="w-full h-40 object-cover rounded-lg mb-3"
             />
-            <h4 className="text-gray-500 text-base uppercase font-semibold mb-2">{props.title}</h4>
-            <h3 className="text-xl font-bold mb-3">&#8358;{parseFloat(props.price.$numberDecimal).toLocaleString('en-US')}</h3>
+            <h4 className="text-gray-500 text-xl uppercase font-bold mb-2">{props.title}</h4>
+            <h3 className="text-xl alt-font font-bold mb-3">&#8358;{parseFloat(props.price.$numberDecimal).toLocaleString('en-US')}</h3>
               <span className=" flex justify-between mb-3">
                 <span className=" flex flex-col leading-5 items-center">
-                  {props?.bedrooms ? props.bedrooms.toString().padStart(2, '0') : '00'}
+                  {props?.bedrooms ? props.bedrooms.toString() : '0'}
                   <span>{props?.bedrooms ? 'Bedrooms' : '' }</span>
                 </span>
                 <span className=" flex flex-col leading-5 items-center">
-                  {props?.bathrooms ? props.bathrooms.toString().padStart(2, '0') : '00'}
+                  {props?.bathrooms ? props.bathrooms.toString(): '0'}
                   <span>{props?.bathrooms ? 'Bathrooms' : '' }</span>
                 </span>
               </span>

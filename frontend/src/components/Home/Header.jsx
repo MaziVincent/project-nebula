@@ -42,7 +42,7 @@ const Header = () => {
   };
   
   const isSmallScreen = window.innerWidth <= 1024;
-  console.log(auth)
+  //console.log(auth)
   return (
     <div className="fixed z-50 w-full bg-white top-0">
       <header className="md:px-14 max-lg:px-10">

@@ -10,7 +10,6 @@ const CustomerAside = ({ aside, setAside }) => {
   const handleOpenLogoutModal = () => setOpenLogoutModal(true);
   const handleCloseLogoutModal = () => setOpenLogoutModal(false);
 
-  console.log(auth)
   return (
     <aside
       className={`fixed top-0 left-0 z-40 w-36 h-dvh pb-3 pt-5 transition-transform  bg-white border-r border-gray-100 max-sm:w-96 md:translate-x-0 ${
@@ -40,7 +39,7 @@ const CustomerAside = ({ aside, setAside }) => {
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link
               to="/customer/wishlist"
               className={`flex items-center border-l-4 border-gray-50 hover:border-green-500 p-2 text-base font-medium text-gray-900 rounded-r-lg  hover:bg-gray-100 ${location.pathname === '/admin/lands' ? 'border-green-500 text-green-500' : ''} hover:text-green-500 group`}
@@ -55,7 +54,7 @@ const CustomerAside = ({ aside, setAside }) => {
               </svg>
               <span className="ml-3">Wishlist</span>
             </Link>
-          </li>
+          </li> */}
           <li className="">
             <Link
               to='/dashboard/properties'

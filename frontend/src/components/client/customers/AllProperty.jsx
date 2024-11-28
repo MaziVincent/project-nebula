@@ -2,8 +2,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "react-query";
 import { blue, brown, green, grey, purple, yellow } from "@mui/material/colors";
 import baseUrl from "../../../shared/baseURL";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import PropertyDetails from "./PropertyDetails";
@@ -15,6 +14,7 @@ const AllProperty = () => {
   const {auth} = useAuth();
   const fetch = useFetch();
   const url = `${baseUrl}properties`
+  const navigate = useNavigate();
 
   const [page, setPage] = useState(1)
   const handleChange = (event, value) =>{
@@ -22,11 +22,11 @@ const AllProperty = () => {
   }
 
   const [openModal, setOpenModal] = useState(false)
-  const [selectedProperty, setSelectedProperty] = useState(null)
-  const handleProperty = (property) => {
-    setSelectedProperty(property); // Set the entire property object
-    setOpenModal(true)
-  };
+  // const [selectedProperty, setSelectedProperty] = useState(null)
+  // const handleProperty = (property) => {
+  //   setSelectedProperty(property); // Set the entire property object
+  //   setOpenModal(true)
+  // };
   
   const closeModal = () => {
     setOpenModal(false); // Close modal
@@ -58,7 +58,7 @@ const AllProperty = () => {
       <h2 className="text-2xl font-bold mb-4 pt-5">Find Your Best Property 🏠🌆</h2>
 
       {/* Search Section */}
-      <div className="flex items-center space-x-4 gap-2 mb-5 max-sm:flex-col">
+      {/* <div className="flex items-center space-x-4 gap-2 mb-5 max-sm:flex-col">
         <div className=" w-1/3 relative m-0 max-sm:w-full">
         <h3 className=" text-base mb-0">Location</h3>
           <select className="border px-3 py-2 rounded-lg relative">
@@ -96,7 +96,7 @@ const AllProperty = () => {
           </span>
         </div>
         <button className="bg-green-500 text-white px-6 py-1 rounded-lg mt-3">Search</button>
-      </div>
+      </div> */}
 
       {/* Property Listings */}
       {isLoading && <div><PageSkeleton /></div>}
@@ -114,11 +114,11 @@ const AllProperty = () => {
             <h3 className="text-xl font-bold mb-3">&#8358;{parseFloat(props.price.$numberDecimal).toLocaleString('en-US')}</h3>
               <span className=" flex justify-between mb-3">
                 <span className=" flex flex-col leading-5 items-center">
-                  {props?.bedrooms ? props.bedrooms.toString().padStart(2, '0') : '00'}
+                  {props?.bedrooms ? props.bedrooms.toString() : '0'}
                   <span>{props?.bedrooms ? 'Bedrooms' : '' }</span>
                 </span>
                 <span className=" flex flex-col leading-5 items-center">
-                  {props?.bathrooms ? props.bathrooms.toString().padStart(2, '0') : '00'}
+                  {props?.bathrooms ? props.bathrooms.toString() : '0'}
                   <span>{props?.bathrooms ? 'Bathrooms' : '' }</span>
                 </span>
               </span>
@@ -134,7 +134,7 @@ const AllProperty = () => {
                 </svg>
               </span>
               {props.location}</p>
-            <button onClick={() => handleProperty(props)} className="mt-4 w-full bg-emerald-500 text-white px-4 py-1 rounded-lg">View</button>
+            <button onClick={() => navigate(`/dashboard/details/${props._id}`)} className="mt-4 w-full bg-emerald-500 text-white px-4 py-1 rounded-lg">View</button>
           </div>
          ))
         ): (

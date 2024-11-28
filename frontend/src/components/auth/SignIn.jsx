@@ -87,7 +87,7 @@ const SignIn = ({open, handleCloseLogin}) => {
   useEffect(() => {
     localStorage.setItem('persist', persist)
   }, [persist])
-  console.log(auth)
+ 
   return (
     <Modal
       open={open}
@@ -203,14 +203,14 @@ const SignIn = ({open, handleCloseLogin}) => {
               </button>
             </form>
             <div>
-              <p className='text-center mt-4 mb-2'>Don't have na account yet? 
+              <p className='text-center mt-4 mb-2'>Don't have na account yet? &nbsp;
                 <button 
                   onClick={() => {
                     handleCloseLogin({type:"openLogin"});
                     handleCloseLogin({type:"register"});
                     
                   }}
-                  className='text-blue-600 underline hover:text-blue-700'> Sign Up</button>
+                  className='text-green-600 underline hover:text-green-700'> Sign Up</button>
               </p>
             </div>
             </div>

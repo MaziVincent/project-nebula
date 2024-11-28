@@ -20,8 +20,7 @@ const CustomerHeader = ({ setAside }) => {
     }
   };  
   const location = useLocation()
-  const {auth, setAuth, persist, setPersist} = useContext(AuthContext)
-  console.log(auth)
+  const {auth, } = useContext(AuthContext)
   return (
     <nav className="bg-white border-b border-gray-200 px-4 py-2.5 fixed left-0 right-0 top-0 z-50">
       <ToastContainer />
@@ -129,14 +128,7 @@ const CustomerHeader = ({ setAside }) => {
           </div>
         </div>
 
-        <div className="flex bg-gray-200 rounded-3xl border-[1px] border-gray-100">
-          <Link to='/dashboard/sell' className="rounded-l-xl pl-1 py-1  text-gray-800 hover:text-gray-600">
-            <span className={` ${location.pathname === '/dashboard/sell' ? 'bg-gray-100 text-gray-700' : ''} px-2 py-1 rounded-l-3xl border-r border-gray-100`}>Buy</span>
-          </Link>
-          <Link to='/dashboard/rentals' className=" rounded-r-xl pr-1 py-1 text-gray-800 hover:text-gray-600">
-            <span className={` ${location.pathname === '/dashboard/rentals' ? 'bg-gray-50 text-gray-700' : ''} px-2 py-1 rounded-r-3xl`}>Rent</span>
-          </Link>
-        </div>
+        
         {/* <div className="flex items-center lg:order-2">
           <button
             type="button"
