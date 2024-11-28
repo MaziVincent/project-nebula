@@ -78,6 +78,8 @@ const AdminAgents = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
+  console.log(data)
+
   return (
     <div className=' pt-5 max-sm:mt-10 h-auto min-h-max'>
       <ToastContainer />

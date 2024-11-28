@@ -43,7 +43,7 @@ const Overview = () => {
     }
   );
 
- console.log(data)
+ //console.log(data)
 
   const propertyCounts = data && Array.isArray(data)
   ? data.reduce(
