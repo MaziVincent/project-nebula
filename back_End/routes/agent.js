@@ -9,7 +9,7 @@ const filesSizeLimiter = require("../middleware/filiesSizeLimiter");
 
 router
   .route("/")
-  .get(verifyRoles("Admin"), agentController.handleAgents)
+  .get(verifyRoles("Admin", "Customer"), agentController.handleAgents)
   .post(verifyRoles("Admin"), agentController.handleCreateAgent)
   .put(verifyRoles("Admin", "Agent"), agentController.handleAgentUpdate)
   .delete(verifyRoles("Admin"), agentController.handleAgentDelete);

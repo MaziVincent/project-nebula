@@ -16,10 +16,18 @@ const MessageSchema = new Schema({
     type: String,
     required: true
   },
-  timestamp: {
-    type: Date,
-    default: Date.now
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  phone:{
+    type: String,
+    required: true
   }
-});
+}, {timestamps: true});
 const Message = mongoose.model('Message', MessageSchema);
 module.exports = Message;

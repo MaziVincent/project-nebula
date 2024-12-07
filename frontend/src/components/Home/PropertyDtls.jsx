@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import useFetch from "../../hooks/useFetch";
-// import useAuth from "../../hooks/useAuth";
-// import { ToastContainer, toast } from "react-toastify";
+import usePost from '../../hooks/usePost'
+import AuthContext from '../../context/AuthProvider'
+import { useContext } from 'react'
 import { useParams } from "react-router-dom";
 import baseURL from "../../shared/baseURL";
 import { CircularProgress, Modal } from "@mui/material";
@@ -18,13 +19,20 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import usePageSEO from "../../hooks/usePageSEO";
+import { useQueryClient, useMutation } from "react-query";
+import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
+import ImagePreview from "./skeletons/ImagePreview";
 
 const PropertyDtls = () => {
   //const { auth } = useAuth();
   const fetch = useFetch();
   const url = `${baseURL}properties`;
   const { id } = useParams();
-  //const imageUrl = `${baseURL}`;
+  const queryClient = useQueryClient();
+  const post = usePost();
+  const {auth} = useContext(AuthContext);
+  const [loading, setLoading] = useState(false)
 
   const serverlessUrl = `https://www.megatechrealestate.ng/api/property/${id}`
 
@@ -110,10 +118,62 @@ const PropertyDtls = () => {
 //   })
 
   //   console.log(property.leaseDuration)
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  
+  const sendMessage = async(data) => {
+    setLoading(true)
+    if (!auth || !auth.accessToken) {
+      navigate('/login');
+      return
+    };
+    const formData = new FormData();
+    for (const key in data) {
+      if (data[key]) {
+        formData.append(key, data[key]);
+      }
+    }
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+    try {
+      const response = await post(`${baseURL}message`, formData, auth.accessToken);
+
+      console.log(response.data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  const {mutate} = useMutation(sendMessage, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("messages");
+      setTimeout(() => {
+       toast.success("Message Sent");
+      setLoading(false)
+      reset()
+     }, 2000)
+    },
+    onError: (error) => {
+      setLoading(false)
+      toast.error(error.message);
+    },
+  });
+
+  const handleSendMessage = (data) => {
+   mutate(data);
+  }
+
+  const sender = auth?.user?._id
+  const receiver = property?.owner?._id
   return (
     <div className="">
       {/*  start page title  */}
-
+      <ToastContainer />
       {property ? (
         <div className="">
           <section className="cover-background page-title-big-typography ipad-top-space-margin">
@@ -162,17 +222,17 @@ const PropertyDtls = () => {
           </section>
           {/*  end page title  */}
           {/*  start section  */}
+          <ImagePreview images={property.imageUrls}/>
           <section className="p-0 overflow-hidden">
             <div className="container-fluid p-0">
               <div className="row row-cols-1 justify-content-center">
                 {/*  start content carousal item  */}
-                <div className="col">
+                {/* <div className="col">
                   <div
                     className="swiper slider-four-slide swiper-dark-pagination swiper-pagination-style-3"
                     data-slider-options='{ "slidesPerView": 1, "spaceBetween": 20, "loop": true, "pagination": { "el": ".slider-four-slide-pagination", "clickable": true }, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 3 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 } }, "effect": "slide" }'
                   >
                     <div className="swiper-wrapper">
-                      {/*  start content carousal item  */}
                       <div className=" grid grid-cols-3 gap-4 ">
                         {property.imageUrls.map((imageUrl, index) => (
                           <img
@@ -184,14 +244,11 @@ const PropertyDtls = () => {
                         ))}
                       </div>
                     </div>
-                    {/*  start slider navigation  */}
                     <div className="slider-one-slide-prev-1 icon-very-small bg-white h-40px w-40px swiper-button-prev slider-navigation-style-01">
                       <i className="feather icon-feather-arrow-left fs-20 text-light-gray"></i>
                     </div>
-                    {/* <div className="slider-one-slide-next-1 icon-very-small bg-white h-40px w-40px swiper-button-next slider-navigation-style-01"><i className="feather icon-feather-arrow-right fs-20 text-light-gray"></i></div>  */}
-                    {/*  end slider navigation  */}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </section>
@@ -903,7 +960,8 @@ const PropertyDtls = () => {
                       </span>
                       {/*  start contact form  */}
                       <form
-                        action="email-templates/contact-form.php"
+                        onSubmit={handleSubmit(handleSendMessage)}
+                        // action="email-templates/contact-form.php"
                         method="post"
                       >
                         <div className="position-relative form-group mb-15px">
@@ -915,6 +973,7 @@ const PropertyDtls = () => {
                             name="name"
                             className="form-control border-color-white box-shadow-large required"
                             placeholder="Your name*"
+                            {...register("name", { required: true })}
                           />
                         </div>
                         <div className="position-relative form-group mb-15px">
@@ -924,6 +983,7 @@ const PropertyDtls = () => {
                           <input
                             type="email"
                             name="email"
+                            {...register("email", { required: true })}
                             className="form-control border-color-white box-shadow-large required"
                             placeholder="Your email address*"
                           />
@@ -935,6 +995,7 @@ const PropertyDtls = () => {
                           <input
                             type="tel"
                             name="phone"
+                            {...register("phone", { required: true })}
                             className="form-control border-color-white box-shadow-large"
                             placeholder="Your phone"
                           />
@@ -945,7 +1006,8 @@ const PropertyDtls = () => {
                           </span>
                           <textarea
                             placeholder="Your message"
-                            name="comment"
+                            name="message"
+                            {...register("message", { required: true })}
                             className="form-control border-color-white box-shadow-large"
                             rows="3"
                           ></textarea>
@@ -954,11 +1016,23 @@ const PropertyDtls = () => {
                             name="redirect"
                             value=""
                           />
+                          <input
+                            type="hidden"
+                            name="sender"
+                            value={sender}
+                            {...register("sender", { required: true })}
+                          />
+                          <input
+                            type="hidden"
+                            name="receiver"
+                            value={receiver}
+                            {...register("receiver", { required: true })}
+                          />
                           <button
                             className="btn btn-small btn-round-edge btn-base-color mt-20px submit "
                             type="submit"
                           >
-                            Send message
+                            {loading ? <CircularProgress size={20} style={{color: 'white'}} /> : "Send Message"}
                           </button>
                           <div className="form-results mt-20px d-none"></div>
                         </div>

@@ -57,6 +57,8 @@ import TermsAndConditions from './components/Home/TermsAndConditions';
 import ForgotPassword from './components/auth/ForgotPassword';
 import CustomerPropertyDetails from './components/client/customers/PropertyDetails';
 import PropertyPage from './components/Home/PropertyPage';
+import Messages from './components/client/customers/Messages';
+import OwnerMessages from './components/client/owner/ownerComponent/OwnerMessages';
 
 function App() {
   const queryClient = new QueryClient();
@@ -136,6 +138,7 @@ function App() {
                   <Route path='/dashboard/properties' element={<AllProperty />} />
                   <Route path='/dashboard/rentals' element={<PropertyForRent />} />
                   <Route path='/dashboard/sell' element={<PropertyForSell />} />
+                  <Route path='/dashboard/messages' element={<Messages />} />
                 </Route>
               </Route>
             </Route>
@@ -158,6 +161,7 @@ function App() {
                   <Route index element={<OwnerOverview />} />
                   <Route path='/owner/property/:id' element={<Property />} />
                   <Route path='/owner/profile/:id' element={<OwnerProfile />} />
+                  <Route path='/owner/messages' element={<OwnerMessages />} />
                 </Route>
               </Route>
             </Route>

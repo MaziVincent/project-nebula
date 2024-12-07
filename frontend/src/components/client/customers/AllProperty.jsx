@@ -152,7 +152,7 @@ const AllProperty = () => {
     </div>
       
     {/* Property Details Sidebar */}
-    {selectedProperty && ( // Render only if a property is selected
+    {/* {selectedProperty && ( // Render only if a property is selected
         <div className="hidden lg:block lg:w-1/4 bg-white shadow-lg">
           <div className="p-5">
             <PropertyDetails property={selectedProperty} closeModal={closeModal} />
@@ -160,7 +160,6 @@ const AllProperty = () => {
         </div>
       )}
 
-      {/* Property Details Modal for Small Screens */}
       {
         isSmallScreen && (
           <Modal
@@ -174,7 +173,7 @@ const AllProperty = () => {
         </div>
       </Modal>
         )
-      }
+      } */}
   </div>
   )
 }
