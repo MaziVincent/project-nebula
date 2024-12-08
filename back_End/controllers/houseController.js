@@ -10,7 +10,7 @@ const {
 } = require('../services/houseService')
 
 const createHouseHandler = async (req, res) => {
-    const {title, description, price, location, owner, bedrooms, bathrooms, squareFootage, yearBuilt, lotSize, buildingType, docType, exteriorFeatures, interiorFeatures, livingRoomFeatures, kitchenFeatures, propertyType, paymentType} = req.body;
+    const {title, description, price, location, owner, bedrooms, bathrooms, squareFootage, yearBuilt, lotSize, buildingType, docType, exteriorFeatures, interiorFeatures, livingRoomFeatures, kitchenFeatures, propertyType, paymentType, videoUrl} = req.body;
     if(!title, !description, !price, !location, !owner, !bedrooms, !bathrooms, !docType, !exteriorFeatures, !interiorFeatures, !livingRoomFeatures, !kitchenFeatures, !propertyType) {
         return res.status(400).json({message: 'All fields are required'})
     }
@@ -34,7 +34,8 @@ const createHouseHandler = async (req, res) => {
         livingRoomFeatures,
         kitchenFeatures,
         propertyType,
-        paymentType
+        paymentType,
+        videoUrl
     };
     const result = await createHouse(data);
     if(result.error) {

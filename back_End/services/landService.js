@@ -25,6 +25,7 @@ const createLand = async (data) => {
             "paymentType": data.paymentType,
             "propertyType": data.propertyType,
             "landFeatures": data.landFeatures,
+            "videoUrl": data.videoUrl,
             "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.plots}`
         })
         const user = await User.findOne({_id : ownerId }).exec();
@@ -75,6 +76,7 @@ const updateLand = async (id, data) => {
         if(data.propertyType) land.propertyType = data.propertyType
         if(data.paymentType) land.paymentType = data.paymentType
         if(data.landFeatures) land.landFeatures = data.landFeatures
+        if(data.videoUrl) land.videoUrl = data.videoUrl
         const result = await land.save();
         return result;
     } catch (e) {

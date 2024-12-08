@@ -16,6 +16,7 @@ const createShop = async (data) => {
             "shopCategory": data.shopCategory,
             "leaseDuration": data.leaseDuration,
             "securityDeposit": data.securityDeposit,
+            "videoUrl": data.videoUrl,
             "searchString": `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.shopCategory}`
         })
         const user = await User.findOne({_id: ownerId}).exec();
@@ -62,6 +63,7 @@ const updateShop = async (id, data) => {
         if(data.rent) shop.rent = data.rent;
         if(data.leaseDuration) shop.leaseDuration = data.leaseDuration;
         if(data.securityDeposit) shop.securityDeposit = data.securityDeposit;
+        if(data.videoUrl) shop.videoUrl = data.videoUrl;
         const result = await shop.save();
         console.log(result);
         return result;

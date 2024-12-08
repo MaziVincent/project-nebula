@@ -32,6 +32,7 @@ const createHouse = async (data) => {
             exteriorFeatures: data.exteriorFeatures,
             interiorFeatures: data.interiorFeatures,
             kitchenFeatures: data.kitchenFeatures,
+            videoUrl: data.videoUrl,
             searchString: `${data.title} ${data.price} ${data.location} ${data.propertyType} ${data.buildingType} ${data.lotSize}`
         
           });
@@ -91,6 +92,7 @@ const updateHouse = async (id, data) => {
         if(data.interiorFeatures) house.interiorFeatures = data.interiorFeatures
         if(data.livingRoomFeatures) house.livingRoomFeatures = data.livingRoomFeatures
         if(data.kitchenFeatures) house.kitchenFeatures = data.kitchenFeatures
+        if(data.videoUrl) house.videoUrl = data.videoUrl
         await house.save();
         return house;
     } catch (e) {

@@ -10,7 +10,7 @@ const {
 
 const createShopHandler = async (req, res) => {
     console.log(req.body);
-    const { title, description, price, location, owner, propertyType, shopCategory, leaseDuration, securityDeposit} = req.body;
+    const { title, description, price, location, owner, propertyType, shopCategory, leaseDuration, securityDeposit, videoUrl} = req.body;
     if (!title, !description, !price, !location, !owner, !propertyType, !shopCategory, !leaseDuration, !securityDeposit ) {
         return res.status(400).json({ message: 'All fields are required' });
     }
@@ -29,6 +29,7 @@ const createShopHandler = async (req, res) => {
         shopCategory,
         leaseDuration,
         securityDeposit,
+        videoUrl,
         file: req.file
     };
     const result = await createShop(data);

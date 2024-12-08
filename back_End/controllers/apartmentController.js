@@ -10,7 +10,7 @@ const {
 
 const createApartmentHandler = async (req, res) => {
     console.log(req.body)
-    const { title, description, price, location, owner, bedrooms, bathrooms, floorArea, propertyType, exteriorFeatures, interiorFeatures, livingRoomFeatures, kitchenFeatures, paymentType } = req.body;
+    const { title, description, price, location, owner, bedrooms, bathrooms, floorArea, propertyType, exteriorFeatures, interiorFeatures, livingRoomFeatures, kitchenFeatures, paymentType, videoUrl } = req.body;
     if(!title, !description, !price, !location, !owner, !bedrooms, !bathrooms, !propertyType) {
         return res.status(400).json({message: "All fields are required"})
     }
@@ -34,6 +34,7 @@ const createApartmentHandler = async (req, res) => {
         interiorFeatures,
         livingRoomFeatures,
         kitchenFeatures,
+        videoUrl,
         file: req.file
     }
     // const data = req.body;

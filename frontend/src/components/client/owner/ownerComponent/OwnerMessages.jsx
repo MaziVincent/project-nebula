@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import baseURL from '../../../../shared/baseURL'
 import { useQuery } from 'react-query'
 import MessageSkeleton from '../../../Home/skeletons/MessageSkeleton'
+import { Link } from 'react-router-dom'
 const OwnerMessages = () => {
   const { auth } = useContext(AuthContext)
   const fetch = useFetch()
@@ -47,17 +48,17 @@ const OwnerMessages = () => {
               
             {
               data?.messages?.map((message) => (
-                <div key={message._id} className='flex justify-start gap-2 items-start shadow-md mt-4 p-2'>
+                <Link to={`/owner/message/${message._id}`} key={message._id} className='flex justify-start gap-2 items-start shadow-md mt-4 p-2'>
                   <div className=''>
                     <img src={message?.sender?.profile} alt="" className='w-8 h-8 object-cover rounded-full' />
                     {/* <span className='text-xs font-semibold text-gray-700'>r</span> */}
                   </div>
                   <div>
-                    <h2 className='text-xl font-semibold mb-0'>Name: <span className='text-gray-700'>{message.name}</span></h2>
-                    <p className='mb-0'>Email: <span className='text-gray-700'>{message.email}</span></p>
-                    <p className='mb-0'>Message: <span className='text-gray-700'>{message.message.slice(0,20)}...</span></p>
+                    <h2 className='text-xl font-semibold mb-0 text-gray-500'>Name: <span className='text-gray-700'>{message.name}</span></h2>
+                    <p className='mb-0 text-gray-500'>Email: <span className='text-gray-700'>{message.email}</span></p>
+                    <p className='mb-0 text-gray-500'>Message: <span className='text-gray-700'>{message.message.slice(0,20)}...</span></p>
                   </div>
-                </div>
+                </Link>
               )) || <p className='text-center text-gray-700'>No messages</p>
             }
             </div>

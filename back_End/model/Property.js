@@ -24,6 +24,9 @@ const PropertySchema = new Schema({
   imageUrls: {
     type: [String],
   },
+  videoUrl: {
+    type: String,
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',

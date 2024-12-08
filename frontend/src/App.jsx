@@ -59,6 +59,8 @@ import CustomerPropertyDetails from './components/client/customers/PropertyDetai
 import PropertyPage from './components/Home/PropertyPage';
 import Messages from './components/client/customers/Messages';
 import OwnerMessages from './components/client/owner/ownerComponent/OwnerMessages';
+import MessageDetails from './components/subcomponents/MessageDetails';
+import ReceivedMessages from './components/client/customers/ReceivedMessages';
 
 function App() {
   const queryClient = new QueryClient();
@@ -138,7 +140,9 @@ function App() {
                   <Route path='/dashboard/properties' element={<AllProperty />} />
                   <Route path='/dashboard/rentals' element={<PropertyForRent />} />
                   <Route path='/dashboard/sell' element={<PropertyForSell />} />
-                  <Route path='/dashboard/messages' element={<Messages />} />
+                  <Route path='/dashboard/messages/sent' element={<Messages />} />
+                  <Route path='/dashboard/messages/received' element={<ReceivedMessages />} />
+                  <Route path='/dashboard/message/:id' element={<MessageDetails />} />
                 </Route>
               </Route>
             </Route>
@@ -162,6 +166,7 @@ function App() {
                   <Route path='/owner/property/:id' element={<Property />} />
                   <Route path='/owner/profile/:id' element={<OwnerProfile />} />
                   <Route path='/owner/messages' element={<OwnerMessages />} />
+                  <Route path='/owner/message/:id' element={<MessageDetails />} />
                 </Route>
               </Route>
             </Route>

@@ -23,6 +23,7 @@ import { useQueryClient, useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import ImagePreview from "./skeletons/ImagePreview";
+import Est_Vid from "../../assets/images/photos/estate-vid.jpeg";
 
 const PropertyDtls = () => {
   //const { auth } = useAuth();
@@ -129,7 +130,7 @@ const PropertyDtls = () => {
   const sendMessage = async(data) => {
     setLoading(true)
     if (!auth || !auth.accessToken) {
-      navigate('/login');
+      navigate('/');
       return
     };
     const formData = new FormData();
@@ -793,7 +794,7 @@ const PropertyDtls = () => {
                       )}
                     </div>
                   </div>
-                  <div className="row mt-7">
+                  {/* <div className="row mt-7">
                     <div className="col-12">
                       <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block"></span>
                       <img
@@ -802,17 +803,32 @@ const PropertyDtls = () => {
                         alt=""
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="row mt-7">
-                    <div className="col-12">
+                    <div className="col-12 relative">
                       <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block"></span>
                       <img
-                        src={property.imageUrls[2]}
+                        src={property.imageUrls[0]}
                         className="border-radius-6px w-[682px]"
                         alt=""
                       />
+                      <a
+                        href={property.videoUrl}
+                        className="absolute-middle-center text-center rounded-circle video-icon-box video-icon-large popup-vimeo"
+                      >
+                        <span>
+                          <span className="video-icon bg-white">
+                            <i className="fa-solid fa-play text-dark-gray"></i>
+                            <span className="video-icon-sonar">
+                              <span className="video-icon-sonar-bfr border border-color-white"></span>
+                            </span>
+                          </span>
+                        </span>
+                      </a>
                     </div>
                   </div>
+                  <div className="col-lg-6 offset-lg-1 position-relative">
+            </div>
                   <div className="row mt-7">
                     <div className="col-12">
                       <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block">
@@ -821,6 +837,7 @@ const PropertyDtls = () => {
                     </div>
                     <div className="col-12">
                       {/* <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15862.294791942271!2d8.089956184736167!3d6.319590648716132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1svanco%20junction%20Abakaliki!5e0!3m2!1sen!2sng!4v1731096112866!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                                            <div id="map" className="map small-screen border-radius-6px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Dark", "marker": { "type": "HTML", "color": "#06af47" }, "popup": { "defaultOpen": true, "html": "<div className=infowindow><strong className=\"mb-3 d-inline-block alt-font\">Crafto Real Estate</strong><p className=\"alt-font\">401 Broadway, 24th Floor, Orchard View, London, UK</p></div><div className=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div> */}
+                      <p>Not Available!!</p>
                     </div>
                   </div>
                 </div>
@@ -1031,6 +1048,12 @@ const PropertyDtls = () => {
                           <button
                             className="btn btn-small btn-round-edge btn-base-color mt-20px submit "
                             type="submit"
+                            // disabled={!auth?.user || loading}
+                            onClick={() => {
+                              if (!auth?.user) {
+                                toast.error("Please login to send message");
+                              }
+                            }}
                           >
                             {loading ? <CircularProgress size={20} style={{color: 'white'}} /> : "Send Message"}
                           </button>
