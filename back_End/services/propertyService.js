@@ -3,6 +3,7 @@ const User = require("../model/User");
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
 const mongoose = require("mongoose");
+const sharp = require("sharp");
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -119,13 +120,20 @@ const getRecentProperties = async () => {
 };
 
 const uploadPropertyImage = async (files, id) => {
-  console.log(files);
+
   const propertyId = new mongoose.Types.ObjectId(id);
 
   const uploadPromises = Object.keys(files).map(async (key) => {
     const file = files[key];
 
-    return new Promise((resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
+
+      const compressedBuffer = await sharp(file.data)
+        .resize({ width: 1200, height: 1200, fit:'inside', withoutEnlargement:true })
+        .webp({ quality: 80, nearLossless:true })
+        .toBuffer();
+
+
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder: "RealEstate",
@@ -153,7 +161,7 @@ const uploadPropertyImage = async (files, id) => {
           }
         }
       );
-      uploadStream.end(file.data);
+      uploadStream.end(compressedBuffer);
     });
   });
 

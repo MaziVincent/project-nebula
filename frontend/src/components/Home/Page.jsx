@@ -100,11 +100,7 @@ const Page = () => {
       keepPreviousData: true,
       staleTime: 10000,
       refetchOnMount: "always",
-      onSuccess: () => {
-        setTimeout(() => {
-          console.log("Fetch successful");
-        }, 2000);
-      },
+     
     }
   );
 
@@ -123,11 +119,6 @@ const Page = () => {
     keepPreviousData: true,
     staleTime: 10000,
     refetchOnMount: "always",
-    onSuccess: () => {
-      setTimeout(() => {
-        console.log("Fetch successful");
-      }, 2000);
-    },
   });
 
   //console.log(featured);
@@ -153,7 +144,7 @@ const Page = () => {
               className="swiper-wrapper"
             >
               {featured?.map((featured) => (
-                <SwiperSlide>
+                <SwiperSlide key={featured._id}>
                   <div
                     className="swiper-slide cover-background"
                     style={{ backgroundImage: `url(${featured.imageUrls[0]})` }}

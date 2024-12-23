@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
   const [verifyOTP, setVerifyOTP] = useState(false);
   const [code, setCode] = useState({});
   const [changePassword, setChangePassword] = useState(false);
+  const [userData, setUserData] = useState({});
   return (
     <AuthContext.Provider
       value={{
@@ -26,7 +27,9 @@ export const AuthProvider = ({ children }) => {
         changePassword,
         setChangePassword,
         code,
-        setCode
+        setCode,
+        userData,
+        setUserData,
       }}
     >
       {children}

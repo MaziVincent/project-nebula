@@ -49,6 +49,7 @@ app.use('/api/email', require('./routes/email'));
 app.use('/api/render', require('./routes/api/bot'));
 //app.use('/property', require('./routes/property'));
 app.use('/api/message', require('./routes/message'))
+app.use("/api/sms", require("./routes/sms"));
 app.use(verifyJWT);
 app.use('/api/owner', require('./routes/owner'));
 app.use('/api/admin', require('./routes/admin'));

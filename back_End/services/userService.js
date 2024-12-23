@@ -83,7 +83,12 @@ const uploadProfilePicture = async (files, id) => {
   const uploadPromises = Object.keys(files).map(async (key) => {
     const file = files[key];
 
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
+
+       const compressedBuffer = await sharp(file.data)
+        .resize({ width: 800, height: 800, fit:'inside', withoutEnlargement:true })
+        .webp({ quality: 80, nearLossless:true })
+        .toBuffer();
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder: "RealEstate",
@@ -109,7 +114,7 @@ const uploadProfilePicture = async (files, id) => {
           }
         }
       );
-      uploadStream.end(file.data);
+      uploadStream.end(compressedBuffer);
     });
   });
 

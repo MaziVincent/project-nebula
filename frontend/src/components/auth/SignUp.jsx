@@ -8,20 +8,24 @@ import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import useAuth from "../../hooks/useAuth";
 //import SignIn from './SignIn';
 
 const SignUp = ({ open, handleClose }) => {
   const post = usePost();
   const navigate = useNavigate();
-  const url = `${baseURL}customer`;
+  const url = `${baseURL}sms/otp`;
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
+  const { setVerifyOTP, setCode,  setUserData } =
+    useAuth();
 
   // const [openLogin, setOpenLogin] = useState(false)
   // const handleOpenLogin = () => setOpenLogin(true)
   // const handleCloseLogin = () => setOpenLogin(false)
 
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -33,43 +37,36 @@ const SignUp = ({ open, handleClose }) => {
     formState: { errors },
   } = useForm();
 
-  const createAccount = async (data) => {
+  const handleVerification = async (data) => {
     setIsLoading(true);
-    const formData = new FormData();
-    for (const key in data) {
-      if (data[key]) {
-        formData.append(key, data[key]);
-      }
-    }
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(`${key}: ${value}`);
-    // }
+    setError("")
     try {
-      const response = await post(url, formData);
+      const verificationData = { phone: data.phone, email:data.email };
+      const response = await post(url, verificationData, "");
 
-      //console.log(response.data);
+      setUserData(data)
+      setCode(response.data?.response);
+      
+      handleClose({ type: "register" });
+      setVerifyOTP(true);
 
-    } catch (err) {
-      console.log(err);
-      toast.error("Something Went Wrong");
+
+      console.log(response);
+
+    } catch (error) {
+      if (error.status === 409) {
+        setError("Phone Number or Email already exist")
+      }
+      else if (error.status === 400) {
+        setError(error.response?.data?.message);
+      } else if (error.status === 500) {
+        setError(" Error Sending OTP");
+      }
+    } finally {
+      
+    setIsLoading(false);
     }
-  };
-  const { mutate } = useMutation(createAccount, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("customer");
-      toast.success("Account created successfully");
-      setTimeout(() => {
-        handleClose({ type: "register" });
-        handleClose({ type: "openLogin" });
-      }, 5000);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
 
-  const handleCreateAccount = (data) => {
-    mutate(data);
   };
   return (
     <Modal
@@ -115,8 +112,11 @@ const SignUp = ({ open, handleClose }) => {
                 <span className="sr-only">Close modal</span>
               </button>
               <p>Create account to continue</p>
+              {error && (
+                <div className="text-red-500 text-sm">{error}</div>
+              )}
               <form
-                onSubmit={handleSubmit(handleCreateAccount)}
+                onSubmit={handleSubmit(handleVerification)}
                 method="post"
                 // encType=''
               >
@@ -134,7 +134,7 @@ const SignUp = ({ open, handleClose }) => {
                       id="firstname"
                       {...register("firstname", { required: true })}
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                      placeholder="Type First name"
+                      placeholder="Type First Name"
                     />
                     {errors.firstname && (
                       <span className="text-red-500 text-sm">
@@ -155,7 +155,7 @@ const SignUp = ({ open, handleClose }) => {
                       type="text"
                       {...register("lastname", { required: true })}
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                      placeholder="Enter Lastname here"
+                      placeholder="Enter Last Name "
                     />
                     {errors.lastname && (
                       <span className="text-red-500 text-sm">
@@ -176,7 +176,7 @@ const SignUp = ({ open, handleClose }) => {
                       type="email"
                       {...register("email", { required: true })}
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                      placeholder="Enter Email here"
+                      placeholder="yourmail@gmail.com"
                     />
                     {errors.email && (
                       <span className="text-red-500 text-sm">
@@ -198,7 +198,7 @@ const SignUp = ({ open, handleClose }) => {
                       type="text"
                       {...register("phone", { required: true })}
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                      placeholder="Enter Phone Number"
+                      placeholder="08033445566"
                     />
                     {errors.phone && (
                       <span className="text-red-500 text-sm">
@@ -218,13 +218,14 @@ const SignUp = ({ open, handleClose }) => {
                         id="password"
                         name="password"
                         type={showPassword ? "text" : "password"}
+                        placeholder="Enter Password"
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                         {...register("password", {
                           required: true,
                           minLength: {
                             value: 6,
                             message:
-                              "Password must be at least 8 characters long",
+                              "Password must be at least 6 characters long",
                           },
                           maxLength: {
                             value: 32,
@@ -240,54 +241,53 @@ const SignUp = ({ open, handleClose }) => {
                           },
                         })}
                       />
-                    
 
-                    <button
-                      type="button"
-                      onClick={togglePasswordVisibility}
-                      className="absolute inset-y-0 right-2 flex items-center"
-                    >
-                      {showPassword ? (
-                        <svg
-                          class="w-6 h-6 text-gray-800 "
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-Width="2"
-                            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
-                          />
-                          <path
-                            stroke="currentColor"
-                            stroke-Width="2"
-                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                          />
-                        </svg>
-                      ) : (
-                        <svg
-                          class="w-6 h-6 text-gray-800 "
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-Linecap="round"
-                            stroke-Linejoin="round"
-                            stroke-Width="2"
-                            d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                          />
-                        </svg>
-                      )}
-                    </button>
+                      <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className="absolute inset-y-0 right-2 flex items-center"
+                      >
+                        {showPassword ? (
+                          <svg
+                            className="w-6 h-6 text-gray-800 "
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-Width="2"
+                              d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                            />
+                            <path
+                              stroke="currentColor"
+                              stroke-Width="2"
+                              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                            />
+                          </svg>
+                        ) : (
+                          <svg
+                            className="w-6 h-6 text-gray-800 "
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-Linecap="round"
+                              stroke-Linejoin="round"
+                              stroke-Width="2"
+                              d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                            />
+                          </svg>
+                        )}
+                      </button>
                     </div>
                     {errors.password && (
                       <p className="text-sm text-red-500">

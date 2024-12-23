@@ -1,28 +1,22 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { CircularProgress, Modal } from "@mui/material";
 import useAuth from "../../hooks/useAuth";
 import { useMutation } from "react-query";
 import baseUrl from "../../shared/baseURL";
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import usePost from "../../hooks/usePost";
 
-const VerifyOTP = ({ otpLength = 4,  }) => {
+const VerifyOTP = ({ otpLength = 4 }) => {
   const [otp, setOtp] = useState(Array(otpLength).fill(""));
-  const [codeError, setCodeError] = useState("")
-  const [resend, setResend] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [codeError, setCodeError] = useState("");
+  const [timeLeft, setTimeLeft] = useState(300);
+  const [resend, setResend] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const verifyUrl = `${baseUrl}sms/verifyotp`
   const inputsRef = useRef([]);
   const post = usePost();
-  const {
-    verifyOTP,
-    setVerifyOTP,
-    code,
-    setCode,
-    setChangePassword
-  } = useAuth();
-
+  const { verifyOTP, setVerifyOTP, code, setCode, userData } = useAuth();
 
   const handleChange = (element, index) => {
     const value = element.value;
@@ -53,51 +47,98 @@ const VerifyOTP = ({ otpLength = 4,  }) => {
     setIsLoading(true);
     const pin = otp.join("");
 
-    if(pin === code.pin){
-      setChangePassword(true)
-      setVerifyOTP(false)
-      setIsLoading(false)
+    // if (pin === code.pin) {
+    //   setChangePassword(true);
+    //   setVerifyOTP(false);
+    //   setIsLoading(false);
+    // }
+
+    try {
+      const response = await post(verifyUrl, { pin, pinId: code.pinId });
+      console.log(response)
+
+    }catch(err){
+      console.log(err)
+    }finally{
+      setIsLoading(false);
     }
 
-    setIsLoading(false)
-  
   };
 
+  useEffect(() => {
+    let timer;
 
+    if (timeLeft > 0) {
+      setResend(false); // Ensure button is hidden during countdown
+      timer = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+    } else {
+      setResend(true); // Show the button when the timer stops
+    }
 
-  useEffect(()=> {
-    setTimeout(()=>{
-      setResend(true)
-    }, 60000)
-  },[])
+    return () => clearInterval(timer); // Cleanup on component unmount
+  }, [timeLeft]);
 
   const resendOtp = async () => {
+    setCodeError("");
+    setResend(false)
+    setTimeLeft(300)
+    try {
+      const verificationData = { phone: userData.phone, email: userData.email };
+      const response = await post(url, verificationData, "");
+      setCode(response.data?.response);
 
-    try{
-
-    const formData = new FormData()
-    formData.append("email", code.email)
-    const response = await post(`${baseUrl}email/pin`, formData ," ")
-   // console.log(response)
-
-      if(response.status == 200 || response.data.status == "200"){
-        setCode((prev)=> {
-          return {...prev, code: response.data?.pin}
-        })
-         
-      }else{
-        setCodeError("Error Sending OTP");
-        
+      //console.log(response);
+    } catch (error) {
+      if (error.status === 409) {
+        setCodeError("Phone Number or Email already exist");
+      } else if (error.status === 400) {
+        setCodeError(error.response?.data?.message);
+      } else if (error.status === 500) {
+        setCodeError(" Error Sending OTP");
       }
-
-    }catch(error){
-
-      console.error(error)
-      setCodeError("Error Sending  OTP");
-    }
+    } 
 
   };
 
+  const createAccount = async (data) => {
+    setIsLoading(true);
+    const formData = new FormData();
+    for (const key in data) {
+      if (data[key]) {
+        formData.append(key, data[key]);
+      }
+    }
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key}: ${value}`);
+    // }
+    try {
+      const response = await post(url, formData);
+
+      //console.log(response.data);
+    } catch (err) {
+      console.log(err);
+      toast.error("Something Went Wrong");
+    }
+  };
+  const { mutate } = useMutation(createAccount, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("customer");
+      toast.success("Account created successfully");
+      setTimeout(() => {
+        handleClose({ type: "register" });
+        handleClose({ type: "openLogin" });
+      }, 5000);
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  const handleCreateAccount = (data) => {
+    mutate(data);
+  };
 
   return (
     <Modal
@@ -142,8 +183,13 @@ const VerifyOTP = ({ otpLength = 4,  }) => {
                   <span className="sr-only">Close modal</span>
                 </button>
               </div>
-              <h2 className="text-2xl font-semibold mb-4">Verify Email </h2>
-              <p className="text-darkHover dark:text-gray">Please Enter the code sent to your Email Address </p>
+              <h2 className="text-2xl font-semibold mb-4">
+                Verify Phone Number{" "}
+              </h2>
+              <p className="text-darkHover dark:text-gray px-3 text-center">
+                Please Enter the code sent to your <br />{" "}
+                <span className="font-bold">Phone Number</span>{" "}
+              </p>
               <div className="flex justify-center items-center space-x-2 m-4">
                 {otp.map((digit, index) => (
                   <input
@@ -158,18 +204,30 @@ const VerifyOTP = ({ otpLength = 4,  }) => {
                   />
                 ))}
               </div>
-              { codeError && <p className="text-redborder text-sm"> {`${codeError}, `}</p> }
-             
-              {
-                resend && <p className="text-gray-800 dark:text-primary pb-6"> You no see the code ? <button onClick={() => resendOtp(regData.PhoneNumber)} className="text-background">Oya Resend am!</button> </p>
-              }
+              {codeError && (
+                <p className="text-redborder text-sm"> {`${codeError}, `}</p>
+              )}
+
+              {resend && (
+                <p className="text-gray-800 dark:text-primary pb-6">
+                  {" "}
+                  You no see the code ?{" "}
+                  <button
+                    onClick={() => resendOtp(regData.PhoneNumber)}
+                    className="text-background"
+                  >
+                    <span className="text-green-600 cursor-pointer font-bold">
+                      Oya Resend am!
+                    </span>
+                  </button>{" "}
+                </p>
+              )}
               <button
                 onClick={handleSubmit}
                 className="px-4 py-2 bg-green-600 text-white dark:text-accent font-semibold rounded-lg shadow hover:bg-background transition duration-200"
-              > {
-                isLoading ? <CircularProgress /> : 'Proceed '
-              }
-                
+              >
+                {" "}
+                {isLoading ? <CircularProgress /> : "Proceed "}
               </button>
             </div>
           </section>

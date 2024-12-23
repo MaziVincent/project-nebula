@@ -1,0 +1,16 @@
+POST https://v3.api.termii.com/api/sms/otp/send
+Content-Type: application/json
+
+{
+      "to": "2348138699452",
+      "from": "N-Alert",
+      "message_type": "NUMERIC",
+      "channel": "dnd",
+      "api_key": "TLKWDWVuXmpMpCtGVRymWXMLrJMJnQkxMBujTHedpQrQoyJBIpLROpYlTOktyV",
+      "pin_length": 4,
+      "pin_placeholder": "< 1234 >",
+      "message_text":"Your MegaTech RealEstate verification code is < 1234 >, it will expire in 5 minutes",
+      "pin_attempts": 3,
+      "pin_time_to_live": 5,
+      "pin_type": "NUMERIC"
+    }
