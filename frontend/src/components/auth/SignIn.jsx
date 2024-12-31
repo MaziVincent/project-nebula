@@ -12,17 +12,15 @@ import { CircularProgress, Modal } from '@mui/material'
 import SignUp from './SignUp'
 
 
-const SignIn = ({open, handleCloseLogin}) => {
-  const {auth, setAuth, persist, setPersist} = useContext(AuthContext)
+const SignIn = ({open, dispatch}) => {
+  const { auth, setAuth, persist, setPersist, setVerifyOTP } =
+    useContext(AuthContext);
   const url = `${baseURL}login`
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/'
   const [isLoading, setIsLoading] = useState(false)
 
-  // const [openModal, setOpenModal] = useState(false)
-  // const handleOpen = () => setOpenModal(true)
-  // const handleClose = () => setOpenModal(false)
 
   const {
     register,
@@ -87,11 +85,12 @@ const SignIn = ({open, handleCloseLogin}) => {
   useEffect(() => {
     localStorage.setItem('persist', persist)
   }, [persist])
+
  
   return (
     <Modal
       open={open}
-      onClose={() => {handleCloseLogin({type:"openLogin"})}}
+      onClose={() => {dispatch({ type: "openLogin" });}}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -107,7 +106,7 @@ const SignIn = ({open, handleCloseLogin}) => {
               <h1 className=' text-xl font-bold leading-tight tracking-tight text-gray-800 md:text-2xl'>Sign In</h1>
               <button
                 type="button"
-                onClick={() => {handleCloseLogin({type:"openLogin"})}}
+                onClick={() => {dispatch({ type: "openLogin" });}}
                 className="absolute -top-2 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
               >
@@ -184,9 +183,12 @@ const SignIn = ({open, handleCloseLogin}) => {
                     </div>
 
                     <div className=" text-sm">
-                      <Link className=" font-medium text-gray-600 underline hover:text-blue-600">
+                    <button onClick={() => {
+                      dispatch({ type: "openLogin" });
+                      navigate('/forgotpassword')
+                      }} className=" font-medium text-gray-600 underline hover:text-blue-600">
                         Forgot your password{" "}
-                      </Link>
+                      </button>
                     </div>
                   </div>
               <button
@@ -206,8 +208,8 @@ const SignIn = ({open, handleCloseLogin}) => {
               <p className='text-center mt-4 mb-2'>Don't have na account yet? &nbsp;
                 <button 
                   onClick={() => {
-                    handleCloseLogin({type:"openLogin"});
-                    handleCloseLogin({type:"register"});
+                    dispatch({ type: "openLogin" });
+                    dispatch({ type: "register" });
                     
                   }}
                   className='text-green-600 underline hover:text-green-700'> Sign Up</button>

@@ -11,7 +11,7 @@ import { CircularProgress } from "@mui/material";
 import useAuth from "../../hooks/useAuth";
 //import SignIn from './SignIn';
 
-const SignUp = ({ open, handleClose }) => {
+const SignUp = ({ open, dispatch }) => {
   const post = usePost();
   const navigate = useNavigate();
   const url = `${baseURL}sms/otp`;
@@ -19,10 +19,6 @@ const SignUp = ({ open, handleClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { setVerifyOTP, setCode,  setUserData } =
     useAuth();
-
-  // const [openLogin, setOpenLogin] = useState(false)
-  // const handleOpenLogin = () => setOpenLogin(true)
-  // const handleCloseLogin = () => setOpenLogin(false)
 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -47,11 +43,9 @@ const SignUp = ({ open, handleClose }) => {
       setUserData(data)
       setCode(response.data?.response);
       
-      handleClose({ type: "register" });
-      setVerifyOTP(true);
+      dispatch({ type: "register" });
+      dispatch({type:"verify"});
 
-
-      console.log(response);
 
     } catch (error) {
       if (error.status === 409) {
@@ -72,7 +66,7 @@ const SignUp = ({ open, handleClose }) => {
     <Modal
       open={open}
       onClose={() => {
-        handleClose({ type: "register" });
+        dispatch({ type: "register" });
       }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -91,7 +85,7 @@ const SignUp = ({ open, handleClose }) => {
               <button
                 type="button"
                 onClick={() => {
-                  handleClose({ type: "register" });
+                  dispatch({ type: "register" });
                 }}
                 className="absolute -top-2 right-1 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 border border-gray-300 rounded-full text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
@@ -259,12 +253,12 @@ const SignUp = ({ open, handleClose }) => {
                           >
                             <path
                               stroke="currentColor"
-                              stroke-Width="2"
+                              strokeWidth="2"
                               d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
                             />
                             <path
                               stroke="currentColor"
-                              stroke-Width="2"
+                              strokeWidth="2"
                               d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                             />
                           </svg>
@@ -280,9 +274,9 @@ const SignUp = ({ open, handleClose }) => {
                           >
                             <path
                               stroke="currentColor"
-                              stroke-Linecap="round"
-                              stroke-Linejoin="round"
-                              stroke-Width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                             />
                           </svg>
@@ -308,8 +302,8 @@ const SignUp = ({ open, handleClose }) => {
                   Already have an account? &nbsp;
                   <button
                     onClick={() => {
-                      handleClose({ type: "register" });
-                      handleClose({ type: "openLogin" });
+                      dispatch({ type: "register" });
+                      dispatch({ type: "openLogin" });
                     }}
                     className="text-green-600 underline hover:text-green-700"
                   >

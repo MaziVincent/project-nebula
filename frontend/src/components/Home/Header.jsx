@@ -3,13 +3,14 @@ import logo5 from "../../assets/images/megalogo5.svg"
 import { Link, Navigate } from "react-router-dom";
 import SignUp from "../auth/SignUp";
 import SignIn from "../auth/SignIn";
-import verifyOTP from "../auth/verifyOTP";
 import { useLocation } from "react-router-dom";
 import { ChevronRight, ExpandMore } from "@mui/icons-material";
 import AuthContext from "../../context/AuthProvider";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import VerifyOTP from "../auth/verifyOTP";
+import VerifyOTP from "../auth/VerifyOTP";
+
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "openLogin":
@@ -301,15 +302,15 @@ const Header = () => {
         </nav>
         <SignUp
           open={state.register}
-          handleClose={dispatch}
+          dispatch={dispatch}
         />{" "}
         <SignIn
           open={state.login}
-          handleCloseLogin={dispatch}
+          dispatch={dispatch}
         />
         <VerifyOTP
           open={state.verify}
-          handleCloseLogin={dispatch}
+          dispatch={dispatch}
         />
       </header>
     </div>

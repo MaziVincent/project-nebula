@@ -69,115 +69,271 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-        <>
-          <Routes>
-            <Route element={<PersistLogin />}>
-            <Route path='/' element={<Home />} >
-              <Route index element={<Page />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/rent' element={<Rent />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/allproperties' element={<AllProperties />} />
-              <Route path='/sell' element={<Sell />} />
-              <Route path='/property/:id' element={<PropertyDtls />} />
-              <Route path='/terms' element={<TermsAndConditions />} />
+      <>
+        <Routes>
+          <Route element={<PersistLogin />}>
+            <Route
+              path="/"
+              element={<Home />}
+            >
+              <Route
+                index
+                element={<Page />}
+              />
+              <Route
+                path="/about"
+                element={<About />}
+              />
+              <Route
+                path="/rent"
+                element={<Rent />}
+              />
+              <Route
+                path="/contact"
+                element={<Contact />}
+              />
+              <Route
+                path="/allproperties"
+                element={<AllProperties />}
+              />
+              <Route
+                path="/sell"
+                element={<Sell />}
+              />
+              <Route
+                path="/property/:id"
+                element={<PropertyDtls />}
+              />
+              <Route
+                path="/terms"
+                element={<TermsAndConditions />}
+              />
+              <Route
+                path="/forgotpassword"
+                element={<ForgotPassword />}
+              />
             </Route>
-            </Route>
+          </Route>
 
-            {/* login route */}
-              <Route path='/login' element={<Login />} />
-              <Route path='/forgotpassword' element={<ForgotPassword />} />
-              
-            {/*  admin route */}
-            <Route element={<PersistLogin />}>
-              <Route element={<RequireAuthAdmin allowedRoles={[roles.admin]} />}>
-                <Route path='/admin' element={<Dashboard />} >
-                  <Route index element={<Overview />} />
-                  <Route path='/admin/profile/:id' element={<AdminProfile />} />
-                  <Route path='/admin/properties' element={<Properties />} />
+          {/* login route */}
+          <Route
+            path="/login"
+            element={<Login />}
+          />
 
-                  {/*admin shop route */}
-                  <Route path='/admin/shops' element={<AdminShops />} />
-                  <Route path='/admin/shop_details/:id' element={<ShopDetails />} />
+          {/*  admin route */}
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuthAdmin allowedRoles={[roles.admin]} />}>
+              <Route
+                path="/admin"
+                element={<Dashboard />}
+              >
+                <Route
+                  index
+                  element={<Overview />}
+                />
+                <Route
+                  path="/admin/profile/:id"
+                  element={<AdminProfile />}
+                />
+                <Route
+                  path="/admin/properties"
+                  element={<Properties />}
+                />
 
-                  {/*admin apartment route */}
-                  <Route path='/admin/apartments' element={<AdminApartments />} />
-                  <Route path='/admin/apartment_details/:id' element={<ApartmentDetails />} />
+                {/*admin shop route */}
+                <Route
+                  path="/admin/shops"
+                  element={<AdminShops />}
+                />
+                <Route
+                  path="/admin/shop_details/:id"
+                  element={<ShopDetails />}
+                />
 
-                  {/*admin house route */}
-                  <Route path='/admin/houses' element={<AdminHouses />} />
-                  <Route path='/admin/house_details/:id' element={< HouseDetails />} />
+                {/*admin apartment route */}
+                <Route
+                  path="/admin/apartments"
+                  element={<AdminApartments />}
+                />
+                <Route
+                  path="/admin/apartment_details/:id"
+                  element={<ApartmentDetails />}
+                />
 
-                  {/*admin land route */}
-                  <Route path='/admin/lands' element={<AdminLands /> } />
-                  <Route path='/admin/land_details/:id' element={<LandDetails /> } />
+                {/*admin house route */}
+                <Route
+                  path="/admin/houses"
+                  element={<AdminHouses />}
+                />
+                <Route
+                  path="/admin/house_details/:id"
+                  element={<HouseDetails />}
+                />
 
-                  {/*admin agent route */}
-                  <Route path='/admin/agents' element={<AdminAgents />} />
-                  <Route path='/admin/agent_details/:id' element={<AgentDetails />} />
+                {/*admin land route */}
+                <Route
+                  path="/admin/lands"
+                  element={<AdminLands />}
+                />
+                <Route
+                  path="/admin/land_details/:id"
+                  element={<LandDetails />}
+                />
 
-                  {/* Admin owner route */}
-                  <Route path='/admin/owners' element={<AdminOwners />} />
-                  <Route path='/admin/owner_details/:id' element={<AdminOwnerDetails />} />
+                {/*admin agent route */}
+                <Route
+                  path="/admin/agents"
+                  element={<AdminAgents />}
+                />
+                <Route
+                  path="/admin/agent_details/:id"
+                  element={<AgentDetails />}
+                />
 
-                  {/* Admin owner route */}
-                  <Route path='/admin/customers' element={<AdminCustomers />} />
-                  <Route path='/admin/customer_details/:id' element={<CustomerDetails />} />
+                {/* Admin owner route */}
+                <Route
+                  path="/admin/owners"
+                  element={<AdminOwners />}
+                />
+                <Route
+                  path="/admin/owner_details/:id"
+                  element={<AdminOwnerDetails />}
+                />
 
-                  {/* Admin users */}
-                  <Route path='/admin/users' element={<AdminUsers />} />
-                </Route>
+                {/* Admin owner route */}
+                <Route
+                  path="/admin/customers"
+                  element={<AdminCustomers />}
+                />
+                <Route
+                  path="/admin/customer_details/:id"
+                  element={<CustomerDetails />}
+                />
+
+                {/* Admin users */}
+                <Route
+                  path="/admin/users"
+                  element={<AdminUsers />}
+                />
               </Route>
             </Route>
+          </Route>
 
-            {/*  customer route */}
-            <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[roles.customer]} />}>
-                  <Route path='/dashboard' element={<CustomerDashboard />} >
-                  <Route index element={<CustomerOverview />} />
-                  <Route path='/dashboard/profile/:id' element={<Profile />} />
-                  <Route path='/dashboard/details/:id' element={<CustomerPropertyDetails />} />
-                  <Route path='/dashboard/properties' element={<AllProperty />} />
-                  <Route path='/dashboard/rentals' element={<PropertyForRent />} />
-                  <Route path='/dashboard/sell' element={<PropertyForSell />} />
-                  <Route path='/dashboard/messages/sent' element={<Messages />} />
-                  <Route path='/dashboard/messages/received' element={<ReceivedMessages />} />
-                  <Route path='/dashboard/message/:id' element={<MessageDetails />} />
-                </Route>
+          {/*  customer route */}
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={[roles.customer]} />}>
+              <Route
+                path="/dashboard"
+                element={<CustomerDashboard />}
+              >
+                <Route
+                  index
+                  element={<CustomerOverview />}
+                />
+                <Route
+                  path="/dashboard/profile/:id"
+                  element={<Profile />}
+                />
+                <Route
+                  path="/dashboard/details/:id"
+                  element={<CustomerPropertyDetails />}
+                />
+                <Route
+                  path="/dashboard/properties"
+                  element={<AllProperty />}
+                />
+                <Route
+                  path="/dashboard/rentals"
+                  element={<PropertyForRent />}
+                />
+                <Route
+                  path="/dashboard/sell"
+                  element={<PropertyForSell />}
+                />
+                <Route
+                  path="/dashboard/messages/sent"
+                  element={<Messages />}
+                />
+                <Route
+                  path="/dashboard/messages/received"
+                  element={<ReceivedMessages />}
+                />
+                <Route
+                  path="/dashboard/message/:id"
+                  element={<MessageDetails />}
+                />
               </Route>
             </Route>
+          </Route>
 
-            {/*  agent route */}
-            <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[roles.agent]} />}>
-                <Route path='/agent' element={<AgentDashboard />} >
-                  <Route index element={<AgentOverview />} />
-                  <Route path='/agent/property/:id' element={<PropertyDetails />} />
-                  <Route path='/agent/profile/:id' element={<AgentProfile />} />
-                </Route>
+          {/*  agent route */}
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={[roles.agent]} />}>
+              <Route
+                path="/agent"
+                element={<AgentDashboard />}
+              >
+                <Route
+                  index
+                  element={<AgentOverview />}
+                />
+                <Route
+                  path="/agent/property/:id"
+                  element={<PropertyDetails />}
+                />
+                <Route
+                  path="/agent/profile/:id"
+                  element={<AgentProfile />}
+                />
               </Route>
             </Route>
+          </Route>
 
-            {/*  owner route */}
-            <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[roles.owner]} />}>
-                <Route path='/owner' element={<OwnerDashboard />} >
-                  <Route index element={<OwnerOverview />} />
-                  <Route path='/owner/property/:id' element={<Property />} />
-                  <Route path='/owner/profile/:id' element={<OwnerProfile />} />
-                  <Route path='/owner/messages' element={<OwnerMessages />} />
-                  <Route path='/owner/message/:id' element={<MessageDetails />} />
-                </Route>
+          {/*  owner route */}
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={[roles.owner]} />}>
+              <Route
+                path="/owner"
+                element={<OwnerDashboard />}
+              >
+                <Route
+                  index
+                  element={<OwnerOverview />}
+                />
+                <Route
+                  path="/owner/property/:id"
+                  element={<Property />}
+                />
+                <Route
+                  path="/owner/profile/:id"
+                  element={<OwnerProfile />}
+                />
+                <Route
+                  path="/owner/messages"
+                  element={<OwnerMessages />}
+                />
+                <Route
+                  path="/owner/message/:id"
+                  element={<MessageDetails />}
+                />
               </Route>
             </Route>
+          </Route>
 
-            {/* catch all */}
-            <Route path='*' element={<Page404 />} />
-            <Route path='unauthorized' element={<UnAuthorized />} />
-          </Routes>
-        </>
+          {/* catch all */}
+          <Route
+            path="*"
+            element={<Page404 />}
+          />
+          <Route
+            path="unauthorized"
+            element={<UnAuthorized />}
+          />
+        </Routes>
+      </>
     </QueryClientProvider>
-  )
+  );
 }
 
 export default App

@@ -12,7 +12,7 @@ import { CircularProgress } from '@mui/material'
 
 const Login = () => {
   const {auth, setAuth, persist, setPersist,} = useContext(AuthContext)
-  const url = `${baseURL}login`
+  const url = `${baseURL}auth/login`
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/'

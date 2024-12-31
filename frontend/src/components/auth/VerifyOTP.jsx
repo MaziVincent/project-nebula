@@ -7,55 +7,53 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import usePost from "../../hooks/usePost";
 
-const VerifyOTP = ({ otpLength = 4 }) => {
+const VerifyOTP = ({ otpLength = 4 , open, dispatch}) => {
   const [otp, setOtp] = useState(Array(otpLength).fill(""));
   const [codeError, setCodeError] = useState("");
-  const [timeLeft, setTimeLeft] = useState(300);
+  const [timeLeft, setTimeLeft] = useState(100);
   const [resend, setResend] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const verifyUrl = `${baseUrl}sms/verifyotp`
+  const resendUrl = `${baseUrl}sms/otp`;
+  const url = `${baseUrl}customer`;
   const inputsRef = useRef([]);
   const post = usePost();
-  const { verifyOTP, setVerifyOTP, code, setCode, userData } = useAuth();
+  const { code, setCode, userData } = useAuth();
 
-  const handleChange = (element, index) => {
-    const value = element.value;
-    if (/^[0-9]$/.test(value) || value === "") {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
+   const handleChange = (element, index) => {
+     const value = element.value;
+     if (/^[0-9]$/.test(value) || value === "") {
+       const newOtp = [...otp];
+       newOtp[index] = value;
+       setOtp(newOtp);
 
-      // Focus on next input
-      if (value && index < otpLength - 1) {
-        inputsRef.current[index + 1].focus();
-      }
+       // Focus on next input
+       if (value && index < otpLength - 1) {
+         inputsRef.current[index + 1].focus();
+       }
 
-      // If backspace is pressed and input is empty, focus on previous input
-      if (value === "" && index > 0) {
-        inputsRef.current[index - 1].focus();
-      }
-    }
-  };
+       // If backspace is pressed and input is empty, focus on previous input
+       if (value === "" && index > 0) {
+         inputsRef.current[index - 1].focus();
+       }
+     }
+   };
 
-  const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && otp[index] === "" && index > 0) {
-      inputsRef.current[index - 1].focus();
-    }
-  };
+   const handleKeyDown = (e, index) => {
+     if (e.key === "Backspace" && otp[index] === "" && index > 0) {
+       inputsRef.current[index - 1].focus();
+     }
+   };
 
   const handleSubmit = async () => {
     setIsLoading(true);
     const pin = otp.join("");
 
-    // if (pin === code.pin) {
-    //   setChangePassword(true);
-    //   setVerifyOTP(false);
-    //   setIsLoading(false);
-    // }
-
     try {
       const response = await post(verifyUrl, { pin, pinId: code.pinId });
-      console.log(response)
+      if (response.status == 200) {
+        handleCreateAccount(userData);
+      }
 
     }catch(err){
       console.log(err)
@@ -83,13 +81,13 @@ const VerifyOTP = ({ otpLength = 4 }) => {
   const resendOtp = async () => {
     setCodeError("");
     setResend(false)
-    setTimeLeft(300)
+    setTimeLeft(100)
     try {
       const verificationData = { phone: userData.phone, email: userData.email };
-      const response = await post(url, verificationData, "");
+      const response = await post(resendUrl, verificationData, "");
       setCode(response.data?.response);
 
-      //console.log(response);
+      console.log(response);
     } catch (error) {
       if (error.status === 409) {
         setCodeError("Phone Number or Email already exist");
@@ -110,26 +108,29 @@ const VerifyOTP = ({ otpLength = 4 }) => {
         formData.append(key, data[key]);
       }
     }
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(`${key}: ${value}`);
-    // }
     try {
       const response = await post(url, formData);
+      if (response.status == 201) {
+        setIsLoading(false);
 
+      }
       //console.log(response.data);
     } catch (err) {
       console.log(err);
       toast.error("Something Went Wrong");
+      throw new Error("Failed to create account");
+      
+    }finally{
+      setIsLoading(false);
     }
   };
   const { mutate } = useMutation(createAccount, {
     onSuccess: () => {
-      queryClient.invalidateQueries("customer");
       toast.success("Account created successfully");
       setTimeout(() => {
-        handleClose({ type: "register" });
-        handleClose({ type: "openLogin" });
-      }, 5000);
+        dispatch({ type: "verify" });
+        dispatch({ type: "openLogin" });
+      }, 2000);
     },
     onError: (error) => {
       toast.error(error.message);
@@ -142,9 +143,9 @@ const VerifyOTP = ({ otpLength = 4 }) => {
 
   return (
     <Modal
-      open={verifyOTP}
+      open={open}
       onClose={() => {
-        setVerifyOTP(false);
+        dispatch({ type: "verify" });
       }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -162,7 +163,7 @@ const VerifyOTP = ({ otpLength = 4 }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    setVerifyOTP(false);
+                    dispatch({ type: "verify" });
                   }}
                   className="text-gray-700 bg-transparent hover:bg-gray-800 hover:text-gray-900 rounded-full border-2 border-gray text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                   data-modal-toggle="defaultModal"
@@ -190,7 +191,7 @@ const VerifyOTP = ({ otpLength = 4 }) => {
                 Please Enter the code sent to your <br />{" "}
                 <span className="font-bold">Phone Number</span>{" "}
               </p>
-              <div className="flex justify-center items-center space-x-2 m-4">
+              <div className="flex justify-center items-center space-x-2 m-4 px-2">
                 {otp.map((digit, index) => (
                   <input
                     key={index}
@@ -200,7 +201,7 @@ const VerifyOTP = ({ otpLength = 4 }) => {
                     onChange={(e) => handleChange(e.target, index)}
                     onKeyDown={(e) => handleKeyDown(e, index)}
                     ref={(el) => (inputsRef.current[index] = el)}
-                    className="w-10 h-12 text-xl text-center border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-background bg-gray-100 text-gray-900"
+                    className="text-center rounded-lg text-gray-900"
                   />
                 ))}
               </div>

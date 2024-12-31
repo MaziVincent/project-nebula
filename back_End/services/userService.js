@@ -1,5 +1,5 @@
-const User = require('../model/User');
-const bcrypt = require('bcrypt');
+const User = require("../model/User");
+const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 const mongoose = require("mongoose");
 
@@ -10,71 +10,70 @@ cloudinary.config({
 });
 
 const getAllUsers = async (data) => {
-    let page = parseInt(data.page) || 1;
-    let limit = parseInt(data.limit) || 5;
-    let skip = (page - 1) * limit;
+  let page = parseInt(data.page) || 1;
+  let limit = parseInt(data.limit) || 5;
+  let skip = (page - 1) * limit;
   try {
     const users = await User.find().skip(skip).limit(limit);
     const totalCount = await User.countDocuments();
-    return {users, page, totalPage: Math.ceil(totalCount / limit)}
+    return { users, page, totalPage: Math.ceil(totalCount / limit) };
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
 const getUser = async (id) => {
-  try{
-    const user = await User.findOne({_id : id}).exec();
-    if(!user) return {error: "User not found"};
+  try {
+    const user = await User.findOne({ _id: id }).exec();
+    if (!user) return { error: "User not found" };
     return user;
   } catch (e) {
-    return {error: e.message}
+    return { error: e.message };
   }
 };
 
 const updateUser = async (id, data) => {
-    try{
-        const user = await User.findOne({_id : id}).exec();
-        if(!user) return {error: "User not found"};
-        if(data.firstname) user.firstname = data.firstname
-        if(data.lastname) user.lastname = data.lastname
-        if(data.email) user.email = data.email
-        if(data.phone) user.phone = data.phone
-        if(data.password)  {
-            const hashedPassword = await bcrypt.hash(data.password, 10);
-                user.password = hashedPassword;
-        }
-        await user.save();
-        return user;
-    } catch (e) {
-        return {error: e.message}
+  try {
+    const user = await User.findOne({ _id: id }).exec();
+    if (!user) return { error: "User not found" };
+    if (data.firstname) user.firstname = data.firstname;
+    if (data.lastname) user.lastname = data.lastname;
+    if (data.email) user.email = data.email;
+    if (data.phone) user.phone = data.phone;
+    if (data.password) {
+      const hashedPassword = await bcrypt.hash(data.password, 10);
+      user.password = hashedPassword;
     }
-}
+    await user.save();
+    return user;
+  } catch (e) {
+    return { error: e.message };
+  }
+};
 const deleteUser = async (id) => {
-    try{
-        const user = await User.findOne({_id : id}).exec();
-        if(!user) return {error: "User not found"};
-        await user.deleteOne();
-        return user;
-    } catch (e) {
-        return {error: e.message}
-    }
+  try {
+    const user = await User.findOne({ _id: id }).exec();
+    if (!user) return { error: "User not found" };
+    await user.deleteOne();
+    return user;
+  } catch (e) {
+    return { error: e.message };
+  }
 };
 const activateUser = async (status, id) => {
   console.log(id, status);
   try {
-      const userId = new mongoose.Types.ObjectId(id);
-      const user = await User.findById(userId);
-      if (!user) return { error: "User not found" };
-      user.status = status;
-      await user.save();
-      
-      return user;
+    const userId = new mongoose.Types.ObjectId(id);
+    const user = await User.findById(userId);
+    if (!user) return { error: "User not found" };
+    user.status = status;
+    await user.save();
+
+    return user;
   } catch (e) {
-      return { error: e.message };
+    return { error: e.message };
   }
 };
-
 
 const uploadProfilePicture = async (files, id) => {
   console.log(files);
@@ -84,10 +83,14 @@ const uploadProfilePicture = async (files, id) => {
     const file = files[key];
 
     return new Promise(async (resolve, reject) => {
-
-       const compressedBuffer = await sharp(file.data)
-        .resize({ width: 800, height: 800, fit:'inside', withoutEnlargement:true })
-        .webp({ quality: 80, nearLossless:true })
+      const compressedBuffer = await sharp(file.data)
+        .resize({
+          width: 800,
+          height: 800,
+          fit: "inside",
+          withoutEnlargement: true,
+        })
+        .webp({ quality: 80, nearLossless: true })
         .toBuffer();
       const uploadStream = cloudinary.uploader.upload_stream(
         {
@@ -121,28 +124,38 @@ const uploadProfilePicture = async (files, id) => {
   return Promise.all(uploadPromises);
 };
 
-
 const userExists = async (email) => {
-
   try {
-      const user = await User.findOne({email: email}).exec();
-      if(!user) return false;
-      return user;
-
+    const user = await User.findOne({ email: email }).exec();
+    if (!user) return false;
+    return user;
   } catch (e) {
-    
-      return {error: e.message}
+    return { error: e.message };
   }
 };
 
+//write a service function for changing password
 
+const changePassword = async (data) => {
+  try {
+    const user = await User.findOne({ phone: data.phone }).exec();
+    if (!user) return { error: "User not found" };
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    user.password = hashedPassword;
+    await user.save();
+    return user;
+  } catch (e) {
+    return { error: e.message };
+  }
+};
 
 module.exports = {
-    getAllUsers,
-    getUser,
-    updateUser,
-    deleteUser,
-    activateUser,
-    uploadProfilePicture,
-    userExists
-}
+  getAllUsers,
+  getUser,
+  updateUser,
+  deleteUser,
+  activateUser,
+  uploadProfilePicture,
+  userExists,
+  changePassword,
+};

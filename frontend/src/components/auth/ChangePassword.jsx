@@ -9,21 +9,20 @@ import baseUrl from "../../shared/baseURL";
 import useAuth from "../../hooks/useAuth";
 import usePost from "../../hooks/usePost";
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'//import useCart from "../../hooks/useCart";
+import 'react-toastify/dist/ReactToastify.css'
 import { CircularProgress } from "@mui/material";
 import { ClickAwayListener } from "@mui/material";
 
-const ChangePassword = () => {
+const ChangePassword = (open, dispatch) => {
   const {
-    changePassword,
+    code,
+    userData,
     setChangePassword,
   } = useAuth();
-  //const {dispatch} = useCart();
   const post = usePost();
-  const url = `${baseUrl}auth/password-reset`;
+  const url = `${baseUrl}auth/changepassword`;
   const navigate = useNavigate();
   const location = useLocation();
-  //const from = location.state?.from?.pathname || "/";
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [type, setType] = useState("password");
@@ -43,11 +42,13 @@ const password = watch('NewPassword','')
   const handleCreate = async (data) => {
     setIsLoading(true);
     const formData = new FormData()
-    formData.append('NewPassword', data.NewPassword);
-    const response = await post(`${url}/${regData.Id}`, formData, '')
+    formData.append('phone', userData.phone);
+    formData.append("password", data.password);
+    const response = await post(url, formData, '')
     if(response.status === 200){
       toast.success('Password Changed Successfully')  
-      setLogin(true)
+      navigate('/')
+      
     }else{
         toast.error('Error Changing Password')
     }
@@ -75,9 +76,9 @@ const password = watch('NewPassword','')
 
   return (
     <Modal
-      open={changePassword}
+      open={open}
       onClose={() => {
-        setChangePassword(false);
+        dispatch({ type: "changePassword" });
       }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -94,7 +95,7 @@ const password = watch('NewPassword','')
                 <button
                   type="button"
                   onClick={() => {
-                    setChangePassword(false);
+                    dispatch({ type: "changePassword" });
                   }}
                   className="text-gray-800 bg-transparent hover:bg-gray-700 hover:text-gray-900 rounded-full border-2 border-gray text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                   data-modal-toggle="defaultModal"
@@ -128,7 +129,7 @@ const password = watch('NewPassword','')
                     <div className="sm:col-span-2 ">
                       <label
                         htmlFor="password"
-                        className="block mb-2 text-base font-medium text-gray-800 dark:text-gray-50"
+                        className="block mb-2 text-base font-medium text-gray-800 "
                       >
                        New Password
                       </label>
@@ -140,8 +141,8 @@ const password = watch('NewPassword','')
                           {...register("NewPassword", {
                             required: "Password is required",
                             minLength: {
-                              value: 4,
-                              message: "Password must be at least 4 characters",
+                              value: 6,
+                              message: "Password must be at least 6 characters",
                             },
                           })}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:text-accent dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -155,7 +156,7 @@ const password = watch('NewPassword','')
                           } justify-center items-center  `}
                         >
                           <svg
-                            className="w-6 h-6 text-gray-800 dark:text-white absolute mr-10"
+                            className="w-6 h-6 text-gray-800 absolute mr-10"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -202,7 +203,7 @@ const password = watch('NewPassword','')
                       </div>
 
                       {errors.Password && (
-                        <p className="text-sm text-redborder">
+                        <p className="text-sm text-red-500">
                           {errors.Password.message}
                         </p>
                       )}
@@ -211,7 +212,7 @@ const password = watch('NewPassword','')
                     <div className="sm:col-span-2 ">
                       <label
                         htmlFor="cpassword"
-                        className="block mb-2 text-base font-medium text-gray-800 dark:text-gray-50"
+                        className="block mb-2 text-base font-medium text-gray-800 "
                       >
                         Confirm Password
                       </label>
@@ -226,17 +227,17 @@ const password = watch('NewPassword','')
                               value === password || 'Passwords do not match',
                           })}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:text-accent dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                          placeholder="Type Password"
+                          placeholder="Confirm Password"
                           required=""
                         />
                         <span
                           onClick={handleToggle}
-                          className={` text-gray ${
+                          className={` text-gray-900 ${
                             icon ? "hidden" : "flex"
                           } justify-center items-center  `}
                         >
                           <svg
-                            className="w-6 h-6 text-gray-800 dark:text-white absolute mr-10"
+                            className="w-6 h-6 text-gray-800  absolute mr-10"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -258,12 +259,12 @@ const password = watch('NewPassword','')
                         </span>
                         <span
                           onClick={handleToggle}
-                          className={` text-gray ${
+                          className={` text-gray-900 ${
                             icon ? "flex" : "hidden"
                           } justify-center items-center  `}
                         >
                           <svg
-                            className="w-6 h-6 text-gray-800 dark:text-white absolute mr-10"
+                            className="w-6 h-6 text-gray-800 absolute mr-10"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -283,7 +284,7 @@ const password = watch('NewPassword','')
                       </div>
 
                       {errors.ConfirmPassword && (
-                        <p className="text-sm text-redborder">
+                        <p className="text-sm text-red-500">
                           {errors.ConfirmPassword.message}
                         </p>
                       )}
@@ -293,7 +294,7 @@ const password = watch('NewPassword','')
                   <button
                     type="submit"
                     disabled={isSubmitting || !isValid}
-                    className="w-full text-white bg-secondary flex justify-center items-center hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    className="w-full text-white bg-green-500 flex justify-center items-center hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                   >
                     {isSubmitting || isLoading ? <CircularProgress /> : " Change Password "}
                   </button>

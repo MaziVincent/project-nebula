@@ -4,7 +4,8 @@ const {
   deleteUser,
   activateUser,
   updateUser,
-  uploadProfilePicture
+  uploadProfilePicture,
+  changePassword
 } = require('../services/userService')
 
 const handleUsers = async (req, res) => {
@@ -84,11 +85,23 @@ const handleProfilePicture = async (req, res) => {
   res.status(200).json({Success: "Profile picture uploaded successfully", result});
 };
 
+const handleChangePassword = async (req, res) => {
+  
+  if (!req.body.phone || !req.body.password) {
+    return res.status(400).json({ message: 'Phone Number and password required' });
+  }
+  const data = req.body;
+  const result = await changePassword(data);
+  if (result.error) return res.status(400).json(result);
+  res.status(200).json({ success: "Password changed successfully", result });
+};
+
 module.exports = {
   handleUsers,
   handleUser,
   handleUpdate,
   handleDelete,
   handleActivate,
-  handleProfilePicture
- }
+  handleProfilePicture,
+  handleChangePassword
+};

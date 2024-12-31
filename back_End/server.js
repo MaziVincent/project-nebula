@@ -39,7 +39,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/', require('./routes/root'));
-app.use('/api/login', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/refresh', require('./routes/refresh'));
 app.use('/api/logout', require('./routes/logout'));
 app.use('/api/recentProps', require('./routes/recentProps'));

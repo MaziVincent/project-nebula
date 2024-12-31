@@ -2,7 +2,7 @@ POST https://v3.api.termii.com/api/sms/otp/send
 Content-Type: application/json
 
 {
-      "to": "2348138699452",
+      "to": "2347014280218",
       "from": "N-Alert",
       "message_type": "NUMERIC",
       "channel": "dnd",
@@ -14,3 +14,24 @@ Content-Type: application/json
       "pin_time_to_live": 5,
       "pin_type": "NUMERIC"
     }
+
+###
+PUT http://localhost:3500/api/auth/changepassword
+Content-Type: application/json
+
+{
+  "phone" : "08138699452",
+  "password" : "esomchis1"
+}
+
+###
+POST http://localhost:3500/api/auth/login
+Content-Type: application/json
+
+{
+  "email" : "primeobjective20@gmail.com",
+  "password" : "esomchis1"
+}
+
+
+

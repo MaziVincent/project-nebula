@@ -4,6 +4,9 @@ const smsController = require("../controllers/smsController")
 
 router.route("/otp")
   .post(smsController.sendOTP)
+
+router.route("/code")
+  .post(smsController.sendCode);
   
   
 router.route("/verifyotp")
