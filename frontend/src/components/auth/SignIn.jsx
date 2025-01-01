@@ -15,7 +15,7 @@ import SignUp from './SignUp'
 const SignIn = ({open, dispatch}) => {
   const { auth, setAuth, persist, setPersist, setVerifyOTP } =
     useContext(AuthContext);
-  const url = `${baseURL}login`
+  const url = `${baseURL}auth/login`
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/'

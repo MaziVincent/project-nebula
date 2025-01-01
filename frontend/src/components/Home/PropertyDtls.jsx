@@ -38,11 +38,13 @@ const PropertyDtls = () => {
   const serverlessUrl = `https://www.megatechrealestate.ng/api/property/${id}`
 
   const [property, setProperty] = useState(null);
+  const [videoUrl, setVideoUrl] = useState("");
   const getProperty = async () => {
     try {
       const result = await fetch(`${url}/${id}`);
       if (result.data) {
         setProperty(result.data);
+        setVideoUrl(result.data.videoUrl);
       }
     } catch (error) {
       toast.error("Error fetching Agent's details");
@@ -50,10 +52,6 @@ const PropertyDtls = () => {
     }
   };
 
-  // const [showPhone, setShowPhone] = useState(false);
-  // const [showEmail, setShowEmail] = useState(false);
-
-  // Use useEffect to trigger the data fetching on component mount or when 'id' changes
   useEffect(() => {
     getProperty();
   }, [id]);
@@ -106,19 +104,14 @@ const PropertyDtls = () => {
     }
   };
 
-// const ogUrl = `${baseURL}render?url=${encodeURIComponent(window.location.href)}`;
+  const extractVideoId = (url) => {
+    const regex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&\s]+)/;
+    if (!url) { return null } 
+    const match = url.match(regex); 
+    return match ? match[1] : null;
+  };
 
-//   usePageSEO({
-//     title:property?.title,
-//     description : property?.description,
-//     keywords:['property, real estate, megatech, abakaliki, house, apartment, land, sale, rent'],
-//     ogTitle : property?.title,
-//     ogDescription : property?.description,
-//     ogImage : property?.imageUrls[0],
-//     ogUrl : ogUrl
-//   })
-
-  //   console.log(property.leaseDuration)
+  
 
   const {
     register,
@@ -171,6 +164,8 @@ const PropertyDtls = () => {
 
   const sender = auth?.user?._id
   const receiver = property?.owner?._id
+
+  const videoId = extractVideoId(videoUrl);
   return (
     <div className="">
       {/*  start page title  */}
@@ -214,16 +209,19 @@ const PropertyDtls = () => {
                   {/* <span className="fw-500 fs-18">$3,700 - Per sq. ft. &#8358;{!isNaN(parseFloat(property.price.replace(/,/g, ""))) ? (parseFloat(property.price.replace(/,/g, "")) / 12).toFixed(2) : 'N/A'}</span> */}
                 </div>
                 <div>
-                    <span className="text-green-600 cursor-pointer" onClick={handleShare} >
-                       <ShareIcon fontSize="medium" />
-                    </span>
+                  <span
+                    className="text-green-600 cursor-pointer"
+                    onClick={handleShare}
+                  >
+                    <ShareIcon fontSize="medium" />
+                  </span>
                 </div>
               </div>
             </div>
           </section>
           {/*  end page title  */}
           {/*  start section  */}
-          <ImagePreview images={property.imageUrls}/>
+          <ImagePreview images={property.imageUrls} />
           <section className="p-0 overflow-hidden">
             <div className="container-fluid p-0">
               <div className="row row-cols-1 justify-content-center">
@@ -334,14 +332,6 @@ const PropertyDtls = () => {
                                 </span>
                               </div>
                             )}
-                            {/* <div className="col text-center border-end border-color-extra-medium-gray">
-                                                    <img src="images/demo-real-estate-icon-car.svg" className="w-50px mb-15px" alt="" />
-                                                    <span className="text-dark-gray d-block lh-20">2 Parking</span>
-                                                </div>
-                                                <div className="col text-center">
-                                                    <img src="images/demo-real-estate-icon-swimming.svg" className="w-50px mb-15px" alt="" />
-                                                    <span className="text-dark-gray d-block lh-20">Swimming pool</span>
-                                                </div> */}
                           </div>
                         </div>
                       </div>
@@ -468,19 +458,6 @@ const PropertyDtls = () => {
                           /{property.paymentType ? property.paymentType : ""}
                         </div>
                       </div>
-                      {/* <div className="row g-0 align-items-center mb-15px pb-15px border-bottom border-color-extra-medium-gray">
-                                                <div className="col">
-                                                    <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
-                                                        <div className="feature-box-icon me-10px">
-                                                            <img src="images/demo-real-estate-property-details-15.svg" className="w-25px" alt="" />
-                                                        </div>
-                                                        <div className="feature-box-content">
-                                                            <span className="text-dark-gray">Cooling:</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col">Yes</div>
-                                            </div> */}
                     </div>
                     <div className="col-xl-6">
                       {property?.floorArea && (
@@ -805,7 +782,7 @@ const PropertyDtls = () => {
                     </div>
                   </div> */}
                   <div className="row mt-7">
-                    <div className="col-12 relative">
+                    {/* <div className="col-12 relative">
                       <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block"></span>
                       <img
                         src={property.imageUrls[0]}
@@ -825,10 +802,31 @@ const PropertyDtls = () => {
                           </span>
                         </span>
                       </a>
+                    </div> */}
+                    <div className="flex itemx-center justify-center">
+                      {videoId ? (
+                        <iframe
+                          width="560"
+                          height="315"
+                          src={`https://www.youtube.com/embed/${videoId}`}
+                          title="YouTube video player"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      ) : (
+                        <div className="col-12">
+                          <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block"></span>
+                          <img
+                            src={property.imageUrls[0]}
+                            className="border-radius-6px w-[682px]"
+                            alt=""
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className="col-lg-6 offset-lg-1 position-relative">
-            </div>
+                  <div className="col-lg-6 offset-lg-1 position-relative"></div>
                   <div className="row mt-7">
                     <div className="col-12">
                       <span className="text-dark-gray fs-24 fw-600 alt-font mb-25px d-block">
@@ -925,7 +923,6 @@ const PropertyDtls = () => {
                               </a>
                             </li>
                           )}
-
                         </ul>
                       </div>
                       {/*  end social icon */}
@@ -1055,7 +1052,14 @@ const PropertyDtls = () => {
                               }
                             }}
                           >
-                            {loading ? <CircularProgress size={20} style={{color: 'white'}} /> : "Send Message"}
+                            {loading ? (
+                              <CircularProgress
+                                size={20}
+                                style={{ color: "white" }}
+                              />
+                            ) : (
+                              "Send Message"
+                            )}
                           </button>
                           <div className="form-results mt-20px d-none"></div>
                         </div>

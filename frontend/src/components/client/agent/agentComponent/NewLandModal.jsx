@@ -53,7 +53,7 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
     
       try{
         const response = await post(url, formData, auth?.accessToken);
-        console.log(response.data);
+       // console.log(response.data);
         setTimeout(() => {
           reset()
           handleCloseLandModal();
@@ -62,13 +62,13 @@ const NewLandModal = ({open, handleCloseLandModal}) => {
         setIsLoading(false)
         setError(err.response?.data?.error || err.message)
       }
-      console.log(formData)
+     // console.log(formData)
     };
 
     const {mutate} = useMutation(createLand, {
       
       onSuccess : ()=>{
-        queryClient.invalidateQueries('lands')
+        queryClient.invalidateQueries('properties')
         toast.success('New Land Created Successfully')
         setIsLoading(false)
       }
@@ -96,7 +96,9 @@ useEffect(() => {
   return (
     <Modal
       open={open}
-      onClose={() => {handleCloseLandModal()}}
+      onClose={() => {
+        handleCloseLandModal();
+      }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -116,7 +118,9 @@ useEffect(() => {
               </h3>
               <button
                 type="button"
-                onClick={() => {handleCloseLandModal()}}
+                onClick={() => {
+                  handleCloseLandModal();
+                }}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
                 data-modal-toggle="defaultModal"
               >
@@ -135,318 +139,366 @@ useEffect(() => {
                 </svg>
                 <span className="sr-only">Close modal</span>
               </button>
-            <form 
-              onSubmit={handleSubmit(handleCreateLand)} 
-              method='post'
-              encType='multipart/form-data'
-            >
-              <div className="flex flex-col gap-3 mb-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Title
-                  </label>
-                  <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    {...register("title", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Type Land name"
-                    required=""
-                  />
-                  {errors.title && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <label
-                    htmlFor="framework"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Description:
-                  </label>
-                  <textarea
-                    rows='8'
-                    type="text"
-                    name="description"
-                    id="description"
-                    {...register("description", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter the Description"
-                    required=""
+              <form
+                onSubmit={handleSubmit(handleCreateLand)}
+                method="post"
+                encType="multipart/form-data"
+              >
+                <div className="flex flex-col gap-3 mb-4">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
                     >
-                  </textarea>
-                  {errors.description && (
-                    <span className="text-red-500 text-sm">
-                      This field is required
-                    </span>
-                  )}
-                </div>
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      {...register("title", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      placeholder="Type Land name"
+                      required=""
+                    />
+                    {errors.title && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="framework"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Description:
+                    </label>
+                    <textarea
+                      rows="8"
+                      type="text"
+                      name="description"
+                      id="description"
+                      {...register("description", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      placeholder="Enter the Description"
+                      required=""
+                    ></textarea>
+                    {errors.description && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                  </div>
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="description"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Price:
-                  </label>
-                  <input
-                    id="price"
-                    // rows="4"
-                    type='number'
-                    {...register("price", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Price here"
-                  />
-                  {errors.price && (
-                    <span className="text-red-500 text-sm">
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="description"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Location:
-                  </label>
-                  <input
-                    id="location"
-                    name='location'
-                    type='text'
-                    {...register("location", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Location here"
-                  />
-                  {errors.location && (
-                    <span className="text-red-500 text-sm">
-                      This field is required
-                    </span>
-                  )}
-                </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="description"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Price:
+                    </label>
+                    <input
+                      id="price"
+                      // rows="4"
+                      type="number"
+                      {...register("price", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      placeholder="Enter Price here"
+                    />
+                    {errors.price && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="description"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Location:
+                    </label>
+                    <input
+                      id="location"
+                      name="location"
+                      type="text"
+                      {...register("location", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      placeholder="Enter Location here"
+                    />
+                    {errors.location && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                  </div>
 
-                <div className="sm:col-span-2">
-                  <input 
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 " 
-                    value={auth?.user?._id}
-                    {...register("owner")}
-                    type="hidden" 
-                  />
-                </div>
+                  <div className="sm:col-span-2">
+                    <input
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      value={auth?.user?._id}
+                      {...register("owner")}
+                      type="hidden"
+                    />
+                  </div>
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="plots"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Plots:
-                  </label>
-                  <input
-                    id="plots"
-                    name='plots'
-                    type='number'
-                    {...register("plots", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter plots here"
-                  />
-                  {errors.plots && (
-                    <span className="text-red-500 text-sm">
-                      This field is required
-                    </span>
-                  )}
-                </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="plots"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Plots:
+                    </label>
+                    <input
+                      id="plots"
+                      name="plots"
+                      type="number"
+                      {...register("plots", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      placeholder="Enter plots here"
+                    />
+                    {errors.plots && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                  </div>
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="Document Type"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Document Type:
-                  </label>
-                  
-                  <select name="docType" id="docType"
-                    {...register("docType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                  >
-                    <option value="Select Document Type" selected disabled>Select Document Type</option>
-                    <option value="Power of Attorney">Power of Attorney</option>
-                    <option value="Certificate of Occupancy (C of O)">Certificate of Occupancy (C of O)</option>
-                    <option value="Deeds of Conveyance">Deeds of Conveyance</option>
-                    <option value="Deeds of Lease">Deeds of Lease</option>
-                    <option value="Deeds of Sub-Lease">Deeds of Sub-Lease</option>
-                  </select>
-                  {errors.docType && (
-                    <span className="text-red-500 text-sm">
-                      This field is required
-                    </span>
-                  )}
-                </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="Document Type"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Document Type:
+                    </label>
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="ownershipType"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Ownership Type
-                  </label>
-                  
-                  <select name="ownershipType" id="ownershipType"
-                    {...register("ownershipType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                  >
-                    <option value="Select Ownership Type" selected disabled>Select Ownership Type</option>
-                    <option value="Virgin">Virgin</option>
-                    <option value="Resell">Resell</option>
-                  </select>
-                  {errors.ownershipType && (
-                    <span className="text-red-500 text-sm">
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="sm:col-span-2">
-                  <fieldset
-                  >
-                   <legend className='text-base text-gray-900'> Land Features : </legend>
-                 
-                  <div className='space-y-2 grid grid-cols-2 border p-2 rounded-lg'>
-                 {landFeatures.map((land, index) => (
-                   <label htmlFor={`ldfeature-${index}`} className=' text-sm flex items-center gap-1'>
-                      <Controller 
-                      name='landFeatures'
-                      control={control}
-                      render={({field:{onChange, value}}) => (
-                        <input
-                        type="checkbox"
-                        id={`ldfeature-${index}`}
-                        name="landFeatures"
-                        value={`${land.value}`}
-                        checked={value?.includes(land.value) || false}
-                        onChange={(e) =>{
-                           const isChecked = e.target.checked;
-                          onChange(
-                            isChecked
-                              ? [...(value || []), land.value]
-                              : value.filter((item) => item !== land.value)
-                          );
-                        }}
-                        className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
-                      />
-                      )}
+                    <select
+                      name="docType"
+                      id="docType"
+                      {...register("docType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option
+                        value="Select Document Type"
+                        selected
+                        disabled
+                      >
+                        Select Document Type
+                      </option>
+                      <option value="Power of Attorney">
+                        Power of Attorney
+                      </option>
+                      <option value="Certificate of Occupancy (C of O)">
+                        Certificate of Occupancy (C of O)
+                      </option>
+                      <option value="Deeds of Conveyance">
+                        Deeds of Conveyance
+                      </option>
+                      <option value="Deeds of Lease">Deeds of Lease</option>
+                      <option value="Deeds of Sub-Lease">
+                        Deeds of Sub-Lease
+                      </option>
+                    </select>
+                    {errors.docType && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                  </div>
 
-                      />
-                     
-                      {land.name}
-                      
-                      </label>
-                     
-                    
-                  ))}
-                  {errors.landFeatures && (
-                    <span className="text-red-500 text-sm">
-                      This field is required
-                    </span>
-                  )}
-                 </div>
-                 </fieldset>
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="type"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Type
-                  </label>
-                    <select name="propertyType" id="propertyType"
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="ownershipType"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Ownership Type
+                    </label>
+
+                    <select
+                      name="ownershipType"
+                      id="ownershipType"
+                      {...register("ownershipType", { required: true })}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                    >
+                      <option
+                        value="Select Ownership Type"
+                        selected
+                        disabled
+                      >
+                        Select Ownership Type
+                      </option>
+                      <option value="Virgin">Virgin</option>
+                      <option value="Resell">Resell</option>
+                    </select>
+                    {errors.ownershipType && (
+                      <span className="text-red-500 text-sm">
+                        This field is required
+                      </span>
+                    )}
+                  </div>
+                  <div className="sm:col-span-2">
+                    <fieldset>
+                      <legend className="text-base text-gray-900">
+                        {" "}
+                        Land Features :{" "}
+                      </legend>
+
+                      <div className="space-y-2 grid grid-cols-2 border p-2 rounded-lg">
+                        {landFeatures.map((land, index) => (
+                          <label
+                            key={index}
+                            htmlFor={`ldfeature-${index}`}
+                            className=" text-sm flex items-center gap-1"
+                          >
+                            <Controller
+                              name="landFeatures"
+                              control={control}
+                              render={({ field: { onChange, value } }) => (
+                                <input
+                                  type="checkbox"
+                                  id={`ldfeature-${index}`}
+                                  name="landFeatures"
+                                  value={`${land.value}`}
+                                  checked={value?.includes(land.value) || false}
+                                  onChange={(e) => {
+                                    const isChecked = e.target.checked;
+                                    onChange(
+                                      isChecked
+                                        ? [...(value || []), land.value]
+                                        : value.filter(
+                                            (item) => item !== land.value
+                                          )
+                                    );
+                                  }}
+                                  className="text-green-500 focus:ring-green-500 h-3 w-3 border-gray-300 rounded"
+                                />
+                              )}
+                            />
+
+                            {land.name}
+                          </label>
+                        ))}
+                        {errors.landFeatures && (
+                          <span className="text-red-500 text-sm">
+                            This field is required
+                          </span>
+                        )}
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="type"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Type
+                    </label>
+                    <select
+                      name="propertyType"
+                      id="propertyType"
                       {...register("propertyType", { required: true })}
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
                     >
-                      <option value="select land type" disabled selected>Select Land Type</option>
-                        <option value="Lease">Lease</option>
-                        <option value="Sell">Sell</option>
+                      <option
+                        value="select land type"
+                        disabled
+                        selected
+                      >
+                        Select Land Type
+                      </option>
+                      <option value="Lease">Lease</option>
+                      <option value="Sell">Sell</option>
                     </select>
                     {errors.propertyType && (
                       <span className="text-red-500 text-sm">
                         This field is required
                       </span>
                     )}
-                </div>
-                {
-                  payType &&  <div className="sm:col-span-2">
-                  <label
-                    htmlFor="payment"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                   Payment Type
-                  </label>
-                    <select name="paymentType" id="payment"
-                      {...register("paymentType", { required: true })}
-                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    >
-                      <option value="select payment type" disabled selected>Select Payment Type</option>
+                  </div>
+                  {payType && (
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="payment"
+                        className="block mb-2 text-sm font-medium text-gray-900 "
+                      >
+                        Payment Type
+                      </label>
+                      <select
+                        name="paymentType"
+                        id="payment"
+                        {...register("paymentType", { required: true })}
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      >
+                        <option
+                          value="select payment type"
+                          disabled
+                          selected
+                        >
+                          Select Payment Type
+                        </option>
                         <option value="Day">Daily</option>
                         <option value="Week">Weekly</option>
                         <option value="Month">Monthly</option>
                         <option value="6 Months">6 Months</option>
                         <option value="Year">Yearly</option>
                         <option value="2 Years">2 Years</option>
-                    </select>
-                    {errors.paymentType && (
-                      <span className="text-red-500 text-sm">
-                        This field is required
-                      </span>
-                    )}
+                      </select>
+                      {errors.paymentType && (
+                        <span className="text-red-500 text-sm">
+                          This field is required
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="videoUrl"
+                      className="block mb-2 text-sm font-medium text-gray-900"
+                    >
+                      Video URL
+                    </label>
+                    <input
+                      id="videoUrl"
+                      type="text"
+                      {...register("videoUrl")}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
+                      placeholder="Enter video url here"
+                    />
+                  </div>
                 </div>
-                }
-               <div className="sm:col-span-2">
-                  <label
-                    htmlFor="videoUrl"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Video URL
-                  </label>
-                  <input
-                    id="videoUrl"
-                    type="text"
-                    {...register("videoUrl")}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
-                    placeholder="Enter video url here"
-                  />
-                  
-                </div>
-              </div>
-              <button
-                type="submit"
-                className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-              >
-                <svg
-                  className="mr-1 -ml-1 w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                <button
+                  type="submit"
+                  className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                {isLoading ? <CircularProgress size={20} color='white' /> : 'Add New Land'}
-              </button>
-            </form>
+                  <svg
+                    className="mr-1 -ml-1 w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  {isLoading ? (
+                    <CircularProgress
+                      size={20}
+                      color="white"
+                    />
+                  ) : (
+                    "Add New Land"
+                  )}
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </Modal>
-  )
+  );
 }
 
 export default NewLandModal
