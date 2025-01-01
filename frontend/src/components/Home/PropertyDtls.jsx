@@ -10,7 +10,14 @@ import { CircularProgress, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import Bedrooms from "../../assets/images/demo-real-estate-icon-bed.svg";
 import Bathrooms from "../../assets/images/demo-real-estate-icon-bath.svg";
-import PropertyDtl from "../../assets/images/demo-real-estate-property-details-09.svg";
+import img10 from "../../assets/images/demo-real-estate-property-details-10.svg";
+import img8 from "../../assets/images/demo-real-estate-property-details-08.svg";
+import img9 from "../../assets/images/demo-real-estate-property-details-09.svg";
+import img6 from "../../assets/images/demo-real-estate-property-details-06.svg";
+import img11 from "../../assets/images/demo-real-estate-property-details-11.svg";
+import img12 from "../../assets/images/demo-real-estate-property-details-12.svg";
+import img13 from "../../assets/images/demo-real-estate-property-details-13.svg";
+import img14 from "../../assets/images/demo-real-estate-property-details-14.svg";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import ShareIcon from "@mui/icons-material/Share";
@@ -18,12 +25,12 @@ import { Swiper, SwiperSlide } from "../../shared/Swiper";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
-import usePageSEO from "../../hooks/usePageSEO";
+//import usePageSEO from "../../hooks/usePageSEO";
 import { useQueryClient, useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import ImagePreview from "./skeletons/ImagePreview";
-import Est_Vid from "../../assets/images/photos/estate-vid.jpeg";
+//import Est_Vid from "../../assets/images/photos/estate-vid.jpeg";
 
 const PropertyDtls = () => {
   //const { auth } = useAuth();
@@ -38,13 +45,40 @@ const PropertyDtls = () => {
   const serverlessUrl = `https://www.megatechrealestate.ng/api/property/${id}`
 
   const [property, setProperty] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
+
   const [videoUrl, setVideoUrl] = useState("");
+
+  const compressImage = (imgUrls, options = {}) => {
+    if (!imgUrls) return null;
+
+    const {
+      width = 500,
+      height = 500,
+      quality = "auto",
+      format = "auto",
+    } = options;
+    const transformation = `q_${quality},f_${format},w_${width},h_${height},c_fill`;
+
+    // Inject transformation before `/upload/`
+     const newUrls = [];
+    for (let img of imgUrls) {
+     
+      newUrls.push(img.replace("/upload/", `/upload/${transformation}/`));
+      
+      setImageUrls(newUrls);
+    }
+  };
+
+
+
   const getProperty = async () => {
     try {
       const result = await fetch(`${url}/${id}`);
       if (result.data) {
         setProperty(result.data);
-        setVideoUrl(result.data.videoUrl);
+        setVideoUrl(result.data?.videoUrl);
+        
       }
     } catch (error) {
       toast.error("Error fetching Agent's details");
@@ -54,7 +88,12 @@ const PropertyDtls = () => {
 
   useEffect(() => {
     getProperty();
+
   }, [id]);
+
+  useEffect(() => {
+    compressImage(property?.imageUrls, { width: 800, height: 600 });
+   }, [property]);
   console.log(property);
 
   // const toggleShow = (value) => {
@@ -72,20 +111,6 @@ const PropertyDtls = () => {
     return regex.test(url);
   }
 
-  // function formatPhoneNumber(phoneNumber) {
-  //   // Ensure the phone number starts with 09
-  //   if (!phoneNumber.startsWith("0")) {
-  //     return phoneNumber; // Return the original number if it doesn't start with 09
-  //   }
-
-    // Remove the leading 0
-  //   const cleanedPhoneNumber = phoneNumber.slice(1);
-
-  //   // Add the country code +234
-  //   const formattedPhoneNumber = "+234" + cleanedPhoneNumber;
-
-  //   return formattedPhoneNumber;
-  // }
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -221,7 +246,7 @@ const PropertyDtls = () => {
           </section>
           {/*  end page title  */}
           {/*  start section  */}
-          <ImagePreview images={property.imageUrls} />
+          <ImagePreview images={imageUrls} />
           <section className="p-0 overflow-hidden">
             <div className="container-fluid p-0">
               <div className="row row-cols-1 justify-content-center">
@@ -349,7 +374,7 @@ const PropertyDtls = () => {
                           <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-10px">
                               <img
-                                src="images/demo-real-estate-property-details-08.svg"
+                                src={img8}
                                 className="w-25px"
                                 alt=""
                               />
@@ -396,7 +421,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-12.svg"
+                                  src={img12}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -419,7 +444,7 @@ const PropertyDtls = () => {
                           <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-10px">
                               <img
-                                src="images/demo-real-estate-property-details-11.svg"
+                                src={img11}
                                 className="w-25px"
                                 alt=""
                               />
@@ -440,7 +465,7 @@ const PropertyDtls = () => {
                           <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                             <div className="feature-box-icon me-10px">
                               <img
-                                src="images/demo-real-estate-property-details-10.svg"
+                                src={img10}
                                 className="w-25px"
                                 alt=""
                               />
@@ -466,7 +491,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-06.svg"
+                                  src={img6}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -488,7 +513,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-14.svg"
+                                  src={img14}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -511,7 +536,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-09.svg"
+                                  src={img9}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -532,7 +557,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-13.svg"
+                                  src={img13}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -553,7 +578,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-13.svg"
+                                  src={img13}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -574,7 +599,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-13.svg"
+                                  src={img13}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -593,7 +618,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-13.svg"
+                                  src={img13}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -614,7 +639,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-13.svg"
+                                  src={img13}
                                   className="w-25px"
                                   alt=""
                                 />
@@ -637,7 +662,7 @@ const PropertyDtls = () => {
                             <div className="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
                               <div className="feature-box-icon me-10px">
                                 <img
-                                  src="images/demo-real-estate-property-details-13.svg"
+                                  src={img13}
                                   className="w-25px"
                                   alt=""
                                 />
