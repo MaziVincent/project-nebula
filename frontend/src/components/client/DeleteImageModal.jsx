@@ -33,7 +33,7 @@ const DeleteImageModal = ({
       );
       if (response.status === 200) {
         toast.success(response.data?.message);
-        queryClient.invalidateQueries("properties");
+        queryClient.invalidateQueries("property");
         setTimeout(() => {
           handleClose();
         }, 1000);
