@@ -16,8 +16,8 @@ const usePost = () => {
 
       return response;
     } catch (error) {
-      console.error('Error during POST request:', error);
-      throw error; // Let the caller handle the error
+      console.error(error);
+      throw error // Let the caller handle the error
     }
   };
 

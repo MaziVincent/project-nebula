@@ -130,9 +130,14 @@ const PropertyDtls = () => {
   };
 
   const extractVideoId = (url) => {
-    const regex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&\s]+)/;
-    if (!url) { return null } 
-    const match = url.match(regex); 
+    const videoRegex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&\s]+)/;
+    const shortsRegex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([^&\s]+)/;
+
+    if (!url) {
+      return null;
+    }
+    let match = url.match(videoRegex) || url.match(shortsRegex); // Check both patterns
+
     return match ? match[1] : null;
   };
 
@@ -191,6 +196,7 @@ const PropertyDtls = () => {
   const receiver = property?.owner?._id
 
   const videoId = extractVideoId(videoUrl);
+  console.log(videoId)
   return (
     <div className="">
       {/*  start page title  */}

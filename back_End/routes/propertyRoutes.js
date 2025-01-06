@@ -28,7 +28,12 @@ router
     fileExtLimiter([".png", ".jpg", ".jpeg",".webp"]),
     filesSizeLimiter,
     propertyController.uploadPropertyImageHandler
-  );
+);
+  
+router
+  .route("/image/:id")
+  .delete(propertyController.deleteImageHandler);
+
 
 router
   .route("/:id")

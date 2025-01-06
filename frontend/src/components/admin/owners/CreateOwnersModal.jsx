@@ -35,15 +35,23 @@ const CreateOwnersModal = ({open, handleClose}) => {
         formData.append(key, data[key]);
       }
     }
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
     try {
       const response = await post(url, formData, auth.accessToken);
 
-      console.log(response.data)
+      // console.log(response.data)
+      // if (response.data.status === 409) {
+      //   toast.error('Email or Phone number already exist');
+      // }
     } catch (err) {
-      console.log(err);
+      //console.log(err);
+      if (err.status === 409) {
+        toast.error("Email or Phone number already exist");
+      }
+      if (error.status === 400) {
+        toast.error("Error Creating Owner");
+      }
+      throw new Error(err);
+      
     }
   }
   const {mutate} = useMutation(createOwner, {
@@ -56,9 +64,16 @@ const CreateOwnersModal = ({open, handleClose}) => {
       setIsLoading(false);
     },
     onError: (error) => {
+      
+      if (error.status === 409) { 
+        toast.error('Email or Phone number already exist');
+      }
+      if(error.status === 400){
+        toast.error('Error Creating Owner');
+      }
       setIsLoading(false);
-      toast.error(error.message);
     },
+    
   });
 
   const handleCreateOwner = (data) => {

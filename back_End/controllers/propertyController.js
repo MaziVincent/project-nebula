@@ -9,7 +9,8 @@ const {
   getPropertiesByType,
   handleFeaturedProperty,
   getFeaturedProperties,
-  searchProperties
+  searchProperties,
+  deletePropertyImage
   //getPropertyByType
 } = require("../services/propertyService");
 
@@ -144,12 +145,21 @@ if (!properties)
     return res.status(404).json({ message: "Properties not found" });
   return res.status(200).json(properties);
 };
-// const getPropertyByTypeHandler = async (req, res) => {
-//   const propertyType = req.body
-//   const properties = await getPropertyByType(propertyType)
-//   if(!properties) return res.status(404).json({message: 'Properties not found'})
-//   return res.status(200).json(properties)
-// };
+
+const deleteImageHandler = async (req, res) => { 
+  const id = req.params.id;
+  const imageUrl = req.query.imageUrl;
+  try {
+    const result = await deletePropertyImage(id, imageUrl);
+    if (result.error) {
+      return res.status(404).json( result );
+    }
+
+    res.status(200).json( result );
+  }catch{
+    res.status(400).json(err);
+  }
+}
 
 module.exports = {
   getPropertiesHandler,
@@ -163,5 +173,6 @@ module.exports = {
   setFeaturedPropertyHandler,
   getFeaturedPropertiesHandler,
   searchPropertiesHandler,
+  deleteImageHandler,
   // getPropertyByTypeHandler
 };

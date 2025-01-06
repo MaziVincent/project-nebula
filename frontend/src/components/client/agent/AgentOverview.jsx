@@ -23,7 +23,7 @@ const AgentOverview = () => {
   const url = `${baseURL}properties/owner`;
   const deleteUrl = `${baseURL}properties`;
   // const { agentId } = useParams();
-
+  // console.log(auth);
   const [propertyType, setPropertyType] = useState(false)
   const handlePropertyType = () => {
     setPropertyType(!propertyType)

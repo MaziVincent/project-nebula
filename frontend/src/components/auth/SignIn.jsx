@@ -46,20 +46,24 @@ const SignIn = ({open, dispatch}) => {
       setAuth(response.data)
       toast.success('Login successful. Redirecting...')
       setTimeout(() => {
-        if(response.data?.user?.type === 'Customer') {
-          navigate('/dashboard')
-         // console.log(response.data)
-          toast.success('Login successful. Redirecting...')
-    
-        } else if(response.data?.user?.type === 'Agent'){
-          navigate('/agent')
-          toast.success('Login successful. Redirecting...')
-        } else if(response.data?.user?.type === 'Owner'){
-          navigate('/owner')
-          toast.success('Login successful. Redirecting...')
-        }   
-        else{
-          navigate('/unauthorized')
+        if (
+          response.data?.user?.type === "Customer" ||
+          response.data?.roles === "Customer"
+        ) {
+          navigate("/dashboard");
+          // console.log(response.data)
+          toast.success("Login successful. Redirecting...");
+        } else if (
+          response.data?.user?.type === "Agent" ||
+          response.data?.roles === "Agent"
+        ) {
+          navigate("/agent");
+          toast.success("Login successful. Redirecting...");
+        } else if (response.data?.user?.type === "Owner" || response.data?.roles === "Owner") {
+          navigate("/owner");
+          toast.success("Login successful. Redirecting...");
+        } else {
+          navigate("/unauthorized");
         }
         setIsLoading(false)
       }, 2000);

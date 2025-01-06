@@ -245,6 +245,49 @@ const searchProperties = async (data) => {
 //     }
 // };
 
+// Utility function to extract Cloudinary public ID from secure_url
+  const getPublicIdFromUrl = (secureUrl) => {
+    const regex = /\/upload\/(?:v\d+\/)?(.+)\.[a-zA-Z]+$/;
+    const match = secureUrl.match(regex);
+    return match ? match[1] : null;
+  };
+
+const deletePropertyImage = async (id, imageUrl) => {
+  
+
+  try {
+    // Fetch the property by ID
+    const property = await Property.findById(id);
+    if (!property) {
+      return res.status(404).json({ message: "Property not found." });
+    }
+
+    // Find the image URL in the imageUrls array
+    const imageIndex = property.imageUrls.findIndex((url) => url === imageUrl);
+    if (imageIndex === -1) {
+      return { error:404, message: "Image URL not found in property." };
+    }
+
+    // Extract the Cloudinary public ID
+    const publicId = getPublicIdFromUrl(imageUrl);
+    if (!publicId) {
+      return {error:404, message: "Invalid Cloudinary URL." };
+    }
+
+    // Delete the image from Cloudinary
+    await cloudinary.uploader.destroy(publicId);
+
+    // Remove the image URL from the imageUrls array
+    property.imageUrls.splice(imageIndex, 1);
+    await property.save();
+
+    return {success:true, message: "Image deleted successfully." };
+  } catch (error) {
+    console.error("Error deleting image:", error);
+    throw error;
+  }
+}
+
 module.exports = {
   getProperties,
   getPropertiesByOwner,
@@ -257,5 +300,6 @@ module.exports = {
   handleFeaturedProperty,
   getFeaturedProperties,
   searchProperties,
+  deletePropertyImage,
   //getPropertyByType
 };
