@@ -158,11 +158,11 @@ const Page = () => {
                     >
                       <div className="row align-items-center h-100">
                         <div className="col-md-8 position-relative text-white">
-                          <span className="fs-20 d-block mb-15px">
+                          <span className="fs-20 d-block mb-15px capitalize">
                            {featured.location}
                           </span>
                           <motion.div
-                            className="alt-font fs-100 lg-fs-70 lh-80 lg-lh-80 mb-45px sm-mb-25px w-100 xs-w-100 ls-minus-2px"
+                            className="alt-font fs-100 fw-600 lg-fs-70 lh-80 lg-lh-80 mb-45px sm-mb-25px w-100 xs-w-100 ls-minus-2px capitalize"
                             variants={childVariants}
                           >
                             {featured.title.trim().split(" ").slice(0, -1).join(" ") } <span className="fw-700">{featured.title.trim().split(' ').pop()}</span>
