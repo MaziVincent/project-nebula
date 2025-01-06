@@ -162,7 +162,7 @@ const Page = () => {
                            {featured.location}
                           </span>
                           <motion.div
-                            className="alt-font fs-110 lg-fs-90 lh-90 lg-lh-80 mb-45px sm-mb-25px w-80 xs-w-100 ls-minus-2px"
+                            className="alt-font fs-100 lg-fs-70 lh-80 lg-lh-80 mb-45px sm-mb-25px w-100 xs-w-100 ls-minus-2px"
                             variants={childVariants}
                           >
                             {featured.title.trim().split(" ").slice(0, -1).join(" ") } <span className="fw-700">{featured.title.trim().split(' ').pop()}</span>
