@@ -59,7 +59,20 @@ const AgentAside = ({aside, setAside}) => {
         </ul>
         <ul className="pt-5 mt-5 pl-0 pr-4 space-y-4 border-t border-green-100">
           <li>
-          </li>
+            <Link to='/agent/messages' className={`flex items-center border-l-4 border-gray-50 hover:border-green-500 p-2 text-base font-medium text-gray-900 rounded-r-lg  hover:bg-gray-100 ${location.pathname === '/owner/messages' ? 'border-green-500 text-green-500' : ''} hover:text-green-500 group`}>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`w-7 h-7 ml-2 text-gray-500 transition duration-75 group-hover:text-green-900 ${location.pathname === '/owner/messages' ? 'text-green-900' : ''}`}
+                  viewBox="0 -960 960 960"
+                  fill="currentColor">
+                  <path d="M320-520q17 0 28.5-11.5T360-560q0-17-11.5-28.5T320-600q-17 0-28.5 11.5T280-560q0 17 11.5 28.5T320-520Zm160 0q17 0 28.5-11.5T520-560q0-17-11.5-28.5T480-600q-17 0-28.5 11.5T440-560q0 17 11.5 28.5T480-520Zm160 0q17 0 28.5-11.5T680-560q0-17-11.5-28.5T640-600q-17 0-28.5 11.5T600-560q0 17 11.5 28.5T640-520ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"
+                  />
+                </svg>
+                <span className="ml-3">
+                  Message
+                </span>
+              </Link>
+            </li>
         </ul>
         <button
           onClick={handleOpenLogoutModal}

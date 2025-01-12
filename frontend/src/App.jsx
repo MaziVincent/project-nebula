@@ -61,6 +61,7 @@ import Messages from './components/client/customers/Messages';
 import OwnerMessages from './components/client/owner/ownerComponent/OwnerMessages';
 import MessageDetails from './components/subcomponents/MessageDetails';
 import ReceivedMessages from './components/client/customers/ReceivedMessages';
+import AgentMessage from './components/client/agent/agentComponent/AgentMessage';
 
 function App() {
   const queryClient = new QueryClient();
@@ -285,6 +286,14 @@ function App() {
                 <Route
                   path="/agent/profile/:id"
                   element={<AgentProfile />}
+                />
+                 <Route
+                  path="/agent/messages"
+                  element={<AgentMessage />}
+                />
+                <Route
+                  path="/agent/message/:id"
+                  element={<MessageDetails />}
                 />
               </Route>
             </Route>
