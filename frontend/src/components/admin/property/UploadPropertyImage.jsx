@@ -31,15 +31,21 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
 
     const uploadImage = async (data) => {
     setIsLoading(true)
-    const files = data.files
+      const files = data.files
+     
     const formData = new FormData()
     for (const key of files) {
-     // console.log(key)
+      // console.log(key)
+      if (key.size > 3000000) {
+        setError('Image size is too large')
+        // console.log(key.size)
+        setIsLoading(false)
+
+        throw new Error('Image size is too large')
+      }
         formData.append(key.name, key);
       
-    }
-
-   
+    }  
 
       try {
         const response = await axios.put(`${url}/${propertyId}`, formData, {
@@ -51,6 +57,8 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
         return response.data
       } catch (error) {
         throw error
+      } finally {
+        setIsLoading(false);
       }
       
     }
@@ -65,11 +73,13 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
         
       },
       onError: (error) => {
-        setError(error.response?.data?.error || error.message)
+        //console.log(error)
+        setError(error.response?.data?.message || error.message)
+        setIsLoading(false);
       }
     })
     const onSubmit = (data) => {
-      console.log(data)
+      //console.log(data)
       mutate(data)
     }
   return (
@@ -119,7 +129,7 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
               >
                   <div className="mb-3">
                       <label htmlFor="image" className="">
-                          Image
+                         Upload  Image <span className='text-red-600 text-sm'> *Max size 3mb </span>
                       </label>
                       <input
                           type="file"
@@ -134,7 +144,9 @@ const UploadPropertyImage = ({propertyId, openUpload, handleUploadClose}) => {
                           <div className="text-red-600">
                               Image is required
                           </div>
-                      )}
+                    )}{
+                      error && <div className="text-red-600">{error}</div>
+                      }
                   </div>
                   <div className=" mt-4 flex justify-end gap-2">
                       <button
