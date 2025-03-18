@@ -42,25 +42,42 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
 
     for (const key in data) {
 
-      if(key === 'exteriorFeatures'){
-        data.exteriorFeatures.forEach((exterior) => {
-          formData.append('exteriorFeatures[]', exterior);
-        })
-      }else if(key === 'interiorFeatures' ){
-        data.interiorFeatures.forEach((interior) => {
-          formData.append('interiorFeatures[]', interior);
-        })
+      if (key === 'exteriorFeatures') {
+        if (!data.exteriorFeatures) { 
+          formData.append('exteriorFeatures[]', "None")
+        } else {
+          data.exteriorFeatures.forEach((exterior) => {
+            formData.append("exteriorFeatures[]", exterior);
+          });
+        }
         
-      }else if(key === 'kitchenFeatures'){
-        data.kitchenFeatures.forEach((kitchen) => {
-          formData.append('kitchenFeatures[]', kitchen);
-        })
+      } else if (key === 'interiorFeatures') {
+        if (!data.interiorFeatures) {
+          formData.append('interiorFeatures[]', "None")
+        } else {
+          data.interiorFeatures.forEach((interior) => {
+            formData.append('interiorFeatures[]', interior);
+          })
+        }
         
-      }else if(key === 'livingRoomFeatures'){
-        data.livingRoomFeatures.forEach((living) => {
-          formData.append('livingRoomFeatures[]', living);
-        })
+      } else if (key === 'kitchenFeatures') {
+        if (!data.kitchenFeatures) {
+          formData.append('kitchenFeatures[]', "None")
+        } else {
+          data.kitchenFeatures.forEach((kitchen) => {
+            formData.append('kitchenFeatures[]', kitchen);
+          })
+        }
         
+      } else if (key === 'livingRoomFeatures') {
+        if(!data.livingRoomFeatures){
+          formData.append('livingRoomFeatures[]', "None")
+        } else {
+          data.livingRoomFeatures.forEach((living) => {
+            formData.append("livingRoomFeatures[]", living);
+          });
+        }
+              
       }else{
         formData.append(key, data[key]);
       }
@@ -68,6 +85,10 @@ const CreateNewApartmentModal = ({open, handleClose}) => {
     }
     try{
       const response = await post(url, formData, auth?.accessToken);
+      if (response.status === 201) { 
+        toast.success('Apartment Created Successfully')
+      }
+
       console.log(response.data);
       setTimeout(() => {
         reset();

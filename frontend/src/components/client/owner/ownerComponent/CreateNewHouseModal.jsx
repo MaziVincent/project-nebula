@@ -22,15 +22,13 @@ const CreateNewHouseModal = ({ open, handleCloseHouseModal }) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
     reset,
-    watch
+    watch,
   } = useForm({ mode: "all" });
 
   const createHouse = async (data) => {
@@ -45,38 +43,54 @@ const CreateNewHouseModal = ({ open, handleCloseHouseModal }) => {
     // Append form fields
     for (const key in data) {
       if (key === "exteriorFeatures") {
-        data.exteriorFeatures.forEach((exterior) => {
-          formData.append("exteriorFeatures[]", exterior);
-        });
+        if (!data.exteriorFeatures) {
+          formData.append("exteriorFeatures[]", "None");
+        } else {
+          data.exteriorFeatures.forEach((exterior) => {
+            formData.append("exteriorFeatures[]", exterior);
+          });
+        }
       } else if (key === "interiorFeatures") {
-        data.interiorFeatures.forEach((interior) => {
-          formData.append("interiorFeatures[]", interior);
-        });
+        if (!data.kitchenFeatures) {
+          formData.append("interiorFeatures[]", "None");
+        } else {
+          data.interiorFeatures.forEach((interior) => {
+            formData.append("interiorFeatures[]", interior);
+          });
+        }
       } else if (key === "kitchenFeatures") {
-        data.kitchenFeatures.forEach((kitchen) => {
-          formData.append("kitchenFeatures[]", kitchen);
-        });
+        if (!data.kitchenFeatures) {
+          formData.append("kitchenFeatures[]", "None");
+        } else {
+          data.kitchenFeatures.forEach((kitchen) => {
+            formData.append("kitchenFeatures[]", kitchen);
+          });
+        }
       } else if (key === "livingRoomFeatures") {
-        data.livingRoomFeatures.forEach((living) => {
-          formData.append("livingRoomFeatures[]", living);
-        });
+        if (!data.livingRoomFeatures) {
+          formData.append("livingRoomFeatures[]", "None");
+        } else {
+          data.livingRoomFeatures.forEach((living) => {
+            formData.append("livingRoomFeatures[]", living);
+          });
+        }
       } else {
         formData.append(key, data[key]);
       }
     }
 
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(`${key}: ${value}`);
-    // }
+    // console.log(formData);
+    // console.log(data);
     try {
       const response = await post(url, formData, auth?.accessToken);
-      console.log(response.data);
+      if (response?.status == 201) {
+        toast.success("New House Created Successfully");
+      }
     } catch (err) {
-      setIsLoading(false);
-
       setError(err.response?.data?.error || err.message);
+    } finally {
+      setIsLoading(false);
     }
-    // console.log(formData)
   };
 
   const { mutate } = useMutation(createHouse, {
@@ -88,8 +102,7 @@ const CreateNewHouseModal = ({ open, handleCloseHouseModal }) => {
   });
 
   const handleCreateHouse = (data) => {
-    console.log(data);
-
+    //console.log(data);
     mutate(data);
     setTimeout(() => {
       handleCloseHouseModal();
@@ -678,49 +691,56 @@ const CreateNewHouseModal = ({ open, handleCloseHouseModal }) => {
                     )}
                   </div>
 
-                  {
-                  payType &&  <div className="sm:col-span-2">
-                  <label
-                    htmlFor="payment"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                   Payment Type
-                  </label>
-                    <select name="paymentType" id="payment"
-                      {...register("paymentType", { required: true })}
-                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    >
-                      <option value="select payment type" disabled selected>Select Payment Type</option>
+                  {payType && (
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="payment"
+                        className="block mb-2 text-sm font-medium text-gray-900 "
+                      >
+                        Payment Type
+                      </label>
+                      <select
+                        name="paymentType"
+                        id="payment"
+                        {...register("paymentType", { required: true })}
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+                      >
+                        <option
+                          value="select payment type"
+                          disabled
+                          selected
+                        >
+                          Select Payment Type
+                        </option>
                         <option value="Day">Daily</option>
                         <option value="Week">Weekly</option>
                         <option value="Month">Monthly</option>
                         <option value="6 Months">6 Months</option>
                         <option value="Year">Yearly</option>
                         <option value="2 Years">2 Years</option>
-                    </select>
-                    {errors.paymentType && (
-                      <span className="text-red-500 text-sm">
-                        This field is required
-                      </span>
-                    )}
-                </div>
-                }
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="videoUrl"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Video URL
-                  </label>
-                  <input
-                    id="videoUrl"
-                    type="text"
-                    {...register("videoUrl")}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
-                    placeholder="Enter video url here"
-                  />
-                  
-                </div>
+                      </select>
+                      {errors.paymentType && (
+                        <span className="text-red-500 text-sm">
+                          This field is required
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="videoUrl"
+                      className="block mb-2 text-sm font-medium text-gray-900"
+                    >
+                      Video URL
+                    </label>
+                    <input
+                      id="videoUrl"
+                      type="text"
+                      {...register("videoUrl")}
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500"
+                      placeholder="Enter video url here"
+                    />
+                  </div>
                 </div>
                 <button
                   type="submit"

@@ -65,7 +65,7 @@ const Property = () => {
      setCurrentImageUrl(ImageUrl);
      // console.log(propertyId, ImageUrl)
    };
- // console.log(property)
+ //console.log(property)
   return (
     <div>
       <div className="pt-10 pl-4">
@@ -129,7 +129,7 @@ const Property = () => {
                 </div>
               ))}
             </div>
-            <p className="text-gray-600 mb-2">{property.location}</p>
+            <p className="text-gray-600 mb-2 capitalize">{property.location}</p>
             <p className=" mb-2">
               <span>Status: </span>
               {property.status}
