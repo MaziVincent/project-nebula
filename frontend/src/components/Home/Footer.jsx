@@ -87,16 +87,17 @@ const Footer = () => {
             </div>
           </div>
           <div className="row justify-content-start mt-5 mb-4 sm-mb-35px ">
-            <div className="col-lg-3 last-paragraph-no-margin md-mb-35px text-center text-lg-start border-2">
+            <div className="col-lg-3 last-paragraph-no-margin md-mb-35px text-center text-lg-start ">
               <Link
                 to="/"
-                className="footer-logo mb-10px d-inline-block"
+                className="footer-logo mb-5px "
               >
-                <div className="flex justify-start items-center">
+                <div className="flex justify-start items-center p-1 ">
                 <img
                   src={logo3}
                   data-at2x="images/nebula/nebula-logo-1.png"
-                  alt=""
+                    alt=""
+                    className="w-[7rem] h-[7rem]"
                 />
                
                 </div>
@@ -183,26 +184,26 @@ const Footer = () => {
                 href="mailto:info@domain.com"
                 className="text-dark-gray text-decoration-line-bottom lh-22 d-inline-block mb-20px"
               >
-                info@megatechrealestate.ng
+                info@nebula.com
               </a>
               <span className="d-block lh-normal">Customer care</span>
               <a
                 href="tel:12345678910"
                 className="text-dark-gray text-decoration-line-bottom lh-22 d-inline-block alt-font"
               >
-                07046047536
+                08138699452
               </a>
             </div>
           </div>
           <div className="border-top border-color-extra-medium-gray pt-35px pb-35px text-center">
             <div className="sm:flex sm:items-center sm:justify-between">
               <span className="text-base text-gray-500 sm:text-center dark:text-gray-400">
-                © 2024{" "}
+                © 2025{" "}
                 <Link
                   to="/"
                   className="hover:underline"
                 >
-                  MegaTech Group™
+                  Nebula Group™
                 </Link>
                 . All Rights Reserved.
               </span>

@@ -60,7 +60,7 @@ const Header = () => {
 	};
 	return (
 		<div className="fixed z-50 w-full bg-white top-0">
-			<header className="md:px-14 max-lg:px-10">
+			<header className="md:px-14 max-lg:px-10 ">
 				<nav className="py-1">
 					<div className="flex items-center justify-between">
 						<div className=" w-[30rem] p-1 ">

@@ -19,7 +19,7 @@ const Sell = () => {
 		setPage(value);
 	};
 
-	const { data, isError, isLoading } = useProperties({
+	const { data, isError, isLoading, isSuccess } = useProperties({
 		page,
 		limit: 6,
 		listingType: "Sell",

@@ -20,7 +20,10 @@ const Home = () => {
 	}, []);
 	return (
 		<div>
-			<Header />
+			<div className="pb-7">
+				<Header />
+			</div>
+
 			<Outlet />
 			<Footer />
 		</div>
