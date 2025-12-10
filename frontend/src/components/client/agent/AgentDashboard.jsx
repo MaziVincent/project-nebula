@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AgentHeader from "./AgentHeader";
 import AgentAside from "./AgentAside";
 import { Outlet } from "react-router-dom";
-import ErrorBoundary from "../../shared/ErrorBoundary";
+import ErrorBoundary from "../../ErrorBoundary";
 
 const AgentDashboard = () => {
 	const [aside, setAside] = useState(false);
