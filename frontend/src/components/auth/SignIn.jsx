@@ -51,7 +51,6 @@ const SignIn = ({open, dispatch}) => {
           response.data?.roles === "Customer"
         ) {
           navigate("/dashboard");
-          // console.log(response.data)
           toast.success("Login successful. Redirecting...");
         } else if (
           response.data?.user?.type === "Agent" ||
@@ -80,7 +79,6 @@ const SignIn = ({open, dispatch}) => {
           toast.error('Something went wrong, try again later')
           break;
       }
-      console.log(error)
     }
   };
   const togglePersist = () => {

@@ -18,7 +18,7 @@ const sendOTP = async (data) => {
       pin_length: 4,
       pin_placeholder: "< 1234 >",
       message_text:
-        "Your MegaTech RealEstate verification code is < 1234 >, it will expire in 5 minutes",
+        "Your Nebula RealEstate verification code is < 1234 >, it will expire in 5 minutes",
       pin_attempts: 3,
       pin_time_to_live: 5,
       pin_type: "NUMERIC",
@@ -47,7 +47,7 @@ const sendCode = async (data) => {
       pin_length: 4,
       pin_placeholder: "< 1234 >",
       message_text:
-        "Your MegaTech RealEstate verification code is < 1234 >, it will expire in 5 minutes",
+        "Your Nebula RealEstate verification code is < 1234 >, it will expire in 5 minutes",
       pin_attempts: 3,
       pin_time_to_live: 5,
       pin_type: "NUMERIC",

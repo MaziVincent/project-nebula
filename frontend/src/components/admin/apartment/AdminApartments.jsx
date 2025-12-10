@@ -71,7 +71,6 @@ const AdminApartments = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  //console.log(data);
 
   // const handleDelete = async(_id) => {
   //   try {

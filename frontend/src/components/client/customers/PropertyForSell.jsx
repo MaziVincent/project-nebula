@@ -30,7 +30,6 @@ const PropertyForSell = () => {
   };
   const getProperties = async () => {
     const result = await fetch(`${url}/type?page=${page}&limit=6&type=Sell`, auth.accessToken);
-    console.log(result);
     return result.data;
   };
   

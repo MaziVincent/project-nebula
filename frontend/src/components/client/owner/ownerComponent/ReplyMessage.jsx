@@ -42,14 +42,11 @@ const ReplyMessage = ({open, handleClose, receiverId}) => {
       }
     }
     for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
     }
     try {
       const response = await post(url, formData, auth.accessToken);
-      console.log(response.data)
     } catch (err) {
       setIsLoading(false)
-      console.log(err);
     }
   }
   const {mutate} = useMutation(sendMessage, {

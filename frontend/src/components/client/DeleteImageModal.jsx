@@ -42,14 +42,12 @@ const DeleteImageModal = ({
         setIsLoading(false);
         toast.error("Failed to delete image");
       }
-      console.log(response);
     } catch (error) {
       toast.error("Failed to delete image");
     }finally{
       setIsLoading(false)
     }
   };
-  // console.log(propertyId);
   return (
     <Modal
       open={open}

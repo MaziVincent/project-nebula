@@ -30,7 +30,6 @@ const createApartment = () => {
     formData.append('author', auth.user?._id);
     try{
       const res = await axios.post(url, formData,)
-      console.log(res.data);
       // setTimeout(() => {
       //   navigate('/admin_dashboard/blogs')
       // }, 5000);
@@ -38,8 +37,6 @@ const createApartment = () => {
       setError(err.response?.data?.error || err.message)
     }
     setLoading(false)
-    console.log(data)
-    console.log(formData)
   }
   return (
     <div className=' m-auto w-96'>

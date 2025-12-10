@@ -1,58 +1,60 @@
-
-const User = require('../model/User')
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
+const User = require("../model/User");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const handleLogin = async (req, res) => {
+	const { email, password } = req.body;
 
-    const {email, password} = req.body;
-    
-    if(!email || !password){
+	if (!email || !password) {
+		return res.status(400).json({ message: "Username and password required" });
+	}
 
-        return res.status(400).json({'message':'Username and password required'});
+	const foundUser = await User.findOne({ email: email }).exec();
 
-    }
-    
-    const foundUser = await User.findOne({email:email}).exec();
+	// console.log(foundUser)
+	if (!foundUser) return res.sendStatus(401); // unAuthorized
 
-    // console.log(foundUser)
-    if(!foundUser) return res.sendStatus(401) // unAuthorized
+	//evaluate password
+	const match = await bcrypt.compare(password, foundUser.password);
+	if (!match) return res.sendStatus(401); //UnAuthorized
 
-    //evaluate password
-    const match = await bcrypt.compare(password, foundUser.password);
-    if(!match) return res.sendStatus(401)  //UnAuthorized
+	const roles = foundUser.type;
 
-    const roles = foundUser.type;
-    
-    //create jwt
-    const accessToken = jwt.sign(
-        {
-            "UserInfo" : {
-                "email" : foundUser.email,
-                "roles" : roles
-            }
-        },
-           
-        process.env.ACCESS_TOKEN,
-        {expiresIn:'1d'}
-        
-    );
+	//create jwt
+	const accessToken = jwt.sign(
+		{
+			UserInfo: {
+				email: foundUser.email,
+				roles: roles,
+			},
+		},
 
-    const refreshToken = jwt.sign(
-        {"email" : foundUser.email},
-        process.env.REFRESH_TOKEN,
-        {expiresIn:'5d'}
-    );
-        // saving the refreshtoken
-   foundUser.refreshToken = refreshToken;
+		process.env.ACCESS_TOKEN,
+		{ expiresIn: "15m" }
+	);
 
-   const result = await foundUser.save();
-//    console.log(result)
+	const refreshToken = jwt.sign(
+		{
+			email: foundUser.email,
+			tokenVersion: foundUser.tokenVersion,
+		},
+		process.env.REFRESH_TOKEN,
+		{ expiresIn: "7d" }
+	);
+	// saving the refreshtoken
+	foundUser.refreshToken = refreshToken;
 
-    res.cookie('refreshToken', refreshToken, {httpOnly:true, sameSite:'None',  maxAge: 24 * 60 * 60 * 1000, secure:true });
-    
-    res.json({accessToken, user : foundUser, roles })
-}
+	const result = await foundUser.save();
+	//    console.log(result)
 
-module.exports = {handleLogin}
+	res.cookie("refreshToken", refreshToken, {
+		httpOnly: true,
+		sameSite: "None",
+		maxAge: 24 * 60 * 60 * 1000,
+		secure: true,
+	});
+
+	res.json({ accessToken, user: foundUser, roles });
+};
+
+module.exports = { handleLogin };

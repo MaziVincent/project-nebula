@@ -80,7 +80,6 @@ const ForgotPassword = () => {
   const handleVerify = (data) => {
     setIsLoading(true);
     handleVerification(data);
-   // console.log(data);
     
   };
 

@@ -20,10 +20,8 @@ const Messages = () => {
 
 
   const senderId = auth?.user?._id
-  console.log(senderId)
   const fetchMessages = async () => {
     const result = await fetch(`${url}/${senderId}`, auth.accessToken);
-    console.log(result)
     return result.data;
   };
   
@@ -35,7 +33,6 @@ const Messages = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  console.log(data)
   
   return (
     <div>

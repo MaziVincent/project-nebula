@@ -1,34 +1,42 @@
-const User = require('../model/User')
+const User = require("../model/User");
 
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const handleLogout = async (req, res) => {
+	const cookies = req.cookies;
 
-   const cookies = req.cookies;
+	if (!cookies.refreshToken) {
+		return res.sendStatus(204);
+	}
 
-    if(!cookies.refreshToken){
-        return res.sendStatus(204);
-    }
-    
-    const refreshToken = cookies.refreshToken
+	const refreshToken = cookies.refreshToken;
 
-    const foundUser = await User.findOne({refreshToken}).exec();
-    if(!foundUser){
+	const foundUser = await User.findOne({ refreshToken }).exec();
+	if (!foundUser) {
+		res.clearCookie("refreshToken", {
+			httpOnly: true,
+			sameSite: "None",
+			maxAge: 24 * 60 * 60 * 1000,
+			domain: process.env.COOKIE_DOMAIN,
+			secure: process.env.NODE_ENV === "production",
+		});
+		return res.sendStatus(204); // no content
+	}
 
-        res.clearCookie('refreshToken', {httpOnly:true, sameSite:'None',  maxAge: 24 * 60 * 60 * 1000, domain:'localhost' , secure:true });
-        return res.sendStatus(204) // no content
-    } 
+	//delete refresh token
+	foundUser.refreshToken = "";
+	const result = await foundUser.save();
 
-    //delete refresh token
-    foundUser.refreshToken = '';
-    const result = await foundUser.save();
-    
-    // console.log(result);
-    
+	// console.log(result);
 
-    res.clearCookie('refreshToken', {httpOnly:true, sameSite:'None',  maxAge: 24 * 60 * 60 * 1000, domain:'localhost' , secure:true });
-    res.sendStatus(204);
+	res.clearCookie("refreshToken", {
+		httpOnly: true,
+		sameSite: "None",
+		maxAge: 24 * 60 * 60 * 1000,
+		domain: process.env.COOKIE_DOMAIN,
+		secure: process.env.NODE_ENV === "production",
+	});
+	res.sendStatus(204);
+};
 
-}
-
-module.exports = {handleLogout}
+module.exports = { handleLogout };

@@ -18,7 +18,6 @@ const UploadProfile = ({userId, openUpload, handleUploadClose}) => {
     const url = `${baseURL}user/profile`
     const [isLoading, setIsLoading] =useState(false)
 
-    console.log(userId)
     const { 
       register, 
       handleSubmit,
@@ -31,7 +30,6 @@ const UploadProfile = ({userId, openUpload, handleUploadClose}) => {
     const files = data.files
     const formData = new FormData()
     for (const key of files) {
-     // console.log(key)
         formData.append(key.name, key);
       
     }
@@ -67,7 +65,6 @@ const UploadProfile = ({userId, openUpload, handleUploadClose}) => {
       }
     })
     const onSubmit = (data) => {
-      console.log(data)
       mutate(data)
     }
   return (

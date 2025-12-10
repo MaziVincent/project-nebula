@@ -33,7 +33,6 @@ const AllProperty = () => {
   };
   const getProperties = async () => {
     const result = await fetch(`${url}?page=${page}&limit=6`, auth.accessToken);
-    console.log(result);
     return result.data;
   };
   

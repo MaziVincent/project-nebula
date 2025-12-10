@@ -21,7 +21,6 @@ const MessageDetails = () => {
   const [message, setMessage] = useState(null)
   const fetchMessages = async () => {
     const result = await fetch(`${url}/${id}`, auth.accessToken);
-    console.log(result)
     setMessage(result.data)
     return result.data;
   };
@@ -34,7 +33,6 @@ const MessageDetails = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  // console.log(data)
   const [receiverId, setReceiverId] = useState(null)
   return (
     <div className='min-h-dvh px-4'>

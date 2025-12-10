@@ -21,7 +21,6 @@ const OwnerHeader = ({ setAside }) => {
   };  
   const location = useLocation()
   const {auth, setAuth, persist, setPersist} = useContext(AuthContext)
-  // console.log(auth)
   return (
     <nav className="bg-green-50 border-b border-gray-200 px-4 py-2.5 fixed left-0 right-0 top-0 z-50">
       <ToastContainer />

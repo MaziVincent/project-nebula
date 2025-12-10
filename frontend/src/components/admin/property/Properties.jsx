@@ -57,13 +57,11 @@ const Properties = () => {
     { keepPreviousData: true, staleTime: 10000, refetchOnMount: "always" }
   );
 
-  //console.log(data);
 
   const propertyCounts =
     data?.properties && Array.isArray(data?.properties)
       ? data.properties.reduce(
           (counts, property) => {
-            // console.log('Property:', property);
 
             // Increment the total property count for each property
             counts.total += 1;

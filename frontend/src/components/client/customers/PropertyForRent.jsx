@@ -30,7 +30,6 @@ const PropertyForRent = () => {
   };
   const getProperties = async () => {
     const result = await fetch(`${url}/type?page=${page}&limit=6`, auth.accessToken);
-    console.log(result);
     return result.data;
   };
   

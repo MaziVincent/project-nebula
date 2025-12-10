@@ -1,9 +1,7 @@
-import React from "react";
-import DRELB from "../../assets/images/demo-real-estate-logo-black.png";
-import logo3 from "../../assets/images/megalogo5.svg"
+
+import logo3 from "../../assets/images/nebula/nebula-logo-1.png"
 import FooterImg from "../../assets/images/photos/footerimg.jpg";
 import { Link } from "react-router-dom";
-import estateflier from "../../assets/images/estateflier.jpeg"
 
 const Footer = () => {
   return (
@@ -88,16 +86,16 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="row justify-content-center mt-5 mb-4 sm-mb-35px">
-            <div className="col-lg-3 last-paragraph-no-margin md-mb-35px text-center text-lg-start">
+          <div className="row justify-content-start mt-5 mb-4 sm-mb-35px ">
+            <div className="col-lg-3 last-paragraph-no-margin md-mb-35px text-center text-lg-start border-2">
               <Link
                 to="/"
                 className="footer-logo mb-10px d-inline-block"
               >
-                <div className="flex justify-center items-center">
+                <div className="flex justify-start items-center">
                 <img
                   src={logo3}
-                  data-at2x="images/demo-real-estate-logo-black@2x.png"
+                  data-at2x="images/nebula/nebula-logo-1.png"
                   alt=""
                 />
                

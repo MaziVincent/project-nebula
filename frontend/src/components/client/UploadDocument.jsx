@@ -15,7 +15,6 @@ const UploadDocument = ({id, openDocUpload, handleDocUploadClose, url}) => {
     const { auth } = useAuth()
     const [isLoading, setIsLoading] =useState(false)
 
-   // console.log(id)
     // const propertyId = id
     const { 
       register, 
@@ -29,7 +28,6 @@ const UploadDocument = ({id, openDocUpload, handleDocUploadClose, url}) => {
     const files = data.files
     const formData = new FormData()
     for (const key of files) {
-     // console.log(key)
         formData.append(key.name, key);
       
     }
@@ -43,7 +41,6 @@ const UploadDocument = ({id, openDocUpload, handleDocUploadClose, url}) => {
         })
         return response.data
       } catch (error) {
-        console.log(error)
       }
       
     }
@@ -63,7 +60,6 @@ const UploadDocument = ({id, openDocUpload, handleDocUploadClose, url}) => {
       }
     })
     const onSubmit = (data) => {
-      console.log(data)
       mutate(data)
     }
   return (

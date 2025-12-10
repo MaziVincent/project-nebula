@@ -6,7 +6,6 @@ const Dashboard = () => {
   
     const [aside, setAside] = useState(false);
 
-    // console.log(aside);
 
   return (
     <>

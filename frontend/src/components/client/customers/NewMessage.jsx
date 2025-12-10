@@ -34,7 +34,6 @@ const NewMessage = ({open, handleClose, userId}) => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  console.log(data)
   
   const {
     register,
@@ -55,14 +54,11 @@ const NewMessage = ({open, handleClose, userId}) => {
       }
     }
     for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
     }
     try {
       const response = await post(url, formData, auth.accessToken);
 
-      console.log(response.data)
     } catch (err) {
-      console.log(err);
     }
   }
   const {mutate} = useMutation(sendMessage, {

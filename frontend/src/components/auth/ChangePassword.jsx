@@ -52,7 +52,6 @@ const password = watch('NewPassword','')
     }else{
         toast.error('Error Changing Password')
     }
-    //console.log(response);
 
     setIsLoading(false)
   
@@ -72,7 +71,6 @@ const password = watch('NewPassword','')
       setType("password");
     }
   };
-  //console.log(regData)
 
   return (
     <Modal

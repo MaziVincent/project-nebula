@@ -56,7 +56,6 @@ const VerifyOTP = ({ otpLength = 4 , open, dispatch}) => {
       }
 
     }catch(err){
-      console.log(err)
     }finally{
       setIsLoading(false);
     }
@@ -87,7 +86,6 @@ const VerifyOTP = ({ otpLength = 4 , open, dispatch}) => {
       const response = await post(resendUrl, verificationData, "");
       setCode(response.data?.response);
 
-      console.log(response);
     } catch (error) {
       if (error.status === 409) {
         setCodeError("Phone Number or Email already exist");
@@ -114,9 +112,7 @@ const VerifyOTP = ({ otpLength = 4 , open, dispatch}) => {
         setIsLoading(false);
 
       }
-      //console.log(response.data);
     } catch (err) {
-      console.log(err);
       toast.error("Something Went Wrong");
       throw new Error("Failed to create account");
       

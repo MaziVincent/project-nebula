@@ -43,7 +43,6 @@ const Property = () => {
         setProperty(result.data); 
     } catch (error) {
       toast.error("Error fetching Agent's details");
-      console.log("Fetch error:", error);
     }
   };
 
@@ -63,9 +62,7 @@ const Property = () => {
    const handleImageDelete = async (ImageUrl) => {
      handleOpenImageDelete();
      setCurrentImageUrl(ImageUrl);
-     // console.log(propertyId, ImageUrl)
    };
- //console.log(property)
   return (
     <div>
       <div className="pt-10 pl-4">

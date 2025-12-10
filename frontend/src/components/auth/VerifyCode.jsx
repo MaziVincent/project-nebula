@@ -54,7 +54,6 @@ const VerifyCode = ({ otpLength = 4, open, dispatch }) => {
 
     try {
       const response = await post(verifyUrl, { pin, pinId: code.pinId });
-      console.log(response);
       if(response.data?.response?.status === 400) {
         toast.error(response?.data?.response?.verified);
          setCodeError("Error verifying OTP");
@@ -71,7 +70,6 @@ const VerifyCode = ({ otpLength = 4, open, dispatch }) => {
       }
 
     } catch (err) {
-      console.log(err);
     } finally {
       setIsLoading(false);
     }
@@ -101,7 +99,6 @@ const VerifyCode = ({ otpLength = 4, open, dispatch }) => {
       const response = await post(resendUrl, verificationData, "");
       setCode(response.data?.response);
       toast.success("OTP sent successfully");
-      console.log(response);
     } catch (error) {
       if (error.status === 409) {
         setCodeError("Phone Number or Email already exist");
@@ -115,8 +112,6 @@ const VerifyCode = ({ otpLength = 4, open, dispatch }) => {
 
 
 
-  // console.log(code);
-  // console.log(userData);
 
   return (
     <Modal

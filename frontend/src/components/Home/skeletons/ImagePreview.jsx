@@ -10,7 +10,6 @@ const ImagePreview = ({ images }) => {
   const handleClosePreview = () => {
     setSelectedImage(null);
   };
-  //console.log(images);
   return (
     <div>
       {/* <h2>Property Images</h2> */}

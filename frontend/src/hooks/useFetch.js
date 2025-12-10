@@ -1,38 +1,35 @@
 import axios from "axios";
-import useAxiosPrivate from "./useAxiosPrivate"
+import useAxiosPrivate from "./useAxiosPrivate";
 
 const useFetch = () => {
-  const axiosPrivate = useAxiosPrivate();
+	const axiosPrivate = useAxiosPrivate();
 
-  const fetchData = async (url, token) => {
-    const controller = new AbortController();
+	const fetchData = async (url, token) => {
+		const controller = new AbortController();
 
-    let data;
+		let data;
 
-    try {
-      const response = await axiosPrivate.get(url, {
-        signal: controller.signal,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
+		try {
+			const response = await axiosPrivate.get(url, {
+				signal: controller.signal,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				withCredentials: true,
+			});
 
-      data = response.data;
-      // console.log(data)
-    } catch (error) {
-      console.log(error);
+			data = response.data;
+		} catch (error) {
+			return error;
+			//navigate('/Login',{state:{from: location}, replace:true })
+		}
 
-      return error;
-      //navigate('/Login',{state:{from: location}, replace:true })
-    }
+		controller.abort();
 
-    controller.abort();
+		return { data };
+	};
 
-    return { data };
-  };
-
-  return fetchData;
+	return fetchData;
 };
 
 export default useFetch;

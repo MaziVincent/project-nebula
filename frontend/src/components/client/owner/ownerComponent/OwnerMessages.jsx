@@ -15,10 +15,8 @@ const OwnerMessages = () => {
   const handleCloseModal = () => setOpenModal(false)
 
   const receiverId = auth?.user?._id
-  console.log(receiverId)
   const fetchMessages = async () => {
     const result = await fetch(`${url}/${receiverId}`, auth.accessToken);
-    console.log(result)
     return result.data;
   };
   
@@ -30,7 +28,6 @@ const OwnerMessages = () => {
         staleTime: 10000,
         refetchOnMount:"always" }
   );
-  console.log(data)
   
   return (
     <div className='min-h-dvh'>

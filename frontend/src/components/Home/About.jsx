@@ -19,249 +19,229 @@ import logo2 from "../../assets/images/demo-real-estate-logo-02.svg";
 import logo3 from "../../assets/images/demo-real-estate-logo-03.svg";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
+import SEO from "../shared/SEO";
 
 const About = () => {
-  return (
-    <div>
-      {/* start page title   */}
-      <section className="cover-background page-title-big-typography ipad-top-space-margin">
-        <div className="container">
-          <div className="row align-items-center align-items-lg-end justify-content-center extra-very-small-screen g-0">
-            <div className="col-xxl-5 col-xl-6 col-lg-7 position-relative page-title-extra-small md-mb-30px md-mt-auto">
-              <h1 className="text-base-color">About MegaTech RealEstate</h1>
-              <h2
-                className="alt-font text-dark-gray fw-500 mb-0 ls-minus-1px shadow-none"
-                data-shadow-animation="true"
-                data-animation-delay="700"
-              >
-                Welcome to MegaTech{" "}
-                <span className="fw-700 text-highlight d-inline-block">
-                  Real Estate
-                  <span className="bg-base-color h-10px bottom-3px opacity-3 separator-animation"></span>
-                </span>
-                .
-              </h2>
-            </div>
-            <div className="col-lg-5 offset-xxl-2 offset-xl-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
-              <span className="d-block w-85 lg-w-100">
-                We are a dedicated team of real estate professionals committed
-                to helping you find your dream home or ideal investment
-                property.
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* end page title   */}
-      {/* start section   */}
-      <section className="overflow-hidden p-0">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-12 p-0 position-relative">
-              <img
-                src={AboutImg}
-                alt="Logo"
-                className="w-100"
-              />
-              <div
-                className="alt-font fw-600 fs-350 lg-fs-275 md-fs-250 xs-fs-160 ls-minus-5px xs-ls-minus-2px position-absolute right-minus-50px lg-right-0px bottom-minus-80px md-bottom-minus-60px xs-bottom-minus-40px text-white text-outline text-outline-width-3px"
-                data-bottom-top="transform: translate3d(80px, 0px, 0px);"
-                data-top-bottom="transform: translate3d(-280px, 0px, 0px);"
-              >
-                about
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* end section   */}
-      {/* start section   */}
-      <section className="pb-0">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6 order-2 order-lg-1 position-relative align-self-end">
-              <figure className="position-relative m-0">
-                <img
-                  src={AboutImg2}
-                  className="w-100"
-                  alt="card"
-                />
-                <figcaption className="w-180px bg-white p-30px pt-20px border-radius-8px position-absolute top-150px right-minus-30px lg-right-0px overflow-hidden box-shadow-medium animation-float">
-                  <span className="alt-font fs-100 fw-700 text-white d-block position-relative z-index-1">
-                    15
-                  </span>
-                  <div className="alt-font fw-500 fs-24 d-block text-dark-gray lh-26 ls-minus-05px">
-                    Years of <span className="fw-700">experience.</span>
-                  </div>
-                  <div className="h-150px w-150px border-radius-100 bg-base-color position-absolute left-minus-10px top-minus-50px z-index-0"></div>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="col-xl-5 offset-xl-1 col-lg-6 mb-8 order-1 order-lg-2 md-mb-40px">
-              <span className="fs-20 d-inline-block mb-15px text-base-color">
-                About
-              </span>
-              <h2
-                className="alt-font text-gray-900 text-4xl fw-700"
-                data-shadow-animation="true"
-                data-animation-delay="700"
-              >
-                MegaTech RealEstate.{" "}
-                <span className="fw-700 text-highlight d-inline-block"></span>
-              </h2>
-              <p className="w-100 lg-w-100">
-                MEGATECH REALESTATE is a leading real estate company in Nigeria
-                that has a well-established presence in Ebonyi State and an
-                unmatched reputation for bringing high-end properties and
-                premium service to our clients. We have achieved commendable
-                sales numbers, which are periodically updated on our website,
-                making us one of the biggest property agencies in Nigeria.
-              </p>
+	return (
+		<div>
+			<SEO
+				title="About Us - MegaTech RealEstate"
+				description="Learn about MegaTech RealEstate, a dedicated team of real estate professionals helping you find your dream property in Nigeria."
+				keywords="about MegaTech real estate, real estate company Nigeria, property experts"
+			/>
+			{/* start page title   */}
+			<section className="cover-background page-title-big-typography ipad-top-space-margin">
+				<div className="container">
+					<div className="row align-items-center align-items-lg-end justify-content-center extra-very-small-screen g-0">
+						<div className="col-xxl-5 col-xl-6 col-lg-7 position-relative page-title-extra-small md-mb-30px md-mt-auto">
+							<h1 className="text-base-color">About MegaTech RealEstate</h1>
+							<h2
+								className="alt-font text-dark-gray fw-500 mb-0 ls-minus-1px shadow-none"
+								data-shadow-animation="true"
+								data-animation-delay="700">
+								Welcome to MegaTech{" "}
+								<span className="fw-700 text-highlight d-inline-block">
+									Real Estate
+									<span className="bg-base-color h-10px bottom-3px opacity-3 separator-animation"></span>
+								</span>
+								.
+							</h2>
+						</div>
+						<div className="col-lg-5 offset-xxl-2 offset-xl-1 border-start border-2 border-color-base-color ps-40px sm-ps-25px md-mb-auto">
+							<span className="d-block w-85 lg-w-100">
+								We are a dedicated team of real estate professionals committed
+								to helping you find your dream home or ideal investment
+								property.
+							</span>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* end page title   */}
+			{/* start section   */}
+			<section className="overflow-hidden p-0">
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-12 p-0 position-relative">
+							<img src={AboutImg} alt="Logo" className="w-100" />
+							<div
+								className="alt-font fw-600 fs-350 lg-fs-275 md-fs-250 xs-fs-160 ls-minus-5px xs-ls-minus-2px position-absolute right-minus-50px lg-right-0px bottom-minus-80px md-bottom-minus-60px xs-bottom-minus-40px text-white text-outline text-outline-width-3px"
+								data-bottom-top="transform: translate3d(80px, 0px, 0px);"
+								data-top-bottom="transform: translate3d(-280px, 0px, 0px);">
+								about
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* end section   */}
+			{/* start section   */}
+			<section className="pb-0">
+				<div className="container">
+					<div className="row align-items-center">
+						<div className="col-lg-6 order-2 order-lg-1 position-relative align-self-end">
+							<figure className="position-relative m-0">
+								<img src={AboutImg2} className="w-100" alt="card" />
+								<figcaption className="w-180px bg-white p-30px pt-20px border-radius-8px position-absolute top-150px right-minus-30px lg-right-0px overflow-hidden box-shadow-medium animation-float">
+									<span className="alt-font fs-100 fw-700 text-white d-block position-relative z-index-1">
+										15
+									</span>
+									<div className="alt-font fw-500 fs-24 d-block text-dark-gray lh-26 ls-minus-05px">
+										Years of <span className="fw-700">experience.</span>
+									</div>
+									<div className="h-150px w-150px border-radius-100 bg-base-color position-absolute left-minus-10px top-minus-50px z-index-0"></div>
+								</figcaption>
+							</figure>
+						</div>
+						<div className="col-xl-5 offset-xl-1 col-lg-6 mb-8 order-1 order-lg-2 md-mb-40px">
+							<span className="fs-20 d-inline-block mb-15px text-base-color">
+								About
+							</span>
+							<h2
+								className="alt-font text-gray-900 text-4xl fw-700"
+								data-shadow-animation="true"
+								data-animation-delay="700">
+								MegaTech RealEstate.{" "}
+								<span className="fw-700 text-highlight d-inline-block"></span>
+							</h2>
+							<p className="w-100 lg-w-100">
+								MEGATECH REALESTATE is a leading real estate company in Nigeria
+								that has a well-established presence in Ebonyi State and an
+								unmatched reputation for bringing high-end properties and
+								premium service to our clients. We have achieved commendable
+								sales numbers, which are periodically updated on our website,
+								making us one of the biggest property agencies in Nigeria.
+							</p>
 
-              <div className="pt-20px pb-20px ps-30px pe-30px xs-p-20px border border-color-extra-medium-gray border-radius-6px mb-15px icon-with-text-style-08 w-80 lg-w-100">
-                <div className="feature-box feature-box-left-icon-middle">
-                  <div className="feature-box-icon me-10px">
-                    <i className="bi bi-people icon-very-medium text-base-color"></i>
-                  </div>
-                  <div className="feature-box-content">
-                    <span className="alt-font fw-600 text-dark-gray d-block fs-18 lh-26">
-                      10,000+ people trust us.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <p className="fs-13 mb-35px xs-lh-20">
-                Our selection of the best{" "}
-                <span className="text-dark-gray text-decoration-line-bottom">
-                  places around
-                </span>{" "}
-                the world and pick yours.
-              </p>
-              <a
-                href="#"
-                className="btn btn-dark-gray btn-medium btn-round-edge me-25px"
-              >
-                Trusted agents
-              </a>
-              <Link
-                to="/sell"
-                className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0"
-              >
-                <span>
-                  <span className="btn-text">Find property</span>
-                  <span className="btn-icon">
-                    <i className="feather icon-feather-arrow-right"></i>
-                  </span>
-                  <span className="btn-icon">
-                    <i className="feather icon-feather-arrow-right"></i>
-                  </span>
-                </span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* end section */}
-      <section className="bg-gradient-very-light-gray">
-        <div className="container">
-          <h2
-            className="text-center alt-font text-gray-900 "
-            data-shadow-animation="true"
-            data-animation-delay="700"
-          >
-            <span className="fw-700 text-highlight d-inline-block">
-              OUR SERVICES
-              <span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
-            </span>
-          </h2>
+							<div className="pt-20px pb-20px ps-30px pe-30px xs-p-20px border border-color-extra-medium-gray border-radius-6px mb-15px icon-with-text-style-08 w-80 lg-w-100">
+								<div className="feature-box feature-box-left-icon-middle">
+									<div className="feature-box-icon me-10px">
+										<i className="bi bi-people icon-very-medium text-base-color"></i>
+									</div>
+									<div className="feature-box-content">
+										<span className="alt-font fw-600 text-dark-gray d-block fs-18 lh-26">
+											10,000+ people trust us.
+										</span>
+									</div>
+								</div>
+							</div>
+							<p className="fs-13 mb-35px xs-lh-20">
+								Our selection of the best{" "}
+								<span className="text-dark-gray text-decoration-line-bottom">
+									places around
+								</span>{" "}
+								the world and pick yours.
+							</p>
+							<a
+								href="#"
+								className="btn btn-dark-gray btn-medium btn-round-edge me-25px">
+								Trusted agents
+							</a>
+							<Link
+								to="/sell"
+								className="btn btn-large btn-link btn-hover-animation-switch text-dark-gray p-0">
+								<span>
+									<span className="btn-text">Find property</span>
+									<span className="btn-icon">
+										<i className="feather icon-feather-arrow-right"></i>
+									</span>
+									<span className="btn-icon">
+										<i className="feather icon-feather-arrow-right"></i>
+									</span>
+								</span>
+							</Link>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* end section */}
+			<section className="bg-gradient-very-light-gray">
+				<div className="container">
+					<h2
+						className="text-center alt-font text-gray-900 "
+						data-shadow-animation="true"
+						data-animation-delay="700">
+						<span className="fw-700 text-highlight d-inline-block">
+							OUR SERVICES
+							<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
+						</span>
+					</h2>
 
-          <div className="flex justify-center">
-            <p className="w-full md:w-5/6 bg-white rounded-lg p-5 ">
-              Whether you are selling, buying, renting, or leasing real estate
-              in Nigeria, we can offer an end-to-end service that guarantees a
-              stress-free and successful property acquisition journey. Take a
-              look at our full range of services.
-            </p>
-          </div>
-          <div className="row row-cols-1 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-5 xs-mb-8">
-            {/* start features box item   */}
-            <div className="col icon-with-text-style-07 transition-inner-all md-mb-30px">
-              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
-                <div className="feature-box-icon mb-20px">
-                  <img
-                    src={ServiceImg}
-                    className="h-80px"
-                    alt=""
-                  />
-                </div>
-                <div className="feature-box-content">
-                  <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
-                    Our Technology
-                  </span>
-                  <p className="p-0 ">
-                    We invest in the latest technology to keep you ahead. We are
-                    fully integrated with tools that streamline our processes,
-                    giving you unprecedented speed in decision making and
-                    accuracy based on real time data.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/*   end features box item  */}
-            {/*   start features box item   */}
-            <div className="col icon-with-text-style-07 transition-inner-all md-mb-30px">
-              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
-                <div className="feature-box-icon mb-20px">
-                  <img
-                    src={FriendlyPic}
-                    className="h-80px"
-                    alt=""
-                  />
-                </div>
-                <div className="feature-box-content">
-                  <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
-                    Experts with unique access
-                  </span>
-                  <p>
-                    We are founded on great people. The people we work with are
-                    property experts, with networks that have been built up over
-                    years of work in the property industry. Our relationships
-                    are the foundation of our success and form the basis of our
-                    operations- bringing you exclusive access, with a personal
-                    touch.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* end features box item   */}
-            {/* start features box item   */}
-            <div className="col icon-with-text-style-07 transition-inner-all xs-mb-30px">
-              <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
-                <div className="feature-box-icon mb-20px">
-                  <img
-                    src={TrustPic}
-                    className="h-80px"
-                    alt=""
-                  />
-                </div>
-                <div className="feature-box-content">
-                  <span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
-                    Focus on growth
-                  </span>
-                  <p>
-                    We are committed to growth: helping your property business
-                    expand and maximise its profits, assisting you as you grow
-                    your portfolio, and we’re there to help manage your
-                    properties effectively and profitably. we work as your real
-                    estate department, helping propel you on your journey of
-                    growth.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* end features box item   */}
-            {/* start features box item   */}
-            {/* <div className="col icon-with-text-style-07 transition-inner-all">
+					<div className="flex justify-center">
+						<p className="w-full md:w-5/6 bg-white rounded-lg p-5 ">
+							Whether you are selling, buying, renting, or leasing real estate
+							in Nigeria, we can offer an end-to-end service that guarantees a
+							stress-free and successful property acquisition journey. Take a
+							look at our full range of services.
+						</p>
+					</div>
+					<div className="row row-cols-1 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-5 xs-mb-8">
+						{/* start features box item   */}
+						<div className="col icon-with-text-style-07 transition-inner-all md-mb-30px">
+							<div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
+								<div className="feature-box-icon mb-20px">
+									<img src={ServiceImg} className="h-80px" alt="" />
+								</div>
+								<div className="feature-box-content">
+									<span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
+										Our Technology
+									</span>
+									<p className="p-0 ">
+										We invest in the latest technology to keep you ahead. We are
+										fully integrated with tools that streamline our processes,
+										giving you unprecedented speed in decision making and
+										accuracy based on real time data.
+									</p>
+								</div>
+							</div>
+						</div>
+						{/*   end features box item  */}
+						{/*   start features box item   */}
+						<div className="col icon-with-text-style-07 transition-inner-all md-mb-30px">
+							<div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
+								<div className="feature-box-icon mb-20px">
+									<img src={FriendlyPic} className="h-80px" alt="" />
+								</div>
+								<div className="feature-box-content">
+									<span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
+										Experts with unique access
+									</span>
+									<p>
+										We are founded on great people. The people we work with are
+										property experts, with networks that have been built up over
+										years of work in the property industry. Our relationships
+										are the foundation of our success and form the basis of our
+										operations- bringing you exclusive access, with a personal
+										touch.
+									</p>
+								</div>
+							</div>
+						</div>
+						{/* end features box item   */}
+						{/* start features box item   */}
+						<div className="col icon-with-text-style-07 transition-inner-all xs-mb-30px">
+							<div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-5 lg-p-5 border-radius-10px last-paragraph-no-margin">
+								<div className="feature-box-icon mb-20px">
+									<img src={TrustPic} className="h-80px" alt="" />
+								</div>
+								<div className="feature-box-content">
+									<span className="alt-font fw-600 text-dark-gray fs-20 d-inline-block mb-5px">
+										Focus on growth
+									</span>
+									<p>
+										We are committed to growth: helping your property business
+										expand and maximise its profits, assisting you as you grow
+										your portfolio, and we’re there to help manage your
+										properties effectively and profitably. we work as your real
+										estate department, helping propel you on your journey of
+										growth.
+									</p>
+								</div>
+							</div>
+						</div>
+						{/* end features box item   */}
+						{/* start features box item   */}
+						{/* <div className="col icon-with-text-style-07 transition-inner-all">
               <div className="bg-white feature-box box-shadow-quadruple-large box-shadow-quadruple-large-hover text-center p-16 lg-p-14 border-radius-10px last-paragraph-no-margin">
                 <div className="feature-box-icon mb-20px">
                   <img
@@ -282,341 +262,317 @@ const About = () => {
                 </div>
               </div>
             </div> */}
-            {/* end features box item   */}
-          </div>
-          <h2
-            className="text-center alt-font text-gray-900 "
-            data-shadow-animation="true"
-            data-animation-delay="700"
-          >
-            <span className="fw-700 text-highlight d-inline-block">
-              OUR PROMISE
-              <span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
-            </span>
-          </h2>
+						{/* end features box item   */}
+					</div>
+					<h2
+						className="text-center alt-font text-gray-900 "
+						data-shadow-animation="true"
+						data-animation-delay="700">
+						<span className="fw-700 text-highlight d-inline-block">
+							OUR PROMISE
+							<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
+						</span>
+					</h2>
 
-          <div className="flex justify-center">
-            <p className="w-full md:w-11/12 bg-white rounded-lg p-5 ">
-              We are committed to consistently offering you the most powerful
-              and user- friendly technology available anywhere. This will enable
-              you to learn your markets faster and stay up-to-date more easily.
-              We are excited to offer payment structures that are designed to
-              reward you generously, surpassing what other real estate companies
-              typically provide. This is a testament to our unwavering
-              dedication to absolute integrity. As our company continues to gain
-              recognition for our intelligence, integrity, and track record of
-              success, we are thrilled to share the prosperity with everyone
-              involved, ensuring that it is not limited to just a few
-              individuals. We use a variety of marketing methods and tools to
-              attract and engage our target audience. We have a strong online
-              presence on, Telegram, Facebook, Twitter, and Instagram, where we
-              post regular updates, tips, testimonials, and featured listings.
-              We also have a professional website that showcases our listings
-              with high-quality photos, videos, virtual tours, floor plans, and
-              detailed descriptions. Our Agency established strong partnerships
-              with renowned real estate developers both within and outside the
-              country in order to enhance our visibility and expand our outreach
-              to potential buyers or renters. Thank you for your time and
-              consideration. We hope that our presentation has piqued your
-              interest and convinced you of our expertise. If you are ready to
-              sell or buy your property with us, please contact us. We promise
-              to give you the best possible service and get you the best
-              possible deal. We also offer a free home staging service and a
-              100% satisfaction guarantee. If you have any questions or concerns
-              please do not hesitate to contact us!
-            </p>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-auto icon-with-text-style-08">
-              <div className="feature-box feature-box-left-icon-middle">
-                <div className="feature-box-icon me-10px">
-                  <i className="bi bi-patch-check icon-medium text-base-color"></i>
-                </div>
-                <div className="feature-box-content alt-font text-dark-gray fs-22 fw-600">
-                  We are growing fast! Today MegaTech RealEstate has{" "}
-                  <span className="text-decoration-line-bottom">
-                    3k+ active residents.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* end section   */}
-      {/* start section   */}
-      <section className="position-relative overflow-hidden pt-0">
-        <img
-          src={seven}
-          alt=""
-          className="position-absolute left-100px top-50px z-index-minus-1"
-          data-bottom-top="transform: translate3d(80px, 0px, 0px);"
-          data-top-bottom="transform: translate3d(-180px, 0px, 0px);"
-        />
-        <img
-          src={eight}
-          alt=""
-          className="position-absolute right-100px top-100px z-index-minus-1"
-          data-bottom-top="transform:scale(1.4, 1.4) translate3d(0px, 0px, 0px);"
-          data-top-bottom="transform:scale(1, 1) translate3d(-400px, 0px, 0px);"
-        />
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-lg-6 text-end md-mb-50px">
-              <figure className="position-relative m-0">
-                <img
-                  src={RevPic}
-                  className="w-90 border-radius-6px"
-                  alt=""
-                />
-                <figcaption className="position-absolute bg-dark-gray border-radius-10px box-shadow-quadruple-large bottom-100px xs-bottom-minus-20px left-minus-30px md-left-0px w-230px xs-w-210px text-center last-paragraph-no-margin animation-float">
-                  <div className="bg-white pt-35px pb-35px border-radius-8px mb-15px position-relative top-minus-1px">
-                    <h1 className="fw-700 ls-minus-3px text-dark-gray mb-0 alt-font">
-                      4.8
-                    </h1>
-                    <div className="text-golden-yellow fs-18 ls-1px">
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill bg-gray-300"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                    </div>
-                    <span className="text-dark-gray d-block alt-font fw-600">
-                      2488 Reviews
-                    </span>
-                    <div className="d-inline-block fs-12 text-uppercase bg-base-color ps-20px pe-20px lh-30 text-white border-radius-100px box-shadow-large">
-                      Excellent score
-                    </div>
-                  </div>
-                  <img
-                    src={trustpilot}
-                    className="h-30px mb-20px"
-                    alt=""
-                  />
-                </figcaption>
-              </figure>
-            </div>
-            <div className="col-lg-5 offset-lg-1 col-md-10 text-center text-lg-start">
-              <span className="fs-20 d-inline-block mb-15px text-base-color">
-                Clients feedback
-              </span>
-              <h2
-                className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none"
-                data-shadow-animation="true"
-                data-animation-delay="700"
-              >
-                Here is what our{" "}
-                <span className="fw-700 text-highlight d-inline-block">
-                  client's
-                  <span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
-                </span>{" "}
-                have to say
-              </h2>
-              <div
-                className="swiper position-relative"
-                data-slider-options='{ "autoHeight": true, "loop": true, "allowTouchMove": true, "autoplay": { "delay": 4000, "disableOnInteraction": false }, "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" }, "effect": "fade" }'
-              >
-                <div>
-                  <Swiper
-                    modules={[Autoplay]}
-                    slidesPerView={1}
-                    loop={true}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    spaceBetween={30}
-                    breakpoints={{
-                      1200: { slidesPerView: 1 },
-                      768: { slidesPerView: 1 },
-                      320: { slidesPerView: 1 },
-                    }}
-                    navigation={{
-                      nextEl: ".swiper-button-next",
-                      prevEl: ".swiper-button-prev",
-                    }}
-                    className="swiper-wrapper mb-40px"
-                  >
-                    {/* start text slider item  */}
-                    <SwiperSlide>
-                      <div className="swiper-slide review-style-08">
-                        <p className="w-80 xl-w-90 lg-w-100">
-                          "Mega Real Estate made my home buying experience so
-                          easy! They really listened to my needs and found the
-                          perfect home for my family. I couldn't be happier with
-                          their service."
-                        </p>
-                        <div className="mt-20px">
-                          <img
-                            className="rounded-circle w-95px h-95px me-15px"
-                            src={Rev1}
-                            alt=""
-                          />
-                          <div className="d-inline-block align-middle text-start">
-                            <div className="text-dark-gray alt-font fs-20">
-                              <span className="fw-700">Alexander</span> Okoro
-                            </div>
-                            <div className="review-star-icon fs-18">
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    {/* end text slider item  */}
-                    {/* start text slider item  */}
-                    <SwiperSlide>
-                      <div className="swiper-slide review-style-08">
-                        <p className="w-80 xl-w-90 lg-w-100">
-                          "Mega Real Estate made my home buying experience so
-                          easy! They really listened to my needs and found the
-                          perfect home for my family. I couldn't be happier with
-                          their service."
-                        </p>
-                        <div className="mt-20px">
-                          <img
-                            className="rounded-circle w-95px h-95px me-15px"
-                            src="https://via.placeholder.com/148x148"
-                            alt=""
-                          />
-                          <div className="d-inline-block align-middle text-start">
-                            <div className="text-dark-gray alt-font fs-20">
-                              <span className="fw-700">Victor</span> Obi
-                            </div>
-                            <div className="review-star-icon fs-18">
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    {/* end text slider item  */}
-                    {/* start text slider item  */}
-                    <SwiperSlide>
-                      <div className="swiper-slide review-style-08">
-                        <p className="w-80 xl-w-90 lg-w-100">
-                          "Mega Real Estate made my home buying experience so
-                          easy! They really listened to my needs and found the
-                          perfect home for my family. I couldn't be happier with
-                          their service."
-                        </p>
-                        <div className="mt-20px">
-                          <img
-                            className="rounded-circle w-95px h-95px me-15px"
-                            src="https://via.placeholder.com/148x148"
-                            alt=""
-                          />
-                          <div className="d-inline-block align-middle text-start">
-                            <div className="text-dark-gray alt-font fs-20">
-                              <span className="fw-700">Frank</span> Okoye
-                            </div>
-                            <div className="review-star-icon fs-18">
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    {/* end text slider item  */}
-                  </Swiper>
-                </div>
-                <div className="d-flex justify-content-center justify-content-lg-start">
-                  {/* start slider navigation   */}
-                  <div className="slider-one-slide-prev-1 swiper-button-prev slider-navigation-style-04 border border-color-extra-medium-gray">
-                    <i className="fa-solid fa-arrow-left icon-small text-dark-gray"></i>
-                  </div>
-                  <div className="slider-one-slide-next-1 swiper-button-next slider-navigation-style-04 border border-color-extra-medium-gray">
-                    <i className="fa-solid fa-arrow-right icon-small text-dark-gray"></i>
-                  </div>
-                  {/* end slider navigation    */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* end section       */}
-      {/* start section   */}
-      <section className="pt-0 pb-30px sm-pb-50px overlap-height">
-        <div className="container overlap-gap-section">
-          <div className="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center align-items-center">
-            <Marquee>
-              <div className="col md-mb-30px mr-8">
-                <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
-                  <div className="pt-10 pb-10">
-                    <img
-                      src={logo1}
-                      className="h-40px"
-                      alt=""
-                    />
-                  </div>
-                  <div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
-                    <div className="alt-font mx-auto lh-28">
-                      Property sell listed -{" "}
-                      <span className="fw-700 text-dark-gray">275% Growth</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col md-mb-30px mr-8">
-                <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
-                  <div className="pt-10 pb-10">
-                    <img
-                      src={logo2}
-                      className="h-40px"
-                      alt=""
-                    />
-                  </div>
-                  <div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
-                    <div className="alt-font mx-auto lh-28">
-                      Property selling -{" "}
-                      <span className="fw-700 text-dark-gray">235% Growth</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col md-mb-30px mr-8">
-                <div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
-                  <div className="pt-10 pb-10">
-                    <img
-                      src={logo3}
-                      className="h-40px"
-                      alt=""
-                    />
-                  </div>
-                  <div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
-                    <div className="alt-font mx-auto lh-28">
-                      Property agents -{" "}
-                      <span className="fw-700 text-dark-gray">175% Growth</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Marquee>
-          </div>
-          <div className="row justify-content-center align-items-center mt-5 md-mt-7">
-            <div className="col-12 text-center align-items-center">
-              <div className="bg-dark-gray alt-font fs-12 fw-700 text-white text-uppercase border-radius-30px ps-20px pe-20px me-10px sm-m-5px d-inline-block align-middle">
-                Fun facts
-              </div>
-              <div className="fs-20 text-dark-gray d-block d-md-inline-block align-middle alt-font fw-600">
-                World's famous ratings companies we worked with us.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+					<div className="flex justify-center">
+						<p className="w-full md:w-11/12 bg-white rounded-lg p-5 ">
+							We are committed to consistently offering you the most powerful
+							and user- friendly technology available anywhere. This will enable
+							you to learn your markets faster and stay up-to-date more easily.
+							We are excited to offer payment structures that are designed to
+							reward you generously, surpassing what other real estate companies
+							typically provide. This is a testament to our unwavering
+							dedication to absolute integrity. As our company continues to gain
+							recognition for our intelligence, integrity, and track record of
+							success, we are thrilled to share the prosperity with everyone
+							involved, ensuring that it is not limited to just a few
+							individuals. We use a variety of marketing methods and tools to
+							attract and engage our target audience. We have a strong online
+							presence on, Telegram, Facebook, Twitter, and Instagram, where we
+							post regular updates, tips, testimonials, and featured listings.
+							We also have a professional website that showcases our listings
+							with high-quality photos, videos, virtual tours, floor plans, and
+							detailed descriptions. Our Agency established strong partnerships
+							with renowned real estate developers both within and outside the
+							country in order to enhance our visibility and expand our outreach
+							to potential buyers or renters. Thank you for your time and
+							consideration. We hope that our presentation has piqued your
+							interest and convinced you of our expertise. If you are ready to
+							sell or buy your property with us, please contact us. We promise
+							to give you the best possible service and get you the best
+							possible deal. We also offer a free home staging service and a
+							100% satisfaction guarantee. If you have any questions or concerns
+							please do not hesitate to contact us!
+						</p>
+					</div>
+					<div className="row justify-content-center">
+						<div className="col-auto icon-with-text-style-08">
+							<div className="feature-box feature-box-left-icon-middle">
+								<div className="feature-box-icon me-10px">
+									<i className="bi bi-patch-check icon-medium text-base-color"></i>
+								</div>
+								<div className="feature-box-content alt-font text-dark-gray fs-22 fw-600">
+									We are growing fast! Today MegaTech RealEstate has{" "}
+									<span className="text-decoration-line-bottom">
+										3k+ active residents.
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* end section   */}
+			{/* start section   */}
+			<section className="position-relative overflow-hidden pt-0">
+				<img
+					src={seven}
+					alt=""
+					className="position-absolute left-100px top-50px z-index-minus-1"
+					data-bottom-top="transform: translate3d(80px, 0px, 0px);"
+					data-top-bottom="transform: translate3d(-180px, 0px, 0px);"
+				/>
+				<img
+					src={eight}
+					alt=""
+					className="position-absolute right-100px top-100px z-index-minus-1"
+					data-bottom-top="transform:scale(1.4, 1.4) translate3d(0px, 0px, 0px);"
+					data-top-bottom="transform:scale(1, 1) translate3d(-400px, 0px, 0px);"
+				/>
+				<div className="container">
+					<div className="row align-items-center justify-content-center">
+						<div className="col-lg-6 text-end md-mb-50px">
+							<figure className="position-relative m-0">
+								<img src={RevPic} className="w-90 border-radius-6px" alt="" />
+								<figcaption className="position-absolute bg-dark-gray border-radius-10px box-shadow-quadruple-large bottom-100px xs-bottom-minus-20px left-minus-30px md-left-0px w-230px xs-w-210px text-center last-paragraph-no-margin animation-float">
+									<div className="bg-white pt-35px pb-35px border-radius-8px mb-15px position-relative top-minus-1px">
+										<h1 className="fw-700 ls-minus-3px text-dark-gray mb-0 alt-font">
+											4.8
+										</h1>
+										<div className="text-golden-yellow fs-18 ls-1px">
+											<i className="bi bi-star-fill"></i>
+											<i className="bi bi-star-fill"></i>
+											<i className="bi bi-star-fill bg-gray-300"></i>
+											<i className="bi bi-star-fill"></i>
+											<i className="bi bi-star-fill"></i>
+										</div>
+										<span className="text-dark-gray d-block alt-font fw-600">
+											2488 Reviews
+										</span>
+										<div className="d-inline-block fs-12 text-uppercase bg-base-color ps-20px pe-20px lh-30 text-white border-radius-100px box-shadow-large">
+											Excellent score
+										</div>
+									</div>
+									<img src={trustpilot} className="h-30px mb-20px" alt="" />
+								</figcaption>
+							</figure>
+						</div>
+						<div className="col-lg-5 offset-lg-1 col-md-10 text-center text-lg-start">
+							<span className="fs-20 d-inline-block mb-15px text-base-color">
+								Clients feedback
+							</span>
+							<h2
+								className="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none"
+								data-shadow-animation="true"
+								data-animation-delay="700">
+								Here is what our{" "}
+								<span className="fw-700 text-highlight d-inline-block">
+									client's
+									<span className="bg-base-color h-10px bottom-10px opacity-3 separator-animation"></span>
+								</span>{" "}
+								have to say
+							</h2>
+							<div
+								className="swiper position-relative"
+								data-slider-options='{ "autoHeight": true, "loop": true, "allowTouchMove": true, "autoplay": { "delay": 4000, "disableOnInteraction": false }, "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" }, "effect": "fade" }'>
+								<div>
+									<Swiper
+										modules={[Autoplay]}
+										slidesPerView={1}
+										loop={true}
+										autoplay={{ delay: 3000, disableOnInteraction: false }}
+										spaceBetween={30}
+										breakpoints={{
+											1200: { slidesPerView: 1 },
+											768: { slidesPerView: 1 },
+											320: { slidesPerView: 1 },
+										}}
+										navigation={{
+											nextEl: ".swiper-button-next",
+											prevEl: ".swiper-button-prev",
+										}}
+										className="swiper-wrapper mb-40px">
+										{/* start text slider item  */}
+										<SwiperSlide>
+											<div className="swiper-slide review-style-08">
+												<p className="w-80 xl-w-90 lg-w-100">
+													"Mega Real Estate made my home buying experience so
+													easy! They really listened to my needs and found the
+													perfect home for my family. I couldn't be happier with
+													their service."
+												</p>
+												<div className="mt-20px">
+													<img
+														className="rounded-circle w-95px h-95px me-15px"
+														src={Rev1}
+														alt=""
+													/>
+													<div className="d-inline-block align-middle text-start">
+														<div className="text-dark-gray alt-font fs-20">
+															<span className="fw-700">Alexander</span> Okoro
+														</div>
+														<div className="review-star-icon fs-18">
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+										</SwiperSlide>
+										{/* end text slider item  */}
+										{/* start text slider item  */}
+										<SwiperSlide>
+											<div className="swiper-slide review-style-08">
+												<p className="w-80 xl-w-90 lg-w-100">
+													"Mega Real Estate made my home buying experience so
+													easy! They really listened to my needs and found the
+													perfect home for my family. I couldn't be happier with
+													their service."
+												</p>
+												<div className="mt-20px">
+													<img
+														className="rounded-circle w-95px h-95px me-15px"
+														src="https://via.placeholder.com/148x148"
+														alt=""
+													/>
+													<div className="d-inline-block align-middle text-start">
+														<div className="text-dark-gray alt-font fs-20">
+															<span className="fw-700">Victor</span> Obi
+														</div>
+														<div className="review-star-icon fs-18">
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+										</SwiperSlide>
+										{/* end text slider item  */}
+										{/* start text slider item  */}
+										<SwiperSlide>
+											<div className="swiper-slide review-style-08">
+												<p className="w-80 xl-w-90 lg-w-100">
+													"Mega Real Estate made my home buying experience so
+													easy! They really listened to my needs and found the
+													perfect home for my family. I couldn't be happier with
+													their service."
+												</p>
+												<div className="mt-20px">
+													<img
+														className="rounded-circle w-95px h-95px me-15px"
+														src="https://via.placeholder.com/148x148"
+														alt=""
+													/>
+													<div className="d-inline-block align-middle text-start">
+														<div className="text-dark-gray alt-font fs-20">
+															<span className="fw-700">Frank</span> Okoye
+														</div>
+														<div className="review-star-icon fs-18">
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+															<i className="bi bi-star-fill"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+										</SwiperSlide>
+										{/* end text slider item  */}
+									</Swiper>
+								</div>
+								<div className="d-flex justify-content-center justify-content-lg-start">
+									{/* start slider navigation   */}
+									<div className="slider-one-slide-prev-1 swiper-button-prev slider-navigation-style-04 border border-color-extra-medium-gray">
+										<i className="fa-solid fa-arrow-left icon-small text-dark-gray"></i>
+									</div>
+									<div className="slider-one-slide-next-1 swiper-button-next slider-navigation-style-04 border border-color-extra-medium-gray">
+										<i className="fa-solid fa-arrow-right icon-small text-dark-gray"></i>
+									</div>
+									{/* end slider navigation    */}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* end section       */}
+			{/* start section   */}
+			<section className="pt-0 pb-30px sm-pb-50px overlap-height">
+				<div className="container overlap-gap-section">
+					<div className="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center align-items-center">
+						<Marquee>
+							<div className="col md-mb-30px mr-8">
+								<div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
+									<div className="pt-10 pb-10">
+										<img src={logo1} className="h-40px" alt="" />
+									</div>
+									<div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
+										<div className="alt-font mx-auto lh-28">
+											Property sell listed -{" "}
+											<span className="fw-700 text-dark-gray">275% Growth</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col md-mb-30px mr-8">
+								<div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
+									<div className="pt-10 pb-10">
+										<img src={logo2} className="h-40px" alt="" />
+									</div>
+									<div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
+										<div className="alt-font mx-auto lh-28">
+											Property selling -{" "}
+											<span className="fw-700 text-dark-gray">235% Growth</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col md-mb-30px mr-8">
+								<div className="bg-white border-radius-6px text-center box-shadow-quadruple-large">
+									<div className="pt-10 pb-10">
+										<img src={logo3} className="h-40px" alt="" />
+									</div>
+									<div className="border-top border-1 border-color-extra-medium-gray p-15px last-paragraph-no-margin">
+										<div className="alt-font mx-auto lh-28">
+											Property agents -{" "}
+											<span className="fw-700 text-dark-gray">175% Growth</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</Marquee>
+					</div>
+					<div className="row justify-content-center align-items-center mt-5 md-mt-7">
+						<div className="col-12 text-center align-items-center">
+							<div className="bg-dark-gray alt-font fs-12 fw-700 text-white text-uppercase border-radius-30px ps-20px pe-20px me-10px sm-m-5px d-inline-block align-middle">
+								Fun facts
+							</div>
+							<div className="fs-20 text-dark-gray d-block d-md-inline-block align-middle alt-font fw-600">
+								World's famous ratings companies we worked with us.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	);
 };
 
 export default About;

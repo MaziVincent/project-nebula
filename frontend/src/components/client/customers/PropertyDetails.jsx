@@ -33,7 +33,6 @@ const CustomerPropertyDetails = () => {
     refetchOnMount: "always",
   });
 
-  console.log(property);
 
   return (
     <div className="px-3 lg:px-6 h-svh">

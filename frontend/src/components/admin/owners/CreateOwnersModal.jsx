@@ -1,346 +1,328 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from "react";
 import usePost from "../../../hooks/usePost";
 import useAuth from "../../../hooks/useAuth";
-import baseURL from '../../../shared/baseURL';
-import Modal from '@mui/material/Modal';
+import baseURL from "../../../shared/baseURL";
+import Modal from "@mui/material/Modal";
 import { set, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { useQueryClient, useMutation } from "react-query";
-import { useNavigate } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
+import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
-const CreateOwnersModal = ({open, handleClose}) => {
-  const post = usePost();
-  const {auth} = useAuth();
-  const navigate = useNavigate();
-  const url = `${baseURL}owner`;
-  const queryClient = useQueryClient();
-  const [isLoading, setIsLoading] = useState(false)
+const CreateOwnersModal = ({ open, handleClose }) => {
+	const post = usePost();
+	const { auth } = useAuth();
+	const navigate = useNavigate();
+	const url = `${baseURL}owner`;
+	const queryClient = useQueryClient();
+	const [isLoading, setIsLoading] = useState(false);
 
-  const { 
-    register, 
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
-  const createOwner = async(data) => {
-    setIsLoading(true)
-    if (!auth || !auth.accessToken) {
-      navigate('/login');
-      return
-    };
-    const formData = new FormData();
-    for (const key in data) {
-      if (data[key]) {
-        formData.append(key, data[key]);
-      }
-    }
-    try {
-      const response = await post(url, formData, auth.accessToken);
+	const createOwner = async (data) => {
+		setIsLoading(true);
+		if (!auth || !auth.accessToken) {
+			navigate("/login");
+			return;
+		}
+		const formData = new FormData();
+		for (const key in data) {
+			if (data[key]) {
+				formData.append(key, data[key]);
+			}
+		}
+		try {
+			const response = await post(url, formData, auth.accessToken);
 
-      // console.log(response.data)
-      // if (response.data.status === 409) {
-      //   toast.error('Email or Phone number already exist');
-      // }
-    } catch (err) {
-      //console.log(err);
-      if (err.status === 409) {
-        toast.error("Email or Phone number already exist");
-      }
-      if (error.status === 400) {
-        toast.error("Error Creating Owner");
-      }
-      throw new Error(err);
-      
-    }
-  }
-  const {mutate} = useMutation(createOwner, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("owners");
-      toast.success("Owner created successfully");
-     setTimeout(() => {
-        handleClose();
-      }, 2000);
-      setIsLoading(false);
-    },
-    onError: (error) => {
-      
-      if (error.status === 409) { 
-        toast.error('Email or Phone number already exist');
-      }
-      if(error.status === 400){
-        toast.error('Error Creating Owner');
-      }
-      setIsLoading(false);
-    },
-    
-  });
+			// if (response.data.status === 409) {
+			//   toast.error('Email or Phone number already exist');
+			// }
+		} catch (err) {
+			if (err.status === 409) {
+				toast.error("Email or Phone number already exist");
+			}
+			if (error.status === 400) {
+				toast.error("Error Creating Owner");
+			}
+			throw new Error(err);
+		}
+	};
+	const { mutate } = useMutation(createOwner, {
+		onSuccess: () => {
+			queryClient.invalidateQueries("owners");
+			toast.success("Owner created successfully");
+			handleClose();
+			setIsLoading(false);
+		},
+		onError: (error) => {
+			if (error.status === 409) {
+				toast.error("Email or Phone number already exist");
+			}
+			if (error.status === 400) {
+				toast.error("Error Creating Owner");
+			}
+			setIsLoading(false);
+		},
+	});
 
-  const handleCreateOwner = (data) => {
-   mutate(data);
-    
-//console.log(data);
-  }
-  return (
-    <Modal
-      open={open}
-      onClose={() => {handleClose()}}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      {/* <!-- Main modal --> */}
-      <div
-        id="defaultModal"
-        className=" overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none "
-      >
-        <ToastContainer />
-        <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
-          {/* <!-- Modal content --> */}
-          <div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
-            {/* <!-- Modal header --> */}
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h3 className="text-lg font-semibold text-gray-900 ">
-                Create Owner
-              </h3>
-              <button
-                type="button"
-                onClick={() => {handleClose()}}
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
-                data-modal-toggle="defaultModal"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="sr-only">Close modal</span>
-              </button>
-            <form 
-              onSubmit={handleSubmit(handleCreateOwner)} 
-              method='post'
-              // encType=''
-            >
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
-                <div className=' sm:col-span-2'>
-                  <label
-                    htmlFor="name"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Firstname:
-                  </label>
-                  <input
-                    type="text"
-                    name="firstname"
-                    id="firstname"
-                    {...register("firstname", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Type First name"
+	const handleCreateOwner = (data) => {
+		mutate(data);
+	};
+	return (
+		<Modal
+			open={open}
+			onClose={() => {
+				handleClose();
+			}}
+			aria-labelledby="modal-modal-title"
+			aria-describedby="modal-modal-description">
+			{/* <!-- Main modal --> */}
+			<div
+				id="defaultModal"
+				className=" overflow-y-auto overflow-x-hidden absolute top-10  z-50 justify-center items-center w-full outline-none ">
+				<ToastContainer />
+				<div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0 h-dvh">
+					{/* <!-- Modal content --> */}
+					<div className="relative w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 overflow-y-auto max-h-screen pb-3">
+						{/* <!-- Modal header --> */}
+						<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+							<h3 className="text-lg font-semibold text-gray-900 ">
+								Create Owner
+							</h3>
+							<button
+								type="button"
+								onClick={() => {
+									handleClose();
+								}}
+								className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm p-1.5 ml-auto inline-flex items-center absolute border border-gray-800 right-3 top-0"
+								data-modal-toggle="defaultModal">
+								<svg
+									aria-hidden="true"
+									className="w-5 h-5"
+									fill="currentColor"
+									viewBox="0 0 20 20"
+									xmlns="http://www.w3.org/2000/svg">
+									<path
+										fillRule="evenodd"
+										d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+										clipRule="evenodd"></path>
+								</svg>
+								<span className="sr-only">Close modal</span>
+							</button>
+							<form
+								onSubmit={handleSubmit(handleCreateOwner)}
+								method="post"
+								// encType=''
+							>
+								<div className="grid gap-4 mb-4 sm:grid-cols-2">
+									<div className=" sm:col-span-2">
+										<label
+											htmlFor="name"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Firstname:
+										</label>
+										<input
+											type="text"
+											name="firstname"
+											id="firstname"
+											{...register("firstname", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="Type First name"
+										/>
+										{errors.firstname && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="lastname"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Lastname:
+										</label>
+										<input
+											id="lastname"
+											// rows="4"
+											type="text"
+											{...register("lastname", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="Enter Lastname here"
+										/>
+										{errors.lastname && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="email"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Email:
+										</label>
+										<input
+											id="email"
+											name="email"
+											type="email"
+											{...register("email", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="Enter Email here"
+										/>
+										{errors.email && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
 
-                  />
-                  {errors.firstname && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="lastname"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Lastname:
-                  </label>
-                  <input
-                    id="lastname"
-                    // rows="4"
-                    type='text'
-                    {...register("lastname", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Lastname here"
-                  />
-                  {errors.lastname && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Email:
-                  </label>
-                  <input
-                    id="email"
-                    name='email'
-                    type='email'
-                    {...register("email", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Email here"
-                  />
-                  {errors.email && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="phone"
+											className="block mb-2 text-sm font-medium text-gray-900">
+											Phone:
+										</label>
+										<input
+											id="phone"
+											name="phone"
+											type="text"
+											{...register("phone", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="Enter Phone Number"
+										/>
+										{errors.phone && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="password"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Password:
+										</label>
+										<input
+											id="password"
+											name="password"
+											type="password"
+											{...register("password", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="********"
+										/>
+										{errors.password && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="idType"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Identity Type:
+										</label>
+										<select
+											name="idType"
+											id="idType"
+											{...register("identityType", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 ">
+											<option value="Select Identity Type" selected disabled>
+												Select Identity Type
+											</option>
+											<option value="National Identity Number">
+												National Identity Number
+											</option>
+											<option value="Voters Card">Voters Card</option>
+											<option value="Drivers Licence">Drivers Licence</option>
+											<option value="International Passport">
+												International Passport{" "}
+											</option>
+										</select>
+										{errors.identityType && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="identityNumber"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Identity Number:
+										</label>
+										<input
+											id="identityNumber"
+											name="identityNumber"
+											type="text"
+											{...register("identityNumber", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="Enter identityNumber here"
+										/>
+										{errors.identityNumber && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="phone"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Phone:
-                  </label>
-                  <input
-                    id="phone"
-                    name='phone'
-                    type='text'
-                    {...register("phone", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter Phone Number"
-                  />
-                  {errors.phone && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Password:
-                  </label>
-                  <input
-                    id="password"
-                    name='password'
-                    type='password'
-                    {...register("password", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="********"
-                  />
-                  {errors.password && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="idType"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Identity Type:
-                  </label>
-                  <select name="idType" id="idType"
-                    {...register("identityType", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                  >
-                    <option value="Select Identity Type" selected disabled>Select Identity Type</option>
-                    <option value="National Identity Number">National Identity Number</option>
-                    <option value="Voters Card">Voters Card</option>
-                    <option value="Drivers Licence">Drivers Licence</option>
-                    <option value="International Passport">International Passport </option>
-                  </select>
-                  {errors.identityType && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="identityNumber"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Identity Number:
-                  </label>
-                  <input
-                    id="identityNumber"
-                    name='identityNumber'
-                    type='text'
-                    {...register("identityNumber", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter identityNumber here"
-                  />
-                  {errors.identityNumber && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="contactAddress"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Contact Address:
-                  </label>
-                  <input
-                    id="contactAddress"
-                    name='contactAddress'
-                    type='text'
-                    {...register("contactAddress", { required: true })}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter contactAddress here"
-                  />
-                  {errors.contactAddress && (
-                    <span className="text-red-500 text-sm">
-                      
-                      This field is required
-                    </span>
-                  )}
-                </div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="contactAddress"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Contact Address:
+										</label>
+										<input
+											id="contactAddress"
+											name="contactAddress"
+											type="text"
+											{...register("contactAddress", { required: true })}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="Enter contactAddress here"
+										/>
+										{errors.contactAddress && (
+											<span className="text-red-500 text-sm">
+												This field is required
+											</span>
+										)}
+									</div>
 
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="whatsappLink"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Whatsapp Link:
-                  </label>
-                  <input
-                    id="whatsappLink"
-                    name='whatsappLink'
-                    type='text'
-                    {...register("whatsappLink")}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
-                    placeholder="Enter whatsappLink here"
-                  />
-                </div>
-              </div>
-              <button
-                type="submit"
-                className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-              >
-                {isLoading ? <CircularProgress color='white' size={20} /> : 'Add New Owner'}
-              </button>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Modal>
-  )
-}
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="whatsappLink"
+											className="block mb-2 text-sm font-medium text-gray-900 ">
+											Whatsapp Link:
+										</label>
+										<input
+											id="whatsappLink"
+											name="whatsappLink"
+											type="text"
+											{...register("whatsappLink")}
+											className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-primary-500 "
+											placeholder="Enter whatsappLink here"
+										/>
+									</div>
+								</div>
+								<button
+									type="submit"
+									className="text-green-50 inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+									{isLoading ? (
+										<CircularProgress color="white" size={20} />
+									) : (
+										"Add New Owner"
+									)}
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Modal>
+	);
+};
 
-export default CreateOwnersModal
+export default React.memo(CreateOwnersModal);

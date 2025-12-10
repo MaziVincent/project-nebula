@@ -9,7 +9,6 @@ import Avatar from '../../assets/images/photos/profile.png'
 const AdminHeader = ({ setAside }) => {
   const {auth, setAuth, persist, setPersist} = useContext(AuthContext)
 
-  // console.log(auth);
   
 
   return (
