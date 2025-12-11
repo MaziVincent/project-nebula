@@ -4,8 +4,7 @@ const allowedOrigins = [
 	"http://localhost:3500",
 	"http://localhost:5173",
 	"http://localhost:5174",
-	"localhost:5173",
-	"https://project-nebula.pages.dev/",
+	"https://project-nebula.pages.dev",
 ];
 
 module.exports = allowedOrigins
